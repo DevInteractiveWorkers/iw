@@ -12,16 +12,24 @@ export const navbar = [
             "link":"/phone"
         },
         {
-            "title":"Services",
-            "link":"/services"
+            "title":"Why VAs?",
+            "link":"/va"
         },
         {
-            "title":"Contact",
+            "title":"How it works?",
+            "link":"/how"
+        },
+        {
+            "title":"Build your team",
+            "link":"/build"
+        },
+        {
+            "title":"Resources",
+            "link":"/resources"
+        },
+        {
+            "title":"Contact us",
             "link":"/contact"
-        },
-        {
-            "title":"Book a call",
-            "link":"/call"
         }
 ]
 
