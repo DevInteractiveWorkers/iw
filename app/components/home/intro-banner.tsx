@@ -4,10 +4,15 @@ import React from 'react'
 const IntroBanner = () => {
   return (
     <section className='relative w-full bg-cover bg-no-repeat mt-6'>
+        <Image className='absolute max-w-full' src={'/home/space-elements.png'} alt='Space Elements IW' width={1440} height={1883}></Image>
         <article className='relative z-40 flex justify-around items-center'>
-          <h1 className='text-white lg:text-4xl text-2xl max-w-[35%]'>At InteractiveWorkers, <br />
-            we transform the <br /> concept of outsourcing.
-          </h1>
+          <div className='max-w-[35%] text-white gap-6 flex flex-col'>
+            <h1 className=' font-bold lg:text-4xl text-2xl'>At InteractiveWorkers, <br />
+              we transform the <br /> concept of outsourcing.
+            </h1>
+            <p className='font-medium text-xl'>We turn the intricate world of outsourcing into a simple, interactive, and value-driven process.</p>
+            <button className=' py-4 px-6 rounded-3xl bg-[#DD272D] text-left font-bold text-2xl max-w-fit'>Book a Call</button>
+          </div>
           <Image className='max-w-[45%] z-20' src={'/home/iw-hero.png'} alt='IW intro' width={697} height={840} priority quality={100}></Image>
           <div className='absolute z-0 w-1/3 h-4/5 border-white border-2 rounded-full bottom-[12%] right-[12%]'></div>
           <div className='absolute w-[12%] h-3/5 border-white border-2 rounded-full bottom-[12%] right-[40%]'></div>
