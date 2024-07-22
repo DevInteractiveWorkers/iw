@@ -12,20 +12,20 @@ export const navbar = [
             "link":"/phone"
         },
         {
-            "title":"Why VAs?",
+            "title":"VA's",
             "link":"/va"
         },
         {
-            "title":"How it works?",
-            "link":"/how"
+            "title":"Dispatch",
+            "link":"/dispatch"
         },
         {
-            "title":"Build your team",
-            "link":"/build"
+            "title":"Blog",
+            "link":"/blog"
         },
         {
-            "title":"Resources",
-            "link":"/resources"
+            "title":"Portfolio",
+            "link":"/portfolio"
         },
         {
             "title":"Contact us",

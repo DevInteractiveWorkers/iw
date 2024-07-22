@@ -3,15 +3,27 @@ import { CustomFlowbiteTheme, Navbar, NavbarBrand, NavbarToggle } from 'flowbite
 import Link from 'next/link';
 import { navbar } from '../../content/navbar'
 import ItemList from './item-list';
+import Image from 'next/image';
 
 
 const customUpperCollapseTheme: CustomFlowbiteTheme["navbar"] = {
 
   "collapse": {
     "base": "w-full md:block md:w-auto",
-    "list": "mt-4 flex flex-col md:mt-0 md:flex-row md:space-x-8 md:text-sm md:font-bold",
+    "list": "mt-4 flex flex-col md:mt-0 md:flex-row md:space-x-8 text-xs",
     "hidden": {
       "on": "hidden",
+      "off": ""
+    }
+  },
+  "link": {
+    "base": "block py-2 pr-4 pl-3 md:p-0",
+    "active": {
+      "on": "bg-cyan-700 md:bg-transparent md:text-red-700",
+      "off": "border-b border-gray-100  hover:bg-gray-50  md:border-0 md:hover:bg-transparent md:hover:text-gray-500"
+    },
+    "disabled": {
+      "on": "text-black hover:cursor-not-allowed",
       "off": ""
     }
   },
@@ -26,18 +38,21 @@ const customUpperCollapseTheme: CustomFlowbiteTheme["navbar"] = {
 const NavbarComponent = async () => {
   
   return (
-    <div className='fixed w-full'>
-      <Navbar className='ml-auto w-1/2 text-end bg-transparent py-2 px-2 sm:pr-12' theme={customUpperCollapseTheme}>
+    <div className='navbar-bottom border-b-2 border-white'>
+      <div className=' z-40 w-11/12 py-4 mx-auto text-white'>
+      <Navbar className='ml-auto w-1/2 text-end bg-transparent py-1 px-2 sm:pr-12' theme={customUpperCollapseTheme}>
         <ItemList items={navbar.slice(0, 3)} hover={false}></ItemList>
       </Navbar>
 
       <Navbar className='relative bg-transparent' fluid rounded>
-        <NavbarBrand as={Link} href="https://flowbite-react.com">
-          <img src="https://images2.imgbox.com/bd/6d/iKxkgI9e_o.png" className="h-12" alt="Flowbite React Logo" />
+        <NavbarBrand as={Link} href="/">
+          <Image className="w-auto hover:scale-110 transition-transform" src="https://iw-website.s3.amazonaws.com/logo/iw-Logo.png" alt="Interactiveworkers Logo" width={200} height={31}></Image>
         </NavbarBrand>
         <NavbarToggle />
         <ItemList items={navbar.slice(3)} hover={true}></ItemList>
       </Navbar>
+      </div>
+      <div className=' min-w-full h-[1px] navbar-bottom'></div>
     </div>
   )
 }

@@ -17,8 +17,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={montserrat.className} style={{background:"radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%)"}}>
-        <NavbarComponent></NavbarComponent>
+      <body className={montserrat.className + " bg-[#C1272D]"}>
+        {/* <div className="w-full glass sticky top-0 z-40 "> */}
+          <NavbarComponent></NavbarComponent>
+        {/* </div> */}
         {children}  
       </body>
     </html>
