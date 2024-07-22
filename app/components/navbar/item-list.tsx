@@ -59,7 +59,7 @@ const ItemList = ({ items, hover }: { items: navbarModel[], hover: boolean }) =>
     )
   }
   return (
-    <Navbar.Collapse className={" pb-2 "}>
+    <Navbar.Collapse className={"relative pb-2 mr-[5%] uppercase font-medium"}>
       {
         items.map((navbarItem, i) => {
           return (
@@ -67,6 +67,7 @@ const ItemList = ({ items, hover }: { items: navbarModel[], hover: boolean }) =>
           )
         })
       }
+      <div className='faded-minidiv hidden lg:block absolute w-[150%] h-[2px] bottom-0 -left-[40%]'></div>
     </Navbar.Collapse>
   )
 }
