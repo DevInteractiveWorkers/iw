@@ -6,10 +6,10 @@ import CarreersBanner from "./components/home/carreers";
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-between bg-[#C1272D]">
+    <main className="flex flex-col items-center justify-between">
       <IntroBanner></IntroBanner>
-      {/* <BenefitsBanner></BenefitsBanner>
-      <CarreersBanner></CarreersBanner> */}
+      <BenefitsBanner></BenefitsBanner>
+      {/* <CarreersBanner></CarreersBanner> */}
     </main>
   );
 }

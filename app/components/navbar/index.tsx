@@ -38,7 +38,7 @@ const customUpperCollapseTheme: CustomFlowbiteTheme["navbar"] = {
 const NavbarComponent = async () => {
   
   return (
-    <div>
+    <div className='bg-[#C1272D]'>
       <div className=' z-40 w-11/12 py-4 mx-auto text-white'>
       <Navbar className='ml-auto w-1/2 text-end bg-transparent py-1 px-2 sm:pr-12 md:pr-4' theme={customUpperCollapseTheme}>
         <ItemList items={navbar.slice(0, 3)} hover={false}></ItemList>
@@ -46,7 +46,7 @@ const NavbarComponent = async () => {
 
       <Navbar className='relative bg-transparent mt-2' fluid rounded>
         <NavbarBrand as={Link} href="/">
-          <Image className="w-auto hover:scale-110 transition-transform" src="https://iw-website.s3.amazonaws.com/logo/iw-Logo.png" alt="Interactiveworkers Logo" width={200} height={31}></Image>
+          <Image className=" hover:scale-110 transition-transform" src="https://iw-website.s3.amazonaws.com/logo/iw-Logo.png" alt="Interactiveworkers Logo" width={200} height={31}></Image>
         </NavbarBrand>
         <NavbarToggle />
         <ItemList items={navbar.slice(3)} hover={true}></ItemList>

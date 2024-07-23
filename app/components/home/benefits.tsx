@@ -5,18 +5,20 @@ import React from 'react'
 
 const BenefitsBanner = () => {
   return (
-    <section className='bg-[#DE272C] text-white pt-16 pb-8 px-4 text-center'>
+    <section className='text-white pt-16 lg:pt-32 xl:pt-44 px-4 text-center z-10 w-full '>
         <article>
-            <h2 className='w-5/6 md:w-2/3 mx-auto uppercase font-bold text-lg'>Benefits of working with virtual assistants</h2>
-            <h3 className='w-5/6 md:w-2/3 mx-auto text-base'>Our virtual assistants are your partners in success, delivering quality work, adaptability, and results at a pace that suits your business needs.</h3>
-            <div className='flex flex-wrap text-black justify-center gap-2 md:gap-4 mt-8'>
+            <div className='w-3/4 mx-auto uppercase font-bold text-2xl lg:text-4xl text-black p-12 bg-white rounded-3xl inner-shadow'>
+                <h2>Our virtual assistants are <br /></h2>
+                <h2 className='mt-1.5 text-[#DD272D]'> your partners in success </h2>
+                <p className=' text-base mt-2'>Delivering quality work, adaptability, and results at a pace that suits your business needs.</p>
+            </div>
+            <div className='w-10/12 mx-auto flex flex-wrap text-black justify-center mt-2 bg-white rounded-3xl p-8 px-4'>
             {
                 benefits.map((benefit, i) => {
                     return(
-                        <Card key={benefit.title} className={`md:basis-5/12 rounded-3xl ${i >= benefits.length - 2 ? 'lg:max-w-xl xl:max-w-2xl' : 'lg:max-w-xs xl:max-w-sm'}`}>
-                            {/* <Image className='mx-auto md:w-auto w-2/6' src={`/home/${i}.png`} alt={benefit.title} width={120} height={120}></Image> */}
-                            <h3 className='text-sm md:text-base'>{benefit.title}</h3>
-                            <p className='text-xs md:text-sm'>{benefit.subtitle}</p>
+                        <Card key={benefit.title} className={` rounded-3xl shadow-none border-none`}>
+                            <Image className='mx-auto' src={`/home/benefits/${i}.png`} alt={benefit.title} width={120} height={120}></Image>
+                            <h3 className='text-sm md:text-base text-[#DD272D] font-black'>{benefit.title}</h3>
                         </Card>
                     )
                 })

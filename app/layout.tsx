@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={montserrat.className + " bg-[#C1272D]"}>
+      <body className={montserrat.className + " "}>
         {/* <div className="w-full glass sticky top-0 z-40 "> */}
           <NavbarComponent></NavbarComponent>
         {/* </div> */}

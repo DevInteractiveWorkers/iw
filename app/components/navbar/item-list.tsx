@@ -8,7 +8,7 @@ import { cubicBezier, motion } from 'framer-motion';
 const customCollapseTheme: CustomFlowbiteTheme["navbar"] = {
   "collapse": {
     "base": "w-full md:block md:w-auto relative",
-    "list": "mt-4 flex flex-col md:mt-0 md:mr-8 md:flex-row md:space-x-8 text-sm font-bold",
+    "list": "mt-4 flex flex-col md:mt-0 md:mr-8 md:flex-row md:space-x-8 text-sm",
     "hidden": {
       "on": "hidden",
       "off": ""
