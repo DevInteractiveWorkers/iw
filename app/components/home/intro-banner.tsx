@@ -4,7 +4,7 @@ import React from 'react'
 const IntroBanner = () => {
   return (
     <section className='relative w-full bg-cover bg-no-repeat bg-[#C1272D]'>
-        <Image className='absolute top-[20%] w-full' src={'/home/space-elements.png'} alt='Space Elements IW' width={1440} height={1553} quality={100}></Image>
+        {/* <Image className='absolute top-[20%] w-full' src={'/home/space-elements.png'} alt='Space Elements IW' width={1440} height={1553} quality={100}></Image> */}
         <div className='w-1/2 h-full absolute right-0 bg-[#e5323853] mix-blend-multiply bg-blend-multiply z-40'></div>
         <article className='relative z-40 flex justify-around items-center pt-6'>
           <div className='max-w-[35%] text-white gap-6 flex flex-col'>

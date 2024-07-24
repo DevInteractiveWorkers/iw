@@ -3,13 +3,18 @@ import SomeComponent from "./components/some-component";
 import IntroBanner from "./components/home/intro-banner";
 import BenefitsBanner from "./components/home/benefits";
 import CarreersBanner from "./components/home/carreers";
+import DiscoverVAs from "./components/home/discover-vas";
+import Testimonies from "./components/home/testimonies";
+import MainForm from "./components/form/form";
 
 export default function Home() {
   return (
     <main className="flex flex-col items-center justify-between">
       <IntroBanner></IntroBanner>
       <BenefitsBanner></BenefitsBanner>
-      {/* <CarreersBanner></CarreersBanner> */}
+      <DiscoverVAs></DiscoverVAs>
+      <Testimonies></Testimonies>
+      <MainForm></MainForm>
     </main>
   );
 }

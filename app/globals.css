@@ -44,3 +44,7 @@
 .inner-shadow{
   box-shadow: 0.5px 0.5px 3px inset black;
 }
+
+.discover-vas-bg{
+  background: url('/home/discover-vas/world.png') no-repeat center;
+}

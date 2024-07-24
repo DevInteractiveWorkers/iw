@@ -5,9 +5,9 @@ import React from 'react'
 
 const BenefitsBanner = () => {
   return (
-    <section className='text-white pt-16 lg:pt-32 xl:pt-44 px-4 text-center z-10 w-full '>
+    <section className='text-white pt-12 lg:pt-24 xl:pt-28 px-4 text-center z-10 w-full '>
         <article>
-            <div className='w-3/4 mx-auto uppercase font-bold text-2xl lg:text-4xl text-black p-12 bg-white rounded-3xl inner-shadow'>
+            <div className='w-3/4 mx-auto uppercase font-bold text-2xl lg:text-4xl text-black p-12 bg-white rounded-3xl'>
                 <h2>Our virtual assistants are <br /></h2>
                 <h2 className='mt-1.5 text-[#DD272D]'> your partners in success </h2>
                 <p className=' text-base mt-2'>Delivering quality work, adaptability, and results at a pace that suits your business needs.</p>
