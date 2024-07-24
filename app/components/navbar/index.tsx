@@ -35,22 +35,22 @@ const customUpperCollapseTheme: CustomFlowbiteTheme["navbar"] = {
   }
 }
 
-const NavbarComponent = async () => {
+const NavbarComponent = async ({dark}:{dark?:boolean}) => {
   
   return (
-    <div className='bg-[#C1272D]'>
-      <div className=' z-40 w-11/12 py-4 mx-auto text-white'>
+    <div className={`w-full ${dark ? 'text-white bg-[#C1272D]' : 'text-black bg-white'}`}>
+      <div className=' z-40 w-11/12 py-4 mx-auto '>
       <Navbar className='ml-auto w-1/2 text-end bg-transparent py-1 px-2 sm:pr-12 md:pr-4' theme={customUpperCollapseTheme}>
-        <ItemList items={navbar.slice(0, 3)} hover={false}></ItemList>
+        <ItemList dark={dark} items={navbar.slice(0, 3)} hover={false}></ItemList>
       </Navbar>
 
       <Navbar className='relative bg-transparent mt-2' fluid rounded>
         <NavbarBrand as={Link} href="/">
-          <Image className=" hover:scale-110 transition-transform" src="https://iw-website.s3.amazonaws.com/logo/iw-Logo.png" alt="Interactiveworkers Logo" width={200} height={31}></Image>
+          <Image className=" hover:scale-110 transition-transform" src={`${dark ? 'https://iw-website.s3.amazonaws.com/logo/iw-Logo.png' : '/iw-LogoLight.png'}`} alt="Interactiveworkers Logo" width={200} height={31}></Image>
         </NavbarBrand>
         <NavbarToggle />
-        <ItemList items={navbar.slice(3)} hover={true}></ItemList>
-        <button className='w-[30%] max-w-[350px] bg-[#DD272D] text-center rounded-xl p-1 font-semibold'>Book a Call</button>
+        <ItemList dark={dark} items={navbar.slice(3)} hover={true}></ItemList>
+        <button className='w-[30%] max-w-[350px] bg-[#DD272D] text-center text-white rounded-xl p-1 font-semibold hidden lg:block'>Book a Call</button>
       </Navbar>
       </div>
       <div className='faded-div w-full h-[2px]'></div>

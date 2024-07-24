@@ -18,9 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={montserrat.className + " "}>
-        <NavbarComponent></NavbarComponent>
-        {children}  
+      <body className={montserrat.className + ""}>
+        
+        {children}
         <Footer></Footer>
       </body>
     </html>
