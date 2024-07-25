@@ -48,3 +48,14 @@
 .discover-vas-bg{
   background: url('/home/discover-vas/world.png') no-repeat center;
 }
+
+.values-bg{
+  background: url('/about/values.png') no-repeat center;
+  background-size: cover;
+  background-color: #DD272D;
+  background-blend-mode: multiply;
+}
+
+.values-card-bg{
+  background: linear-gradient(90deg, rgba(217,217,217,.12) 22%, rgba(115,115,115,.12) 96%);
+}
