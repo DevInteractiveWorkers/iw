@@ -3,12 +3,13 @@ import Image from 'next/image';
 import NavbarComponent from './../components/navbar/index';
 import FAQ from '../components/about/faq/faq';
 import Values from '../components/about/values/values';
+import MainForm from '../components/form/form';
 
 const AboutUs = () => {
   return (
     <div>
       <NavbarComponent dark={false}></NavbarComponent>
-      <section className='relative'>
+      <section className='relative flex flex-col justify-between'>
         {/* <div className='absolute w-2/3 h-12 bg-[#DD272D] rounded-3xl right-0 -top-6 z-0'></div> */}
 
         <article className='overflow-hidden relative my-8 min-h-[67vh] flex items-center'>
@@ -25,7 +26,7 @@ const AboutUs = () => {
           <div className='h-4 w-1/6 bg-[#DD272D] mt-16 mx-auto rounded-3xl'></div>
         </article>
 
-        <article className='w-full mb-72'>
+        <article className='w-full mb-44'>
           <h3 className='font-extrabold text-4xl uppercase bg-[#DD272D] text-white w-1/2 pl-20 py-4 rounded-r-full pb-12'>What we are</h3>
           <div className='bg-[#DD272D] w-full flex'>
             <div className='bg-[#282828] rounded-[60px] basis-[60%] px-16 -my-10 text-white text-xl max-h-[500px]'>
@@ -49,6 +50,8 @@ const AboutUs = () => {
         </article>
 
         <FAQ></FAQ>
+
+        <MainForm dark={false}></MainForm>
       </section>
     </div>
   )

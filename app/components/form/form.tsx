@@ -2,11 +2,11 @@ import { Button, Checkbox, Label, Select, Textarea, TextInput } from 'flowbite-r
 import Link from 'next/link'
 import React from 'react'
 
-const MainForm = () => {
+const MainForm = ({dark}:{dark?:boolean}) => {
   return (
-    <div className='bg-[#222222] w-full'>
-      <form className="flex flex-col gap-4 w-3/4 mx-auto bg-[#333333] -mt-[3%] rounded-[66px] py-20 mb-20">
-        <h2 className=' text-white text-4xl uppercase font-light mx-auto text-center'><strong className='font-extrabold'>Speak</strong> with our team <strong className='font-extrabold'>today</strong></h2>
+    <div className={`w-full  ${dark ? "bg-[#222222]" : "bg-[#E6E6E6]"}`}>
+      <form className={`flex flex-col gap-4 w-3/4 mx-auto -mt-[3%] rounded-[66px] py-20 mb-20 ${dark ? "bg-[#333333]" : "bg-[#EFEFEF]"}`}>
+        <h2 className={`${ dark ? "text-white" : "text-[#DD272D]"} text-4xl uppercase font-light mx-auto text-center`}><strong className='font-extrabold'>Speak</strong> with our team <strong className='font-extrabold'>today</strong></h2>
         <div className='mx-auto w-2/3 flex flex-col gap-3'>
           <div className='flex gap-3'>
             <TextInput className='basis-1/2' id="firstname" type="text" placeholder="First name*" required shadow />
@@ -28,9 +28,9 @@ const MainForm = () => {
           <div>
             <TextInput className='basis-1/2' id="country" type="text" placeholder="Which country are you based in?*" required shadow />
           </div>
-          <h4 className='mx-auto text-center font-bold text-lg mt-4 text-white'>Choose your Professional</h4>
+          <h4 className={`mx-auto text-center font-bold text-lg mt-4 ${ dark ? "text-white" : "text-black"}`}>Choose your Professional</h4>
           <div>
-            <Select id="professional" required>
+            <Select className=' text-white' id="professional" required>
               <option>Graphic Designer </option>
               <option>Web Developer </option>
               <option>Copywriter </option>
@@ -65,7 +65,7 @@ const MainForm = () => {
           </div>
           <Textarea className='mt-8' id="comment" placeholder="What's your question? Or what kind of outsourcing help do you need?" required rows={4} />
 
-          <p className='text-center text-white text-xs'>Messages and data rates may apply. message frequency will vary. Reply stop to opt-out of messaging
+          <p className={`text-center ${ dark ? "text-white" : "text-black"} text-xs`}>Messages and data rates may apply. message frequency will vary. Reply stop to opt-out of messaging
           <br /> <span className='font-bold '>Read our privacy policy</span>
           </p>
           {/* <div className="flex items-center gap-2">
@@ -77,7 +77,7 @@ const MainForm = () => {
               </Link>
             </Label>
           </div> */}
-          <Button className='uppercase rounded-xl font-bold text-xl max-w-fit mx-auto mt-8 bg-[#DD272D]' type="submit">Send mail</Button>
+          <Button className='uppercase rounded-xl font-bold text-xl max-w-fit mx-auto mt-8 bg-[#DD272D] text-white' type="submit">Send mail</Button>
         </div>
       </form>
     </div>

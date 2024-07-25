@@ -19,7 +19,7 @@ const IntroBanner = () => {
           <div className='absolute z-0 w-1/3 h-[70%] border-white border-2 rounded-[250px] bottom-[15%] right-[10%]'></div>
           <div className='absolute w-[12%] h-3/5 border-white border-2 rounded-full bottom-[15%] right-[40%]'></div>
         </article>
-        <div className='absolute top-[30%] w-full bg-[#C21016] h-1/2 z-30 bg-blend-multiply mix-blend-multiply'></div>
+        <div className='absolute top-[15%] w-full bg-[#C21016] h-2/3 z-30 bg-blend-multiply mix-blend-multiply'></div>
     </section>
   )
 }
