@@ -48,11 +48,13 @@ const ItemList = ({ items, hover, dark }: { items: navbarModel[], hover: boolean
         <motion.div className={`h-1 absolute -top-2 z-10 bg-[#e53238] hidden md:block`} animate={{ left: space, width: width }} transition={{ ease: cubicBezier(.66, -.05, 0, 1.1), type: "tween", duration: 0.75 }} />
         {
           items.map((navbarItem, i) => {
-            return (
-              <Navbar.Link theme={customCollapseTheme["link"]} key={navbarItem.link} className={` rounded-md px-2 transition-all font-medium  ease-in ${onHover === i + 1 ? 'bg-[#ffffff] text-black' : ''}`} onMouseOver={(e) => { handleHover(e, i + 1) }} onMouseLeave={() => { setOnHover(0) }} href={navbarItem.link}>
-                {navbarItem.title}
-              </Navbar.Link>
-            )
+              if(navbarItem.disabled === ""){
+                return(
+                  <Navbar.Link theme={customCollapseTheme["link"]} key={navbarItem.link} className={` rounded-md px-2 transition-all font-medium  ease-in ${onHover === i + 1 ? 'bg-[#ffffff] text-black' : ''}`} onMouseOver={(e) => { handleHover(e, i + 1) }} onMouseLeave={() => { setOnHover(0) }} href={navbarItem.link}>
+                    {navbarItem.title}
+                  </Navbar.Link>
+                )
+              }
           })
         }
       </Navbar.Collapse>
@@ -62,10 +64,12 @@ const ItemList = ({ items, hover, dark }: { items: navbarModel[], hover: boolean
     <Navbar.Collapse className={`relative pb-2 mr-[5%] uppercase font-medium ${dark ? '' : 'text-[#DD272D]'}`}>
       {
         items.map((navbarItem, i) => {
-          return (
-            <Navbar.Link className='text-sm' key={navbarItem.link} as={Link} href={navbarItem.link}>{navbarItem.title}</Navbar.Link>
-          )
-        })
+          if(navbarItem.disabled === ""){
+            return (
+              <Navbar.Link className='text-sm' key={navbarItem.link} as={Link} href={navbarItem.link}>{navbarItem.title}</Navbar.Link>
+            )
+          }
+      })
       }
       <div className='faded-minidiv hidden lg:block absolute w-[150%] h-[2px] bottom-0 -left-[40%]'></div>
     </Navbar.Collapse>

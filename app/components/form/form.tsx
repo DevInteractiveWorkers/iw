@@ -1,11 +1,52 @@
-import { Button, Checkbox, Label, Select, Textarea, TextInput } from 'flowbite-react'
-import Link from 'next/link'
-import React from 'react'
+"use client"
+
+import { Button, Select, Textarea, TextInput } from 'flowbite-react'
+import React, { useState } from 'react'
+import { sendMail, formData } from '../lib/utils'
 
 const MainForm = ({dark}:{dark?:boolean}) => {
+
+  const [isSending, setIsSending] = useState(false);
+
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+    /* setIsSending(true); */
+    const target = event.target;
+    const data: formData = {
+      fullName: target.firstname.value + " " + target.lastname.value,
+      company: target.company.value,
+      phone: target.phone.value,
+      email: target.email.value,
+      size: target.size.value,
+      staff: target.staff.value,
+      country: target.country.value,
+      professional: target.professional.value,
+      message: target.message.value
+    };
+    
+
+    const empty = Object.values(data).filter((item) => item === '');
+    const completed = empty.length === 0 && await sendMail(data);
+    
+    setIsSending(false);
+
+    /* if (completed) {
+      target.firstname.value = "" 
+      target.lastname.value = ""
+      target.company.value = ""
+      target.phone.value = ""
+      target.email.value = ""
+      target.size.value = ""
+      target.staff.value = ""
+      target.country.value = ""
+      target.professional.value = ""
+      target.message.value = ""
+    } */
+  };
+
   return (
     <div className={`w-full  ${dark ? "bg-[#222222]" : "bg-[#E6E6E6]"}`}>
-      <form className={`flex flex-col gap-4 w-3/4 mx-auto -mt-[3%] rounded-[66px] py-20 mb-20 ${dark ? "bg-[#333333]" : "bg-[#EFEFEF]"}`}>
+      <form className={`flex flex-col gap-4 w-3/4 mx-auto -mt-[3%] rounded-[66px] py-20 mb-20 ${dark ? "bg-[#333333]" : "bg-[#EFEFEF]"}`} onSubmit={handleSubmit}>
         <h2 className={`${ dark ? "text-white" : "text-[#DD272D]"} text-4xl uppercase font-light mx-auto text-center`}><strong className='font-extrabold'>Speak</strong> with our team <strong className='font-extrabold'>today</strong></h2>
         <div className='mx-auto w-2/3 flex flex-col gap-3'>
           <div className='flex gap-3'>
@@ -20,7 +61,7 @@ const MainForm = ({dark}:{dark?:boolean}) => {
             <TextInput className='basis-1/2' id="email" type="email" placeholder="Email*" required shadow />
           </div>
           <div>
-            <TextInput className='basis-1/2' id="company-size" type="text" placeholder="Your company size (current staff number)*" required shadow />
+            <TextInput className='basis-1/2' id="size" type="text" placeholder="Your company size (current staff number)*" required shadow />
           </div>
           <div>
             <TextInput className='basis-1/2' id="staff" type="text" placeholder="Number of Staff Required?*" required shadow />
@@ -63,7 +104,7 @@ const MainForm = ({dark}:{dark?:boolean}) => {
               <option>Real Estate Agent</option>
             </Select>
           </div>
-          <Textarea className='mt-8' id="comment" placeholder="What's your question? Or what kind of outsourcing help do you need?" required rows={4} />
+          <Textarea className='mt-8' id="message" placeholder="What's your question? Or what kind of outsourcing help do you need?" required rows={4} />
 
           <p className={`text-center ${ dark ? "text-white" : "text-black"} text-xs`}>Messages and data rates may apply. message frequency will vary. Reply stop to opt-out of messaging
           <br /> <span className='font-bold '>Read our privacy policy</span>

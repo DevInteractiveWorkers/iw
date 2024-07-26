@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 const customCardTheme: CustomFlowbiteTheme["card"] = {
     "root": {
-      "base": "flex rounded-3xl border-4 border-[#D9D9D9] bg-white shadow-md dark:border-gray-700 dark:bg-gray-800",
+      "base": "flex rounded-3xl border-4 border-[#D9D9D9] bg-white hover:bg-[#DD272D] hover:shadow-xl dark:border-gray-700 dark:bg-gray-800",
       "children": "flex h-full flex-col justify-center",
       "horizontal": {
         "off": "flex-col",
@@ -30,24 +30,24 @@ const DiscoverVAs = () => {
                 <div className='-mt-8 w-1/2 mx-auto h-14 bg-[#EFEFEF] rounded-full'></div>
             </div>
             <div className='w-full flex justify-between my-32'>
-                <Card theme={customCardTheme} className='bg-none shadow-none w-[24%]'>
-                    <Image className='-mt-[25%] w-full h-auto border-b-4 border-[#D9D9D9]' src="/home/discover-vas/vas/daniel.png" alt='' width={275} height={341} quality={100}></Image>
-                    <h3 className='p-4 py-8 mx-auto text-center font-bold text-2xl text-[#D9D9D9] hover:text-white'>Architech Virtual Assistant</h3>
+                <Card theme={customCardTheme} className='bg-none shadow-none w-[24%] text-[#333333] hover:text-white'>
+                    <Image className='-mt-[25%] w-full h-auto border-b-4 border-[#D9D9D9]' src="/home/discover-vas/vas/0.png" alt='' width={275} height={341} quality={100}></Image>
+                    <h3 className='p-4 py-8 mx-auto text-center font-bold text-2xl '>Architech Virtual Assistant</h3>
                 </Card>
-                <Card theme={customCardTheme} className='bg-none shadow-none w-[24%]'>
-                    <Image className='-mt-[25%] w-full h-auto border-b-4 border-[#D9D9D9]' src="/home/discover-vas/vas/daniel.png" alt='' width={275} height={341} quality={100}></Image>
-                    <h3 className='p-4 py-8 mx-auto text-center font-bold text-2xl text-[#D9D9D9] hover:text-white'>Architech Virtual Assistant</h3>
+                <Card theme={customCardTheme} className='bg-none shadow-none w-[24%] text-[#333333] hover:text-white'>
+                    <Image className='-mt-[25%] w-full h-auto border-b-4 border-[#D9D9D9]' src="/home/discover-vas/vas/1.png" alt='' width={275} height={341} quality={100}></Image>
+                    <h3 className='p-4 py-8 mx-auto text-center font-bold text-2xl '>Video Editor Virtual Assistant</h3>
                 </Card>
-                <Card theme={customCardTheme} className='bg-none shadow-none w-[24%]'>
-                    <Image className='-mt-[25%] w-full h-auto border-b-4 border-[#D9D9D9]' src="/home/discover-vas/vas/daniel.png" alt='' width={275} height={341} quality={100}></Image>
-                    <h3 className='p-4 py-8 mx-auto text-center font-bold text-2xl text-[#D9D9D9] hover:text-white'>Architech Virtual Assistant</h3>
+                <Card theme={customCardTheme} className='bg-none shadow-none w-[24%] text-[#333333] hover:text-white'>
+                    <Image className='-mt-[25%] w-full h-auto border-b-4 border-[#D9D9D9]' src="/home/discover-vas/vas/2.png" alt='' width={275} height={341} quality={100}></Image>
+                    <h3 className='p-4 py-8 mx-auto text-center font-bold text-2xl '>Call Center Agent Virtual Assistant</h3>
                 </Card>
-                <Card theme={customCardTheme} className='bg-none shadow-none w-[24%]'>
-                    <Image className='-mt-[25%] w-full h-auto border-b-4 border-[#D9D9D9]' src="/home/discover-vas/vas/daniel.png" alt='' width={275} height={341} quality={100}></Image>
-                    <h3 className='p-4 py-8 mx-auto text-center font-bold text-2xl text-[#D9D9D9] hover:text-white'>Architech Virtual Assistant</h3>
+                <Card theme={customCardTheme} className='bg-none shadow-none w-[24%] text-[#333333] hover:text-white'>
+                    <Image className='-mt-[25%] w-full h-auto border-b-4 border-[#D9D9D9]' src="/home/discover-vas/vas/3.png" alt='' width={275} height={341} quality={100}></Image>
+                    <h3 className='p-4 py-8 mx-auto text-center font-bold text-2xl '> Appointment Setter</h3>
                 </Card>
             </div>
-            <button className='block max-w-fit mx-auto uppercase bg-[#DD272D] p-4 text-white rounded-3xl'>See More</button>
+            {/* <button className='block max-w-fit mx-auto uppercase bg-[#DD272D] p-4 text-white rounded-3xl'>See More</button> */}
         </article>
     </section>
   )

@@ -29,7 +29,7 @@ const AboutUs = () => {
         <article className='w-full mb-44'>
           <h3 className='font-extrabold text-4xl uppercase bg-[#DD272D] text-white w-1/2 pl-20 py-4 rounded-r-full pb-12'>What we are</h3>
           <div className='bg-[#DD272D] w-full flex'>
-            <div className='bg-[#282828] rounded-[60px] basis-[60%] px-16 -my-10 text-white text-xl max-h-[500px]'>
+            <div className='bg-[#282828] rounded-[60px] basis-[60%] px-16 lg:-my-10 xl:-my-1 text-white text-xl max-h-[500px]'>
               <div className='py-8 px-4'>
                 <h4 className='text-[#DD272D] font-extrabold'>InteractiveWorkers:</h4>
                 <p className='font-normal'>Your dedicated virtual assistants for success</p>

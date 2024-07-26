@@ -50,7 +50,7 @@ const NavbarComponent = async ({dark}:{dark?:boolean}) => {
         </NavbarBrand>
         <NavbarToggle />
         <ItemList dark={dark} items={navbar.slice(3)} hover={true}></ItemList>
-        <button className='w-[30%] max-w-[350px] bg-[#DD272D] text-center text-white rounded-xl p-1 font-semibold hidden lg:block'>Book a Call</button>
+        <Link href={"https://calendly.com/interactiveworkersgm/30min"} target='_blank' className='w-[30%] max-w-[350px] bg-[#DD272D] text-center text-white rounded-xl p-1 font-semibold hidden lg:block'>Book a Call</Link>
       </Navbar>
       </div>
       <div className='faded-div w-full h-[2px]'></div>

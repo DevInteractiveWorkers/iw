@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 const IntroBanner = () => {
@@ -12,7 +13,7 @@ const IntroBanner = () => {
               we transform the <br /> concept of outsourcing.
             </h1>
             <p className='font-medium text-xl'>We turn the intricate world of outsourcing into a simple, interactive, and value-driven process</p>
-            <button className=' py-4 px-6 rounded-3xl bg-[#DD272D] text-left font-bold text-2xl max-w-fit uppercase'>Book a Call</button>
+            <Link href={'https://calendly.com/interactiveworkersgm/30min'} target='_blank' className=' py-4 px-6 rounded-3xl bg-[#DD272D] text-left font-bold text-2xl max-w-fit uppercase'>Book a Call</Link>
           </div>
           <div className='w-1/2 h-full absolute right-0 bg-[#dd272d86] mix-blend-multiply bg-blend-multiply z-0'></div>
           <Image className='max-w-[45%] z-20 pt-6' src={'/home/iw-hero.png'} alt='IW intro' width={697} height={840} priority quality={100}></Image>

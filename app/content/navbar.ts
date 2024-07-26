@@ -1,39 +1,48 @@
 export const navbar = [
         {
             "title":"About us",
-            "link":"/about"
+            "link":"/about",
+            "disabled":""
         },
         {
             "title":"Carrers",
-            "link":"/carrers"
+            "link":"/carrers",
+            "disabled":"True"
         },
         {
             "title":"+1 332-206-2891",
-            "link":"/phone"
+            "link":"tel:13322062891",
+            "disabled":""
         },
         {
             "title":"VA's",
-            "link":"/va"
+            "link":"/vas",
+            "disabled":"True"
         },
         {
             "title":"Dispatch",
-            "link":"/dispatch"
+            "link":"/dispatch",
+            "disabled":"True"
         },
         {
             "title":"Blog",
-            "link":"/blog"
+            "link":"/blog",
+            "disabled":"True"
         },
         {
             "title":"Portfolio",
-            "link":"/portfolio"
+            "link":"/portfolio",
+            "disabled":"True"
         },
         {
             "title":"Contact us",
-            "link":"/contact"
+            "link":"/contact",
+            "disabled":"True"
         }
 ]
 
 export interface navbarModel {
     title:string,
-    link:string
+    link:string,
+    disabled?:string
 }
