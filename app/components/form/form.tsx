@@ -46,19 +46,19 @@ const MainForm = ({dark}:{dark?:boolean}) => {
 
   return (
     <div className={`w-full  ${dark ? "bg-[#222222]" : "bg-[#E6E6E6]"}`}>
-      <form className={`flex flex-col gap-4 w-3/4 mx-auto -mt-[3%] rounded-[66px] py-20 mb-20 ${dark ? "bg-[#333333]" : "bg-[#EFEFEF]"}`} onSubmit={handleSubmit}>
-        <h2 className={`${ dark ? "text-white" : "text-[#DD272D]"} text-4xl uppercase font-light mx-auto text-center`}><strong className='font-extrabold'>Speak</strong> with our team <strong className='font-extrabold'>today</strong></h2>
+      <form className={`flex flex-col gap-4 w-3/4 mx-auto -mt-[10%] md:-mt-[3%] rounded-[66px] py-20 mb-20 ${dark ? "bg-[#333333]" : "bg-[#EFEFEF]"}`} onSubmit={handleSubmit}>
+        <h2 className={`${ dark ? "text-white" : "text-[#DD272D]"} text-xl md:text-4xl uppercase font-light mx-auto text-center`}><strong className='font-extrabold'>Speak</strong> with our team <strong className='font-extrabold'>today</strong></h2>
         <div className='mx-auto w-2/3 flex flex-col gap-3'>
-          <div className='flex gap-3'>
-            <TextInput className='basis-1/2' id="firstname" type="text" placeholder="First name*" required shadow />
-            <TextInput className='basis-1/2' id="lastname" type="text" placeholder="Last name*" required shadow />
+          <div className='flex md:flex-row flex-col gap-3'>
+            <TextInput className='md:basis-1/2' id="firstname" type="text" placeholder="First name*" required shadow />
+            <TextInput className='md:basis-1/2' id="lastname" type="text" placeholder="Last name*" required shadow />
           </div>
           <div>
             <TextInput id="company" type="text" placeholder="Company's Name*" required shadow />
           </div>
-          <div className='flex gap-3'>
-            <TextInput className='basis-1/2' id="phone" type="text" placeholder="Phone Number*" required shadow />
-            <TextInput className='basis-1/2' id="email" type="email" placeholder="Email*" required shadow />
+          <div className='flex md:flex-row flex-col gap-3'>
+            <TextInput className='md:basis-1/2' id="phone" type="text" placeholder="Phone Number*" required shadow />
+            <TextInput className='md:basis-1/2' id="email" type="email" placeholder="Email*" required shadow />
           </div>
           <div>
             <TextInput className='basis-1/2' id="size" type="text" placeholder="Your company size (current staff number)*" required shadow />

@@ -48,6 +48,7 @@ const NavbarComponent = async ({dark}:{dark?:boolean}) => {
         <NavbarBrand as={Link} href="/">
           <Image className=" hover:scale-110 transition-transform" src={`${dark ? 'https://iw-website.s3.amazonaws.com/logo/iw-Logo.png' : '/iw-LogoLight.png'}`} alt="Interactiveworkers Logo" width={200} height={31}></Image>
         </NavbarBrand>
+        <span className='md:hidden inline'><ItemList dark={dark} items={navbar.slice(0, 3)} hover={false}></ItemList></span>
         <NavbarToggle />
         <ItemList dark={dark} items={navbar.slice(3)} hover={true}></ItemList>
         <Link href={"https://calendly.com/interactiveworkersgm/30min"} target='_blank' className='w-[30%] max-w-[350px] bg-[#DD272D] text-center text-white rounded-xl p-1 font-semibold hidden lg:block'>Book a Call</Link>
