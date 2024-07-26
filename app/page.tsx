@@ -12,7 +12,7 @@ export default function Home() {
       <IntroBanner></IntroBanner>
       <BenefitsBanner></BenefitsBanner>
       <DiscoverVAs></DiscoverVAs>
-      <Testimonies></Testimonies>
+      {/* <Testimonies></Testimonies> */}
       <MainForm dark={true}></MainForm>
     </main>
   );

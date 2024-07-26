@@ -26,7 +26,7 @@ const DiscoverVAs = () => {
     <section className='discover-vas-bg w-3/4 py-64'>
         <article>
             <div className='relative text-center'>
-                <h2 className='relative z-40 p-2 px-12 text-[#DD272D] font-extrabold text-3xl border-2 border-[#DD272D] bg-white rounded-full max-w-fit mx-auto'>Discover Our VA's</h2>
+                <h2 className='relative z-40 p-2 px-12 text-[#DD272D] font-extrabold text-3xl border-2 border-[#DD272D] bg-white rounded-full max-w-fit mx-auto'>Discover Our VA&apos;s</h2>
                 <div className='-mt-8 w-1/2 mx-auto h-14 bg-[#EFEFEF] rounded-full'></div>
             </div>
             <div className='w-full flex justify-between my-32'>
