@@ -12,23 +12,23 @@ const AboutUs = () => {
       <section className='relative flex flex-col justify-between'>
         {/* <div className='absolute w-2/3 h-12 bg-[#DD272D] rounded-3xl right-0 -top-6 z-0'></div> */}
 
-        <article className='overflow-hidden relative my-8 min-h-[67vh] flex items-center'>
-          <div className='relative pl-[5%] basis-1/2'>
-            <h1 className='relative text-white font-regular text-3xl z-40 bg-[#DD272D] w-3/4 pl-8 uppercase'>We are</h1>
-            <h2 className='relative text-white font-black text-4xl z-40 pl-8'>InteractiveWorkers</h2>
+        <article className='overflow-hidden relative my-8 min-h-[20vh] md:min-h-[67vh] flex items-center'>
+          <div className='relative pl-1 md:pl-[5%] basis-1/2'>
+            <h1 className='relative text-white font-regular text-base md:text-3xl z-40 bg-[#DD272D] w-3/4 pl-8 uppercase'>We are</h1>
+            <h2 className='relative text-white font-black text-base md:text-4xl z-40 pl-8'>InteractiveWorkers</h2>
           </div>
           <Image className='absolute top-0 object-cover z-30 w-full ' src={'/about/banner.png'} alt='About interactive banner' width={1440} height={518} quality={100}></Image>
         </article>
 
         <article className='text-center w-3/4 mx-auto my-24'>
-          <h2 className='font-extrabold text-4xl my-2 text-[#DD272D]'>InteractiveWorkers</h2>
-          <p className='text-lg w-full'>is a cutting-edge business solution that covers the whole outsourced sector, not simply one more outsourcing platform. We believe outsourcing should be simple, efficient, and advantageous for companies of all sizes. <span className='font-bold'>Our platform is made to streamline the outsourcing process, lessen its difficulties, and improve its results.</span> </p>
+          <h2 className='font-extrabold text-xl md:text-4xl my-2 text-[#DD272D]'>InteractiveWorkers</h2>
+          <p className=' text-base md:text-lg w-full'>is a cutting-edge business solution that covers the whole outsourced sector, not simply one more outsourcing platform. We believe outsourcing should be simple, efficient, and advantageous for companies of all sizes. <span className='font-bold'>Our platform is made to streamline the outsourcing process, lessen its difficulties, and improve its results.</span> </p>
           <div className='h-4 w-1/6 bg-[#DD272D] mt-16 mx-auto rounded-3xl'></div>
         </article>
 
-        <article className='w-full mb-44'>
-          <h3 className='font-extrabold text-4xl uppercase bg-[#DD272D] text-white w-1/2 pl-20 py-4 rounded-r-full pb-12'>What we are</h3>
-          <div className='bg-[#DD272D] w-full flex'>
+        <article className='w-full mb-10 md:mb-44'>
+          <h3 className='font-extrabold text-xl md:text-4xl uppercase bg-[#DD272D] text-white w-1/2 -mb-2 md:-mb-0 pl-8 md:pl-20 py-4 rounded-r-full pb-4 md:pb-12'>What we are</h3>
+          <div className='bg-[#DD272D] w-full flex flex-col md:flex-row'>
             <div className='bg-[#282828] rounded-[60px] basis-[60%] px-16 lg:-my-10 xl:-my-1 text-white text-xl max-h-[500px]'>
               <div className='py-8 px-4'>
                 <h4 className='text-[#DD272D] font-extrabold'>InteractiveWorkers:</h4>
@@ -36,7 +36,7 @@ const AboutUs = () => {
               </div>
               <Image className='w-full' src={'/about/what-we-are.png'} alt='Interactive What we are image' width={717} height={404}></Image>
             </div>
-            <div className='basis-[40%] text-white text-lg font-medium flex items-center'>
+            <div className='basis-[40%] text-white text-base md:text-lg font-medium flex items-center'>
               <p className='p-8'>              With four years of experience, we provide expert support to propel your business forward.
                 <br /> <br />
                 We manage projects for companies of all sizes, allowing you to focus on other priorities. Choose us for a team that goes the extra mile for your administrative needs.</p>
@@ -45,7 +45,7 @@ const AboutUs = () => {
         </article>
 
         <article className='relative values-bg text-white my-8 justify-center items-center gap-3'>
-          <h4 className='absolute left-[25%] top-[10%] text-4xl font-extrabold mx-auto p-4 text-center w-1/2 bg-[#c1272c70] rounded-3xl'>OUR <span className='font-normal'>CORE VALUES AS A</span> COMPANY</h4>
+          <h4 className='absolute left-[12%] top-[2%] md:top-[10%] text-2xl md:text-4xl font-extrabold mx-auto p-4 text-center w-3/4 md:w-1/2 bg-[#c1272c70] rounded-3xl'>OUR <span className='font-normal'>CORE VALUES AS A</span> COMPANY</h4>
           <Values></Values>
         </article>
 

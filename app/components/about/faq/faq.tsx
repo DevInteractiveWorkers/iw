@@ -8,8 +8,8 @@ const FAQ = () => {
 
   return (
     <article className='w-3/4 mx-auto my-28 min-h-[80vh]'>
-      <h3 className='w-1/2 text-4xl font-extrabold mx-auto text-center text-[#DD272D] p-1 border-4 border-[#DD272D] rounded-full my-6'>Virtual Assistants FAQS</h3>
-      <div className='text-white flex flex-wrap gap-4 justify-between'>
+      <h3 className='w-1/2 text-xl md:text-4xl font-extrabold mx-auto text-center text-[#DD272D] p-2 border-4 border-[#DD272D] rounded-full my-6'>Virtual Assistants FAQS</h3>
+      <div className='text-white flex flex-wrap gap-4 justify-between flex-col md:flex-row'>
         {faq.map((item,i) => {
             return(
                 <div key={i} className={`p-4 pl-0 border-2 border-[#9E9E9E] rounded-xl basis-[45%] h-fit `} onClick={()=>{opened === i ? setOpened(-1) : setOpened(i)}}>
