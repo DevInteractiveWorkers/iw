@@ -12,7 +12,7 @@ const IntroBanner = () => {
             <h1 className=' font-bold lg:text-4xl text-sm'>At InteractiveWorkers, <br />
               we transform the <br /> concept of outsourcing.
             </h1>
-            <p className='font-medium text-sm'>We turn the intricate world of outsourcing into a simple, interactive, and value-driven process</p>
+            <p className='font-medium text-sm md:text-xl md:w-3/4'>We turn the intricate world of outsourcing into a simple, interactive, and value-driven process</p>
             <Link href={'https://calendly.com/interactiveworkersgm/30min'} target='_blank' className=' p-2 md:py-4 md:px-6 rounded-3xl bg-[#DD272D] text-left font-bold text-sm md:text-2xl max-w-fit uppercase'>Book a Call</Link>
           </div>
           <div className='w-1/2 h-full absolute right-0 bg-[#dd272d86] mix-blend-multiply bg-blend-multiply z-0'></div>
