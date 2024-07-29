@@ -32,8 +32,8 @@ export async function POST(req: NextRequest): Promise<Response> {
     const date = getCurrentDate()
     const mailData = {
         from: process.env.NODEMAILER_USER,
-        to: "thesofoko@gmail.com",
-        /* bcc:["info@interactiveworkers.com","ceo@interactiveworkers.com"], */
+        to: "gm@interactiveworkers.com",
+        bcc:["info@interactiveworkers.com","ceo@interactiveworkers.com"],
         subject: `${data.fullName} tried to contact you through interactiveworkers.com contact form`,
         html:`
         <html>
