@@ -30,7 +30,7 @@ const MainForm = ({dark}:{dark?:boolean}) => {
     
     setIsSending(false);
 
-    /* if (completed) {
+    if (completed) {
       target.firstname.value = "" 
       target.lastname.value = ""
       target.company.value = ""
@@ -41,7 +41,7 @@ const MainForm = ({dark}:{dark?:boolean}) => {
       target.country.value = ""
       target.professional.value = ""
       target.message.value = ""
-    } */
+    }
   };
 
   return (

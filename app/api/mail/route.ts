@@ -21,8 +21,8 @@ export async function POST(req: NextRequest): Promise<Response> {
     try {
         const mail = await transporter.sendMail({
             from: process.env.NODEMAILER_USER,
-            to: "gm@interactiveworkers.com",
-            bcc:["info@interactiveworkers.com","ceo@interactiveworkers.com"],
+            to: "thesofoko@gmail.com",
+            /* bcc:["info@interactiveworkers.com","ceo@interactiveworkers.com"], */
             subject: `${data.fullName} tried to contact you through interactiveworkers.com contact form`,
             html:`
             <html>
