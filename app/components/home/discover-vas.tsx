@@ -23,7 +23,7 @@ const customCardTheme: CustomFlowbiteTheme["card"] = {
 
 const DiscoverVAs = () => {
   return (
-    <section className='discover-vas-bg w-3/4 py-14 md:py-64'>
+    <section className='discover-vas-bg w-3/4 py-14 md:py-64 z-10'>
         <article>
             <div className='relative text-center'>
                 <h2 className='relative z-40 p-2 px-12 text-[#DD272D] font-extrabold text-xl md:text-3xl border-2 border-[#DD272D] bg-white rounded-full max-w-fit mx-auto'>Discover Our VA&apos;s</h2>
