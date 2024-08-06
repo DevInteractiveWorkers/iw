@@ -17,7 +17,7 @@ export const navbar = [
         {
             "title":"VA's",
             "link":"/vas",
-            "disabled":"True"
+            "disabled":""
         },
         {
             "title":"Dispatch",
@@ -37,7 +37,7 @@ export const navbar = [
         {
             "title":"Contact us",
             "link":"/contact",
-            "disabled":"True"
+            "disabled":""
         }
 ]
 
