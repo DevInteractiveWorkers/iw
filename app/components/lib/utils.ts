@@ -24,10 +24,35 @@ export interface formData {
   message:string
 }
 
+export interface GetHiredformData {
+  fullName:string | undefined,
+  location:string | undefined,
+  email:string | undefined,
+  phone:string | undefined,
+  professional:string | undefined,
+  file:Buffer | any,
+  fileName:string | undefined
+  }
+
 export async function sendMail (data:formData) {
   
   
   const res = await fetch("/api/mail", {
+    method:"POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  })
+  
+  return res.ok
+  
+}
+
+export async function sendGetHiredMail (data:GetHiredformData) {
+  
+  
+  const res = await fetch("http://localhost:3000/api/hire", {
     method:"POST",
     headers: {
       "Content-Type": "application/json"
