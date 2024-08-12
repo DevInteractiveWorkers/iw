@@ -8,7 +8,7 @@ const Features = () => {
                 <h2 className='uppercase text-4xl font-black text-[#DD272D] my-3'>Features</h2>
                 <div className='w-2/3 mx-auto bg-[#DD272D] h-3 rounded-[66px]'></div>
             </div>
-            <div className='w-3/4 mx-auto flex flex-col md:flex-row gap-2'>
+            <div className='w-3/4 mx-auto flex flex-col md:flex-row items-center justify-center gap-2'>
                 <div>
                     <Image src={'/vas/Bilingual.png'} alt='Bilingual Vas' width={464} height={552}></Image>
                 </div>

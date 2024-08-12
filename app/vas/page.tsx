@@ -3,6 +3,7 @@ import NavbarComponent from '../components/navbar'
 import Image from 'next/image'
 import Features from './../components/vas/features';
 import MainForm from '../components/form/form';
+import Teams from '../components/vas/teams';
 
 const VAs = () => {
   return (
@@ -26,6 +27,7 @@ const VAs = () => {
           </p>
         </article>
         <Features></Features>
+        <Teams></Teams>
       </section>
       <MainForm dark={true}></MainForm>
     </div>

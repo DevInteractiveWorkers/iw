@@ -1,3 +1,4 @@
+import { VA } from '@/app/content/vas'
 import { Card, CustomFlowbiteTheme } from 'flowbite-react'
 import Image from 'next/image'
 import React from 'react'
@@ -6,7 +7,7 @@ import React from 'react'
 const customCardTheme: CustomFlowbiteTheme["card"] = {
     "root": {
       "base": "flex rounded-3xl border-4 border-[#D9D9D9] bg-white hover:bg-[#DD272D] hover:shadow-xl dark:border-gray-700 dark:bg-gray-800",
-      "children": "flex h-full flex-col justify-center",
+      "children": "flex flex-col justify-center",
       "horizontal": {
         "off": "flex-col",
         "on": "flex-col md:max-w-xl md:flex-row"
@@ -22,11 +23,11 @@ const customCardTheme: CustomFlowbiteTheme["card"] = {
     }
 }
 
-const VACard = ({img}:{img:string}) => {
+const VACard = ({className, va}:{className?:string, va:VA}) => {
   return (
-    <Card theme={customCardTheme} className='bg-none shadow-none w-3/4 mx-auto my-8 md:my-0 md:w-[24%] text-[#333333] hover:text-white'>
-        <Image className='-mt-[25%] w-full h-auto border-b-4 border-[#D9D9D9]' src={img} alt='' width={275} height={341} quality={100}></Image>
-        <h3 className='p-4 py-8 mx-auto text-center font-bold text-base md:text-2xl '>Architech Virtual Assistant</h3>
+    <Card theme={customCardTheme} className={`bg-none shadow-none mx-auto my-8 md:my-0 h-[520px] text-[#333333] hover:text-white ${className}`}>
+        <Image className='relative -top-12 w-full h-[450px] border-b-4 border-[#D9D9D9] object-cover object-center' src={`/vas/teams/${va.img}`} alt='' width={275} height={341} quality={100}></Image>
+        <h3 className='p-4 pb-8 -mt-8 mx-auto text-center font-bold text-base md:text-2xl '>{va.position}</h3>
     </Card>
   )
 }
