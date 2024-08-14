@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card, CustomFlowbiteTheme } from 'flowbite-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const customCardTheme: CustomFlowbiteTheme["card"] = {
     "root": {
@@ -23,7 +24,7 @@ const customCardTheme: CustomFlowbiteTheme["card"] = {
 
 const DiscoverVAs = () => {
   return (
-    <section className='discover-vas-bg w-full py-24 md:py-64 z-10'>
+    <section className='discover-vas-bg w-full py-24 md:py-48 xl:py-64 z-10'>
         <article className='w-full md:w-3/4 mx-auto'>
             <div className='relative text-center my-16 md:my-0'>
                 <h2 className='relative z-40 p-2 px-12 text-[#DD272D] font-extrabold text-xl md:text-3xl border-2 border-[#DD272D] bg-white rounded-full max-w-fit mx-auto'>Discover Our VA&apos;s</h2>
@@ -47,7 +48,7 @@ const DiscoverVAs = () => {
                     <h3 className='p-4 py-8 mx-auto text-center font-bold text-base md:text-2xl '> Appointment Setter</h3>
                 </Card>
             </div>
-            <button className='block max-w-fit mx-auto uppercase bg-[#DD272D] p-4 text-white rounded-3xl'>See More</button>
+            <Link href={"/vas"} className='block max-w-fit mx-auto uppercase bg-[#DD272D] p-4 text-white hover:text-black hover:bg-transparent transition-all rounded-xl text-lg md:text-xl'>See More</Link>
         </article>
     </section>
   )
