@@ -25,9 +25,9 @@ const customCardTheme: CustomFlowbiteTheme["card"] = {
 
 const VACard = ({className, va}:{className?:string, va:VA}) => {
   return (
-    <Card theme={customCardTheme} className={`bg-none shadow-none mx-auto my-8 md:my-0 h-[520px] text-[#333333] hover:text-white ${className}`}>
-        <Image className='relative -top-12 w-full h-[450px] border-b-4 border-[#D9D9D9] object-cover object-center' src={`/vas/teams/${va.img}`} alt='' width={275} height={341} quality={100}></Image>
-        <h3 className='p-4 pb-8 -mt-8 mx-auto text-center font-bold text-base md:text-2xl '>{va.position}</h3>
+    <Card theme={customCardTheme} className={`bg-none shadow-none mx-auto md:my-8 md:h-[520px] w-[300px] md:w-auto text-[#333333] hover:text-white ${className}`}>
+        <Image className='relative -top-12 w-full h-[400px] md:h-[450px] border-b-4 border-[#D9D9D9] object-cover object-center mx-auto' src={`/vas/teams/${va.img}`} alt='' width={275} height={391} quality={100}></Image>
+        <h3 className='p-4 pb-8 -mt-8 mx-auto text-center font-bold text-lg md:text-2xl '>{va.position}</h3>
     </Card>
   )
 }

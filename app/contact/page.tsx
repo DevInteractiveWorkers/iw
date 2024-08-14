@@ -18,7 +18,7 @@ const ContactUs = () => {
                 <div> <Image className='inline mr-1' src={'/contact/email.svg'} alt='Interactive Email' width={18} height={15}></Image> <span>info@interactiveworkers.com</span></div>
                 <div> <Image className='inline mr-1' src={'/contact/phone.svg'} alt='Interactive Email' width={17} height={15}></Image> <span>+1 332-206-2891</span></div>
                 <h3>@interactiveworkers</h3>
-                <Socials className='justify-center'></Socials>
+                <Socials className='justify-center md:justify-start'></Socials>
             </div>
           </article>
           <article className='w-full md:w-3/4 mx-auto mt-8 bg-white rounded-[66px]'>

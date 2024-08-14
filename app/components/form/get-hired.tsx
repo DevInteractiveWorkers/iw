@@ -45,7 +45,7 @@ const GetHired = () => {
 
   return (
     <form className='py-16 px-4' onSubmit={handleSubmit}>
-      <h2 className='font-extrabold text-4xl text-[#C1272D] text-center uppercase mt-4'>Do you <span className='font-light'>want to join our</span> team?</h2>
+      <h2 className='font-extrabold text-4xl text-[#DD272D] text-center uppercase mt-4'>Do you <span className='font-light'>want to join our</span> team?</h2>
       <div className='w-3/4 mx-auto my-8 flex flex-col justify-center items-center gap-4'>
         <div className='flex md:flex-row flex-col gap-3 w-full'>
           <TextInput className='md:basis-1/2' id="firstname" type="text" placeholder="First name*" required shadow />

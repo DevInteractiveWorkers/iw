@@ -59,36 +59,34 @@ const customTabsTheme: CustomFlowbiteTheme["tabs"] = {
 const Teams = () => {
 
   const VAs = new VAHandler(Vas)
-  const [active, setActive] = useState<number>(0)
-  const [activeVas, setActiveVas] = useState<VA[]>(VAs.handler(-1,true))
+  const [active, setActive] = useState<number>(-1)
+  const [activeVas, setActiveVas] = useState<VA[]>(VAs.handler(-1, true))
   const [expanded, setExpanded] = useState<boolean>(true)
 
   useEffect(() => {
-    setActiveVas(VAs.handler(active,expanded))
+    setActiveVas(VAs.handler(active, expanded))
   }, [expanded])
-  
+
   return (
     <div className='w-3/4 mx-auto my-16'>
       <h3 className='text-4xl font-extrabold pb-1 mb-8 px-32 rounded-3xl text-[#DD272D] border-2 border-[#DD272D] mx-auto max-w-fit text-center'>Teams</h3>
-      <Tabs aria-label="Default tabs" theme={customTabsTheme} onActiveTabChange={(e)=> {setActiveVas(VAs.handler(e-1, expanded)); setActive(e-1)}}>
+      <Tabs aria-label="Default tabs" theme={customTabsTheme} onActiveTabChange={(e) => { setActiveVas(VAs.handler(e - 1, expanded)); setActive(e - 1) }}>
         {vasTabs.map((tab, i) =>
           <Tabs.Item key={tab.name} active={active === i ? true : false} title={tab.name}>
-            <div className='flex justify-between gap-3 mt-12'>
-              <div className='p-8 py-32 flex flex-col items-center justify-center text-center gap-4 bg-[#DD272D] rounded-[66px] text-white basis-2/3'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8 xl:gap-16 mt-16'>
+              <div className='p-8 py-16 xl:py-32 flex flex-col items-center justify-center text-center gap-4 bg-[#DD272D] rounded-[66px] text-white col-span-2'>
                 <h4 className='text-6xl font-extrabold mb-4 max-w-fit'>Are you looking for a specific profession?</h4>
                 <span className='font-normal text-4xl'>We can build it for you</span>
               </div>
-              <VACard className='basis-1/3 h-full hidden md:block' va={activeVas[0]}></VACard>
-            </div>
-            <div className='grid grid-cols-3 gap-3 mt-16'>
-              {activeVas.map((va, i)=>{
-                if(i===0){
-                  return <VACard key={va.position} className='col-span-1 block md:hidden' va={va}></VACard>
+              <VACard className='col-span-2 md:col-span-1 hidden md:block' va={activeVas[0]}></VACard>
+              {activeVas.map((va, i) => {
+                if (i === 0) {
+                  return <VACard key={va.position} className='col-span-2 md:col-span-1 block md:hidden' va={va}></VACard>
                 }
-                return <VACard key={va.position} className='col-span-1' va={va}></VACard>
+                return <VACard key={va.position} className='col-span-2 md:col-span-1' va={va}></VACard>
               })}
             </div>
-            <button className='p-4 bg-[#DD272D] uppercase text-white font-extrabold text-xl rounded-xl block mx-auto w-fit my-4 md:my-8' onClick={(e)=>setExpanded(!expanded)}>{expanded ? "See More" : "See Less"}</button>
+            <button className='p-4 bg-[#DD272D] uppercase text-white font-extrabold text-xl rounded-xl block mx-auto w-fit my-4 md:my-8' onClick={(e) => setExpanded(!expanded)}>{expanded ? "See More" : "See Less"}</button>
           </Tabs.Item>
         )}
       </Tabs>
