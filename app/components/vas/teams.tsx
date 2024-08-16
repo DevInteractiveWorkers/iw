@@ -74,7 +74,7 @@ const Teams = () => {
         {vasTabs.map((tab, i) =>
           <Tabs.Item key={tab.name} active={active === i ? true : false} title={tab.name}>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8 xl:gap-16 mt-16'>
-              <div className='p-8 py-16 xl:py-32 flex flex-col items-center justify-center text-center gap-4 bg-[#DD272D] rounded-[66px] text-white col-span-2'>
+              <div className='p-8 py-16 xl:py-32 flex flex-col items-center justify-center text-center gap-4 bg-[#DD272D] rounded-[66px] text-white col-span-2 we-build-bg'>
                 <h4 className='text-xl md:text-6xl font-extrabold mb-4 max-w-fit'>Are you looking for a specific profession?</h4>
                 <span className='font-normal text-base md:text-4xl'>We can build it for you</span>
               </div>

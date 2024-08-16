@@ -11,16 +11,16 @@ const BenefitsBanner = () => {
             <Image className='w-1/5 absolute z-0 bottom-0 left-0 xl:block hidden' src={'/home/space-elements-4.png'} alt='Interactive Workers space element 4' width={244} height={370} quality={100}></Image>
         <article className='relative'>
             
-            <div className='relative z-40 w-3/4 mx-auto uppercase font-bold text-2xl lg:text-4xl text-black p-12 bg-white rounded-3xl'>
+            <div className='relative z-40 w-11/12 md:w-3/4 mx-auto uppercase font-bold text-lg lg:text-4xl text-black p-12 bg-white rounded-3xl'>
                 <h2>Our virtual assistants are <br /></h2>
                 <h2 className='mt-1.5 text-[#DD272D]'> your partners in success </h2>
-                <p className=' text-base mt-2'>Delivering quality work, adaptability, and results at a pace that suits your business needs.</p>
+                <p className=' text-sm md:text-base mt-2'>Delivering quality work, adaptability, and results at a pace that suits your business needs.</p>
             </div>
-            <div className='relative z-40 w-10/12 mx-auto flex flex-wrap text-black justify-center mt-2 bg-white rounded-3xl p-8 px-4'>
+            <div className='relative z-40 md:w-10/12 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 align-middle items-center text-black mt-2 bg-white rounded-3xl md:p-8 px-4'>
             {
                 benefits.map((benefit, i) => {
                     return(
-                        <Card key={benefit.title} className={` rounded-3xl shadow-none border-none`}>
+                        <Card key={benefit.title} className={`col-span-1 rounded-3xl shadow-none border-none`} >
                             <Image className='mx-auto' src={`/home/benefits/${i}.png`} alt={benefit.title} width={120} height={120}></Image>
                             <h3 className='text-sm md:text-base text-[#DD272D] font-black'>{benefit.title}</h3>
                         </Card>
