@@ -10,7 +10,7 @@ const DispatchAccordions = () => {
       <article className={`grid grid-cols-12 gap-3 transition-all duration-1000 ${opened === 0 ? "max-h-[550px]" : "max-h-80"}`}>
         <div className={`bg-red-600 col-span-3 rounded-3xl transition-all duration-1000 ${opened === 0 ? " max-h-full " : "max-h-80"}`}>
           <Image className={` object-cover mx-auto transition-all duration-1000 object-top h-full`} src={'/dispatch/0.png'} alt='Dispatch Interactive Worker' width={277} height={353} quality={100}></Image>
-          
+
         </div>
         <div className={` col-span-9 transition-all overflow-hidden w-full ${opened === 0 ? " h-full " : "h-80"}`}>
           <div className={`md:px-12 pt-16 pb-6 bg-white  rounded-3xl `}>
@@ -19,7 +19,7 @@ const DispatchAccordions = () => {
             </h2>
             <p className={`mt-4 font-normal text-xl text-ellipsis ${opened === 0 ? " line-clamp-none" : " line-clamp-5"}`}>
               Security Guards need support from a team that monitors and checks that every part of the work is being conducted properly. <br /> <br />
-              <span className='font-extrabold'>Your location will always be covered and never be left alone.</span> We'll check that<br /> <br />
+              <span className='font-extrabold'>Your location will always be covered and never be left alone.</span> We&apos;ll check that<br /> <br />
               The weight good logistics can have on your business should not be underestimated. <br />
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro reiciendis consectetur amet, animi maxime dolor? Ratione eius veritatis quasi autem inventore velit adipisci voluptates laborum dolorem sequi? Adipisci, nemo recusandae?
             </p>
@@ -36,7 +36,7 @@ const DispatchAccordions = () => {
           </h2>
           <p className={`mt-4 font-normal text-xl text-ellipsis ${opened === 1 ? " line-clamp-none" : " line-clamp-6"}`}>
             Security Guards need support from a team that monitors and checks that every part of the work is being conducted properly. <br /> <br />
-            <span className='font-extrabold'>Your location will always be covered and never be left alone.</span> We'll check that<br /> <br />
+            <span className='font-extrabold'>Your location will always be covered and never be left alone.</span> We&apos;ll check that<br /> <br />
             The weight good logistics can have on your business should not be underestimated. <br />
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro reiciendis consectetur amet, animi maxime dolor? Ratione eius veritatis quasi autem inventore velit adipisci voluptates laborum dolorem sequi? Adipisci, nemo recusandae?
           </p>
