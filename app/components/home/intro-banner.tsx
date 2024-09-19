@@ -1,11 +1,12 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import PopUp from './popup'
 
 const IntroBanner = () => {
   return (
     <section className='relative w-full bg-cover bg-no-repeat bg-[#C1272D]'>
-
+        <PopUp></PopUp>
         <Image className='absolute w-2/3 top-[20%] xl:top-0 z-10' src={'/home/space-elements-1.png'} alt='Space Elements IW' width={1109} height={1572} quality={100}></Image>        
         
         <article className='relative flex justify-around items-center'>
