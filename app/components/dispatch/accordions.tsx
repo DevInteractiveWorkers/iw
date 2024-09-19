@@ -10,6 +10,7 @@ const DispatchAccordions = () => {
       <article className={`grid grid-cols-12 gap-3 transition-all duration-1000 ${opened === 0 ? "max-h-[550px]" : "max-h-80"}`}>
         <div className={`bg-red-600 col-span-3 rounded-3xl transition-all duration-1000 ${opened === 0 ? " max-h-full " : "max-h-80"}`}>
           <Image className={` object-cover mx-auto transition-all duration-1000 object-top h-full`} src={'/dispatch/0.png'} alt='Dispatch Interactive Worker' width={277} height={353} quality={100}></Image>
+          
         </div>
         <div className={` col-span-9 transition-all overflow-hidden w-full ${opened === 0 ? " h-full " : "h-80"}`}>
           <div className={`md:px-12 pt-16 pb-6 bg-white  rounded-3xl `}>
