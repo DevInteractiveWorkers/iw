@@ -12,12 +12,12 @@ const AboutUs = () => {
       <section className='relative flex flex-col justify-between'>
         {/* <div className='absolute w-2/3 h-12 bg-[#DD272D] rounded-3xl right-0 -top-6 z-0'></div> */}
 
-        <article className='overflow-hidden relative my-8 min-h-[20vh] md:min-h-[67vh] flex items-center'>
-          <div className='relative pl-1 md:pl-[5%] basis-1/2'>
-            <h1 className='relative text-white font-regular text-base md:text-3xl z-40 bg-[#DD272D] w-3/4 pl-8 uppercase'>We are</h1>
-            <h2 className='relative text-white font-black text-base md:text-4xl z-40 pl-8'>InteractiveWorkers</h2>
+        <article className='overflow-hidden relative my-8'>
+          <Image className='object-cover z-30 w-full ' src={'/about/banner.png'} alt='About interactive banner' width={1440} height={518} quality={100}></Image>
+          <div className='absolute pl-1 md:pl-[5%] w-1/2 top-1/2'>
+            <h1 className='relative text-white font-regular text-base md:text-xl lg:text-3xl z-40 bg-[#DD272D] w-3/4 pl-8 uppercase'>We are</h1>
+            <h2 className='relative text-white font-black text-base md:text-2xl lg:text-4xl z-40 pl-8'>InteractiveWorkers</h2>
           </div>
-          <Image className='absolute top-0 object-cover z-30 w-full ' src={'/about/banner.png'} alt='About interactive banner' width={1440} height={518} quality={100}></Image>
         </article>
 
         <article className='text-center w-3/4 mx-auto my-24'>
@@ -45,7 +45,7 @@ const AboutUs = () => {
         </article>
 
         <article className='relative values-bg text-white my-8 justify-center items-center gap-3'>
-          <h4 className='absolute left-[12%] top-[2%] md:top-[10%] text-2xl md:text-4xl font-extrabold mx-auto p-4 text-center w-3/4 md:w-1/2 bg-[#c1272c70] rounded-3xl'>OUR <span className='font-normal'>CORE VALUES AS A</span> COMPANY</h4>
+          <h4 className='absolute ml-auto mr-auto left-0 right-0 top-[2%] md:top-[10%] text-2xl md:text-4xl font-extrabold p-4 text-center w-3/4 md:w-1/2 bg-[#c1272c70] rounded-3xl'>OUR <span className='font-normal'>CORE VALUES AS A</span> COMPANY</h4>
           <Values></Values>
         </article>
 

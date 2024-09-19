@@ -11,7 +11,7 @@ const Values = () => {
               <div className="flex flex-col items-center justify-center border-[#c3c3c3]" >
                   <Image src={`/about/values/${value.img}`} alt='Transparency icon' height={323} width={323}></Image>
                   < h5 className = 'text-xl font-extrabold' > {value.title} </h5>
-                  < p className = 'font-medium text-lg px-12 mt-6' > {value.subtitle}</p>
+                  < p className = 'font-medium text-lg px-12 mt-6 hidden lg:block' > {value.subtitle}</p>
               </div>
             </div>
           )
