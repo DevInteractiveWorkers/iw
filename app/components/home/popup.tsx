@@ -16,7 +16,7 @@ const PopUp = () => {
             </div>
             <div className="flex md:flex-row flex-col gap-2 md:gap-0 mt-4">
                 <a href='#form' className="block w-fit mx-auto  bg-transparent border border-[#C1272D] hover:bg-[#C1272D] hover:text-white font-medium rounded-lg text-base px-3 py-1.5 text-center" data-dismiss-target="#alert-additional-content-1" aria-label="Close" onClick={() => { setHidden(true) }}>
-                    Give me the discount!
+                    Let&apos;s team up
                 </a>
                 <button type="button" className="block w-fit mx-auto bg-transparent border border-[#C1272D] hover:bg-[#C1272D] hover:text-white font-medium rounded-lg text-base px-3 py-1.5 text-center" data-dismiss-target="#alert-additional-content-1" aria-label="Close" onClick={() => { setHidden(true) }}>
                     Dismiss
