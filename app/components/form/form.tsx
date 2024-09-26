@@ -128,7 +128,7 @@ const MainForm = ({dark}:{dark?:boolean | number}) => {
     )
   }
   return (
-    <div className={`relative w-full px-1 md:px-0 pb-8 md:pb-20  ${dark ? "bg-[#222222]" : "bg-[#E6E6E6]"}`}>
+    <div className={`relative w-full px-1 md:px-0 pb-8 md:pb-20  ${dark ? "bg-[#222222]" : "bg-[#E6E6E6]"}`} id='form'>
       <form className={`flex flex-col gap-4 md:w-3/4 mx-auto relative -top-8 rounded-[66px] py-12 md:py-20 ${dark ? "bg-[#333333]" : "bg-[#EFEFEF]"}`} onSubmit={handleSubmit}>
         <h2 className={`${ dark ? "text-white" : "text-[#DD272D]"} text-lg md:text-4xl uppercase font-light mx-auto text-center my-2 md:my-0`}>
           <strong className='font-extrabold'>Speak</strong> with our team <strong className='font-extrabold'>today</strong>
