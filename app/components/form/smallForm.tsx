@@ -58,6 +58,7 @@ const SmallForm = ({ setHidden }: { setHidden: Function }) => {
           </svg>
           <h3 className='text-center text-2xl'>
             Your email has been sent
+            
           </h3>
         </div>
       </form>
