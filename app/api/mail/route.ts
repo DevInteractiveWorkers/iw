@@ -1,10 +1,10 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import { formData, getCurrentDate } from "@/app/components/lib/utils";
+import { formData, getCurrentDate, smallFormData } from "@/app/components/lib/utils";
 
 export async function POST(req: NextRequest): Promise<Response> {
-    const data:formData | any = await req.json()
+    const data:formData | smallFormData | any = await req.json()
     const transporter = nodemailer.createTransport({
         service:'gmail',
         secure: true,
@@ -16,7 +16,6 @@ export async function POST(req: NextRequest): Promise<Response> {
             pass: process.env.NODEMAILER_PASS
         }
     });
-
     await new Promise((resolve, reject) => {
         // verify connection configuration
         transporter.verify(function (error, success) {
@@ -33,7 +32,7 @@ export async function POST(req: NextRequest): Promise<Response> {
     const mailData = {
         from: process.env.NODEMAILER_USER,
         to: "gm@interactiveworkers.com",
-        /* bcc:["info@interactiveworkers.com","ceo@interactiveworkers.com"], */
+        bcc:["info@interactiveworkers.com","ceo@interactiveworkers.com"],
         subject: `${data.fullName} tried to contact you through interactiveworkers.com contact form`,
         html:`
         <html>
@@ -47,7 +46,7 @@ export async function POST(req: NextRequest): Promise<Response> {
             background: #E5B43C;
             border-radius: 17px;">
             <div style="background-color: #fff; padding: 20px; border-radius: 10px;">
-            <img width= "500px" height="180px" style="text-align: center; border-radius: 30px; display: block; margin-left: auto; margin-right: auto;" src="https://images2.imgbox.com/bd/6d/iKxkgI9e_o.png"/>
+            <img width= "500px" height="150px" style="text-align: center; border-radius: 30px; display: block; margin-left: auto; margin-right: auto;" src="https://images2.imgbox.com/bd/6d/iKxkgI9e_o.png"/>
             <h4 style="font-weight: 400;">
             Someone tried to contact us!:
             </h4>
@@ -62,7 +61,7 @@ export async function POST(req: NextRequest): Promise<Response> {
                             border: 1px solid #C1C3D1;
                             padding: 10px;
                             color: #FFFFFF;">
-                        Date</td>
+                        Date (DD/MM/YY)</td>
                         <td style="background: #FFFFFF;
                             text-align: left;
                             vertical-align: middle;
@@ -70,7 +69,7 @@ export async function POST(req: NextRequest): Promise<Response> {
                             text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
                             border-bottom: 1px solid #C1C3D1;
                             padding: 10px;">
-                        Day: ${date[0]} Month: ${date[1]} Year: 20${date[2]}</td>
+                        ${date[0]} / ${date[1]} / 20${date[2]}</td>
                         </tr>
                         
                         <tr>
@@ -268,7 +267,6 @@ export async function POST(req: NextRequest): Promise<Response> {
                 console.error(err);
                 reject(err);
             } else {
-                console.log(info);
                 resolve(info);
             }
         });

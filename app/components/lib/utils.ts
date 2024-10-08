@@ -25,6 +25,12 @@ export interface formData {
   message: string
 }
 
+export interface smallFormData {
+  fullName: string,
+  email: string,
+  phone: string,
+}
+
 export interface GetHiredformData {
   fullName: string | undefined,
   location: string | undefined,
@@ -35,7 +41,7 @@ export interface GetHiredformData {
   fileName: string | undefined
 }
 
-export async function sendMail(data: formData) {
+export async function sendMail(data: formData | smallFormData) {
 
 
   const res = await fetch("/api/mail", {

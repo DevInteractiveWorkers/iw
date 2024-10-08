@@ -1,27 +1,22 @@
 'use client'
 import Image from 'next/image'
 import React, { useState } from 'react'
+import SmallForm from '../form/smallForm'
 
 const PopUp = () => {
     const [hidden, setHidden] = useState<boolean>(false)
     return (
 
-        <div id="alert-additional-content-1" className={`fixed ${hidden ? "opacity-0 hidden" : "opacity-100"} max-h-[60vh] transition-opacity z-[50] left-1/2 -translate-x-1/2 w-11/12 md:w-auto pr-8 pb-8 mb-4 md:max-w-xl  border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 text-[#C1272D] dark:border-blue-800 text-justify`} role="alert">
-            <div className="flex items-center">
+        <div id="alert-additional-content-1" className={`fixed ${hidden ? "opacity-0 hidden" : "opacity-100"} max-h-[80vh] overflow-y-auto overflow-x-hidden md:overflow-visible transition-opacity z-[50] left-1/2 -translate-x-1/2 w-11/12 md:w-auto pb-8 mb-4 md:max-w-2xl  border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 text-[#C1272D] dark:border-blue-800 text-justify`} role="alert">
+            <div className="flex items-start">
                 <Image className="w-1/3 -ml-4" src={'/home/discount.png'} alt='Discount Tag' width={1277} height={1317}></Image>
                 <div className="mt-2 mb-4 text-base mx-auto basis-3/5">
                     <h3 className="text-4xl font-bold uppercase text-[#C1272D]">Special Offer</h3>
-                    <p className='mt-4'>Get a <b>special discount</b>, 20% off on your first service with our virtual assistants</p>
+                    <p className='mt-4 text-left md:text-justify'>Get a <b>special discount</b>, 20% off on your first service with our virtual assistants</p>
                 </div>
             </div>
-            <div className="flex md:flex-row flex-col gap-2 md:gap-0 mt-4">
-                <a href='#form' className="block w-fit mx-auto  bg-transparent border border-[#C1272D] hover:bg-[#C1272D] hover:text-white font-medium rounded-lg text-base px-3 py-1.5 text-center" data-dismiss-target="#alert-additional-content-1" aria-label="Close" onClick={() => { setHidden(true) }}>
-                    Let&apos;s team up
-                </a>
-                <button type="button" className="block w-fit mx-auto bg-transparent border border-[#C1272D] hover:bg-[#C1272D] hover:text-white font-medium rounded-lg text-base px-3 py-1.5 text-center" data-dismiss-target="#alert-additional-content-1" aria-label="Close" onClick={() => { setHidden(true) }}>
-                    Dismiss
-                </button>
-            </div>
+            <SmallForm setHidden={setHidden}></SmallForm>
+            
         </div>
         /* <div id="alert-additional-content-1" className={`fixed ${hidden ? "opacity-0 hidden" : "opacity-100"} overflow-auto max-h-[60vh] transition-opacity z-[50] left-1/2 -translate-x-1/2 w-11/12 md:w-auto p-4 mb-4 md:max-w-xl text-blue-800 border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 dark:border-blue-800 text-justify`} role="alert">
             <div className="flex items-center">

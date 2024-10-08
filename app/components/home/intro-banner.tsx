@@ -15,7 +15,7 @@ const IntroBanner = () => {
               we transform the <br /> concept of outsourcing.
             </h1>
             <p className='font-medium text-xs md:text-xl md:w-3/4 z-40'>We turn the intricate world of outsourcing into a simple, interactive, and value-driven process</p>
-            <Link href={'https://calendly.com/interactiveworkersgm/30min'} target='_blank' className=' p-2 md:py-4 z-40 md:px-6 rounded-3xl bg-[#DD272D] text-left font-bold text-sm md:text-2xl max-w-fit uppercase'>Book a Call</Link>
+            <Link href={' '} target='_blank' className=' p-2 md:py-4 z-40 md:px-6 rounded-3xl bg-[#DD272D] text-left font-bold text-sm md:text-2xl max-w-fit uppercase'>Book a Call</Link>
           </div>
           <div className='w-1/2 h-full absolute right-0 bg-[#dd272d86] mix-blend-multiply bg-blend-multiply'></div>
           <div className='absolute z-40 w-[12%] h-3/5 border-white border-2 rounded-full bottom-[15%] right-[40%]'></div>
