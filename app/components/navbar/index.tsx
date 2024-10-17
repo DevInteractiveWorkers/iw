@@ -54,7 +54,7 @@ const NavbarComponent = async ({dark}:{dark?:boolean}) => {
         <Link href={"https://calendly.com/interactiveworkersgm/30min"} target='_blank' className='w-[30%] max-w-[350px] bg-[#DD272D] text-center text-white rounded-xl p-1 font-semibold hidden lg:block'>Book a Call</Link>
       </Navbar>
       </div>
-      <div className='faded-div w-full h-[2px]'></div>
+      <div className='faded-div bg-blend-screen mix-blend-screen w-full h-[2px]'></div>
     </div>
   )
 }

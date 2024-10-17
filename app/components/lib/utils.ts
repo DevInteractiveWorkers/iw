@@ -56,6 +56,21 @@ export async function sendMail(data: formData | smallFormData) {
 
 }
 
+export async function sendAffiliateMail(data: smallFormData) {
+
+
+  const res = await fetch("/api/affiliate", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  })
+
+  return res.ok
+
+}
+
 export async function sendGetHiredMail(data: GetHiredformData) {
 
 

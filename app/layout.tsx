@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={montserrat.className + " " + "scroll-smooth"}>
+      <body className={montserrat.className + " " + "scroll-smooth  overflow-x-hidden"}>
         
         {children}
         <Script id="tawk" strategy="lazyOnload">
