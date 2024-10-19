@@ -32,8 +32,9 @@ const AffiliateForm = () => {
     }
   };
   return (
-    <div className={`relative w-full px-1 pb-8  `} id='form'>
-      <form className={`flex flex-col gap-4 mx-auto py-4 `} onSubmit={handleSubmit}>
+    <div className={`relative w-full px-1 pb-8 bg-[#E6E6E6] mt-16 `} id='form'>
+      <form className={`flex flex-col gap-4 md:w-3/4 mx-auto relative -top-8 rounded-[66px] py-12 bg-[#EFEFEF]`} onSubmit={handleSubmit}>
+      <span className='block mx-auto w-fit text-center text-xl md:text-4xl text-[#DD272D] my-4 uppercase'> <strong className="font-black">Join</strong> the Affiliate <strong className="font-black">Program!</strong></span>
         <div className={`mx-auto w-11/12 md:w-2/3 transition-all duration-75 ${isCompleted ? "opacity-0 z-0 absolute" : "flex opacity-100 z-40"} flex-col gap-3`}>
           <div className='flex md:flex-row flex-col gap-3'>
             <TextInput className='md:basis-1/2' id="firstname" type="text" placeholder="Name*" required shadow disabled={isSending} />
@@ -43,7 +44,7 @@ const AffiliateForm = () => {
             <TextInput className='w-full' id="email" type="email" placeholder="Email*" required shadow disabled={isSending} />
           </div>
           <div className="flex md:flex-row flex-col gap-2 md:gap-0 mt-4">
-            <Button theme={{ inner: { base: "flex items-stretch transition-all duration-200 justify-center" } }} className="block w-40 mx-auto  bg-transparent border border-[#C1272D] text-[#C1272D] hover:bg-[#C1272D] enabled:hover:bg-[#C1272D] hover:text-white font-medium rounded-lg text-base px-3 py-1.5 text-center" data-dismiss-target="#alert-additional-content-1" aria-label="Close" type="submit" isProcessing={isSending}>Tell me more!</Button>
+            <Button theme={{ inner: { base: "flex items-stretch transition-all duration-200 justify-center" } }} className="block w-40 mx-auto  bg-transparent border border-[#C1272D] text-[#C1272D] hover:bg-[#C1272D] enabled:hover:bg-[#C1272D] hover:text-white font-medium rounded-lg text-base px-3 py-1.5 text-center" data-dismiss-target="#alert-additional-content-1" aria-label="Close" type="submit" isProcessing={isSending}>Join now!</Button>
           </div>
 
         </div> 
