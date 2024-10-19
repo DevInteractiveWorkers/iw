@@ -71,7 +71,7 @@ const AffiliatePage = () => {
 
         </article>
         <div className='w-5/6 md:w-3/4 mx-auto mt-12'>
-          <h3 className='text-5xl font-black text-[#333] mb-4 text-center md:text-left'>What we offer?</h3>
+          <h3 className='text-5xl font-black text-[#333] mb-4 text-center md:text-left uppercase'>What We Offer You:</h3>
           <div className='flex flex-col md:flex-row justify-between gap-3 text-center text-white'>
 
             <div className='relative w-full'> 
