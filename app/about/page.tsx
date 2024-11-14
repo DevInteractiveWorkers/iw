@@ -26,10 +26,10 @@ const AboutUs = () => {
           <div className='h-4 w-1/6 bg-[#DD272D] mt-16 mx-auto rounded-3xl'></div>
         </article>
 
-        <article className='w-full mb-10 md:mb-44'>
-          <h3 className='font-extrabold text-xl md:text-4xl uppercase bg-[#DD272D] text-white w-1/2 -mb-2 md:-mb-0 pl-8 md:pl-20 py-4 rounded-r-full pb-4 md:pb-12'>What we are</h3>
+        <article className='w-full mb-10 md:mb-24'>
+          <h3 className='font-extrabold text-xl md:text-4xl uppercase bg-[#DD272D] text-white w-3/4 md:w-1/2 rounded-r-full py-8 text-center'>Who we are</h3>
           <div className='bg-[#DD272D] w-full flex flex-col md:flex-row'>
-            <div className='bg-[#282828] rounded-[60px] basis-[60%] px-16 lg:-my-10 xl:-my-1 text-white text-xl max-h-[500px]'>
+            <div className='bg-[#282828] rounded-[60px] basis-[60%] px-4 md:px-16 -my-2 text-white text-xl max-h-[500px]'>
               <div className='py-8 px-4'>
                 <h4 className='text-[#DD272D] font-extrabold'>InteractiveWorkers:</h4>
                 <p className='font-normal'>Your dedicated virtual assistants for success</p>

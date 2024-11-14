@@ -46,14 +46,14 @@ const NavbarComponent = async ({dark}:{dark?:boolean}) => {
 
       <Navbar className='relative bg-transparent mt-2' fluid rounded>
         <NavbarBrand as={Link} href="/">
-          <Image className=" hover:scale-110 transition-transform" src={`${dark ? 'https://iw-website.s3.amazonaws.com/logo/iw-Logo.png' : '/iw-LogoLight.png'}`} alt="Interactiveworkers Logo" width={200} height={31}></Image>
+          <Image className=" hover:scale-110 transition-transform h-[31px]" src={`${dark ? 'https://iw-website.s3.amazonaws.com/logo/iw-Logo.png' : '/iw-LogoLight.png'}`} alt="Interactiveworkers Logo" width={200} height={31} ></Image>
         </NavbarBrand>
         <span className='md:hidden inline'><ItemList dark={dark} items={navbar.slice(0, 3)} hover={false}></ItemList></span>
         <NavbarToggle />
         <ItemList dark={dark} items={navbar.slice(3)} hover={true}></ItemList>
         <div className='w-1/4 flex gap-2 justify-center'>
           <Link href={"/affiliate"} className='basis-1/2 bg-[#DD272D] text-center text-white rounded-xl p-1 px-2 font-semibold hidden lg:block'>Affiliate Program</Link>
-          <Link href={"https://calendly.com/interactiveworkersgm/30min"} target='_blank' className='basis-1/2 bg-[#DD272D] text-center text-white rounded-xl p-1 font-semibold hidden lg:block'>Book a Call</Link>
+          <Link href={"https://calendly.com/interactiveworkersgm/30min"} target='_blank' className='basis-1/2 bg-[#DD272D] text-center text-white rounded-xl p-1 font-semibold hidden lg:flex items-center justify-center'>Book a Call</Link>
         </div>
       </Navbar>
       </div>
