@@ -13,7 +13,7 @@ const AboutUs = () => {
         {/* <div className='absolute w-2/3 h-12 bg-[#DD272D] rounded-3xl right-0 -top-6 z-0'></div> */}
 
         <article className='overflow-hidden relative my-8'>
-          <Image className='object-cover z-30 w-full ' src={'/about/banner.png'} alt='About interactive banner' width={1440} height={518} quality={100}></Image>
+          <Image className='object-cover z-30 w-full ' src={'/about/banner-1.png'} alt='About interactive banner' width={1440} height={518} quality={100}></Image>
           <div className='absolute pl-1 md:pl-[5%] w-1/2 top-1/2'>
             <h1 className='relative text-white font-regular text-base md:text-xl lg:text-3xl z-40 bg-[#DD272D] w-3/4 pl-8 uppercase'>We are</h1>
             <h2 className='relative text-white font-black text-base md:text-2xl lg:text-4xl z-40 pl-8'>InteractiveWorkers</h2>

@@ -15,7 +15,7 @@ const VAs = () => {
             <h1 className='text-4xl md:text-6xl font-black mb-1'>Our VA&apos;s</h1>
             <strong className='block pr-24 p-2 bg-[#440000] bg-blend-multiply font-normal text-2xl md:text-4xl'>available for you</strong>
           </div>
-          <Image className='w-full md:basis-2/5 md:max-w-[45%]' src={'/vas/banner-heroes.png'} alt="VA's Interactive Banner" width={743} height={485}></Image>
+          <Image className='w-full md:basis-2/5 md:max-w-[45%]' src={'/vas/banner-1.png'} alt="VA's Interactive Banner" width={743} height={485}></Image>
         </article>
         <Image className='ml-auto -my-[34px]' src={'/vas/banner-element.png'} alt='Va decorative element' width={284} height={68}></Image>
         <article className='w-11/12 md:w-3/4 bg-[#DD272D] mx-auto text-base md:text-xl font-normal text-white flex flex-col items-center justify-center gap-4 py-12 px-8 md:px-20 rounded-b-[66px]'>

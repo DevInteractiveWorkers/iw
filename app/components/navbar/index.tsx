@@ -30,9 +30,9 @@ const customUpperCollapseTheme: CustomFlowbiteTheme["navbar"] = {
   "root": {
     "base": "dark:border-gray-700 dark:bg-gray-800 ",
     "inner": {
-      "base": "mx-auto flex flex-wrap items-center justify-end"
+      "base": "mx-auto flex flex-wrap items-center justify-around"
     }
-  }
+  },
 }
 
 const NavbarComponent = async ({dark}:{dark?:boolean}) => {
@@ -51,13 +51,13 @@ const NavbarComponent = async ({dark}:{dark?:boolean}) => {
         <span className='md:hidden inline'><ItemList dark={dark} items={navbar.slice(0, 3)} hover={false}></ItemList></span>
         <NavbarToggle />
         <ItemList dark={dark} items={navbar.slice(3)} hover={true}></ItemList>
-        <div className='w-1/4 flex gap-2 justify-center'>
+        <div className='w-1/4 md:flex gap-2 justify-center hidden'>
           <Link href={"/affiliate"} className='basis-1/2 bg-[#DD272D] text-center text-white rounded-xl p-1 px-2 font-semibold hidden lg:block'>Affiliate Program</Link>
           <Link href={"https://calendly.com/interactiveworkersgm/30min"} target='_blank' className='basis-1/2 bg-[#DD272D] text-center text-white rounded-xl p-1 font-semibold hidden lg:flex items-center justify-center'>Book a Call</Link>
         </div>
       </Navbar>
       </div>
-      <div className='faded-div bg-blend-screen mix-blend-screen w-full h-[2px]'></div>
+      <div className='faded-div bg-blend-screen mix-blend-screen w-full h-[2px] hidden md:block'></div>
     </div>
   )
 }
