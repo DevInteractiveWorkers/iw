@@ -1,8 +1,9 @@
 "use client"
 
-import { Button, Select, Textarea, TextInput } from 'flowbite-react'
+import { Button, Checkbox, Label, Select, Textarea, TextInput } from 'flowbite-react'
 import React, { useState } from 'react'
 import { sendMail, formData } from '../lib/utils'
+import Link from 'next/link'
 
 const MainForm = ({dark}:{dark?:boolean | number}) => {
 
@@ -111,17 +112,16 @@ const MainForm = ({dark}:{dark?:boolean | number}) => {
             <Textarea className='mt-8' id="message" placeholder="What's your question? Or what kind of outsourcing help do you need?" required rows={4} />
   
             <p className={`text-center ${ dark && dark != 2 ? "text-white" : "text-black"} text-xs`}>Messages and data rates may apply. message frequency will vary. Reply stop to opt-out of messaging
-            <br /> <span className='font-bold '>Read our privacy policy</span>
             </p>
-            {/* <div className="flex items-center gap-2">
-              <Checkbox id="agree" />
+            <div className="flex items-center justify-center gap-2">
+              <Checkbox id="agree" required/>
               <Label htmlFor="agree" className="flex">
                 I agree with the&nbsp;
-                <Link href="#" className="text-cyan-600 hover:underline dark:text-cyan-500">
-                  terms and conditions
+                <Link href="/policy" className="text-cyan-600 hover:underline dark:text-cyan-500">
+                  Privacy Policy
                 </Link>
               </Label>
-            </div> */}
+            </div>
             <Button className='uppercase rounded-xl font-bold text-xl max-w-fit mx-auto mt-8 bg-[#DD272D] text-white' type="submit">Send mail</Button>
           </div>
         </form>

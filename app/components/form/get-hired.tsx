@@ -1,8 +1,9 @@
 "use client"
-import { Button, FileInput, Select, TextInput } from 'flowbite-react'
+import { Button, Checkbox, FileInput, Label, Select, TextInput } from 'flowbite-react'
 import React, { useState } from 'react'
 import { GetHiredformData, sendGetHiredMail } from '../lib/utils'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const GetHired = () => {
   const [file, setFile] = useState<File | null>()
@@ -98,6 +99,15 @@ const GetHired = () => {
           </label>
           <FileInput onChange={(e)=>{e.target.files?.length ? setFile(e.target.files[0]) : null}} className='hidden' id="file" />
         </div>
+        <div className="flex items-center justify-center gap-2">
+              <Checkbox id="agree" required/>
+              <Label htmlFor="agree" className="flex">
+                I agree with the&nbsp;
+                <Link href="/policy" className="text-cyan-600 hover:underline dark:text-cyan-500">
+                  Privacy Policy
+                </Link>
+              </Label>
+            </div>
         <Button className='uppercase rounded-xl font-bold text-xl max-w-fit mx-auto mt-8 bg-[#DD272D] text-white' type="submit">Send mail</Button>
       </div>
     </form>

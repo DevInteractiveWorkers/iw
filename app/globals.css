@@ -69,3 +69,32 @@
   background: url("/vas/we-build.png") no-repeat center;
   background-size: cover;
 }
+
+.policy p {
+  padding: 15px 0;
+}
+
+.policy h1 {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.policy h2 {
+  font-size: 28px;
+  font-weight: 700;
+  padding: 5px 0;
+}
+
+.policy h3{
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.policy h4{
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.policy ul{
+  list-style-type: disc;
+}

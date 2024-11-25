@@ -30,7 +30,7 @@ const customUpperCollapseTheme: CustomFlowbiteTheme["navbar"] = {
   "root": {
     "base": "dark:border-gray-700 dark:bg-gray-800 ",
     "inner": {
-      "base": "mx-auto flex flex-wrap items-center justify-around"
+      "base": "mx-auto flex flex-wrap items-center justify-end"
     }
   },
 }
