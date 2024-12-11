@@ -4,6 +4,7 @@ import "./globals.css";
 import NavbarComponent from "./components/navbar";
 import Footer from "./components/footer/footer";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/react"
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -19,8 +20,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={montserrat.className + " " + "scroll-smooth  overflow-x-hidden"}>
-        
         {children}
+        <Analytics></Analytics>
         <Script id="tawk" strategy="lazyOnload">
           {`var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
             (function(){
