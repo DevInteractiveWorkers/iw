@@ -2,6 +2,7 @@ import Image from 'next/image'
 import React from 'react'
 import NavbarComponent from '../components/navbar'
 import DispatchAccordions from '../components/dispatch/accordions'
+import MainForm from '../components/form/form'
 
 const Dispatch = () => {
   return (
@@ -15,11 +16,12 @@ const Dispatch = () => {
             </div>
             <Image className='z-0 w-full top-0' src={'/dispatch/banner.png'} alt='Interactive Dispatch Banner' width={1440} height={545} quality={100}></Image>
         </div>
-        <div className='bg-[#181621] py-24'>
-          <section className='flex flex-col gap-8 w-3/4 mx-auto'>
+        <div className='bg-[#181621] py-16 md:py-24'>
+          <section className='flex flex-col gap-8 w-5/6 mx-auto'>
             <DispatchAccordions></DispatchAccordions>
           </section>
         </div>
+        <MainForm dark={false}></MainForm>
     </div>
   )
 }

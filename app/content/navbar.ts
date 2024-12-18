@@ -22,7 +22,7 @@ export const navbar = [
         {
             "title":"Dispatch",
             "link":"/dispatch",
-            "disabled":"True"
+            "disabled":""
         },
         {
             "title":"Blog",
