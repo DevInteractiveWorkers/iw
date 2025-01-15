@@ -18,7 +18,7 @@ const Dispatch = () => {
             <Image className='z-0 md:w-full max-sm:h-[30vh] top-0' src={'/dispatch/banner.png'} alt='Interactive Dispatch Banner' width={1440} height={545} quality={100}></Image>
         </div>
         <div className='bg-[#181621] py-16 md:py-24 relative'>
-        <ParticlesComponent id="dispatch-particle"></ParticlesComponent>
+        <ParticlesComponent id="dispatch-particle" className="opacity-15"></ParticlesComponent>
           <section className='flex flex-col gap-8 w-5/6 mx-auto'>
             <DispatchAccordions></DispatchAccordions>
           </section>

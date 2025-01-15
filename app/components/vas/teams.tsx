@@ -69,7 +69,7 @@ const Teams = () => {
 
   return (
     <div className='w-3/4 mx-auto my-4 md:my-16'>
-      <h3 className='text-2xl md:text-4xl font-extrabold pb-1 mb-8 px-8 md:px-32 rounded-3xl text-[#DD272D] border-2 border-[#DD272D] mx-auto max-w-fit text-center'>Teams</h3>
+      <h3 className='text-2xl md:text-4xl font-extrabold pb-1 mb-8 px-8 md:px-32 rounded-3xl text-[#DD272D] border-2 border-[#DD272D] mx-auto max-w-fit text-center bg-white'>Teams</h3>
       <Tabs aria-label="Default tabs" theme={customTabsTheme} onActiveTabChange={(e) => { setActiveVas(VAs.handler(e - 1, expanded)); setActive(e - 1) }}>
         {vasTabs.map((tab, i) =>
           <Tabs.Item key={tab.name} active={active === i ? true : false} title={tab.name}>
