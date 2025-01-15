@@ -7,7 +7,7 @@ const DispatchAccordions = () => {
 
   return (
     <>
-      <article className={`grid md:grid-cols-12 md:gap-3 overflow-hidden ${opened === 0 ? "" : "md:max-h-80"}`}>
+      <article className={`grid md:grid-cols-12 md:gap-3 overflow-hidden relative ${opened === 0 ? "" : "md:max-h-80"}`}>
         <div className={`col-span-4 bg-[#C1272D] rounded-3xl my-2 md:my-0`}>
           <Image className={`${opened === 0 ? " md:h-full " : "md:h-80"} h-48 mx-auto object-cover object-top md:max-h-none`} src={'/dispatch/0.png'} alt='Dispatch Interactive Worker' width={277} height={353} quality={100}></Image>
         </div>
