@@ -12,7 +12,7 @@ import {
 import { loadSlim } from "@tsparticles/slim"; // if you are going to use `loadSlim`, install the "@tsparticles/slim" package too.
 // import { loadBasic } from "@tsparticles/basic"; // if you are going to use `loadBasic`, install the "@tsparticles/basic" package too.
 
-export const ParticlesComponent = ({id}:{id:string}) => {
+export const ParticlesComponent = ({id, color="#ffffff", className=""}:{id:string, color?:string, className?:string}) => {
   const [init, setInit] = useState(false);
 
   // this should be run only once per application lifetime
@@ -69,10 +69,10 @@ export const ParticlesComponent = ({id}:{id:string}) => {
       ,
       particles: {
         color: {
-          value: "#ffffff",
+          value: color,
         },
         links: {
-          color: "#ffffff",
+          color: color,
           distance: 150,
           enable: true,
           opacity: 0.5,
@@ -112,7 +112,7 @@ export const ParticlesComponent = ({id}:{id:string}) => {
   if (init) {
     return (
       <Particles
-        className="w-full h-full absolute top-0"
+        className={`w-full h-full absolute top-0 ${className}`}
         id={id}
         particlesLoaded={particlesLoaded}
         options={options}
