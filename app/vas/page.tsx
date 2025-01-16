@@ -28,9 +28,9 @@ const VAs = () => {
             Beyond the obvious benefits, virtual assistants can address hidden needs. <strong className='font-extrabold'>Our comprehensive services go beyond what you might initially consider, offering the best value and most helpful virtual assistants available.</strong>  Let us show you how we can empower your business.
           </p>
         </article>
-        {/* <div className="absolute w-full h-screen -z-10"> */}
+        <div className="absolute w-full h-screen -z-10">
         <ParticlesComponent id="vas-particles" color="#000000" className="opacity-20 w-full h-[150vh] -z-10"></ParticlesComponent>
-        {/* </div> */}
+        </div>
         </div>
         <Features></Features>
         <Teams></Teams>
