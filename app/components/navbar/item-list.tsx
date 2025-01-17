@@ -61,12 +61,12 @@ const ItemList = ({ items, hover, dark }: { items: navbarModel[], hover: boolean
     )
   }
   return (
-    <Navbar.Collapse className={`relative pb-2 mr-[5%] uppercase font-medium ${dark ? '' : 'text-[#DD272D]'}`}>
+    <Navbar.Collapse className={`relative pb-2 mr-[5%] uppercase font-medium ${dark ? 'text-white' : 'text-[#DD272D]'}`}>
       {
         items.map((navbarItem, i) => {
           if(navbarItem.disabled === ""){
             return (
-              <Navbar.Link className='text-sm' key={navbarItem.link} as={Link} href={navbarItem.link}>{navbarItem.title}</Navbar.Link>
+              <Navbar.Link className={`text-sm ${dark ? 'text-white' : 'text-[#DD272D]'}`} key={navbarItem.link} as={Link} href={navbarItem.link}>{navbarItem.title}</Navbar.Link>
             )
           }
       })

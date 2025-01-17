@@ -43,17 +43,29 @@ const NavbarComponent = async ({dark}:{dark?:boolean}) => {
       <Navbar className='ml-auto w-1/2 text-end bg-transparent py-1 px-2 sm:pr-12 md:pr-4' theme={customUpperCollapseTheme}>
         <ItemList dark={dark} items={navbar.slice(0, 3)} hover={false}></ItemList>
       </Navbar>
-
-      <Navbar className='relative bg-transparent mt-2' fluid rounded>
+      <Navbar className='relative bg-transparent md:mt-2' fluid rounded>
+        <div className='max-md:w-full flex justify-center max-md:mb-2'>
         <NavbarBrand as={Link} href="/">
           <Image className=" hover:scale-110 transition-transform h-[31px]" src={`${dark ? 'https://iw-website.s3.amazonaws.com/logo/iw-Logo.png' : '/iw-LogoLight.png'}`} alt="Interactiveworkers Logo" width={200} height={31} ></Image>
         </NavbarBrand>
-        <span className='md:hidden inline'><ItemList dark={dark} items={navbar.slice(0, 3)} hover={false}></ItemList></span>
-        <NavbarToggle />
-        <ItemList dark={dark} items={navbar.slice(3)} hover={true}></ItemList>
-        <div className='w-1/4 md:flex gap-2 justify-center hidden'>
-          <Link href={"/affiliate"} className='basis-1/2 bg-[#DD272D] text-center text-white rounded-xl p-1 px-2 font-semibold hidden lg:block'>Affiliate Program</Link>
-          <Link href={"https://calendly.com/interactiveworkersgm/30min"} target='_blank' className='basis-1/2 bg-[#DD272D] text-center text-white rounded-xl p-1 font-semibold hidden lg:flex items-center justify-center'>Book a Call</Link>
+        </div>
+        <div className='md:hidden w-full flex justify-center'>
+          <div className=' w-11/12 flex justify-between'>
+          {navbar.slice(0,3).map((item)=>(
+            item.disabled ? null : <Link href={item.link} className={dark? 'text-white':'text-[#DD272D]'}>{item.title.toUpperCase()}</Link>
+          ))}
+          </div>
+        </div>
+        <div className='max-md:hidden'>
+          <ItemList dark={dark} items={navbar.slice(3)} hover={true}></ItemList>
+        </div>
+        <div className='md:w-1/4 w-full flex gap-2 justify-center'>
+          <Link href={"/affiliate"} className='basis-full bg-[#DD272D] text-center text-white rounded-xl p-1 font-semibold items-center justify-center content-center'>Affiliate Program</Link>
+          <Link href={"https://calendly.com/interactiveworkersgm/30min"} target='_blank' className='basis-full bg-[#DD272D] text-center text-white rounded-xl p-1 font-semibold items-center justify-center content-center'>Book a Call</Link>
+          <NavbarToggle className={`hover:text-[#DD272D] ${dark ? 'text-white bg-[#DD272D]' : 'text-black bg-white'}`}/>
+        </div>
+        <div className='md:hidden w-full'>
+          <ItemList dark={dark} items={navbar.slice(3)} hover={true}></ItemList>
         </div>
       </Navbar>
       </div>
