@@ -113,7 +113,7 @@ const AffiliatePage = () => {
             </div>
           </div>
         </div>
-          <ParticlesComponent id='affiliate-particles' color='#A3A3A3' className='-z-10 h-1/3 top-3/4'/>
+          <ParticlesComponent id='affiliate-particles' color='#A3A3A3' className='-z-10 md:h-1/3 md:block hidden top-3/4'/>
       </section>
 
       <section className='mt-16'>
