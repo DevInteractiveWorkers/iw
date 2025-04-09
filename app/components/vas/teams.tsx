@@ -56,6 +56,12 @@ const customTabsTheme: CustomFlowbiteTheme["tabs"] = {
   "tabpanel": "py-3"
 }
 
+const VATeamCard = ({va, className}:{va:VA, className?:string})=>{
+  return(
+    <VACard className={`max-md:m-10 max-sm:m-0 col-span-2 md:col-span-1 ${className}`} imageSrc={`/vas/teams/${va.img}`} getInTouch>{va.position}</VACard>
+  )
+}
+
 const Teams = () => {
 
   const VAs = new VAHandler(Vas)
@@ -69,21 +75,21 @@ const Teams = () => {
 
   return (
     <div className='w-3/4 mx-auto my-4 md:my-16'>
-      <h3 className='text-2xl md:text-4xl font-extrabold pb-1 mb-8 px-8 md:px-32 rounded-3xl text-[#DD272D] border-2 border-[#DD272D] mx-auto max-w-fit text-center'>Teams</h3>
+      <h3 className='text-2xl md:text-4xl font-extrabold pb-1 mb-8 px-8 md:px-32 rounded-3xl text-[#DD272D] border-2 border-[#DD272D] mx-auto max-w-fit text-center bg-white'>Teams</h3>
       <Tabs aria-label="Default tabs" theme={customTabsTheme} onActiveTabChange={(e) => { setActiveVas(VAs.handler(e - 1, expanded)); setActive(e - 1) }}>
         {vasTabs.map((tab, i) =>
           <Tabs.Item key={tab.name} active={active === i ? true : false} title={tab.name}>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8 xl:gap-16 mt-16'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-10 xl:gap-16 mt-16'>
               <div className='p-8 py-16 xl:py-32 flex flex-col items-center justify-center text-center gap-4 bg-[#DD272D] rounded-[66px] text-white col-span-2 we-build-bg'>
-                <h4 className='text-xl md:text-6xl font-extrabold mb-4 max-w-fit'>Are you looking for a specific profession?</h4>
+                <h4 className='text-xl sm:text-3xl md:text-6xl font-extrabold md:mb-4 max-w-fit'>Are you looking for a specific profession?</h4>
                 <span className='font-normal text-base md:text-4xl'>We can build it for you</span>
               </div>
-              <VACard className='col-span-2 md:col-span-1 hidden md:block' va={activeVas[0]}></VACard>
+              <VATeamCard className='hidden md:block' va={activeVas[0]}/>
               {activeVas.map((va, i) => {
                 if (i === 0) {
-                  return <VACard key={va.position} className='col-span-2 md:col-span-1 block md:hidden' va={va}></VACard>
+                  return <VATeamCard className='md:hidden block' key={va.position} va={va}/>
                 }
-                return <VACard key={va.position} className='col-span-2 md:col-span-1' va={va}></VACard>
+                return <VATeamCard className='block' key={va.position} va={va}/>
               })}
             </div>
             <button className='p-4 bg-[#DD272D] uppercase text-white font-extrabold text-base md:text-xl rounded-xl block mx-auto w-fit my-4 md:my-8' onClick={(e) => setExpanded(!expanded)}>{expanded ? "See More" : "See Less"}</button>

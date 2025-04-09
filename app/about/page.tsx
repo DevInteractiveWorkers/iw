@@ -4,12 +4,13 @@ import NavbarComponent from './../components/navbar/index';
 import FAQ from '../components/about/faq/faq';
 import Values from '../components/about/values/values';
 import MainForm from '../components/form/form';
+import { ParticlesComponent } from '../components/particles';
 
 const AboutUs = () => {
   return (
     <div>
       <NavbarComponent dark={false}></NavbarComponent>
-      <section className='relative flex flex-col justify-between'>
+      <section className='flex flex-col justify-between relative'>
         {/* <div className='absolute w-2/3 h-12 bg-[#DD272D] rounded-3xl right-0 -top-6 z-0'></div> */}
 
         <article className='overflow-hidden relative my-8'>
@@ -26,7 +27,8 @@ const AboutUs = () => {
           <div className='h-4 w-1/6 bg-[#DD272D] mt-16 mx-auto rounded-3xl'></div>
         </article>
 
-        <article className='w-full mb-10 md:mb-24'>
+        <article className='w-full mb-10 md:mb-24 relative'>
+          <ParticlesComponent id='about-particles' color='#3A3A3A' className="-z-10 h-screen top-0 -mt-10 opacity-15"/>
           <h3 className='font-extrabold text-xl md:text-4xl uppercase bg-[#DD272D] text-white w-3/4 md:w-1/2 rounded-r-full py-8 text-center'>Who we are</h3>
           <div className='bg-[#DD272D] w-full flex flex-col md:flex-row'>
             <div className='bg-[#282828] rounded-[60px] basis-[60%] px-4 md:px-16 -my-2 text-white text-xl max-h-[500px]'>
@@ -50,7 +52,7 @@ const AboutUs = () => {
         </article>
 
         <FAQ></FAQ>
-
+        <ParticlesComponent id='about-particles-bottom' color='#3A3A3A' className='h-svh top-3/4 -z-10 opacity-15'/>
         <MainForm dark={false}></MainForm>
       </section>
     </div>

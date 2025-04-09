@@ -17,7 +17,7 @@ const AffiliatePage = () => {
         </article>
       </section>
 
-      <section>
+      <section className='relative'>
 
         <article className='w-3/4 mx-auto py-8 bg-white relative '>
           <Image className="absolute -top-12 z-20 left-0 right-0 mx-auto" src={'/home/discover-vas/world.png'} alt='globe' width={980} height={980}></Image>
@@ -113,6 +113,7 @@ const AffiliatePage = () => {
             </div>
           </div>
         </div>
+          <ParticlesComponent id='affiliate-particles' color='#A3A3A3' className='-z-10 md:h-1/3 md:block hidden top-3/4'/>
       </section>
 
       <section className='mt-16'>

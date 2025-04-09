@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Features from './../components/vas/features';
 import MainForm from '../components/form/form';
 import Teams from '../components/vas/teams';
+import { ParticlesComponent } from '../components/particles';
 
 const VAs = () => {
   return (
@@ -18,6 +19,7 @@ const VAs = () => {
           <Image className='w-full md:basis-2/5 md:max-w-[45%]' src={'/vas/banner-1.png'} alt="VA's Interactive Banner" width={743} height={485}></Image>
         </article>
         <Image className='ml-auto -my-[34px]' src={'/vas/banner-element.png'} alt='Va decorative element' width={284} height={68}></Image>
+        <div className="relative">
         <article className='w-11/12 md:w-3/4 bg-[#DD272D] mx-auto text-base md:text-xl font-normal text-white flex flex-col items-center justify-center gap-4 py-12 px-8 md:px-20 rounded-b-[66px]'>
           <p>
             <strong className='font-extrabold'>Our Virtual assistants are a versatile solution for any business.</strong> They handle a wide range of tasks, freeing you to focus on core activities. Imagine having a dedicated assistant who consistently delivers the best service, allowing you to come back to truly impactful work.
@@ -26,6 +28,10 @@ const VAs = () => {
             Beyond the obvious benefits, virtual assistants can address hidden needs. <strong className='font-extrabold'>Our comprehensive services go beyond what you might initially consider, offering the best value and most helpful virtual assistants available.</strong>  Let us show you how we can empower your business.
           </p>
         </article>
+        <div className="absolute w-full h-screen -z-10">
+        <ParticlesComponent id="vas-particles" color="#000000" className="opacity-20 w-full h-[150vh] -z-10"></ParticlesComponent>
+        </div>
+        </div>
         <Features></Features>
         <Teams></Teams>
       </section>
