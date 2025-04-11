@@ -12,13 +12,15 @@ import React, { useState } from "react";
 import { sendMail, formData } from "../lib/utils";
 import Link from "next/link";
 import professionalOptions from "./professionalOptions";
+import Loader, { LoadingPage } from "../loader";
 
 const MainForm = ({ dark }: { dark?: boolean | number }) => {
-  const [isSending, setIsSending] = useState(false);
+  const [sending, isSending] = useState(false);
+  const [sent, isSent] = useState(false);
 
   const handleSubmit = async (event: any) => {
+    isSending(true);
     event.preventDefault();
-    /* setIsSending(true); */
     const target = event.target;
     const data: formData = {
       fullName: target.firstname.value + " " + target.lastname.value,
@@ -35,9 +37,9 @@ const MainForm = ({ dark }: { dark?: boolean | number }) => {
     const empty = Object.values(data).filter((item) => item === "");
     const completed = empty.length === 0 && (await sendMail(data));
 
-    setIsSending(false);
-
     if (completed) {
+      isSending(false);
+      isSent(true);
       target.firstname.value = "";
       target.lastname.value = "";
       target.company.value = "";
@@ -196,12 +198,22 @@ const MainForm = ({ dark }: { dark?: boolean | number }) => {
               </Link>
             </Label>
           </div>
-          <Button
-            className="uppercase rounded-xl font-bold text-xl max-w-fit mx-auto mt-8 bg-[#DD272D] text-white"
-            type="submit"
-          >
-            Send mail
-          </Button>
+          {sending ? (
+            <div className="w-1/2 flex justify-center">
+              <Loader />
+            </div>
+          ) : (
+            <Button
+              className={`uppercase  rounded-xl font-bold text-xl max-w-fit mx-auto mt-8 ${
+                !sent
+                  ? "bg-[#DD272D]"
+                  : "bg-[#808080] pointer-events-none cursor-not-allowed"
+              } text-white`}
+              type="submit"
+            >
+              {!sent ? "Send mail" : "Sent"}
+            </Button>
+          )}
         </div>
       </form>
     );
@@ -311,39 +323,10 @@ const MainForm = ({ dark }: { dark?: boolean | number }) => {
             Choose your Professional
           </h4>
           <div>
-            <Select className=" text-white" id="professional" required>
-              <option>Graphic Designer </option>
-              <option>Web Developer </option>
-              <option>Copywriter </option>
-              <option>
-                Video Editor (depending on content creation focus){" "}
-              </option>
-              <option>Social Media Manager </option>
-              <option>Call Center Agent Virtual Assistant </option>
-              <option>Customer Service Virtual Assistant </option>
-              <option>Scheduling Agent </option>
-              <option>Appointment Setter </option>
-              <option>Administrative Assistant </option>
-              <option>Personal Virtual Assistant </option>
-              <option>General VA </option>
-              <option>Recruiting VA </option>
-              <option>Intake Coordinators VA </option>
-              <option>HR VA </option>
-              <option>Administrative VA </option>
-              <option>Legal Assistant VA </option>
-              <option>Insurance Assistant VA </option>
-              <option>Dispatcher </option>
-              <option>It Support Virtual Assistant </option>
-              <option>Accountant </option>
-              <option>Transcriptionist VA </option>
-              <option>Medical Scriber VA </option>
-              <option>Appointment Setter </option>
-              <option>Customer Service</option>
-              <option>ADS Specialist </option>
-              <option>Copywriter </option>
-              <option>Sales Agent </option>
-              <option>Telemarketing Agent </option>
-              <option>Real Estate Agent</option>
+            <Select className="text-white" id="professional" required>
+              {professionalOptions.map((option, index) => (
+                <option key={index}>{option}</option>
+              ))}
             </Select>
           </div>
           <Textarea
@@ -372,12 +355,22 @@ const MainForm = ({ dark }: { dark?: boolean | number }) => {
               </Link>
             </Label>
           </div> */}
-          <Button
-            className="uppercase rounded-xl font-bold text-xl max-w-fit mx-auto mt-8 bg-[#DD272D] text-white"
-            type="submit"
-          >
-            Send mail
-          </Button>
+          {sending ? (
+            <div className="w-1/2 flex justify-center">
+              <Loader />
+            </div>
+          ) : (
+            <Button
+              className={`uppercase  rounded-xl font-bold text-xl max-w-fit mx-auto mt-8 ${
+                !sent
+                  ? "bg-[#DD272D]"
+                  : "bg-[#808080] pointer-events-none cursor-not-allowed"
+              } text-white`}
+              type="submit"
+            >
+              {!sent ? "Send mail" : "Sent"}
+            </Button>
+          )}
         </div>
       </form>
     </div>

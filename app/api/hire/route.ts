@@ -34,7 +34,7 @@ export async function POST(req: NextRequest): Promise<Response> {
 
   const mailData = {
     from: process.env.NODEMAILER_USER,
-    to: "web.interactiveworkers@gmail.com",
+    to: "recruitment@interactiveworkers.com",
     subject: `${data.fullName} tried to contact you through interactiveworkers.com contact form`,
     html: `
         <html>

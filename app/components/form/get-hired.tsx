@@ -12,11 +12,15 @@ import { GetHiredformData, sendGetHiredMail } from "../lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import professionalOptions from "./professionalOptions";
+import Loader, { LoadingPage } from "../loader";
 
 const GetHired = () => {
   const [file, setFile] = useState<File | null>();
+  const [sending, isSending] = useState(false);
+  const [sent, isSent] = useState(false);
 
   const handleSubmit = async (event: any) => {
+    isSending(true);
     event.preventDefault();
     if (file != null) {
       const target = event.target;
@@ -37,11 +41,13 @@ const GetHired = () => {
         const completed = empty.length === 0 && (await sendGetHiredMail(data));
 
         if (completed) {
-          console.log("completamente enviado");
+          isSending(false);
+          isSent(true);
           target.firstname.value = "";
           target.lastname.value = "";
           target.location.value = "";
           target.phone.value = "";
+          target.email.value = "";
           target.professional.value = "";
           target.file.value = "";
         }
@@ -143,12 +149,22 @@ const GetHired = () => {
             </Link>
           </Label>
         </div>
-        <Button
-          className="uppercase rounded-xl font-bold text-xl max-w-fit mx-auto mt-8 bg-[#DD272D] text-white"
-          type="submit"
-        >
-          Send mail
-        </Button>
+        {sending ? (
+          <div className="w-1/2 flex justify-center">
+            <Loader />
+          </div>
+        ) : (
+          <Button
+            className={`uppercase  rounded-xl font-bold text-xl max-w-fit mx-auto mt-8 ${
+              !sent
+                ? "bg-[#DD272D]"
+                : "bg-[#808080] pointer-events-none cursor-not-allowed"
+            } text-white`}
+            type="submit"
+          >
+            {!sent ? "Send mail" : "Sent"}
+          </Button>
+        )}
       </div>
     </form>
   );
