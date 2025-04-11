@@ -1,44 +1,42 @@
-
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { GetHiredformData, getCurrentDate } from "@/app/components/lib/utils";
-import { stringify } from "querystring";
 
 export async function POST(req: NextRequest): Promise<Response> {
-    const data:GetHiredformData = await req.json()
-    const transporter = nodemailer.createTransport({
-        service:'gmail',
-        secure: true,
-        tls:{
-            rejectUnauthorized: false
-        },
-        auth: {
-            user: process.env.NODEMAILER_USER,
-            pass: process.env.NODEMAILER_PASS
-        }
+  const data: GetHiredformData = await req.json();
+
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    secure: true,
+    tls: {
+      rejectUnauthorized: false,
+    },
+    auth: {
+      user: process.env.NODEMAILER_USER,
+      pass: process.env.NODEMAILER_PASS,
+    },
+  });
+
+  await new Promise((resolve, reject) => {
+    transporter.verify(function (error, success) {
+      if (error) {
+        console.log(error);
+        reject(error);
+      } else {
+        console.log("Server is ready to take our messages");
+        resolve(success);
+      }
     });
-    
-    await new Promise((resolve, reject) => {
-        // verify connection configuration
-        transporter.verify(function (error, success) {
-            if (error) {
-                console.log(error);
-                reject(error);
-            } else {
-                console.log("Server is ready to take our messages");
-                resolve(success);
-            }
-        });
-    });
-    
-    const date = getCurrentDate()
-    const content = Buffer.from(data.file.data,'utf-8')
-    const mailData = {
-        from: process.env.NODEMAILER_USER,
-        to: "thesofoko@gmail.com",
-        /* bcc:["info@interactiveworkers.com","ceo@interactiveworkers.com"], */
-        subject: `${data.fullName} tried to contact you through interactiveworkers.com contact form`,
-        html:`
+  });
+
+  const date = getCurrentDate();
+  const content = Buffer.from(data.file.data, "utf-8");
+
+  const mailData = {
+    from: process.env.NODEMAILER_USER,
+    to: "web.interactiveworkers@gmail.com",
+    subject: `${data.fullName} tried to contact you through interactiveworkers.com contact form`,
+    html: `
         <html>
         <head>
             <link href="https://fonts.googleapis.com/css?family=Goudy+Bookletter+1911|Share+Tech" rel="stylesheet">
@@ -167,7 +165,7 @@ export async function POST(req: NextRequest): Promise<Response> {
                             border: 1px solid #C1C3D1;
                             padding: 10px;
                             color: #FFFFFF;">
-                        Company Size</td>
+                        Profession</td>
                         <td style="background: #FFFFFF;
                             text-align: left;
                             vertical-align: middle;
@@ -188,26 +186,25 @@ export async function POST(req: NextRequest): Promise<Response> {
             </div> 
         </body>
     </html>`,
-        attachments:[{   // binary buffer as an attachment
-            filename: data.fileName,
-            content
-        }]
-    }
-    await new Promise((resolve, reject) => {
-        // send mail
-        transporter.sendMail(mailData, (err, info) => {
-            if (err) {
-                console.error(err);
-                reject(err);
-            } else {
-                console.log(info);
-                resolve(info);
-            }
-        });
-    });
-    
-    return NextResponse.json({ status: 200, revalidated: true, now: Date.now() })
-    };
+    attachments: [
+      {
+        filename: data.fileName,
+        content,
+      },
+    ],
+  };
 
-
-
+  try {
+    await transporter.sendMail(mailData);
+    return NextResponse.json(
+      { message: "Email sent successfully!" },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Failed to send email:", error);
+    return NextResponse.json(
+      { error: "Failed to send email" },
+      { status: 500 }
+    );
+  }
+}
