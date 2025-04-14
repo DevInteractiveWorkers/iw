@@ -18,6 +18,8 @@ const GetHired = () => {
   const [file, setFile] = useState<File | null>();
   const [sending, isSending] = useState(false);
   const [sent, isSent] = useState(false);
+  const [message, setMessage] = useState("");
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
 
   const handleSubmit = async (event: any) => {
     isSending(true);
@@ -38,18 +40,29 @@ const GetHired = () => {
         };
 
         const empty = Object.values(data).filter((item) => item === "");
+
         const completed = empty.length === 0 && (await sendGetHiredMail(data));
 
         if (completed) {
           isSending(false);
           isSent(true);
+          setTimeout(() => isSent(false), 5000);
+          if (message) setMessage("");
           target.firstname.value = "";
           target.lastname.value = "";
           target.location.value = "";
           target.phone.value = "";
           target.email.value = "";
           target.professional.value = "";
-          target.file.value = "";
+          setFile(null); // Limpia el estado
+          if (fileInputRef.current) {
+            fileInputRef.current.value = ""; // Limpia el input visual
+          }
+        } else {
+          isSending(false);
+          setMessage(
+            "There was a problem to contact us. Please try again later."
+          );
         }
       }
     }
@@ -130,6 +143,7 @@ const GetHired = () => {
             ></Image>
           </label>
           <FileInput
+            ref={fileInputRef}
             onChange={(e) => {
               e.target.files?.length ? setFile(e.target.files[0]) : null;
             }}
@@ -149,6 +163,7 @@ const GetHired = () => {
             </Link>
           </Label>
         </div>
+        {message && <div className="text-[#ff0000]">{message}</div>}
         {sending ? (
           <div className="w-1/2 flex justify-center">
             <Loader />
