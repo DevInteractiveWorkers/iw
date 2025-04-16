@@ -12,11 +12,12 @@ import React, { useState } from "react";
 import { sendMail, formData } from "../lib/utils";
 import Link from "next/link";
 import professionalOptions from "./professionalOptions";
-import Loader, { LoadingPage } from "../loader";
+import Loader from "../loader";
 
 const MainForm = ({ dark }: { dark?: boolean | number }) => {
   const [sending, isSending] = useState(false);
   const [sent, isSent] = useState(false);
+  const [message, setMessage] = useState("");
 
   const handleSubmit = async (event: any) => {
     isSending(true);
@@ -40,6 +41,8 @@ const MainForm = ({ dark }: { dark?: boolean | number }) => {
     if (completed) {
       isSending(false);
       isSent(true);
+      setTimeout(() => isSent(false), 5000);
+      if (message) setMessage("");
       target.firstname.value = "";
       target.lastname.value = "";
       target.company.value = "";
@@ -50,6 +53,11 @@ const MainForm = ({ dark }: { dark?: boolean | number }) => {
       target.country.value = "";
       target.professional.value = "";
       target.message.value = "";
+    }else {
+      isSending(false);
+      setMessage(
+        "There was a problem to contact us. Please try again later."
+      );
     }
   };
   if (dark === 2) {
@@ -198,22 +206,25 @@ const MainForm = ({ dark }: { dark?: boolean | number }) => {
               </Link>
             </Label>
           </div>
-          {sending ? (
-            <div className="w-1/2 flex justify-center">
-              <Loader />
-            </div>
-          ) : (
-            <Button
-              className={`uppercase  rounded-xl font-bold text-xl max-w-fit mx-auto mt-8 ${
-                !sent
-                  ? "bg-[#DD272D]"
-                  : "bg-[#808080] pointer-events-none cursor-not-allowed"
-              } text-white`}
-              type="submit"
-            >
-              {!sent ? "Send mail" : "Sent"}
-            </Button>
-          )}
+          {message && <div className="text-[#ff0000] flex justify-center">{message}</div>}
+                  {sending ? (
+                    <div className="w-full flex justify-center">
+                    <div className="w-1/2 flex justify-center">
+                      <Loader />
+                    </div>
+                    </div>
+                  ) : (
+                    <Button
+                      className={`uppercase  rounded-xl font-bold text-xl max-w-fit mx-auto mt-8 ${
+                        !sent
+                          ? "bg-[#DD272D]"
+                          : "bg-[#808080] pointer-events-none cursor-not-allowed"
+                      } text-white`}
+                      type="submit"
+                    >
+                      {!sent ? "Send mail" : "Sent"}
+                    </Button>
+                  )}
         </div>
       </form>
     );
@@ -355,22 +366,23 @@ const MainForm = ({ dark }: { dark?: boolean | number }) => {
               </Link>
             </Label>
           </div> */}
-          {sending ? (
-            <div className="w-1/2 flex justify-center">
-              <Loader />
-            </div>
-          ) : (
-            <Button
-              className={`uppercase  rounded-xl font-bold text-xl max-w-fit mx-auto mt-8 ${
-                !sent
-                  ? "bg-[#DD272D]"
-                  : "bg-[#808080] pointer-events-none cursor-not-allowed"
-              } text-white`}
-              type="submit"
-            >
-              {!sent ? "Send mail" : "Sent"}
-            </Button>
-          )}
+          {message && <div className="text-[#ff0000]">{message}</div>}
+                  {sending ? (
+                    <div className="w-1/2 flex justify-center">
+                      <Loader />
+                    </div>
+                  ) : (
+                    <Button
+                      className={`uppercase  rounded-xl font-bold text-xl max-w-fit mx-auto mt-8 ${
+                        !sent
+                          ? "bg-[#DD272D]"
+                          : "bg-[#808080] pointer-events-none cursor-not-allowed"
+                      } text-white`}
+                      type="submit"
+                    >
+                      {!sent ? "Send mail" : "Sent"}
+                    </Button>
+                  )}
         </div>
       </form>
     </div>
