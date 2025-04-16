@@ -48,7 +48,7 @@ const VACard = ({customTheme = customCardTheme, children, imageSrc, className, g
       <div className={expanded ? "z-20":""}>
         <Image className='-mt-[25%] w-full h-auto border-b-2 border-[#D9D9D9] z-10' src={imageSrc} alt='' width={275} height={341} quality={100}></Image>
         <h3 className='p-4 py-8 mx-auto text-center font-bold text-base md:text-2xl rounded-b-3xl'>{children} {expanded}</h3>
-        {getInTouch?
+        {getInTouch &&
         <div className={`${direction === "right"? 'rounded-r-3xl':'rounded-l-3xl'} md:border-2 border-[#D9D9D9] max-md:rounded-t-none max-md:rounded-b-3xl max-w-lg top-0 md:absolute transition-all md:duration-1000 -z-50 p-10 max-md:pt-0 text-white flex flex-col justify-between items-center ${expanded  ? `bg-[#DD272D] ${direction === "right"?"md:left-full shadow-[15px_15px_0_0_rgb(217,217,217,1)]":"md:right-full md:shadow-[0_15px_0_0_rgb(217,217,217,1)]"} max-md:top-full md:w-max w-full h-3/4`:"left-0 md:w-0 h-0 opacity-0"}`}>
           <p className={expanded ? "h-full":"h-0 truncate"}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium id autem sint asperiores, dicta unde alias rerum quam maxime modi nam harum laboriosam reiciendis earum quae. Sed minus numquam officiis?
@@ -57,7 +57,7 @@ const VACard = ({customTheme = customCardTheme, children, imageSrc, className, g
               <strong>GET IN TOUCH</strong>
             </button>
         </div>
-        :null}
+        }
       </div>
     </Card>
   )

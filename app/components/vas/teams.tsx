@@ -58,7 +58,7 @@ const customTabsTheme: CustomFlowbiteTheme["tabs"] = {
 
 const VATeamCard = ({va, className}:{va:VA, className?:string})=>{
   return(
-    <VACard className={`max-md:m-10 max-sm:m-0 col-span-2 md:col-span-1 ${className}`} imageSrc={`/vas/teams/${va.img}`} getInTouch>{va.position}</VACard>
+    <VACard className={`max-md:m-10 max-sm:m-0 col-span-2 md:col-span-1 ${className}`} imageSrc={`/vas/teams/${va.img}`} getInTouch={false}>{va.position}</VACard>
   )
 }
 
