@@ -366,10 +366,12 @@ const MainForm = ({ dark }: { dark?: boolean | number }) => {
               </Link>
             </Label>
           </div> */}
-          {message && <div className="text-[#ff0000]">{message}</div>}
+          {message && <div className="text-[#ff0000] flex justify-center">{message}</div>}
                   {sending ? (
+                    <div className="w-full flex justify-center">
                     <div className="w-1/2 flex justify-center">
                       <Loader />
+                    </div>
                     </div>
                   ) : (
                     <Button
