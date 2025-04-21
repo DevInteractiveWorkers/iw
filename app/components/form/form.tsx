@@ -8,13 +8,13 @@ import {
   Textarea,
   TextInput,
 } from "flowbite-react";
-import React, { useState } from "react";
-import { sendMail, formData } from "../lib/utils";
+import React, {useState} from "react";
+import {sendMail, formData} from "../lib/utils";
 import Link from "next/link";
 import professionalOptions from "./professionalOptions";
 import Loader from "../loader";
 
-const MainForm = ({ dark }: { dark?: boolean | number }) => {
+const MainForm = ({dark}: {dark?: boolean | number}) => {
   const [sending, isSending] = useState(false);
   const [sent, isSent] = useState(false);
   const [message, setMessage] = useState("");
@@ -35,6 +35,23 @@ const MainForm = ({ dark }: { dark?: boolean | number }) => {
       message: target.message.value,
     };
 
+    /*
+    try {
+      const response = await fetch(
+        "https://services.leadconnectorhq.com/hooks/dtfCxBE6SEYaCMFTlgu5/webhook-trigger/fd180225-d8a8-404d-ad1b-22c8b4e90eb8",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+    } catch (error) {
+      console.log("error");
+    }
+    */
+
     const empty = Object.values(data).filter((item) => item === "");
     const completed = empty.length === 0 && (await sendMail(data));
 
@@ -53,342 +70,189 @@ const MainForm = ({ dark }: { dark?: boolean | number }) => {
       target.country.value = "";
       target.professional.value = "";
       target.message.value = "";
-    }else {
+    } else {
       isSending(false);
-      setMessage(
-        "There was a problem to contact us. Please try again later."
-      );
+      setMessage("There was a problem to contact us. Please try again later.");
     }
   };
-  if (dark === 2) {
-    return (
+
+  const FormFields = () => (
+    <>
+      <div className="mx-auto w-11/12 md:w-2/3 flex flex-col gap-3">
+        <div className="flex md:flex-row flex-col gap-3">
+          <TextInput
+            id="firstname"
+            type="text"
+            placeholder="First name*"
+            required
+            shadow
+            className="md:basis-1/2"
+          />
+          <TextInput
+            id="lastname"
+            type="text"
+            placeholder="Last name*"
+            required
+            shadow
+            className="md:basis-1/2"
+          />
+        </div>
+        <TextInput
+          id="company"
+          type="text"
+          placeholder="Company's Name*"
+          required
+          shadow
+        />
+        <div className="flex md:flex-row flex-col gap-3">
+          <TextInput
+            id="phone"
+            type="text"
+            placeholder="Phone Number*"
+            required
+            shadow
+            className="md:basis-1/2"
+          />
+          <TextInput
+            id="email"
+            type="email"
+            placeholder="Email*"
+            required
+            shadow
+            className="md:basis-1/2"
+          />
+        </div>
+        <TextInput
+          id="size"
+          type="text"
+          placeholder="Your company size (current staff number)*"
+          required
+          shadow
+        />
+        <TextInput
+          id="staff"
+          type="text"
+          placeholder="Number of Staff Required?*"
+          required
+          shadow
+        />
+        <TextInput
+          id="country"
+          type="text"
+          placeholder="Which country are you based in?*"
+          required
+          shadow
+        />
+        <h4
+          className={`mx-auto text-center font-bold text-lg mt-4 ${dark && dark !== 2 ? "text-white" : "text-black"}`}
+        >
+          Choose your Professional
+        </h4>
+        <Select
+          id="professional"
+          required
+          className="text-white first:first:first:bg-[#DD272D]"
+        >
+          {professionalOptions.map((option, index) => (
+            <option key={index}>{option}</option>
+          ))}
+        </Select>
+        <Textarea
+          id="message"
+          placeholder="What's your question? Or what kind of outsourcing help do you need?"
+          required
+          rows={4}
+          className="mt-8"
+        />
+        <p
+          className={`text-center ${dark && dark !== 2 ? "text-white" : "text-black"} text-xs`}
+        >
+          Messages and data rates may apply. Message frequency will vary. Reply
+          STOP to opt-out of messaging.
+        </p>
+        <div className="flex items-center justify-center gap-2">
+          <Checkbox id="agree" required />
+          <Label
+            htmlFor="agree"
+            className={`flex ${dark && dark !== 2 ? "text-white" : "text-black"}`}
+          >
+            I agree with the&nbsp;
+            <Link
+              href="/policy"
+              className="text-cyan-600 hover:underline dark:text-cyan-500"
+            >
+              Privacy Policy
+            </Link>
+          </Label>
+        </div>
+        {message && (
+          <div className="text-[#ff0000] flex justify-center">{message}</div>
+        )}
+        {sending ? (
+          <div className="w-full flex justify-center">
+            <div className="w-1/2 flex justify-center">
+              <Loader />
+            </div>
+          </div>
+        ) : (
+          <Button
+            type="submit"
+            className={`uppercase rounded-xl font-bold text-xl max-w-fit mx-auto mt-8 ${!sent ? "bg-[#DD272D]" : "bg-[#808080] pointer-events-none cursor-not-allowed"} text-white`}
+          >
+            {!sent ? "Send mail" : "Sent"}
+          </Button>
+        )}
+      </div>
+    </>
+  );
+
+  const heading =
+    dark === 2 ? (
+      <>
+        <strong className="font-extrabold text-[#DD272D]">Feel free</strong> to
+        contact us <strong className="font-extrabold">anytime!</strong>
+      </>
+    ) : (
+      <>
+        <strong className="font-extrabold">Speak</strong> with our team{" "}
+        <strong className="font-extrabold">today</strong>
+      </>
+    );
+
+  const outerWrapper =
+    dark === 2 ? (
       <form
-        className={`flex flex-col gap-4 w-3/4 mx-auto py-20  ${
-          dark && dark != 2 ? "bg-[#333333]" : "md:bg-[#EFEFEF]"
-        }`}
+        className={`flex flex-col gap-4 w-3/4 mx-auto py-20 ${dark && dark !== 2 ? "bg-[#333333]" : "md:bg-[#EFEFEF]"}`}
         onSubmit={handleSubmit}
         name="Contact Form"
       >
         <h2
-          className={`${
-            dark && dark != 2 ? "text-white" : "text-[#DD272D]"
-          } text-2xl md:text-4xl uppercase font-light mx-auto text-center`}
+          className={`${dark && dark !== 2 ? "text-white" : "text-[#DD272D]"} text-2xl md:text-4xl uppercase font-light mx-auto text-center`}
         >
-          {dark === 2 ? (
-            <>
-              <strong className="font-extrabold text-[#DD272D]">
-                Feel free
-              </strong>{" "}
-              to contact us <strong className="font-extrabold">anytime!</strong>
-            </>
-          ) : (
-            <>
-              <strong className="font-extrabold">Speak</strong> with our team{" "}
-              <strong className="font-extrabold">today</strong>
-            </>
-          )}
+          {heading}
         </h2>
-        <div className="mx-auto px-2 md:px-0 md:w-2/3 flex flex-col gap-3">
-          <div className="flex md:flex-row flex-col gap-3">
-            <TextInput
-              className="md:basis-1/2"
-              id="firstname"
-              type="text"
-              placeholder="First name*"
-              required
-              shadow
-            />
-            <TextInput
-              className="md:basis-1/2"
-              id="lastname"
-              type="text"
-              placeholder="Last name*"
-              required
-              shadow
-            />
-          </div>
-          <div>
-            <TextInput
-              id="company"
-              type="text"
-              placeholder="Company's Name*"
-              required
-              shadow
-            />
-          </div>
-          <div className="flex md:flex-row flex-col gap-3">
-            <TextInput
-              className="md:basis-1/2"
-              id="phone"
-              type="text"
-              placeholder="Phone Number*"
-              required
-              shadow
-            />
-            <TextInput
-              className="md:basis-1/2"
-              id="email"
-              type="email"
-              placeholder="Email*"
-              required
-              shadow
-            />
-          </div>
-          <div>
-            <TextInput
-              className="basis-1/2"
-              id="size"
-              type="text"
-              placeholder="Your company size (current staff number)*"
-              required
-              shadow
-            />
-          </div>
-          <div>
-            <TextInput
-              className="basis-1/2"
-              id="staff"
-              type="text"
-              placeholder="Number of Staff Required?*"
-              required
-              shadow
-            />
-          </div>
-          <div>
-            <TextInput
-              className="basis-1/2"
-              id="country"
-              type="text"
-              placeholder="Which country are you based in?*"
-              required
-              shadow
-            />
-          </div>
-          <h4
-            className={`mx-auto text-center font-bold text-lg mt-4 ${
-              dark && dark != 2 ? "text-white" : "text-black"
-            }`}
-          >
-            Choose your Professional
-          </h4>
-          <div>
-            <Select className="text-white" id="professional" required>
-              {professionalOptions.map((option, index) => (
-                <option key={index}>{option}</option>
-              ))}
-            </Select>
-          </div>
-          <Textarea
-            className="mt-8"
-            id="message"
-            placeholder="What's your question? Or what kind of outsourcing help do you need?"
-            required
-            rows={4}
-          />
-
-          <p
-            className={`text-center ${
-              dark && dark != 2 ? "text-white" : "text-black"
-            } text-xs`}
-          >
-            Messages and data rates may apply. message frequency will vary.
-            Reply stop to opt-out of messaging
-          </p>
-          <div className="flex items-center justify-center gap-2">
-            <Checkbox id="agree" required />
-            <Label htmlFor="agree" className="flex">
-              I agree with the&nbsp;
-              <Link
-                href="/policy"
-                className="text-cyan-600 hover:underline dark:text-cyan-500"
-              >
-                Privacy Policy
-              </Link>
-            </Label>
-          </div>
-          {message && <div className="text-[#ff0000] flex justify-center">{message}</div>}
-                  {sending ? (
-                    <div className="w-full flex justify-center">
-                    <div className="w-1/2 flex justify-center">
-                      <Loader />
-                    </div>
-                    </div>
-                  ) : (
-                    <Button
-                      className={`uppercase  rounded-xl font-bold text-xl max-w-fit mx-auto mt-8 ${
-                        !sent
-                          ? "bg-[#DD272D]"
-                          : "bg-[#808080] pointer-events-none cursor-not-allowed"
-                      } text-white`}
-                      type="submit"
-                    >
-                      {!sent ? "Send mail" : "Sent"}
-                    </Button>
-                  )}
-        </div>
+        <FormFields />
       </form>
-    );
-  }
-  return (
-    <div
-      className={`relative w-full px-4 md:px-0 pb-8 md:pb-20  ${
-        dark ? "bg-[#222222]" : "bg-[#E6E6E6]"
-      }`}
-      id="form"
-    >
-      <form
-        className={`flex flex-col gap-4 md:w-3/4 mx-auto relative -top-8 rounded-[66px] py-12 md:py-20 px-12 ${
-          dark ? "bg-[#333333]" : "bg-[#EFEFEF]"
-        }`}
-        onSubmit={handleSubmit}
+    ) : (
+      <div
+        className={`relative w-full px-4 md:px-0 pb-8 md:pb-20 ${dark ? "bg-[#222222]" : "bg-[#E6E6E6]"}`}
+        id="form"
       >
-        <h2
-          className={`${
-            dark ? "text-white" : "text-[#DD272D]"
-          } text-2xl md:text-4xl uppercase font-light mx-auto text-center my-2 md:my-0`}
+        <form
+          className={`flex flex-col gap-4 md:w-3/4 mx-auto relative -top-8 rounded-[66px] py-12 md:py-20 px-12 ${dark ? "bg-[#333333]" : "bg-[#EFEFEF]"}`}
+          onSubmit={handleSubmit}
         >
-          <strong className="font-extrabold">Speak</strong> with our team{" "}
-          <strong className="font-extrabold">today</strong>
-        </h2>
-        <div className="mx-auto w-11/12 md:w-2/3 flex flex-col gap-3">
-          <div className="flex md:flex-row flex-col gap-3">
-            <TextInput
-              className="md:basis-1/2"
-              id="firstname"
-              type="text"
-              placeholder="First name*"
-              required
-              shadow
-            />
-            <TextInput
-              className="md:basis-1/2"
-              id="lastname"
-              type="text"
-              placeholder="Last name*"
-              required
-              shadow
-            />
-          </div>
-          <div>
-            <TextInput
-              id="company"
-              type="text"
-              placeholder="Company's Name*"
-              required
-              shadow
-            />
-          </div>
-          <div className="flex md:flex-row flex-col gap-3">
-            <TextInput
-              className="md:basis-1/2"
-              id="phone"
-              type="text"
-              placeholder="Phone Number*"
-              required
-              shadow
-            />
-            <TextInput
-              className="md:basis-1/2"
-              id="email"
-              type="email"
-              placeholder="Email*"
-              required
-              shadow
-            />
-          </div>
-          <div>
-            <TextInput
-              className="basis-1/2"
-              id="size"
-              type="text"
-              placeholder="Your company size (current staff number)*"
-              required
-              shadow
-            />
-          </div>
-          <div>
-            <TextInput
-              className="basis-1/2"
-              id="staff"
-              type="text"
-              placeholder="Number of Staff Required?*"
-              required
-              shadow
-            />
-          </div>
-          <div>
-            <TextInput
-              className="basis-1/2"
-              id="country"
-              type="text"
-              placeholder="Which country are you based in?*"
-              required
-              shadow
-            />
-          </div>
-          <h4
-            className={`mx-auto text-center font-bold text-lg mt-4 ${
-              dark ? "text-white" : "text-black"
-            }`}
+          <h2
+            className={`${dark ? "text-white" : "text-[#DD272D]"} text-2xl md:text-4xl uppercase font-light mx-auto text-center my-2 md:my-0`}
           >
-            Choose your Professional
-          </h4>
-          <div>
-            <Select className="text-white" id="professional" required>
-              {professionalOptions.map((option, index) => (
-                <option key={index}>{option}</option>
-              ))}
-            </Select>
-          </div>
-          <Textarea
-            className="mt-8"
-            id="message"
-            placeholder="What's your question? Or what kind of outsourcing help do you need?"
-            required
-            rows={4}
-          />
+            {heading}
+          </h2>
+          <FormFields />
+        </form>
+      </div>
+    );
 
-          <p
-            className={`text-center ${
-              dark ? "text-white" : "text-black"
-            } text-xs`}
-          >
-            Messages and data rates may apply. message frequency will vary.
-            Reply stop to opt-out of messaging
-            <br /> <span className="font-bold ">Read our privacy policy</span>
-          </p>
-          {/* <div className="flex items-center gap-2">
-            <Checkbox id="agree" />
-            <Label htmlFor="agree" className="flex">
-              I agree with the&nbsp;
-              <Link href="#" className="text-cyan-600 hover:underline dark:text-cyan-500">
-                terms and conditions
-              </Link>
-            </Label>
-          </div> */}
-          {message && <div className="text-[#ff0000] flex justify-center">{message}</div>}
-                  {sending ? (
-                    <div className="w-full flex justify-center">
-                    <div className="w-1/2 flex justify-center">
-                      <Loader />
-                    </div>
-                    </div>
-                  ) : (
-                    <Button
-                      className={`uppercase  rounded-xl font-bold text-xl max-w-fit mx-auto mt-8 ${
-                        !sent
-                          ? "bg-[#DD272D]"
-                          : "bg-[#808080] pointer-events-none cursor-not-allowed"
-                      } text-white`}
-                      type="submit"
-                    >
-                      {!sent ? "Send mail" : "Sent"}
-                    </Button>
-                  )}
-        </div>
-      </form>
-    </div>
-  );
+  return outerWrapper;
 };
 
 export default MainForm;
