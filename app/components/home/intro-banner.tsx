@@ -30,7 +30,7 @@ const IntroBanner = () => {
             interactive, and value-driven process
           </p>
           <Link
-            href={" "}
+            href={"https://calendly.com/interactiveworkersgm/30min"}
             target="_blank"
             className="mx-auto md:mx-0 p-2 md:py-4 z-40 md:px-6 rounded-3xl bg-[#DD272D] text-left font-bold text-xl md:text-2xl max-w-fit uppercase"
           >
