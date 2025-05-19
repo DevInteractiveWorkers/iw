@@ -20,7 +20,9 @@ export async function POST(req: NextRequest) {
       Country: data.country,
       "Company Name": data.company,
       "Company Size": data.size,
-      "Number of Staff Required": data.staffRequired,
+      "Number of Staff Required": data.staff,
+      Professional: data.professional,
+      Message: data.message,
     },
   });
 
