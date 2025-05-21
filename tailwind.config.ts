@@ -14,8 +14,17 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      keyframes: {
+        "rotate-y": {
+          "0%": { transform: "rotateY(0deg)" },
+          "100%": { transform: "rotateY(360deg)" },
+        },
+      },
+      animation: {
+        "rotate-y": "rotate-y 2s linear",
+      },
     },
   },
-  plugins: [require('flowbite/plugin'),],
+  plugins: [require("flowbite/plugin")],
 };
 export default config;

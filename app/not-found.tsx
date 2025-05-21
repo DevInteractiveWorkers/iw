@@ -15,15 +15,16 @@ export default function NotFound() {
             width={200}
             height={200}
             alt="iw-icon"
-            className="hover:-scale-x-100 active:scale-75 transition-all duration-1000 select-none"
+            className="hover:animate-rotate-y active:scale-75 transition-all duration-1000 select-none"
           />
         </Link>
-        <h1 className="text-4xl">
-          <strong>404 Not Found</strong>
-        </h1>
+        <h1 className="text-4xl font-bold">404 Not Found</h1>
         <p>
           This page could not be found. Go back{" "}
-          <Link href={"/"} className="hover:underline transition-all">
+          <Link
+            href={"/"}
+            className="hover:underline hover:font-bold transition-all"
+          >
             home
           </Link>
         </p>
