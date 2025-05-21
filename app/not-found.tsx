@@ -19,8 +19,9 @@ export default function NotFound() {
           />
         </Link>
         <h1 className="text-4xl font-bold">404 Not Found</h1>
-        <p>
-          This page could not be found. Go back{" "}
+        <p className="p-4 text-center">
+          This page could not be found.
+          <br className="md:hidden" /> Go back{" "}
           <Link
             href={"/"}
             className="hover:underline hover:text-iw-red-1 transition-all"
