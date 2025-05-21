@@ -18,12 +18,15 @@ export default function NotFound() {
             className="hover:-scale-x-100 active:scale-75 transition-all duration-1000 select-none"
           />
         </Link>
-        <h1 className="text-4xl">
-          <strong>404 Not Found</strong>
+        <h1>
+          <strong className="text-4xl">404 Not Found</strong>
         </h1>
         <p>
           This page could not be found. Go back{" "}
-          <Link href={"/"} className="hover:underline transition-all">
+          <Link
+            href={"/"}
+            className="hover:underline transition-all hover:font-black"
+          >
             home
           </Link>
         </p>
