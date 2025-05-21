@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+/* body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+} */
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+  backdrop-filter: blur(3.5px);
+  -webkit-backdrop-filter: blur(2px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.faded-div {
+  background: linear-gradient(
+    90deg,
+    rgba(195, 195, 195, 0.5) 0%,
+    rgb(255, 255, 255) 50%,
+    rgba(195, 195, 195, 0.5) 100%
+  );
+}
+
+.faded-minidiv {
+  background: linear-gradient(
+    90deg,
+    rgba(217, 217, 217, 0.2) 0%,
+    rgba(217, 217, 217, 1) 50%,
+    rgba(217, 217, 217, 0.2) 100%
+  );
+}
+
+.inner-shadow {
+  box-shadow: 0.5px 0.5px 3px inset black;
+}
+
+.discover-vas-bg {
+  background: url("/home/discover-vas/world.png") no-repeat center;
+}
+
+.banner-va {
+  background: url("/vas/banner.png") no-repeat center;
+  background-size: cover;
+}
+
+.banner-dispatch {
+  background: url("/dispatch/banner.png") no-repeat center;
+  background-size: cover;
+}
+
+.values-bg {
+  background: url("/about/values.png") no-repeat center;
+  background-size: cover;
+  background-color: #dd272d;
+  background-blend-mode: multiply;
+}
+
+.values-card-bg {
+  background: linear-gradient(
+    90deg,
+    rgba(217, 217, 217, 0.12) 22%,
+    rgba(115, 115, 115, 0.12) 96%
+  );
+}
+
+.we-build-bg {
+  background: url("/vas/we-build.png") no-repeat center;
+  background-size: cover;
+}
+
+.policy p {
+  padding: 15px 0;
+}
+
+.policy h1 {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.policy h2 {
+  font-size: 28px;
+  font-weight: 700;
+  padding: 5px 0;
+}
+
+.policy h3 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.policy h4 {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.policy ul {
+  list-style-type: disc;
+}
