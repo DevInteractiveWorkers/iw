@@ -6,7 +6,7 @@ import { ParticlesComponent } from "../particles";
 
 const IntroBanner = () => {
   return (
-    <section className="relative w-full bg-cover bg-no-repeat bg-[#C1272D] z-0">
+    <section className="relative w-full bg-cover bg-no-repeat bg-iw-red-2 z-0">
       {/* <PopUp></PopUp> */}
       <Image
         className="absolute w-2/3 top-[20%] xl:top-0 z-30"
@@ -32,7 +32,7 @@ const IntroBanner = () => {
           <Link
             href={"https://calendly.com/interactiveworkersgm/30min"}
             target="_blank"
-            className="mx-auto md:mx-0 p-2 md:py-4 z-40 md:px-6 rounded-3xl bg-[#DD272D] text-left font-bold text-xl md:text-2xl max-w-fit uppercase"
+            className="mx-auto md:mx-0 p-2 md:py-4 z-40 md:px-6 rounded-3xl bg-iw-red-1 text-left font-bold text-xl md:text-2xl max-w-fit uppercase"
           >
             Book a Call
           </Link>

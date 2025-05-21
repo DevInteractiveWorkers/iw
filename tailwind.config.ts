@@ -14,10 +14,15 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors: {
+        "iw-red-1": "#DD272D",
+        "iw-red-2": "#C1272D",
+        "iw-red-3": "#800202",
+      },
       keyframes: {
         "rotate-y": {
           "0%": { transform: "rotateY(0deg)" },
-          "100%": { transform: "rotateY(360deg)" },
+          "100%": { transform: "rotateY(360deg)", scale: "0.9" },
         },
       },
       animation: {

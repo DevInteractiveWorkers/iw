@@ -70,7 +70,7 @@ const GetHired = () => {
 
   return (
     <form className="py-16 px-4" onSubmit={handleSubmit}>
-      <h2 className="font-extrabold text-4xl text-[#DD272D] text-center uppercase mt-4">
+      <h2 className="font-extrabold text-4xl text-iw-red-1 text-center uppercase mt-4">
         Do you <span className="font-light">want to join our</span> team?
       </h2>
       <div className="w-3/4 mx-auto my-8 flex flex-col justify-center items-center gap-4">
@@ -172,7 +172,7 @@ const GetHired = () => {
           <Button
             className={`uppercase  rounded-xl font-bold text-xl max-w-fit mx-auto mt-8 ${
               !sent
-                ? "bg-[#DD272D]"
+                ? "bg-iw-red-1"
                 : "bg-[#808080] pointer-events-none cursor-not-allowed"
             } text-white`}
             type="submit"

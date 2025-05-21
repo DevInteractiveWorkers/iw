@@ -23,7 +23,7 @@ const customUpperCollapseTheme: CustomFlowbiteTheme["navbar"] = {
     base: "block py-2 pr-4 pl-3 md:p-0",
     active: {
       on: "bg-cyan-700 md:bg-transparent md:text-red-700",
-      off: "border-b border-gray-100  hover:bg-gray-50  md:border-0 md:hover:bg-transparent md:hover:text-gray-500",
+      off: "border-b border-gray-100  hover:bg-gray-50  md:border-0 md:hover:bg-transparent md:hover:text-iw-3",
     },
     disabled: {
       on: "text-black hover:cursor-not-allowed",
@@ -42,7 +42,7 @@ const NavbarComponent = async ({ dark }: { dark?: boolean }) => {
   return (
     <div
       className={`w-full ${
-        dark ? "text-white bg-[#C1272D]" : "text-black bg-white"
+        dark ? "text-white bg-iw-red-2" : "text-black bg-white"
       }`}
     >
       <div className=" z-40 w-11/12 py-4 mx-auto ">
@@ -79,7 +79,7 @@ const NavbarComponent = async ({ dark }: { dark?: boolean }) => {
                   <Link
                     key={key}
                     href={item.link}
-                    className={dark ? "text-white" : "text-[#DD272D]"}
+                    className={dark ? "text-white" : "text-iw-red-1"}
                   >
                     {item.title.toUpperCase()}
                   </Link>
@@ -97,20 +97,20 @@ const NavbarComponent = async ({ dark }: { dark?: boolean }) => {
           <div className="md:w-1/4 w-full flex gap-2 justify-center">
             <Link
               href={"/affiliate"}
-              className="basis-full bg-[#DD272D] text-center text-white rounded-xl p-1 font-semibold items-center justify-center content-center"
+              className="basis-full bg-iw-red-1 text-center text-white rounded-xl p-1 font-semibold items-center justify-center content-center"
             >
               Affiliate Program
             </Link>
             <Link
               href={"https://calendly.com/interactiveworkersgm/30min"}
               target="_blank"
-              className="basis-full bg-[#DD272D] text-center text-white rounded-xl p-1 font-semibold items-center justify-center content-center"
+              className="basis-full bg-iw-red-1 text-center text-white rounded-xl p-1 font-semibold items-center justify-center content-center"
             >
               Book a Call
             </Link>
             <NavbarToggle
-              className={`hover:text-[#DD272D] ${
-                dark ? "text-white bg-[#DD272D]" : "text-black bg-white"
+              className={`hover:text-iw-red-1 ${
+                dark ? "text-white bg-iw-red-1" : "text-black bg-white"
               }`}
             />
           </div>

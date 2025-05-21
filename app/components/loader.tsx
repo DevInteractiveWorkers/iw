@@ -1,6 +1,6 @@
 export default function Loader() {
   return (
-    <div className="text-[#DD272D] w-1/4 loading-page-loader:w-1/10">
+    <div className="text-iw-red-1 w-1/4 loading-page-loader:w-1/10">
       <svg
         stroke="currentColor"
         viewBox="0 0 24 24"

@@ -8,13 +8,13 @@ import {
   Textarea,
   TextInput,
 } from "flowbite-react";
-import React, {useState} from "react";
-import {sendMail, formData} from "../lib/utils";
+import React, { useState } from "react";
+import { sendMail, formData } from "../lib/utils";
 import Link from "next/link";
 import professionalOptions from "./professionalOptions";
 import Loader from "../loader";
 
-const MainForm = ({dark}: {dark?: boolean | number}) => {
+const MainForm = ({ dark }: { dark?: boolean | number }) => {
   const [sending, isSending] = useState(false);
   const [sent, isSent] = useState(false);
   const [message, setMessage] = useState("");
@@ -151,7 +151,7 @@ const MainForm = ({dark}: {dark?: boolean | number}) => {
         <Select
           id="professional"
           required
-          className="text-white first:first:first:bg-[#DD272D]"
+          className="text-white first:first:first:bg-iw-red-1"
         >
           {professionalOptions.map((option, index) => (
             <option key={index}>{option}</option>
@@ -197,7 +197,7 @@ const MainForm = ({dark}: {dark?: boolean | number}) => {
         ) : (
           <Button
             type="submit"
-            className={`uppercase rounded-xl font-bold text-xl max-w-fit mx-auto mt-8 ${!sent ? "bg-[#DD272D]" : "bg-[#808080] pointer-events-none cursor-not-allowed"} text-white`}
+            className={`uppercase rounded-xl font-bold text-xl max-w-fit mx-auto mt-8 ${!sent ? "bg-iw-red-1" : "bg-[#808080] pointer-events-none cursor-not-allowed"} text-white`}
           >
             {!sent ? "Send mail" : "Sent"}
           </Button>
@@ -209,7 +209,7 @@ const MainForm = ({dark}: {dark?: boolean | number}) => {
   const heading =
     dark === 2 ? (
       <>
-        <strong className="font-extrabold text-[#DD272D]">Feel free</strong> to
+        <strong className="font-extrabold text-iw-red-1">Feel free</strong> to
         contact us <strong className="font-extrabold">anytime!</strong>
       </>
     ) : (
@@ -227,7 +227,7 @@ const MainForm = ({dark}: {dark?: boolean | number}) => {
         name="Contact Form"
       >
         <h2
-          className={`${dark && dark !== 2 ? "text-white" : "text-[#DD272D]"} text-2xl md:text-4xl uppercase font-light mx-auto text-center`}
+          className={`${dark && dark !== 2 ? "text-white" : "text-iw-red-1"} text-2xl md:text-4xl uppercase font-light mx-auto text-center`}
         >
           {heading}
         </h2>
@@ -243,7 +243,7 @@ const MainForm = ({dark}: {dark?: boolean | number}) => {
           onSubmit={handleSubmit}
         >
           <h2
-            className={`${dark ? "text-white" : "text-[#DD272D]"} text-2xl md:text-4xl uppercase font-light mx-auto text-center my-2 md:my-0`}
+            className={`${dark ? "text-white" : "text-iw-red-1"} text-2xl md:text-4xl uppercase font-light mx-auto text-center my-2 md:my-0`}
           >
             {heading}
           </h2>
