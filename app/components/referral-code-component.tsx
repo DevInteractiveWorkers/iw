@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
+import { ParticlesComponent } from "./particles";
 
-const ReferralCodeComponent = () => {
+const ReferralCodeComponent = ({ data }: { data: any }) => {
   const [ReferralCodeComponent, setReferralCodeComponent] = useState("");
   const [usedCodes, setUsedCodes] = useState<string[]>([]);
   const [validCodes, setValidCodes] = useState<string[]>([]);
@@ -31,13 +32,13 @@ const ReferralCodeComponent = () => {
 
   return (
     <>
-      <div className="absolute p-5 flex flex-col gap-5 self-center h-screen justify-center">
+      <div className="absolute p-5 flex flex-col gap-5 self-center h-dvh justify-center">
         <h1 className="mb-2 text-2xl font-bold">Referral Code</h1>
         <p>
           IW-referral-code:
           <strong> {currentCode}</strong>{" "}
           {isInvalid && (
-            <span className="text-iw-red-500 font-semibold">
+            <span className="text-iw-red-1 font-semibold">
               Invalid or already used code.
             </span>
           )}
@@ -62,7 +63,13 @@ const ReferralCodeComponent = () => {
                 setCurrentCode(e.target.value);
               }}
             />
-            <Button text="Use Code" onClick={() => useCode(currentCode)} />
+            <Button
+              text="Use Code"
+              onClick={() => {
+                useCode(currentCode);
+                setCurrentCode("");
+              }}
+            />
           </div>
         </div>
       </div>
@@ -78,7 +85,7 @@ const Button = ({ text, onClick }: { text: string; onClick: () => void }) => {
   return (
     <button
       onClick={onClick}
-      className="p-5 bg-iw-red-500 hover:bg-iw-red-600 border border-iw-red-500 transition-all rounded-lg text-white active:bg-white active:text-iw-red-500"
+      className="p-5 bg-iw-red-1 hover:bg-iw-red-2 border border-iw-red-1 transition-all rounded-lg text-white active:bg-white active:text-iw-red-1"
     >
       <strong>{text}</strong>
     </button>
