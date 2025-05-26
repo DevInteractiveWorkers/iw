@@ -1,8 +1,13 @@
 "use client";
 import { useState } from "react";
+<<<<<<< HEAD
 import { ParticlesComponent } from "./particles";
 
 const ReferralCodeComponent = ({ data }: { data: any }) => {
+=======
+
+const ReferralCodeComponent = () => {
+>>>>>>> d0cfb68b1eb0895b7926690c6f6596b70dd01666
   const [ReferralCodeComponent, setReferralCodeComponent] = useState("");
   const [usedCodes, setUsedCodes] = useState<string[]>([]);
   const [validCodes, setValidCodes] = useState<string[]>([]);
@@ -32,13 +37,21 @@ const ReferralCodeComponent = ({ data }: { data: any }) => {
 
   return (
     <>
+<<<<<<< HEAD
       <div className="absolute p-5 flex flex-col gap-5 self-center h-dvh justify-center">
+=======
+      <div className="absolute p-5 flex flex-col gap-5 self-center h-screen justify-center">
+>>>>>>> d0cfb68b1eb0895b7926690c6f6596b70dd01666
         <h1 className="mb-2 text-2xl font-bold">Referral Code</h1>
         <p>
           IW-referral-code:
           <strong> {currentCode}</strong>{" "}
           {isInvalid && (
+<<<<<<< HEAD
             <span className="text-iw-red-1 font-semibold">
+=======
+            <span className="text-iw-red-500 font-semibold">
+>>>>>>> d0cfb68b1eb0895b7926690c6f6596b70dd01666
               Invalid or already used code.
             </span>
           )}
@@ -63,6 +76,7 @@ const ReferralCodeComponent = ({ data }: { data: any }) => {
                 setCurrentCode(e.target.value);
               }}
             />
+<<<<<<< HEAD
             <Button
               text="Use Code"
               onClick={() => {
@@ -70,6 +84,9 @@ const ReferralCodeComponent = ({ data }: { data: any }) => {
                 setCurrentCode("");
               }}
             />
+=======
+            <Button text="Use Code" onClick={() => useCode(currentCode)} />
+>>>>>>> d0cfb68b1eb0895b7926690c6f6596b70dd01666
           </div>
         </div>
       </div>
@@ -85,7 +102,11 @@ const Button = ({ text, onClick }: { text: string; onClick: () => void }) => {
   return (
     <button
       onClick={onClick}
+<<<<<<< HEAD
       className="p-5 bg-iw-red-1 hover:bg-iw-red-2 border border-iw-red-1 transition-all rounded-lg text-white active:bg-white active:text-iw-red-1"
+=======
+      className="p-5 bg-iw-red-500 hover:bg-iw-red-600 border border-iw-red-500 transition-all rounded-lg text-white active:bg-white active:text-iw-red-500"
+>>>>>>> d0cfb68b1eb0895b7926690c6f6596b70dd01666
     >
       <strong>{text}</strong>
     </button>

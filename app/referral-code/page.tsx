@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { getReferralById } from "@/lib/getReferralCode";
 import ReferralCodeClient from "../components/referral-code-client";
 import NotFound from "../not-found";
@@ -30,3 +31,18 @@ export default async function ReferralCodePage({ searchParams }: Props) {
     </div>
   );
 }
+=======
+import NavbarComponent from "../components/navbar";
+import ReferralCodeComponent from "../components/referral-code-component";
+
+const ReferralCode = () => {
+  return (
+    <div className="h-screen relative flex flex-col">
+      <NavbarComponent dark={true} />
+      <ReferralCodeComponent />
+    </div>
+  );
+};
+
+export default ReferralCode;
+>>>>>>> d0cfb68b1eb0895b7926690c6f6596b70dd01666
