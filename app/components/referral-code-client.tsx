@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { ParticlesComponent } from "./particles";
-import ReferralCodeComponent from "./referral-code-component";
 import { registerAnonymously } from "@/lib/createUser";
 
 interface Props {
