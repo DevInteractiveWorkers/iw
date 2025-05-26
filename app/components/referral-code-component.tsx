@@ -90,8 +90,8 @@ const List = ({ title, list }: { title?: string; list: string[] }) => {
     <div className="block">
       {title && <strong>{title}</strong>}
       <ul>
-        {list.map((element) => (
-          <li>
+        {list.map((element, index) => (
+          <li key={index}>
             <pre>{element}</pre>
           </li>
         ))}
