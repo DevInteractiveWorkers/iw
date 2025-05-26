@@ -1,29 +1,23 @@
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "./firebase";
-import { useState } from "react";
+import { db } from "./firebase"; // <-- should be client SDK
 
-export const getReferralById = async (value: string, uid?: string) => {
-  if (!uid) return;
+export const getReferralById = async (value: string) => {
+  if (!value) return null;
 
   try {
-    // Assuming you have a "users" collection in Firestore
-    const docUserRef = doc(db, "users", uid);
-    const docSnap = await getDoc(docUserRef);
+    const docRef = doc(db, "referral-codes", value);
+    const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-    } else {
+      const data = docSnap.data();
+      if (data.code === value && data.times_used < data.usage_times) {
+        return { data, available: true };
+      } else {
+        return { data, available: false };
+      }
     }
-  } catch (err) {}
-
-  const docRef = doc(db, "referral-codes", value);
-  const docSnap = await getDoc(docRef);
-
-  if (docSnap.exists()) {
-    const data = docSnap.data();
-
-    if (data.code === value && data.times_used < data.usage_times) {
-      return { data: data, available: true };
-    } else return { data: data, available: false };
+  } catch (err) {
+    console.error("Error fetching referral:", err);
   }
 
   return null;
