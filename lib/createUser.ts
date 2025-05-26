@@ -1,8 +1,16 @@
 "use client";
 
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { signInAnonymously } from "firebase/auth";
 import { auth, db } from "@/lib/firebase";
-import { doc, setDoc, getDoc } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+  increment,
+  serverTimestamp,
+} from "firebase/firestore";
 
 export const registerUser = async (
   email: string,
@@ -31,8 +39,6 @@ export const registerUser = async (
   }
 };
 
-import { signInAnonymously } from "firebase/auth";
-
 export const registerAnonymously = async (
   email: string,
   referralCode: string
@@ -49,11 +55,17 @@ export const registerAnonymously = async (
     // 2️⃣ Sign in anonymously
     const { user } = await signInAnonymously(auth);
 
-    // 3️⃣ Save user info in Firestore
+    // 3️⃣ Create user document in Firestore
     await setDoc(doc(db, "users", user.uid), {
       email: email,
       referralCodeClaimed: referralCode,
-      claimedAt: new Date(),
+      claimedAt: serverTimestamp(),
+      canRefer: true, // allow them to refer others
+    });
+
+    // 4️⃣ Increment 'times_used' for the referral code
+    await updateDoc(codeRef, {
+      times_used: increment(1),
     });
 
     return { success: true, message: "Referral code claimed successfully!" };
