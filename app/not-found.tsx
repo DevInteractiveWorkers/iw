@@ -2,12 +2,20 @@ import Image from "next/image";
 import NavbarComponent from "./components/navbar";
 import Link from "next/link";
 
-export default function NotFound() {
+export default function NotFoundPage() {
   return (
     <section className="h-screen relative flex justify-center items-center">
       <div className="w-full absolute top-0">
         <NavbarComponent dark={true} />
       </div>
+      <NotFound />
+    </section>
+  );
+}
+
+export function NotFound() {
+  return (
+    <section className="h-screen relative flex justify-center items-center">
       <div className="absolute flex flex-col items-center">
         <Link href={"/"}>
           <Image
