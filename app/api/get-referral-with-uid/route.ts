@@ -13,7 +13,6 @@ export async function POST(req: NextRequest) {
 
     // Fetch referral code data
     const referralDoc = await db.collection("referral-codes").doc(code).get();
-    console.log(referralDoc);
 
     if (!referralDoc.exists) {
       return NextResponse.json({ available: false }, { status: 200 });
