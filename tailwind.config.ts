@@ -24,9 +24,19 @@ const config: Config = {
           "0%": { transform: "rotateY(0deg)" },
           "100%": { transform: "rotateY(360deg)", scale: "0.9" },
         },
+        "wide-x": {
+          "0%": { width: "0%", margin: "0 auto", left: "50%" },
+          "100%": { width: "100%", right: "0px" },
+        },
+        "wide-y": {
+          "0%": { height: "0%" },
+          "100%": { height: "100%", bottom: "0px" },
+        },
       },
       animation: {
         "rotate-y": "rotate-y 2s linear",
+        "wide-x": "wide-x 0.5s ease-in forwards",
+        "wide-y": "wide-y 0.5s ease-in forwards",
       },
     },
   },

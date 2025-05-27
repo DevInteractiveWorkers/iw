@@ -4,7 +4,6 @@ import ReferralPageClient, {
 } from "../components/referral-page-client";
 
 export default function Page(props: ParamsProps) {
-  console.log("page", props);
   return (
     <div className="h-dvh relative flex flex-col">
       <div className="z-10">

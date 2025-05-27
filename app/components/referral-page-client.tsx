@@ -20,13 +20,10 @@ export default function ReferralPageClient({
   const uid = params.i;
   const [fetchedData, setFetchedData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  console.log(uid, code);
 
   useEffect(() => {
     const signInAndFetch = async () => {
-      console.log(uid, code);
       if (!uid || !code) return;
-
       setLoading(true);
       try {
         const res = await fetch("/api/generate-token", {
@@ -68,7 +65,5 @@ export default function ReferralPageClient({
       </div>
     );
 
-  if (!fetchedData || !fetchedData.available) return <NotFound />;
-
-  return code && <ReferralCodeClient code={code} data={fetchedData.data} />;
+  return code && <ReferralCodeClient code={code} reward={fetchedData} />;
 }
