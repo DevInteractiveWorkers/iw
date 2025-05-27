@@ -65,5 +65,7 @@ export default function ReferralPageClient({
       </div>
     );
 
+  if (!fetchedData) return <NotFound />;
+
   return code && <ReferralCodeClient code={code} reward={fetchedData} />;
 }
