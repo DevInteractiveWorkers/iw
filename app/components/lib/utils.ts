@@ -39,6 +39,16 @@ export interface GetHiredformData {
   fileName: string | undefined;
 }
 
+export interface claimCodeFormData {
+  fullName: string | undefined;
+  country: string | undefined;
+  company: string | undefined;
+  email: string | undefined;
+  // phone: string | undefined;
+  code: string | undefined;
+  reference: string | undefined;
+}
+
 export async function sendMail(data: formData | smallFormData) {
   const res = await fetch("/api/mail", {
     method: "POST",
@@ -65,6 +75,18 @@ export async function sendAffiliateMail(data: smallFormData) {
 
 export async function sendGetHiredMail(data: GetHiredformData) {
   const res = await fetch("/api/hire", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  return res.ok;
+}
+
+export async function claimReferralCode(data: claimCodeFormData) {
+  const res = await fetch("/api/claim-code", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

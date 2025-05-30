@@ -1,6 +1,6 @@
 // lib/sendEmail.ts
 import nodemailer from "nodemailer";
-import { GetHiredformData } from "./utils";
+import { getCurrentDate, GetHiredformData } from "./utils";
 
 interface SendEmailParams {
   from: string;
@@ -10,7 +10,6 @@ interface SendEmailParams {
   data: Record<string, string>;
   logoUrl?: string;
   heading?: string;
-  date?: string;
   attachments?: {
     content: Buffer | any;
     filename: string | undefined;
@@ -41,11 +40,13 @@ export async function sendEmail({
 
   await transporter.verify();
 
-  const tableRows = Object.entries(data)
+  const date = getCurrentDate().join(" / ");
+
+  const tableRows = Object.entries({ Date: date, ...data })
     .map(
       ([key, value]) => `
         <tr>
-            <td style="background: #c1272d; color: #FFFFFF; padding: 10px; border: 1px solid #C1C3D1;"><b>${key}</b></td>
+            <td style="background: #c1272d; color: #FFFFFF; padding: 10px;"><b>${key}</b></td>
             <td style="background: #FFFFFF; color: #000000; padding: 10px; border-bottom: 1px solid #C1C3D1;">${value}</td>
         </tr>`
     )
