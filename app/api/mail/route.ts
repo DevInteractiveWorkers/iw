@@ -1,10 +1,8 @@
 import { NextRequest } from "next/server";
 import { sendEmail } from "@/app/components/lib/sendEmail";
-import { getCurrentDate } from "@/app/components/lib/utils";
 
 export async function POST(req: NextRequest) {
   const data = await req.json();
-  const date = getCurrentDate().join(" / ");
 
   await sendEmail({
     from: process.env.NODEMAILER_USER!,
@@ -12,7 +10,6 @@ export async function POST(req: NextRequest) {
     bcc: ["info@interactiveworkers.com", "ceo@interactiveworkers.com"],
     subject: `${data.fullName} tried to contact you through interactiveworkers.com contact form`,
     heading: "Someone tried to contact us!",
-    date,
     data: {
       Name: data.fullName,
       Email: data.email,
