@@ -1,39 +1,38 @@
 "use client";
 
 import { useState } from "react";
-import { TextInput } from "flowbite-react";
+import { Button, TextInput } from "flowbite-react";
 import { claimCodeFormData } from "../lib/utils";
+import Loader from "../loader";
 
 const ReferralCodeForm = () => {
   const [formData, setFormData] = useState({
-    firstname: "Julio",
-    lastname: "Graterol",
-    country: "Venezuela",
-    company: "Julio's C.A.",
-    email: "julio.graterol@interactiveworkers.com",
+    firstname: "",
+    lastname: "",
+    country: "",
+    company: "",
+    email: "",
     phone: "",
-    code: "IW-0001-25",
-    reference: "Instagram",
+    code: "",
+    reference: "",
   });
-  //   const [formData, setFormData] = useState({
-  //     firstname: "",
-  //     lastname: "",
-  //     country: "",
-  //     company: "",
-  //     email: "",
-  //     phone: "",
-  //     code: "",
-  //     reference: "",
-  //   });
   const [message, setMessage] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [isClaimed, setIsClaimed] = useState<boolean>(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
 
+  const handleError = (error: any) => {
+    setMessage(error);
+    setLoading(false);
+  };
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    setLoading(true);
 
     const data: claimCodeFormData = {
       fullName: formData.firstname + " " + formData.lastname,
@@ -55,6 +54,7 @@ const ReferralCodeForm = () => {
 
       if (!codeRes.ok) {
         const error = await codeRes.json();
+        handleError(error.error);
         return;
       }
 
@@ -63,17 +63,14 @@ const ReferralCodeForm = () => {
       const claimRes = await fetch("/api/claim-code", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        // body: JSON.stringify({ reward: codeData.reward, ...data }),
+        body: JSON.stringify({ reward: codeData.reward, ...data }),
       });
 
       if (!claimRes.ok) {
         const error = await claimRes.json();
-        setMessage("There was an issue claiming the reward.");
-        console.error(error);
+        handleError(error);
         return;
       }
-      console.log("xd");
-      return;
       setFormData({
         firstname: "",
         lastname: "",
@@ -84,15 +81,18 @@ const ReferralCodeForm = () => {
         code: "",
         reference: "",
       });
+      setIsClaimed(true);
     } catch (err) {
       console.error("Error submitting form:", err);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-2 justify-center items-center bg-white p-5 shadow-xl md:rounded-lg border border-gray-200 max-md:w-full"
+      className="flex flex-col gap-2 justify-center items-center bg-white p-5 shadow-xl rounded-lg border border-gray-200 max-md:w-full"
     >
       <h1 className="text-3xl text-iw-red-1">
         REFERRAL <strong>CODE</strong>
@@ -178,12 +178,18 @@ const ReferralCodeForm = () => {
           className="md:basis-1/2"
         />
         {message && <p className="text-iw-red-1 text-sm">{message}</p>}
-        <button
-          type="submit"
-          className="p-5 bg-iw-red-1 text-xl hover:bg-iw-red-2 border border-iw-red-1 transition-all rounded-lg text-white active:bg-white active:text-iw-red-1 select-none"
-        >
-          <strong>CLAIM NOW</strong>
-        </button>
+        {loading ? (
+          <div className="flex justify-center">
+            <Loader />
+          </div>
+        ) : (
+          <Button
+            type="submit"
+            className={`uppercase rounded-xl font-bold text-4xl ${!isClaimed ? "bg-iw-red-1" : "bg-[#808080] pointer-events-none cursor-not-allowed"} text-white`}
+          >
+            {!isClaimed ? "Claim Now" : "Claimed"}
+          </Button>
+        )}
       </div>
     </form>
   );

@@ -9,7 +9,7 @@ export default function ReferralCodes() {
       <div className="z-10">
         <NavbarComponent />
       </div>
-      <div className="h-full w-full flex justify-center items-center bg-gradient-to-b md:from-iw-red-3 md:via-transparent md:to-iw-red-3 z-10">
+      <div className="p-2 h-full w-full flex justify-center items-center bg-gradient-to-b md:from-iw-red-3 md:via-transparent md:to-iw-red-3 z-10">
         <ReferralCodeForm />
       </div>
       <ParticlesComponent id="particles" />
