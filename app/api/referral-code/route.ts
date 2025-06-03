@@ -1,11 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import * as admin from "firebase-admin";
-
-if (!admin.apps.length) {
-  admin.initializeApp({
-    credential: admin.credential.applicationDefault(),
-  });
-}
+import admin from "@/lib/firebaseAdmin"; // adjust import path
 
 const db = admin.firestore();
 
@@ -17,7 +11,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Code is required" }, { status: 400 });
     }
 
-    // Fetch doc by its ID (code is the doc ID)
     const snapshot = await db.collection("referral-codes").doc(code).get();
 
     if (!snapshot.exists) {
@@ -32,7 +25,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ id: snapshot.id, ...docData }, { status: 200 });
   } catch (error: any) {
     console.error("Error fetching referral code:", error);
-    console.error(error.stack);
     return NextResponse.json(
       { error: "Internal Server Error" },
       { status: 500 }
