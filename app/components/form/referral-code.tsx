@@ -86,6 +86,8 @@ const ReferralCodeForm = () => {
       console.error("Error submitting form:", err);
     } finally {
       setLoading(false);
+      if (message) setMessage("");
+      setTimeout(() => setIsClaimed(false), 5000);
     }
   };
 

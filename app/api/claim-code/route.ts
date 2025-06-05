@@ -1,14 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { sendEmail } from "@/app/components/lib/sendEmail";
-import { getCurrentDate } from "@/app/components/lib/utils";
-import { error } from "console";
 
 export async function POST(req: NextRequest) {
   const data = await req.json();
   try {
     await sendEmail({
       from: process.env.NODEMAILER_USER!,
-      to: "juliograterolb@gmail.com",
+      to: "webdeveloper@interactiveworkers.com",
       bcc: ["", ""],
       subject: `${data.fullName} claimed a referral code to work with us!`,
       heading: `<h1>Someone claimed:<br/>${data.reward}</h1>`,
