@@ -20,7 +20,7 @@ const DiscoverVAs = () => {
             Video Editor Virtual Assistant
           </VACard>
           <VACard imageSrc="/home/discover-vas/vas/2.png">
-            Call Center Agent Virtual Assisntant
+            Call Center Agent Virtual Assistant
           </VACard>
           <VACard imageSrc="/home/discover-vas/vas/3.png">
             Appointment Setter
