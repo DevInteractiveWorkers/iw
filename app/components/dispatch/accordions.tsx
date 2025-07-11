@@ -24,8 +24,7 @@ const DispatchAccordions = () => {
             <br /> <br />
             <strong className="font-extrabold">
               Your location will always be covered and never be left alone.
-            </strong>
-            <br />
+            </strong>{" "}
             We'll check that.
           </p>
         }
@@ -37,6 +36,7 @@ const DispatchAccordions = () => {
             underestimated.
           </p>
         }
+        arrowColor="iw-red-2"
         layout="imageLeft"
         offset
       />
@@ -124,7 +124,6 @@ const DispatchAccordions = () => {
             </ol>
           </>
         }
-        arrowColor="white"
       />
 
       <DispatchAccordion
@@ -155,7 +154,6 @@ const DispatchAccordions = () => {
           </p>
         }
         layout="background"
-        arrowColor="white"
         imageSrc={""}
       />
     </>
