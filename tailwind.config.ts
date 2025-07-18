@@ -20,6 +20,10 @@ const config: Config = {
         "iw-red-3": "#800202",
       },
       keyframes: {
+        marquee: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
         "rotate-y": {
           "0%": { transform: "rotateY(0deg)" },
           "100%": { transform: "rotateY(360deg)", scale: "0.9" },
@@ -83,6 +87,8 @@ const config: Config = {
         },
       },
       animation: {
+        marquee: "marquee 30s linear infinite",
+        "marquee-hover": "marquee 30s linear infinite paused",
         "rotate-y": "rotate-y 2s linear",
         "rotate-360": "rotate-360 500ms ease-in-out",
         "spin-slow": "spin-slow 5s linear infinite",

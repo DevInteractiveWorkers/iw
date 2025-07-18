@@ -4,6 +4,7 @@ import DiscoverVAs from "./components/home/discover-vas";
 import Testimonies from "./components/home/testimonies";
 import MainForm from "./components/form/form";
 import NavbarComponent from "./components/navbar";
+import Reviews from "./components/home/reviews";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <BenefitsBanner></BenefitsBanner>
       <DiscoverVAs></DiscoverVAs>
       {/* <Testimonies></Testimonies> */}
+      <Reviews></Reviews>
       <MainForm dark={true}></MainForm>
     </main>
   );
