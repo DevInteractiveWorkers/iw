@@ -13,7 +13,7 @@ export default function Home() {
       <IntroBanner></IntroBanner>
       <BenefitsBanner></BenefitsBanner>
       <DiscoverVAs></DiscoverVAs>
-      {/* <Testimonies></Testimonies> */}
+      <Testimonies></Testimonies>
       <Reviews></Reviews>
       <MainForm dark={true}></MainForm>
     </main>

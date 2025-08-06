@@ -16,4 +16,43 @@ export const SampleReviews = [
   },
   { author_name: "Alejandro Mendez", rating: 5 },
   { author_name: "Rita Bastidas", rating: 5 },
+  // Not real reviews from this point.
+  {
+    author_name: "Claudia Ramirez",
+    rating: 5,
+    text: "Interactive Workers has completely changed how I manage my business. Their assistants are efficient, friendly, and very reliable. I was hesitant at first, but now I can't imagine working without them!",
+  },
+  {
+    author_name: "Michael D.",
+    rating: 5,
+    text: "Excellent experience so far. Their team is responsive and always willing to go the extra mile. Highly recommend for startups or small businesses looking to scale without the overhead.",
+  },
+  {
+    author_name: "Sofia Linares",
+    rating: 5,
+    text: "Incredible support team. I use their services daily for scheduling, email management, and basic accounting tasks. Everything is always done on time and with great attention to detail.",
+  },
+  {
+    author_name: "David Cho",
+    rating: 4.5,
+    text: "Very happy with the service. My assistant is professional, proactive, and a great communicator. It feels like having a full-time employee at a fraction of the cost.",
+  },
+  {
+    author_name: "Jessica M.",
+    rating: 5,
+    text: "Their onboarding process was smooth and fast. Within 48 hours, I was paired with someone who truly understands my business needs. Amazing service!",
+  },
+  { author_name: "Pedro Gutiérrez", rating: 3 },
+  { author_name: "Naomi W.", rating: 5 },
+  { author_name: "Carlos Andrade", rating: 3.5 },
+  {
+    author_name: "Fatima El-Sayed",
+    rating: 4,
+    text: "Reliable, organized, and friendly staff. My virtual assistant has helped me grow my Etsy store and free up hours of my day. Definitely recommend.",
+  },
+  {
+    author_name: "Anthony Blake",
+    rating: 5,
+    text: "If you're considering hiring a virtual assistant, Interactive Workers is the way to go. Their professionalism and commitment are unmatched.",
+  },
 ];

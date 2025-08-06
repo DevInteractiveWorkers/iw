@@ -16,18 +16,20 @@ const Reviews = () => {
   useEffect(() => {
     if (!isHover) {
       controls.start({
-        x: [xPosition, -width],
+        x: [0, -width],
         transition: {
           x: {
             duration: Math.max(10, ((xPosition + width) / width) * 30), // adjust duration based on remaining distance
             ease: "linear",
+            repeat: Infinity,
+            repeatType: "reverse",
           },
         },
       });
     } else {
       controls.stop();
     }
-  }, [isHover, width, controls, xPosition]);
+  }, [isHover, width, controls]);
 
   useEffect(() => {
     if (carouselRef.current) {
@@ -103,10 +105,12 @@ const ReviewComponent = ({
     <Card
       className={`mx-5 flex flex-col items-center h-min relative ${fullReview ? "md:min-w-[500px]" : "md:min-w-[320px]"} transition-all duration-500`}
     >
-      <div className={`flex flex-col items-center h-full`}>
+      <div className="flex flex-col items-center h-full">
         <img
           src={
-            img_src ? "" : "https://freesvg.org/img/abstract-user-flat-4.png"
+            img_src
+              ? img_src
+              : "https://freesvg.org/img/abstract-user-flat-4.png"
           }
           alt={`${name}-pic`}
           width={50}
@@ -138,12 +142,11 @@ const ReviewComponent = ({
 };
 
 const RateStars = ({ count }: { count: number }) => {
-  const fullStars = Math.floor(count); // integer part
-  const hasHalf = count % 1 !== 0; // check for a decimal
+  const fullStars = Math.floor(count);
+  const hasHalf = count % 1 !== 0;
 
   return (
     <div className="flex gap-1 my-2 text-iw-red-1">
-      {/* Full stars */}
       {Array.from({ length: fullStars }).map((_, i) => (
         <svg
           key={`full-${i}`}
@@ -159,8 +162,6 @@ const RateStars = ({ count }: { count: number }) => {
           />
         </svg>
       ))}
-
-      {/* Half star */}
       {hasHalf && (
         <svg
           key="half"
@@ -180,8 +181,6 @@ const RateStars = ({ count }: { count: number }) => {
           />
         </svg>
       )}
-
-      {/* Optional: Empty stars to fill up to 5 */}
       {Array.from({
         length: 5 - fullStars - (hasHalf ? 1 : 0),
       }).map((_, i) => (
