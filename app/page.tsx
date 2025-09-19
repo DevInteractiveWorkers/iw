@@ -14,7 +14,7 @@ export default function Home() {
       <BenefitsBanner></BenefitsBanner>
       <DiscoverVAs></DiscoverVAs>
       <Testimonies></Testimonies>
-      <Reviews></Reviews>
+      <Reviews />
       <MainForm dark={true}></MainForm>
     </main>
   );

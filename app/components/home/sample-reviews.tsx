@@ -1,7 +1,15 @@
-export const SampleReviews = [
+type Review = {
+  author_name: string;
+  rating: number;
+  company?: string;
+  text?: string;
+};
+
+export const SampleReviews: Review[] = [
   {
     author_name: "Tatiana Mosquera",
     rating: 5,
+    company: "",
     text: "I have been working with Interactive Workers for over a year and The experience has been wonderful. Before working with them, it had been so hard for me to find an assistant, and they made it so easy ! They have a great team of individuals that can perform many different tasks, so it is very easy to choose who you want to work with. The company is very organized and takes part in great communication. I am very happy with the work of my virtual assistant. 10/10 recommend !",
   },
   {
@@ -17,6 +25,7 @@ export const SampleReviews = [
   { author_name: "Alejandro Mendez", rating: 5 },
   { author_name: "Rita Bastidas", rating: 5 },
   // Not real reviews from this point.
+  /*
   {
     author_name: "Claudia Ramirez",
     rating: 5,
@@ -55,4 +64,5 @@ export const SampleReviews = [
     rating: 5,
     text: "If you're considering hiring a virtual assistant, Interactive Workers is the way to go. Their professionalism and commitment are unmatched.",
   },
+  */
 ];
