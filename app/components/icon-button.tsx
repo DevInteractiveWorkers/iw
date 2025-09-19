@@ -1,5 +1,5 @@
 "use client";
-import { Icon, IconProps } from "./icon";
+import Icon, { IconProps } from "./icon";
 import { useEffect, useState } from "react";
 
 interface IconButtonProps extends IconProps {
@@ -10,7 +10,7 @@ interface IconButtonProps extends IconProps {
   reversed?: boolean;
 }
 
-export const IconButton = ({
+const IconButton = ({
   icon,
   children = "",
   className = "",
@@ -52,3 +52,5 @@ export const IconButton = ({
     </button>
   );
 };
+
+export default IconButton;

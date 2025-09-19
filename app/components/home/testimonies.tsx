@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
-import { IconButton } from "../icon-button";
-import Reviews from "./reviews";
+import IconButton from "../icon-button";
+
 const Testimonies = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);

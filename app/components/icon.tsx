@@ -11,7 +11,7 @@ export interface IconProps {
   height?: string;
 }
 
-export const Icon = ({
+const Icon = ({
   icon,
   filled = false,
   stroke = 0.6,
@@ -48,3 +48,5 @@ export const Icon = ({
     </svg>
   );
 };
+
+export default Icon;
