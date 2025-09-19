@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
-import IconButton from "../../ui/icon-button";
 
 const Testimonies = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -60,7 +59,7 @@ const Testimonies = () => {
         </h2>
         <div className="w-full h-full flex flex-col items-center justify-center">
           <div
-            className={`relative h-min transition-all duration-500 rounded-3xl overflow-hidden`}
+            className={`relative h-min transition-all duration-500 rounded-t-3xl overflow-hidden`}
           >
             <video
               ref={videoRef}
@@ -76,18 +75,27 @@ const Testimonies = () => {
               Your browser does not support the video tag.
             </video>
             {/* Overlay controls */}
-            <div className="absolute bg-[#18162199] w-full h-full flex justify-center items-center z-10 top-0 left-0 hover:opacity-100 opacity-0 transition-all duration-300">
+            <div
+              className={`absolute ${isVideoPlaying && "bg-[#18162199]"}  w-full h-full flex justify-center items-center z-10 top-0 left-0 hover:opacity-100 opacity-0 transition-all duration-300`}
+            >
               {/* Play / Pause / Replay */}
-
               {/* Bottom controls */}
               <div className="flex absolute bottom-0 w-full justify-evenly items-center gap-2 px-3">
                 {/* Expand */}
-                <IconButton
+                <button onClick={() => videoRef.current?.requestFullscreen()}>
+                  {/* <IconButton
                   icon="expand"
                   className="text-white w-7"
                   stroke={1}
-                  onClick={() => videoRef.current?.requestFullscreen()}
-                />
+                /> */}
+                  <Image
+                    className="inline mx-1 my-1"
+                    src={`/home/testimonies/expand.svg`}
+                    alt="Play Button"
+                    width={26}
+                    height={26}
+                  />
+                </button>
 
                 {/* Progress Bar */}
                 <div
