@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
+import Loader, { LoadingPage } from "../loader";
 
 const Testimonies = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -51,6 +52,8 @@ const Testimonies = () => {
     setProgressHover(percent);
   };
 
+  const [loading, setLoading] = useState(true);
+
   return (
     <section className="w-3/4 mb-48">
       <article>
@@ -61,12 +64,21 @@ const Testimonies = () => {
           <div
             className={`relative h-min transition-all duration-500 rounded-t-3xl overflow-hidden`}
           >
+            {loading && (
+              <div className="w-full h-full absolute flex backdrop:blur-md bg-white justify-center items-center">
+                <Loader />
+              </div>
+            )}
             <video
               ref={videoRef}
               width={640}
               height={360}
-              src="/testimonies/VT01 - Alexandra.mp4"
+              src="https://storage.googleapis.com/msgsndr/dtfCxBE6SEYaCMFTlgu5/media/68cdbacd6a682e698656a3e5.mp4"
               playsInline
+              onLoadStart={() => setLoading(true)}
+              onLoadedData={() => setLoading(false)}
+              onWaiting={() => setLoading(true)}
+              onPlaying={() => setLoading(false)}
               onTimeUpdate={(e) =>
                 setVideoCurrentTime(e.currentTarget.currentTime)
               }

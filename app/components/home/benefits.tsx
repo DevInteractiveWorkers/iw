@@ -45,7 +45,13 @@ const BenefitsBanner = () => {
         <div className="relative z-40 md:w-10/12 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 align-middle items-center text-black mt-2 bg-white rounded-3xl md:p-8 px-4">
           {benefits.map((benefit, i) => {
             return (
-              <BenefitCard title={benefit.title} i={i} width={87} height={88} />
+              <BenefitCard
+                key={i}
+                title={benefit.title}
+                i={i}
+                width={87}
+                height={88}
+              />
             );
           })}
         </div>
