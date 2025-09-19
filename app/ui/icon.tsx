@@ -1,4 +1,4 @@
-import iconsJSON from "@/app/components/icons.json";
+import iconsJSON from "./icons.json";
 
 type IconValue = string | string[];
 const icons = iconsJSON as Record<string, IconValue>;
