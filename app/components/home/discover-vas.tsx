@@ -8,7 +8,7 @@ const DiscoverVAs = () => {
       <article className="w-full md:w-10/12 mx-auto">
         <div className="relative text-center my-16 md:my-0">
           <h2 className="relative z-40 p-2 px-12 text-iw-red-1 font-extrabold text-xl md:text-3xl border-2 border-iw-red-1 bg-white rounded-full max-w-fit mx-auto">
-            Discover Our VA&apos;s
+            Discover Our VA's
           </h2>
           <div className="-mt-8 w-1/2 mx-auto h-14 bg-[#EFEFEF] rounded-full"></div>
         </div>

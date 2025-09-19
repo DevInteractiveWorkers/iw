@@ -53,8 +53,8 @@ const AffiliatePage = () => {
                 Increase your earnings:
               </h3>
               <p className="mt-1 leading-8 font-normal text-lg md:text-2xl md:w-5/6">
-                Our generous commission structure means you&apos;ll earn 20% on
-                the first sale and 10% monthly on ongoing services.
+                Our generous commission structure means you'll earn 20% on the
+                first sale and 10% monthly on ongoing services.
               </p>
             </div>
             <svg
@@ -210,9 +210,8 @@ const AffiliatePage = () => {
                   Open Communication
                 </h4>
                 <p className="sm:text-sm lg:text-base xl:text-2xl hidden sm:block">
-                  We&apos;re always available to discuss lead quality,
-                  performance, and provide feedback, ensuring a smooth
-                  partnership.
+                  We're always available to discuss lead quality, performance,
+                  and provide feedback, ensuring a smooth partnership.
                 </p>
               </div>
             </div>

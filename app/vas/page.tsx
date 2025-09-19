@@ -13,9 +13,7 @@ const VAs = () => {
       <section>
         <article className="banner-va flex flex-col md:flex-row items-center justify-center py-8 md:pb-4 max-w-full overflow-hidden">
           <div className="text-white basis-1/3 py-4 md:py-0">
-            <h1 className="text-4xl md:text-6xl font-black mb-1">
-              Our VA&apos;s
-            </h1>
+            <h1 className="text-4xl md:text-6xl font-black mb-1">Our VA's</h1>
             <strong className="block pr-24 p-2 bg-[#440000] bg-blend-multiply font-normal text-2xl md:text-4xl">
               available for you
             </strong>

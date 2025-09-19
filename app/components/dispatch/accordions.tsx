@@ -106,19 +106,19 @@ const DispatchAccordions = () => {
               className={`mt-4 font-normal md:text-xl xl:text-3xl text-ellipsis`}
             >
               <li className="mb-4 flex items-end gap-1">
-                We&apos;ll track every delivery and pickup related to your
-                business. No ship or delivery comes in without us knowing about
-                it. <span className="font-black text-5xl">.1</span>
+                We'll track every delivery and pickup related to your business.
+                No ship or delivery comes in without us knowing about it.{" "}
+                <span className="font-black text-5xl">.1</span>
               </li>
               <li className="mb-4 flex items-end gap-1">
-                Under any circumstance, we&apos;ll always be there to create the
-                best service for you. All your boxes will be cataloged.
+                Under any circumstance, we'll always be there to create the best
+                service for you. All your boxes will be cataloged.
                 <span className="font-black text-5xl">.2</span>
               </li>
               <li className="mb-4 flex items-end gap-1">
                 The insurance with the best coverage is the one that makes sure
                 you never lose. Shipping and pickup services require someone to
-                take care of the packages, we&apos;ll be there for you.
+                take care of the packages, we'll be there for you.
                 <span className="font-black text-5xl">.3</span>
               </li>
             </ol>

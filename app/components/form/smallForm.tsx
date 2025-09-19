@@ -85,7 +85,7 @@ const SmallForm = ({ setHidden }: { setHidden: Function }) => {
               type="submit"
               isProcessing={isSending}
             >
-              Let&apos;s team up
+              Let's team up
             </Button>
             <Button
               theme={{
