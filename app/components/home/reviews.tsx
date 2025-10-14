@@ -6,7 +6,7 @@ import Carousel from "./reviews/carousel";
 
 export default function Reviews() {
   return (
-    <article id="reviews" className="mb-48">
+    <article id="reviews" className="mb-48 w-dvw overflow-x-hidden">
       <AutoScrollReviews />
     </article>
   );
