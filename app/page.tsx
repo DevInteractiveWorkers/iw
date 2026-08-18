@@ -1,21 +1,16 @@
 import IntroBanner from "./components/home/intro-banner";
-import BenefitsBanner from "./components/home/benefits";
-import DiscoverVAs from "./components/home/discover-vas";
-import Testimonies from "./components/home/testimonies";
-import MainForm from "./components/form/form";
 import NavbarComponent from "./components/navbar";
-import Reviews from "./components/home/reviews";
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-between">
-      <NavbarComponent dark={true}></NavbarComponent>
+    <main className="flex flex-col min-h-screen">
+      <NavbarComponent dark={true} />
       <IntroBanner></IntroBanner>
-      <BenefitsBanner></BenefitsBanner>
+      {/* <BenefitsBanner></BenefitsBanner>
       <DiscoverVAs></DiscoverVAs>
       <Testimonies></Testimonies>
       <Reviews />
-      <MainForm dark={true}></MainForm>
+      <MainForm dark={true}></MainForm> */}
     </main>
   );
 }

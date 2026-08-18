@@ -1,16 +1,23 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import NavbarComponent from "./components/navbar";
 import Footer from "./components/footer/footer";
 import Script from "next/script";
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/react";
+import IWBg from "./components/background";
 
-const montserrat = Montserrat({ subsets: ["latin"] });
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"], // Choose the weights you need
+  variable: "--font-poppins",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "InteractiveWorkers",
-  description: "We are a group of remote workers that fill positions for companies all over the world, we cover any requirement, anywhere.",
+  description:
+    "We are a group of remote workers that fill positions for companies all over the world, we cover any requirement, anywhere.",
 };
 export default function RootLayout({
   children,
@@ -19,7 +26,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={montserrat.className + " " + "scroll-smooth  overflow-x-hidden"}>
+      <body
+        className={
+          poppins.className + " " + "scroll-smooth  overflow-x-hidden bg-black"
+        }
+      >
+        <IWBg />
         {children}
         <Analytics></Analytics>
         <Script id="tawk" strategy="lazyOnload">
@@ -31,8 +43,7 @@ export default function RootLayout({
             s1.charset='UTF-8';
             s1.setAttribute('crossorigin','*');
             s0.parentNode.insertBefore(s1,s0);
-            })();`
-          }
+            })();`}
         </Script>
         <Footer></Footer>
       </body>
