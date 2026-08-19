@@ -1,29 +1,58 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
+import PackagesCard from "../packages-card";
+import ProductCard from "@/components/product-card";
 
 interface ReviewProps {
+  index?: number;
   name: string;
   company?: string;
   rating: number;
   text?: string;
   fullReview: boolean;
-  img_src?: string;
   className?: string;
-  onClick?: () => void;
   dark?: boolean;
 }
 
 export default function ReviewComponentReviewComponent({
+  index = 1,
   name,
   company,
   rating,
   text,
   fullReview,
-  img_src,
   className,
-  onClick,
   dark,
 }: ReviewProps) {
+  const reverse = index % 2 === 0;
+
+  return (
+    <ProductCard
+      className={`flex flex-col items-start relative min-w-[300px] max-w-[500px] min-h-[400px] h-full transition-all duration-500 
+        ${reverse && "flex-col-reverse"} justify-between pointer-events-none`}
+    >
+      <div
+        className={`p-5 w-full h-min border-white/50 ${reverse ? "border-t" : "border-b"}`}
+      >
+        <b>{name}</b>
+        <p>{company}</p>
+      </div>
+      <div
+        className={`p-5 flex gap-4 justify-between h-auto ${reverse ? "flex-col-reverse" : "flex-col"}`}
+      >
+        <RateStars count={rating} color={"white"} />
+        <p
+          className={`transition-all duration-500 ${
+            fullReview
+              ? "line-clamp-none max-h-[1000px] max-w-[500px] min-w-[250px] max-md:text-sm"
+              : "line-clamp-5"
+          }`}
+        >
+          {text}
+        </p>
+      </div>
+    </ProductCard>
+  );
   return (
     <div
       className={`flex flex-col items-start relative min-w-[300px] max-w-[500px] h-full transition-all duration-500 

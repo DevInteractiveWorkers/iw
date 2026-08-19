@@ -6,7 +6,7 @@ import {
   NavbarToggle,
 } from "flowbite-react";
 import Link from "next/link";
-import { navbar } from "../../content/navbar";
+import { navbar } from "@/app/content/navbar";
 import ItemList from "./item-list";
 import Image from "next/image";
 

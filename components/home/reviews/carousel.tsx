@@ -69,7 +69,7 @@ export default function Carousel({
                 : maxIndex
               : c < maxIndex
                 ? c + 1
-                : 0
+                : 0,
           );
         }, timer * 1000);
       } else if (iteration === "once") {
@@ -81,7 +81,7 @@ export default function Carousel({
                 : maxIndex
               : c < maxIndex
                 ? c + 1
-                : 0
+                : 0,
           );
         }, timer * 1000);
       }
@@ -91,7 +91,7 @@ export default function Carousel({
         const delta = (time - lastTime) / 1000;
         lastTime = time;
         setOffset((prev) =>
-          reverseScroll ? prev + speed * delta : prev - speed * delta
+          reverseScroll ? prev + speed * delta : prev - speed * delta,
         );
         requestRef.current = requestAnimationFrame(animate);
       };
@@ -162,9 +162,9 @@ export default function Carousel({
   const end = Math.min(total, safeCurrent + windowSize);
 
   return (
-    <div className="flex flex-col items-center w-full select-none">
+    <div className="w-full">
       <div
-        className="relative w-full"
+        className="w-full overflow-hidden"
         ref={trackRef}
         onMouseDown={(e) => handleStart(e.clientX)}
         onMouseMove={(e) => handleMove(e.clientX)}
@@ -175,7 +175,7 @@ export default function Carousel({
         onTouchEnd={handleEnd}
       >
         <div
-          className={`flex `}
+          className={`flex overflow-y-visible py-10`}
           style={{
             transform: `translateX(${
               autoscrollMode === "on-going" ? `${offset}px` : `50%`

@@ -1,7 +1,8 @@
-import DiscoverVAs from "./components/home/discover-vas";
-import IntroBanner from "./components/home/intro-banner";
-import NavbarComponent from "./components/navbar";
-import IWVideo from "./video";
+import NavbarComponent from "@/components/navbar";
+import IntroBanner from "@/components/home/intro-banner";
+import DiscoverVAs from "@/components/home/discover-vas";
+import IWVideo from "@/components/video";
+import StatsSection from "@/components/stats-section";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <IntroBanner />
       <DiscoverVAs />
       <IWVideo />
+      <StatsSection />
       {/* <BenefitsBanner></BenefitsBanner>
       <Testimonies></Testimonies>
       <Reviews />
