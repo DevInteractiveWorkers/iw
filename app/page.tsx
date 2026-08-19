@@ -3,6 +3,7 @@ import IntroBanner from "@/components/home/intro-banner";
 import DiscoverVAs from "@/components/home/discover-vas";
 import IWVideo from "@/components/video";
 import StatsSection from "@/components/stats-section";
+import MainForm from "@/components/form/form";
 
 export default function Home() {
   return (
@@ -12,10 +13,8 @@ export default function Home() {
       <DiscoverVAs />
       <IWVideo />
       <StatsSection />
-      {/* <BenefitsBanner></BenefitsBanner>
-      <Testimonies></Testimonies>
-      <Reviews />
-      <MainForm dark={true}></MainForm> */}
+      {/* <BenefitsBanner></BenefitsBanner> */}
+      <MainForm dark={true}></MainForm>
     </main>
   );
 }

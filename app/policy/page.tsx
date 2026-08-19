@@ -1,5 +1,5 @@
 import React from "react";
-import NavbarComponent from "../components/navbar";
+import NavbarComponent from "@/components/navbar";
 
 const PolicyPage = () => {
   return (

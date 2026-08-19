@@ -1,10 +1,10 @@
 import React from "react";
-import NavbarComponent from "../components/navbar";
+import NavbarComponent from "@/components/navbar";
 import Image from "next/image";
-import Features from "./../components/vas/features";
-import MainForm from "../components/form/form";
-import Teams from "../components/vas/teams";
-import { ParticlesComponent } from "../components/particles";
+import Features from "./@/components/vas/features";
+import MainForm from "@/components/form/form";
+import Teams from "@/components/vas/teams";
+import { ParticlesComponent } from "@/components/particles";
 
 const VAs = () => {
   return (

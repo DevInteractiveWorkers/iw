@@ -1,9 +1,9 @@
 import Image from "next/image";
 import React from "react";
-import NavbarComponent from "../components/navbar";
-import DispatchAccordions from "../components/dispatch/accordions";
-import MainForm from "../components/form/form";
-import { ParticlesComponent } from "../components/particles";
+import NavbarComponent from "@/components/navbar";
+import DispatchAccordions from "@/components/dispatch/accordions";
+import MainForm from "@/components/form/form";
+import { ParticlesComponent } from "@/components/particles";
 
 const Dispatch = () => {
   return (

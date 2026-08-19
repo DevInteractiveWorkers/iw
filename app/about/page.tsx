@@ -1,10 +1,10 @@
 import React from "react";
 import Image from "next/image";
-import NavbarComponent from "./../components/navbar/index";
-import FAQ from "../components/about/faq/faq";
-import Values from "../components/about/values/values";
-import MainForm from "../components/form/form";
-import { ParticlesComponent } from "../components/particles";
+import NavbarComponent from "./@/components/navbar/index";
+import FAQ from "@/components/about/faq/faq";
+import Values from "@/components/about/values/values";
+import MainForm from "@/components/form/form";
+import { ParticlesComponent } from "@/components/particles";
 
 const AboutUs = () => {
   return (

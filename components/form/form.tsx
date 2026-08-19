@@ -1,18 +1,15 @@
 "use client";
 
-import {
-  Button,
-  Checkbox,
-  Label,
-  Select,
-  Textarea,
-  TextInput,
-} from "flowbite-react";
+import { Button, Checkbox, Label } from "flowbite-react";
 import React, { useState } from "react";
 import { sendMail, formData } from "../lib/utils";
 import Link from "next/link";
 import professionalOptions from "./professionalOptions";
 import Loader from "../loader";
+import Input from "./input";
+import Select from "./select";
+import Textarea from "./textarea";
+import Image from "next/image";
 
 const MainForm = ({ dark }: { dark?: boolean | number }) => {
   const [sending, isSending] = useState(false);
@@ -78,181 +75,108 @@ const MainForm = ({ dark }: { dark?: boolean | number }) => {
 
   const FormFields = () => (
     <>
-      <div className="mx-auto w-11/12 md:w-2/3 flex flex-col gap-3">
-        <div className="flex md:flex-row flex-col gap-3">
-          <TextInput
-            id="firstname"
-            type="text"
-            placeholder="First name*"
-            required
-            shadow
-            className="md:basis-1/2"
-          />
-          <TextInput
-            id="lastname"
-            type="text"
-            placeholder="Last name*"
-            required
-            shadow
-            className="md:basis-1/2"
-          />
-        </div>
-        <TextInput
-          id="company"
-          type="text"
-          placeholder="Company's Name*"
-          required
-          shadow
-        />
-        <div className="flex md:flex-row flex-col gap-3">
-          <TextInput
-            id="phone"
-            type="text"
-            placeholder="Phone Number*"
-            required
-            shadow
-            className="md:basis-1/2"
-          />
-          <TextInput
-            id="email"
-            type="email"
-            placeholder="Email*"
-            required
-            shadow
-            className="md:basis-1/2"
-          />
-        </div>
-        <TextInput
-          id="size"
-          type="text"
-          placeholder="Your company size (current staff number)*"
-          required
-          shadow
-        />
-        <TextInput
-          id="staff"
-          type="text"
-          placeholder="Number of Staff Required?*"
-          required
-          shadow
-        />
-        <TextInput
-          id="country"
-          type="text"
-          placeholder="Which country are you based in?*"
-          required
-          shadow
-        />
-        <h4
-          className={`mx-auto text-center font-bold text-lg mt-4 ${dark && dark !== 2 ? "text-white" : "text-black"}`}
-        >
-          Choose your Professional
-        </h4>
-        <Select
-          id="professional"
-          required
-          className="text-white first:first:first:bg-iw-red-1"
-        >
-          {professionalOptions.map((option, index) => (
-            <option key={index}>{option}</option>
-          ))}
-        </Select>
-        <Textarea
-          id="message"
-          placeholder="What's your question? Or what kind of outsourcing help do you need?"
-          required
-          rows={4}
-          className="mt-8"
-        />
-        <p
-          className={`text-center ${dark && dark !== 2 ? "text-white" : "text-black"} text-xs`}
-        >
-          Messages and data rates may apply. Message frequency will vary. Reply
-          STOP to opt-out of messaging.
-        </p>
-        <div className="flex items-center justify-center gap-2">
-          <Checkbox id="agree" required />
-          <Label
-            htmlFor="agree"
-            className={`flex ${dark && dark !== 2 ? "text-white" : "text-black"}`}
-          >
-            I agree with the&nbsp;
-            <Link
-              href="/policy"
-              className="text-cyan-600 hover:underline dark:text-cyan-500"
-            >
-              Privacy Policy
-            </Link>
-          </Label>
-        </div>
-        {message && (
-          <div className="text-[#ff0000] flex justify-center">{message}</div>
-        )}
-        {sending ? (
-          <div className="w-full flex justify-center">
-            <div className="w-1/2 flex justify-center">
-              <Loader />
-            </div>
-          </div>
-        ) : (
-          <Button
-            type="submit"
-            className={`uppercase rounded-xl font-bold text-xl max-w-fit mx-auto mt-8 ${!sent ? "bg-iw-red-1" : "bg-[#808080] pointer-events-none cursor-not-allowed"} text-white`}
-          >
-            {!sent ? "Send mail" : "Sent"}
-          </Button>
-        )}
+      <div className="grid md:grid-cols-2 gap-3">
+        <Input id="firstname" type="text" placeholder="First name" required />
+        <Input id="lastname" type="text" placeholder="Last name" required />
       </div>
+      <Input id="company" type="text" placeholder="Company's Name" required />
+      <div className="grid md:grid-cols-2 gap-3">
+        <Input id="phone" type="text" placeholder="Phone Number" required />
+        <Input id="email" type="email" placeholder="Email" />
+      </div>
+      <Input
+        id="size"
+        type="text"
+        placeholder="Your company size (current staff number)"
+        required
+      />
+      <Input
+        id="staff"
+        type="text"
+        placeholder="Number of Staff Required?"
+        required
+      />
+      <Input
+        id="country"
+        type="text"
+        placeholder="Which country are you based in?"
+        required
+      />
+      <h4 className={`font-bold md:text-2xl text-xl mt-4`}>
+        Choose your Professional
+      </h4>
+      <Select id="professional" required>
+        {professionalOptions.map((option, index) => (
+          <option key={index}>{option}</option>
+        ))}
+      </Select>
+      <Textarea
+        id="message"
+        placeholder="What's your question? Or what kind of outsourcing help do you need?"
+        required
+        rows={1}
+      />
+      <p className="py-4">
+        Messages and data rates may apply. (Message frequency will vary).
+        <br /> Reply STOP to opt-out of messaging.
+      </p>
+      <div className="flex items-center gap-2">
+        <Checkbox id="agree" required className="text-iw-red-1" />
+        <Label
+          htmlFor="agree"
+          className={`flex ${dark && dark !== 2 ? "text-white" : "text-black"}`}
+        >
+          I agree with the&nbsp;
+          <Link href="/policy" className="text-iw-red-1 hover:underline ">
+            Privacy Policy
+          </Link>
+        </Label>
+      </div>
+      {message && <div className="text-iw-red-1 flex">{message}</div>}
+      {sending ? (
+        <div className="w-full flex justify">
+          <div className="w-1/2 flex">
+            <Loader />
+          </div>
+        </div>
+      ) : (
+        <button
+          type="submit"
+          className={`uppercase rounded font-bold text-4xl px-10 py-5 max-w-fit mt-8 ${!sent ? "bg-iw-red-1" : "bg-[#808080] pointer-events-none cursor-not-allowed"} text-white`}
+        >
+          {!sent ? "Send mail" : "Sent"}
+        </button>
+      )}
     </>
   );
 
-  const heading =
-    dark === 2 ? (
-      <>
-        <strong className="font-extrabold text-iw-red-1">Feel free</strong> to
-        contact us <strong className="font-extrabold">anytime!</strong>
-      </>
-    ) : (
-      <>
-        <strong className="font-extrabold">Speak</strong> with our team{" "}
-        <strong className="font-extrabold">today</strong>
-      </>
-    );
-
-  const outerWrapper =
-    dark === 2 ? (
+  return (
+    <section className="grid md:grid-cols-[auto_auto] border-t md:pt-20 py-10 md:mx-20 mx-4">
+      <Image
+        width={1080}
+        height={1080}
+        className="w-auto px-10 md:max-w-[400px] sticky md:top-20 top-10"
+        alt="logo"
+        src={"/logo/01_Primary_Logo/Primary_Logo-04.png"}
+      />
       <form
-        className={`flex flex-col gap-4 w-3/4 mx-auto py-20 ${dark && dark !== 2 ? "bg-[#333333]" : "md:bg-[#EFEFEF]"}`}
+        className="flex flex-col md:px-10 px-4 mb-10"
         onSubmit={handleSubmit}
         name="Contact Form"
       >
+        <p className="md:text-5xl text-xl py-4">
+          Beyond the obvious benefits, virtual assistants
+          <br className="max-nd:hidden" /> can address hidden needs.
+        </p>
         <h2
-          className={`${dark && dark !== 2 ? "text-white" : "text-iw-red-1"} text-2xl md:text-4xl uppercase font-light mx-auto text-center`}
+          className={`${dark && dark !== 2 ? "text-white" : "text-iw-red-1"} text-2xl md:text-6xl font-medium mx-auto text-left w-full py-10`}
         >
-          {heading}
+          Speak with our team today!
         </h2>
         <FormFields />
       </form>
-    ) : (
-      <div
-        className={`relative w-full px-4 md:px-0 pb-8 md:pb-20 ${dark ? "bg-[#222222]" : "bg-[#E6E6E6]"}`}
-        id="form"
-      >
-        <form
-          className={`flex flex-col gap-4 md:w-3/4 mx-auto relative -top-8 rounded-[66px] py-12 md:py-20 px-12 ${dark ? "bg-[#333333]" : "bg-[#EFEFEF]"}`}
-          onSubmit={handleSubmit}
-        >
-          <h2
-            className={`${dark ? "text-white" : "text-iw-red-1"} text-2xl md:text-4xl uppercase font-light mx-auto text-center my-2 md:my-0`}
-          >
-            {heading}
-          </h2>
-          <FormFields />
-        </form>
-      </div>
-    );
-
-  return outerWrapper;
+    </section>
+  );
 };
 
 export default MainForm;

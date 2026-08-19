@@ -1,9 +1,9 @@
 import React from "react";
-import NavbarComponent from "../components/navbar";
-import AffiliateForm from "../components/form/affiliateForm";
-import { ParticlesComponent } from "../components/particles";
+import NavbarComponent from "@/components/navbar";
+import AffiliateForm from "@/components/form/affiliateForm";
+import { ParticlesComponent } from "@/components/particles";
 import Image from "next/image";
-import AffiliatesFAQ from "../components/affiliates/faq";
+import AffiliatesFAQ from "@/components/affiliates/faq";
 
 const AffiliatePage = () => {
   return (

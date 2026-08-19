@@ -1,10 +1,10 @@
 import React from "react";
-import NavbarComponent from "../components/navbar";
-import MainForm from "../components/form/form";
+import NavbarComponent from "@/components/navbar";
+import MainForm from "@/components/form/form";
 import Image from "next/image";
-import Socials from "../components/footer/socials";
-import GetHired from "../components/form/get-hired";
-import { ParticlesComponent } from "../components/particles";
+import Socials from "@/components/footer/socials";
+import GetHired from "@/components/form/get-hired";
+import { ParticlesComponent } from "@/components/particles";
 
 const ContactUs = () => {
   return (
