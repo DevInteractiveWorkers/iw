@@ -10,9 +10,15 @@ import { navbar } from "../../content/navbar";
 import ItemList from "./item-list";
 import Image from "next/image";
 
-const NavbarComponent = async ({ dark }: { dark?: boolean }) => {
+const NavbarComponent = async ({
+  dark,
+  className,
+}: {
+  dark?: boolean;
+  className?: string;
+}) => {
   return (
-    <div className={`w-full px-4`}>
+    <div className={`w-full px-4 ${className}`}>
       <div className="z-40 w-11/12 py-4 mx-auto ">
         <Navbar className="relative bg-transparent md:mt-2">
           <div className="max-md:w-full flex justify-center max-md:mb-2">

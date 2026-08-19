@@ -1,16 +1,17 @@
 import Image from "next/image";
 import React from "react";
+import CTAButton from "../cta-button";
 
 const IntroBanner = () => {
   return (
-    <section className="w-full h-screen text-white relative flex items-center justify-center">
-      <article className="absolute z-10 flex flex-col items-center">
+    <section className="w-full min-h-[50vh] text-white relative flex items-center justify-center">
+      <article className="z-10 flex flex-col items-center md:py-40">
         <Image
           src={"/logo/03_Logo_Mark/03_Logo_Mark-01.png"}
           alt={"InteractiveWorkers"}
           width={1080}
           height={1080}
-          className="max-w-40 animate-loading-flip absolute p-4 top-0 -translate-y-full"
+          className="md:max-w-40 max-w-36 animate-loading-flip py-4"
         />
         <h1 className="font-medium lg:text-6xl text-base z-40 text-center leading-none pb-4">
           At InteractiveWorkers, <br />
@@ -23,6 +24,7 @@ const IntroBanner = () => {
           pre-configured
           <br /> hardware, zero HR liability, and guaranteed 100% continuity.
         </p>
+        <CTAButton className="my-10 text-iw-red-1" />
       </article>
       {/* <Link
             href={"https://calendly.com/interactiveworkersgm/30min"}

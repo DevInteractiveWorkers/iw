@@ -5,7 +5,7 @@ import NavbarComponent from "./components/navbar";
 import Footer from "./components/footer/footer";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
-import IWBg from "./components/background";
+import IWBg from "./components/backgrounds/background";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -28,7 +28,9 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={
-          poppins.className + " " + "scroll-smooth  overflow-x-hidden bg-black"
+          poppins.className +
+          " " +
+          "scroll-smooth  overflow-x-hidden bg-black text-white"
         }
       >
         <IWBg />
