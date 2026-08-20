@@ -7,17 +7,17 @@ export default function StatsSection() {
   return (
     <section
       id="stats"
-      className="flex flex-col items-center justify-center w-full"
+      className="flex flex-col items-center justify-center w-full relative"
     >
-      <article className="w-10/12 px-2 py-10 z-10 grid grid-cols-4 items-center justify-center justify-items-center">
+      <article className="md:w-10/12 w-11/12 px-2 sm:py-10 z-10 grid md:grid-cols-4 sm:grid-cols-2 max-md:gap-10 max-sm:gap-4 items-start justify-center md:justify-items-center">
         <Stat title="Clients Reach Worldwide" number={1000} symbol="+" />
         <Stat title="Uptime SLA" number={99.9} symbol="%" decimal />
         <Stat title="Project Shipped" number={365} symbol="+" />
         <Stat title="Average Rating" number={5.0} symbol="stars" decimal />
       </article>
-      {/* <article> */}
-      <Reviews />
-      {/* </article> */}
+      <article className="z-10">
+        <Reviews />
+      </article>
     </section>
   );
 }
@@ -85,13 +85,12 @@ function Stat({
   return (
     <div ref={ref} className="flex flex-col">
       <span
-        className={`text-8xl font-medium flex w-max ${symbol === "stars" ? "flex-row-reverse" : "flex-row"} items-center justify-center`}
+        className={`lg:text-[clamp(6rem,5vw,7rem)] md:text-[clamp(4rem,4vw,5rem)] text-[clamp(2rem,8vw,3rem)] font-medium flex w-max ${symbol === "stars" ? "flex-row-reverse" : "flex-row"} items-center justify-center`}
       >
         {formattedNumber}
         {symbol === "stars" ? (
           <svg
-            width="70"
-            height="67"
+            className="lg:w-[clamp(5rem,4vw,6rem)] md:w-[clamp(3rem,3vw,4rem)] w-[clamp(1rem,6vw,2rem)]"
             viewBox="0 0 70 67"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +104,7 @@ function Stat({
           symbol
         )}
       </span>
-      <span className="text-2xl">{title}</span>
+      <span className="md:text-2xl">{title}</span>
     </div>
   );
 }

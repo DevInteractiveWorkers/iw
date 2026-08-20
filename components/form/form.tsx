@@ -155,7 +155,7 @@ const MainForm = ({ dark }: { dark?: boolean | number }) => {
       <Image
         width={1080}
         height={1080}
-        className="w-auto px-10 md:max-w-[400px] sticky md:top-20 top-10"
+        className="w-auto px-10 md:max-w-[400px] md:sticky md:top-20 top-10"
         alt="logo"
         src={"/logo/01_Primary_Logo/Primary_Logo-04.png"}
       />
@@ -169,7 +169,7 @@ const MainForm = ({ dark }: { dark?: boolean | number }) => {
           <br className="max-nd:hidden" /> can address hidden needs.
         </p>
         <h2
-          className={`${dark && dark !== 2 ? "text-white" : "text-iw-red-1"} text-2xl md:text-6xl font-medium mx-auto text-left w-full py-10`}
+          className={`text-white text-2xl md:text-6xl font-medium mx-auto text-left w-full py-10`}
         >
           Speak with our team today!
         </h2>

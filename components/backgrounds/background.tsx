@@ -6,7 +6,7 @@ import MoltenMetal from "./MoltenMetal";
 export default function IWBg() {
   return (
     <div
-      className="absolute top-0 left-0 w-full h-full -z-10"
+      className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden"
       style={{
         // Fades out smoothly on both the top and bottom edges
         maskImage:

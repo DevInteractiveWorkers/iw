@@ -9,7 +9,7 @@ export const navbar = [
   },
   {
     title: "Pricing",
-    link: "/pricinh",
+    link: "/pricing",
   },
   {
     title: "Contact us",

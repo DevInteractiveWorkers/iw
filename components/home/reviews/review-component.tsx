@@ -1,6 +1,5 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
-import PackagesCard from "../packages-card";
+
 import ProductCard from "@/components/product-card";
 
 interface ReviewProps {
@@ -21,8 +20,6 @@ export default function ReviewComponentReviewComponent({
   rating,
   text,
   fullReview,
-  className,
-  dark,
 }: ReviewProps) {
   const reverse = index % 2 === 0;
 
@@ -52,33 +49,6 @@ export default function ReviewComponentReviewComponent({
         </p>
       </div>
     </ProductCard>
-  );
-  return (
-    <div
-      className={`flex flex-col items-start relative min-w-[300px] max-w-[500px] h-full transition-all duration-500 
-        ${!dark ? "bg-white shadow-2xl text-black" : "bg-black shadow-2xl text-white"}
-        rounded-xl text-sm 
-        ${className}`}
-    >
-      <div className="flex flex-col h-full p-5 gap-5">
-        <RateStars count={rating} color={dark ? "white" : "iw-red-1"} />
-        <p
-          className={`transition-all duration-500 ${
-            fullReview
-              ? "line-clamp-none max-h-[1000px] max-w-[500px] min-w-[250px] max-md:text-sm"
-              : "line-clamp-5"
-          }`}
-        >
-          {text}
-        </p>
-      </div>
-      <div
-        className={`px-5 py-3 border-t w-full ${dark ? "border-white" : "border-black"}`}
-      >
-        <b>{name}</b>
-        <p>{company}</p>
-      </div>
-    </div>
   );
 }
 

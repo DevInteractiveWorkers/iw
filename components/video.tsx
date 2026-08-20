@@ -1,6 +1,6 @@
 export default function IWVideo() {
   return (
-    <section className="w-full h-screen px-2 py-10 z-10 flex flex-col items-center justify-center">
+    <section className="w-full px-2 py-10 z-10 flex flex-col items-center justify-center relative">
       <article className="flex items-center justify-center">
         <video
           controls
