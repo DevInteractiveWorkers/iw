@@ -1,17 +1,14 @@
 "use client";
-import { Navbar } from "flowbite-react";
 import React, { useState, useRef, useLayoutEffect } from "react";
-import { navbarModel } from "./../../content/navbar";
 import Link from "next/link";
 
-const ItemList = ({
-  items,
-  dark,
-}: {
-  items: navbarModel[];
-  hover?: boolean;
-  dark?: boolean;
-}) => {
+const ItemList = ({ items }: { items: any[]; hover?: boolean }) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const handleOpen = () => {
+    setIsOpen((prev) => !prev);
+  };
+
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   const [indicatorStyle, setIndicatorStyle] = useState<{
     width: number;
@@ -47,36 +44,63 @@ const ItemList = ({
   }, [hoverIndex]);
 
   return (
-    <Navbar className="bg-transparent flex gap-4 relative">
-      {/* Background Highlight Indicator */}
-      <div
-        className="bg-white rounded transition-all duration-300 pointer-events-none"
-        style={{
-          position: "absolute",
-          width: `${indicatorStyle.width}px`,
-          height: `${indicatorStyle.height}px`,
-          left: `${indicatorStyle.left}px`,
-          top: `${indicatorStyle.top}px`,
-          opacity: indicatorStyle.opacity,
-          zIndex: 0,
-        }}
-      />
-
-      {/* Navigation Links */}
-      {items.map((item, key) => (
-        <Link
-          key={key}
-          href={item.link}
-          ref={(el) => {
-            itemRefs.current[key] = el;
-          }}
-          className={`relative z-10 px-4 ${hoverIndex === key ? "text-black" : "text-white"} transition-all duration-150`}
-          onMouseEnter={() => setHoverIndex(key)}
+    <>
+      <button
+        className="md:hidden w-full flex justify-end z-50"
+        onClick={handleOpen}
+      >
+        <svg
+          className="w-6 h-6 text-white"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+          viewBox="0 0 24 24"
         >
-          {item.title}
-        </Link>
-      ))}
-    </Navbar>
+          <path
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeWidth="2"
+            d={
+              isOpen ? "M6 18 17.94 6M18 18 6.06 6" : "M5 7h14M5 12h14M5 17h14"
+            }
+          />
+        </svg>
+      </button>
+      <div
+        className={`bg-transparent flex gap-4 relative max-md:fixed max-md:flex-col max-md:w-2/3 max-md:bg-black/85 max-md:top-0 max-md:right-0 max-md:h-full max-md:z-20 max-md:py-4 max-md:border-l max-md:rounded-l-xl max-md:backdrop-blur ${isOpen ? "max-md:translate-x-0" : "max-md:translate-x-full"} transition-all duration-100`}
+      >
+        {/* Background Highlight Indicator */}
+        <div
+          className="bg-white rounded transition-all duration-300 pointer-events-none"
+          style={{
+            position: "absolute",
+            width: `${indicatorStyle.width}px`,
+            height: `${indicatorStyle.height}px`,
+            left: `${indicatorStyle.left}px`,
+            top: `${indicatorStyle.top}px`,
+            opacity: indicatorStyle.opacity,
+            zIndex: 0,
+          }}
+        />
+
+        {/* Navigation Links */}
+        {items.map((item, key) => (
+          <Link
+            key={key}
+            href={item.link}
+            ref={(el) => {
+              itemRefs.current[key] = el;
+            }}
+            className={`relative z-10 px-4 ${hoverIndex === key ? "text-black" : "text-white"} transition-all duration-150 max-md:w-max`}
+            onMouseEnter={() => setHoverIndex(key)}
+          >
+            {item.title}
+          </Link>
+        ))}
+      </div>
+    </>
   );
 };
 

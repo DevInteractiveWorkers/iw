@@ -5,6 +5,7 @@ import Footer from "@/components/footer/footer";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 import IWBg from "@/components/backgrounds/background";
+import AppLoader from "@/components/AppLoader";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -32,11 +33,12 @@ export default function RootLayout({
           "scroll-smooth  overflow-x-hidden bg-black text-white"
         }
       >
-        <IWBg />
-        {children}
-        <Analytics></Analytics>
-        <Script id="tawk" strategy="lazyOnload">
-          {`var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        <AppLoader>
+          <IWBg />
+          {children}
+          <Analytics></Analytics>
+          <Script id="tawk" strategy="lazyOnload">
+            {`var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
             (function(){
             var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
             s1.async=true;
@@ -45,8 +47,9 @@ export default function RootLayout({
             s1.setAttribute('crossorigin','*');
             s0.parentNode.insertBefore(s1,s0);
             })();`}
-        </Script>
-        <Footer></Footer>
+          </Script>
+          <Footer></Footer>
+        </AppLoader>
       </body>
     </html>
   );

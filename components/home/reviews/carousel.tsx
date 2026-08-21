@@ -175,32 +175,29 @@ export default function Carousel({
         onTouchEnd={handleEnd}
       >
         <div
-          className={`flex overflow-y-visible py-10`}
+          className="flex items-center"
           style={{
-            transform: `translateX(${
-              autoscrollMode === "on-going" ? `${offset}px` : `50%`
-            })`,
+            transform:
+              autoscrollMode === "on-going"
+                ? `translateX(${offset}px)`
+                : `translateX(-${safeCurrent * 100}%)`,
+            transition:
+              autoscrollMode === "on-going" || dragging
+                ? "none"
+                : "transform 0.5s ease-in-out",
           }}
         >
-          {carouselArray.map((child, index) => {
-            const currentX = safeCurrent * 100;
-            return (
-              <div
-                key={index}
-                className="shrink-0 flex justify-center md:px-10 px-5 transition-transform duration-500"
-                style={{
-                  width: slides === 1 ? "100%" : "",
-                  transform: `translateX(${
-                    reverseScroll
-                      ? `-${total * 100}%`
-                      : autoscrollMode === "paused" && `-${currentX + 50}%`
-                  })`,
-                }}
-              >
-                {child}
-              </div>
-            );
-          })}
+          {carouselArray.map((child, index) => (
+            <div
+              key={index}
+              className="shrink-0 flex items-center justify-center px-3"
+              style={{
+                width: slides === 1 ? "100%" : "auto",
+              }}
+            >
+              {child}
+            </div>
+          ))}
         </div>
       </div>
 
@@ -209,15 +206,13 @@ export default function Carousel({
           {Array.from({ length: total }).map((_, i) => (
             <button
               key={i}
-              className={`w-2 h-2 rounded-full cursor-pointer transition-transform
-                ${
-                  safeCurrent === i
-                    ? "bg-white scale-100"
-                    : i < safeCurrent - 1 || i > safeCurrent + 1
-                      ? "bg-[#DD272C] scale-75"
-                      : "bg-[#DD272C] scale-90"
-                }
-                } ${(start > i || end < i) && "hidden"} `}
+              className={`w-2 h-2 rounded-full cursor-pointer transition-transform ${
+                safeCurrent === i
+                  ? "bg-white scale-100"
+                  : i < safeCurrent - 1 || i > safeCurrent + 1
+                    ? "bg-[#DD272C] scale-75"
+                    : "bg-[#DD272C] scale-90"
+              } ${start > i || end < i ? "hidden" : ""}`}
               onClick={() => {
                 setCurrent(i);
                 resetAutoscroll();
