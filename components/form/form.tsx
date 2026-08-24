@@ -122,10 +122,7 @@ const MainForm = ({ dark }: { dark?: boolean | number }) => {
       </p>
       <div className="flex items-center gap-2">
         <Checkbox id="agree" required className="text-iw-red-1" />
-        <Label
-          htmlFor="agree"
-          className={`flex ${dark && dark !== 2 ? "text-white" : "text-black"}`}
-        >
+        <Label htmlFor="agree" className={`flex text-white`}>
           I agree with the&nbsp;
           <Link href="/policy" className="text-iw-red-1 hover:underline ">
             Privacy Policy

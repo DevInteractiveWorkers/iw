@@ -93,7 +93,7 @@ const ItemList = ({ items }: { items: any[]; hover?: boolean }) => {
             ref={(el) => {
               itemRefs.current[key] = el;
             }}
-            className={`relative z-10 px-4 ${hoverIndex === key ? "text-black" : "text-white"} transition-all duration-150 max-md:w-max`}
+            className={`relative z-10 px-4 ${hoverIndex === key ? "text-black" : "text-white"} transition-all duration-150 max-md:w-max lg:text-base md:text-xs`}
             onMouseEnter={() => setHoverIndex(key)}
           >
             {item.title}

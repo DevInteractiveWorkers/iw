@@ -164,5 +164,5 @@ export default function DarkVeil({
     resolutionScale,
   ]);
 
-  return <canvas ref={ref} className="w-full h-full block" />;
+  return <canvas ref={ref} className="w-full h-full block bg-black" />;
 }

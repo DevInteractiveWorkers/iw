@@ -8,6 +8,7 @@ import Packages from "@/components/home/packages";
 import VACard from "@/components/vas/cards";
 import Carousel from "@/components/home/reviews/carousel";
 import Folder from "@/components/folder";
+import FlipElement from "@/components/flip-element";
 
 const Dispatch = () => {
   const tags = [
@@ -21,14 +22,16 @@ const Dispatch = () => {
   return (
     <section>
       <NavbarComponent></NavbarComponent>
-      <article className="flex flex-col px-20 p-10">
-        <Image
-          width={1080}
-          height={1080}
-          className="w-1/4 max-w-[150px] pb-10"
-          alt="logo"
-          src={"/logo/03_Logo_Mark/03_Logo_Mark-01.png"}
-        />
+      <article className="flex flex-col">
+        <FlipElement className="w-1/4 max-w-[150px] pb-10">
+          <Image
+            width={1080}
+            height={1080}
+            alt="logo"
+            src="/logo/03_Logo_Mark/03_Logo_Mark-01.png"
+          />
+        </FlipElement>
+
         <h1 className="text-6xl">
           24/7 Remote Dispatch
           <br /> for Every Operation,
@@ -43,7 +46,7 @@ const Dispatch = () => {
         </div>
       </article>
       <article
-        className="mx-15 w-full"
+        className="w-full"
         style={{
           maskImage:
             "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)",
@@ -89,7 +92,7 @@ const Dispatch = () => {
           ))}
         </Carousel>
       </article>
-      <article className="px-20 py-10 flex flex-col gap-10">
+      <article className="py-10 flex flex-col gap-10">
         <h2 className="text-6xl">
           Our Support = More Solutions
           <br />

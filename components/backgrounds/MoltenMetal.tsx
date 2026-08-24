@@ -360,7 +360,7 @@ const MoltenMetal: React.FC<MoltenMetalProps> = ({
   return (
     <div
       ref={containerRef}
-      className={`relative h-full w-full overflow-hidden ${className}`.trim()}
+      className={`relative h-full w-full overflow-hidden bg-black ${className}`.trim()}
     />
   );
 };

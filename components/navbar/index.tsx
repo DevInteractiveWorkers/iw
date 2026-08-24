@@ -4,9 +4,9 @@ import { navbar } from "@/app/content/navbar";
 import ItemList from "./item-list";
 import Image from "next/image";
 
-const NavbarComponent = async ({ dark }: { dark?: boolean }) => {
+const NavbarComponent = () => {
   return (
-    <nav className="w-full md:px-20 px-4">
+    <nav className="w-full">
       <div
         className={`border-b flex items-center justify-between max-md:grid grid-cols-2 justify-items-stretch py-4 gap-4`}
       >

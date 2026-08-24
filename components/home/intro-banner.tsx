@@ -1,24 +1,27 @@
 import Image from "next/image";
 import React from "react";
 import CTAButton from "../cta-button";
+import FlipElement from "../flip-element";
 
 const IntroBanner = () => {
   return (
     <section className="w-full min-h-[50vh] text-white relative flex items-center justify-center">
       <article className="z-10 flex flex-col items-center md:py-40">
-        <Image
-          src={"/logo/03_Logo_Mark/03_Logo_Mark-01.png"}
-          alt={"InteractiveWorkers"}
-          width={1080}
-          height={1080}
-          className="md:max-w-40 max-w-36 animate-loading-flip py-4"
-        />
-        <h1 className="font-medium lg:text-6xl text-base z-40 text-center leading-none pb-4">
+        <FlipElement>
+          <Image
+            src={"/logo/03_Logo_Mark/03_Logo_Mark-01.png"}
+            alt={"InteractiveWorkers"}
+            width={1080}
+            height={1080}
+            className="md:max-w-40 max-w-36 animate-loading-flip py-4"
+          />
+        </FlipElement>
+        <h1 className="font-medium lg:text-6xl text-base text-center leading-none pb-4">
           At InteractiveWorkers, <br />
           we transform the <br />
           concept of outsourcing.
         </h1>
-        <p className="font-light text-sm lg:text-xl z-40 text-center">
+        <p className="font-light text-sm lg:text-xl text-center">
           We transform complex remote staffing
           <br /> into ready-to-scale operational units—complete with
           pre-configured

@@ -25,8 +25,7 @@ export default function ProductCard({
         <BorderGlow
           animated
           borderRadius={5}
-          className="w-full h-full backdrop-blur-sm"
-          backgroundColor="rgb(221 39 45 / 0.2)"
+          className="w-full h-full backdrop-blur-md"
           fillOpacity={0}
           colors={[]}
         />

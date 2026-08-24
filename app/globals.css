@@ -122,3 +122,32 @@
 .policy ul {
   list-style-type: disc;
 }
+
+.corner-scoop {
+  corner-shape: scoop;
+}
+
+.flip-item {
+  display: inline-block;
+}
+
+.flip-once {
+  animation: flip-scale 1.2s ease-in-out forwards;
+}
+
+/* .animate-flip, */
+.group svg:hover.animate-flip.heart {
+  animation: flip-scale 1.2s ease-in-out infinite;
+}
+
+@keyframes flip-scale {
+  0% {
+    transform: scale(1) scaleX(1);
+  }
+  50% {
+    transform: scale(1.5) scaleX(-1);
+  }
+  100% {
+    transform: scale(1) scaleX(1);
+  }
+}

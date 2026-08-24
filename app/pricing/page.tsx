@@ -1,23 +1,26 @@
+import FlipElement from "@/components/flip-element";
 import MainForm from "@/components/form/form";
 import NavbarComponent from "@/components/navbar";
 import ProductCard from "@/components/product-card";
 import Switch from "@/components/switch";
+import Ticket from "@/components/ticket";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function PricingPage() {
   return (
-    <section className="md:px-20 sm:px-10 px-4">
+    <section id="pricing">
       <NavbarComponent />
 
       <article className="flex flex-col p-10">
-        <Image
-          width={1080}
-          height={1080}
-          className="w-1/4 max-w-[150px] pb-10"
-          alt="logo"
-          src="/logo/03_Logo_Mark/03_Logo_Mark-01.png"
-        />
+        <FlipElement className="w-1/4 max-w-[150px] pb-10">
+          <Image
+            width={1080}
+            height={1080}
+            alt="logo"
+            src="/logo/03_Logo_Mark/03_Logo_Mark-01.png"
+          />
+        </FlipElement>
 
         <h1
           className="
@@ -44,8 +47,8 @@ export default function PricingPage() {
         </div>
 
         <div className="grid md:grid-cols-[auto_80%] gap-6">
-          <aside>
-            <ProductCard className="p-6" disableHover>
+          <aside className="h-full">
+            <ProductCard className="p-6 h-full" disableHover>
               <h4 className="text-[clamp(1.5rem,2.5vw,1.875rem)] font-medium leading-tight">
                 Want more traffic and leads?
               </h4>
@@ -68,8 +71,9 @@ export default function PricingPage() {
             </ProductCard>
           </aside>
 
-          <div className="grid grid-cols-1 gap-6">
-            <ProductCard className="p-6 min-h-25" disableHover>
+          <div className="grid grid-cols-1 gap-6 pb-6">
+            {/* Custom */}
+            <ProductCard className="p-6 min-h-25 overflow-hidden" disableHover>
               <div className="flex items-baseline gap-2 flex-wrap">
                 <h2
                   className="
@@ -81,8 +85,11 @@ export default function PricingPage() {
                   Start with ONE-WEEK FREE
                 </h2>
               </div>
+              <div className="flex items-start md:justify-center justify-end">
+                <Ticket />
+              </div>
             </ProductCard>
-
+            {/* Custom */}
             <ProductCard
               className="p-6 grid grid-cols-1 items-end h-full min-h-25"
               disableHover
@@ -128,6 +135,14 @@ export default function PricingPage() {
             </ProductCard>
           </div>
         </div>
+        <h6
+          className="
+            text-[clamp(2rem,4vw,3.75rem)]
+            leading-[1.05]
+          "
+        >
+          More quality less overload with the right support
+        </h6>
       </article>
       <MainForm />
     </section>

@@ -43,7 +43,10 @@ export default function Packages() {
       <h2 className="font-light lg:text-5xl text-base z-40 text-center leading-none pb-4">
         View Productized Packages
       </h2>
-      <div ref={ref} className="grid grid-cols-3 md:gap-10 md:w-1/2 group">
+      <div
+        ref={ref}
+        className="grid grid-cols-3 gap-[clamp(1rem,2vw,2rem)] w-[clamp(90%,_calc(140vw_-_300px),_20%)]"
+      >
         <PackagesCard
           className={`
             ${rightTiltClass}

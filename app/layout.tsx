@@ -35,7 +35,7 @@ export default function RootLayout({
       >
         <AppLoader>
           <IWBg />
-          {children}
+          <div className="px-[clamp(16px,8vw,80px)]">{children}</div>
           <Analytics></Analytics>
           <Script id="tawk" strategy="lazyOnload">
             {`var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();

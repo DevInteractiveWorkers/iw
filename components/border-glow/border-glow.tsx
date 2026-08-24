@@ -115,7 +115,7 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
   className = "",
   edgeSensitivity = 30,
   glowColor = "358 73 51",
-  backgroundColor = "#120F17",
+  backgroundColor = "rgb(221 39 45 / 0.1)",
   borderRadius = 28,
   glowRadius = 40,
   glowIntensity = 1.0,
@@ -245,7 +245,7 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
       }
     >
       <span className="edge-light" />
-      <div className="border-glow-inner">{children}</div>
+      <div className="border-glow-inner backdrop-blur-md">{children}</div>
     </div>
   );
 };

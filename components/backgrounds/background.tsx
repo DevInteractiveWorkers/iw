@@ -1,22 +1,41 @@
 "use client";
 
+import DotField from "../DotField";
 import { ParticlesComponent } from "../particles";
+import ColorBends from "./ColorBends";
 import MoltenMetal from "./MoltenMetal";
 
 export default function IWBg() {
   return (
-    <div
-      className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden"
-      style={{
-        // Fades out smoothly on both the top and bottom edges
-        maskImage:
-          "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
-        WebkitMaskImage:
-          "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
-      }}
-    >
-      <ParticlesComponent id="landing-particles" color="#000" />
-      <MoltenMetal
+    <>
+      <div
+        className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden"
+        style={{
+          // Fades out smoothly on both the top and bottom edges
+          maskImage:
+            "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
+          WebkitMaskImage:
+            "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
+        }}
+      >
+        <div className="fixed top-0 left-0 w-full h-full -z-10">
+          <DotField
+            dotRadius={1.5}
+            dotSpacing={16}
+            cursorRadius={700}
+            cursorForce={0.42}
+            bulgeOnly
+            bulgeStrength={42}
+            glowRadius={140}
+            sparkle={false}
+            waveAmplitude={0}
+            gradientFrom="#363636"
+            gradientTo="#323232"
+            glowColor="#000000"
+          />
+        </div>
+        {/* <ParticlesComponent id="landing-particles" color="#000" /> */}
+        {/* <MoltenMetal
         color1="#C1272D"
         color2="#C1272D"
         color3="#e32828"
@@ -35,7 +54,24 @@ export default function IWBg() {
         grainIntensity={0.05}
         mouseInteraction
         mouseStrength={0.3}
-      />
-    </div>
+      /> */}
+        <ColorBends
+          rotation={95}
+          speed={0.2}
+          colors={["#C1272D", "#DD272D", "#C1272D"]}
+          transparent
+          autoRotate={0}
+          scale={1.2}
+          frequency={1}
+          warpStrength={1}
+          mouseInfluence={0.4}
+          parallax={0.3}
+          noise={0.15}
+          iterations={1}
+          intensity={1.3}
+          bandWidth={6}
+        />
+      </div>
+    </>
   );
 }
