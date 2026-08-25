@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Reviews from "./home/reviews";
+import FadeInContent from "./FadeInContent";
 
 export default function StatsSection() {
   return (
@@ -16,7 +17,9 @@ export default function StatsSection() {
         <Stat title="Average Rating" number={5.0} symbol="stars" decimal />
       </article>
       <article className="z-10">
-        <Reviews />
+        <FadeInContent>
+          <Reviews />
+        </FadeInContent>
       </article>
     </section>
   );

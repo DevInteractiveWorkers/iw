@@ -13,7 +13,7 @@ interface VACardProps {
 const VACard = ({ children, imageSrc, style }: VACardProps) => {
   return (
     <ProductCard
-      className="flex flex-col relative pointer-events-none "
+      className="flex flex-col relative pointer-events-none w-full h-full"
       style={
         style ?? {
           position: "relative",
@@ -25,15 +25,17 @@ const VACard = ({ children, imageSrc, style }: VACardProps) => {
         }
       }
     >
-      <Image
-        className="-mt-[25%] w-full h-full max-h-[95%] border-b border-white/50 z-10 object-cover object-top select-none pointer-events-none"
-        src={imageSrc}
-        alt="packages"
-        width={275}
-        height={341}
-        quality={100}
-      />
-      <div className="text-center font-medium text-[clamp(1rem,1vw,1.5rem)] h-full flex items-center justify-center px-4 z-10 pointer-events-none">
+      <div className="relative w-full aspect-[275/341] -mt-[25%] border-b border-white/50 z-10 overflow-hidden">
+        <Image
+          className="object-cover object-top select-none pointer-events-none"
+          src={imageSrc}
+          alt="packages"
+          fill
+          sizes="(max-width: 768px) 50vw, 25vw"
+          quality={100}
+        />
+      </div>
+      <div className="text-center font-medium text-[clamp(1rem,1vw,1.5rem)] min-h-[4.5rem] flex items-center justify-center px-4 z-10 pointer-events-none">
         <h3>{children}</h3>
       </div>
     </ProductCard>

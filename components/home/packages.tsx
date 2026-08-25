@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import PackagesCard from "./packages-card";
+import SplitText from "../text-animation/SplitText";
 
 export default function Packages() {
   const ref = useRef<HTMLDivElement>(null);
@@ -40,12 +41,15 @@ export default function Packages() {
 
   return (
     <>
-      <h2 className="font-light lg:text-5xl text-base z-40 text-center leading-none pb-4">
-        View Productized Packages
-      </h2>
+      <SplitText
+        tag="h2"
+        text={"View Productized Packages"}
+        delay={100}
+        className="font-light lg:text-5xl text-base z-40 text-center leading-none pb-4"
+      />
       <div
         ref={ref}
-        className="grid grid-cols-3 gap-[clamp(1rem,2vw,2rem)] w-[clamp(90%,_calc(140vw_-_300px),_20%)]"
+        className="grid grid-cols-3 gap-[clamp(1rem,2vw,2rem)] w-[clamp(90%,_calc(140vw_10px),_20%)]"
       >
         <PackagesCard
           className={`

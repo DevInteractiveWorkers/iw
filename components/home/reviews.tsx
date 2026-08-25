@@ -4,6 +4,7 @@ import { useState } from "react";
 import { SampleReviews } from "./sample-reviews";
 import Carousel from "./reviews/carousel";
 import ProductCard from "../product-card";
+import FadeInContent from "../FadeInContent";
 
 export default function Reviews() {
   return (
@@ -64,7 +65,7 @@ const AutoScrollReviews = () => {
           onChange={setCurrent}
         >
           {reviews.map((review, i) => (
-            <div className="w-min h-full">
+            <FadeInContent className="w-min h-full" delay={i * 0.2}>
               <ReviewComponent
                 key={i}
                 index={i}
@@ -74,7 +75,7 @@ const AutoScrollReviews = () => {
                 rating={review.rating}
                 fullReview={false}
               />
-            </div>
+            </FadeInContent>
           ))}
         </Carousel>
       </div>

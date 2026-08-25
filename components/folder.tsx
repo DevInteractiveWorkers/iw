@@ -3,6 +3,7 @@
 import Image from "next/image";
 import ProductCard from "./product-card";
 import { useState } from "react";
+import TextCursor from "./text-animation/TextCursor";
 
 type FolderItem = {
   title: string;
@@ -131,7 +132,7 @@ export default function Folder({ items }: { items: FolderItem[] }) {
           overflow-hidden
         "
       >
-        <div className="">
+        <div>
           {items.map((item, i) => (
             <Image
               key={i}
@@ -140,14 +141,15 @@ export default function Folder({ items }: { items: FolderItem[] }) {
               alt={item.title}
               src={item.src}
               className={`
-            absolute
-            inset-0
-            w-full
-            h-full
-            object-cover
-            ${activeItem === item ? "opacity-100" : "opacity-0"}
-            transition-all duration-300
-            `}
+                pointer-events-none
+                absolute
+                inset-0
+                w-full
+                h-full
+                object-cover
+                ${activeItem === item ? "opacity-100" : "opacity-0"}
+                transition-all duration-300
+                `}
               style={activeItem.imagePosition}
             />
           ))}

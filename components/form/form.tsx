@@ -10,6 +10,8 @@ import Input from "./input";
 import Select from "./select";
 import Textarea from "./textarea";
 import Image from "next/image";
+import FadeInContent from "../FadeInContent";
+import SplitText from "../text-animation/SplitText";
 
 const MainForm = ({ dark }: { dark?: boolean | number }) => {
   const [sending, isSending] = useState(false);
@@ -102,7 +104,7 @@ const MainForm = ({ dark }: { dark?: boolean | number }) => {
         placeholder="Which country are you based in?"
         required
       />
-      <h4 className={`font-bold md:text-2xl text-xl mt-4`}>
+      <h4 className={`font-medium md:text-2xl text-xl mt-4`}>
         Choose your Professional
       </h4>
       <Select id="professional" required>
@@ -148,31 +150,44 @@ const MainForm = ({ dark }: { dark?: boolean | number }) => {
   );
 
   return (
-    <section className="grid md:grid-cols-[auto_auto] border-t md:pt-20 py-10 md:mx-20 mx-4">
-      <Image
-        width={1080}
-        height={1080}
-        className="w-auto px-10 md:max-w-[400px] md:sticky md:top-20 top-10"
-        alt="logo"
-        src={"/logo/01_Primary_Logo/Primary_Logo-04.png"}
-      />
-      <form
-        className="flex flex-col md:px-10 px-4 mb-10"
-        onSubmit={handleSubmit}
-        name="Contact Form"
-      >
-        <p className="md:text-5xl text-xl py-4">
-          Beyond the obvious benefits, virtual assistants
-          <br className="max-nd:hidden" /> can address hidden needs.
-        </p>
-        <h2
-          className={`text-white text-2xl md:text-6xl font-medium mx-auto text-left w-full py-10`}
+    <FadeInContent>
+      <section className="grid md:grid-cols-[auto_auto] border-t md:pt-20 py-10">
+        <FadeInContent>
+          <Image
+            width={1080}
+            height={1080}
+            className="w-auto px-10 md:max-w-[400px] md:sticky md:top-20 top-10"
+            alt="logo"
+            src={"/logo/01_Primary_Logo/Primary_Logo-04.png"}
+          />
+        </FadeInContent>
+        <form
+          className="flex flex-col md:px-10 px-4 mb-10"
+          onSubmit={handleSubmit}
+          name="Contact Form"
         >
-          Speak with our team today!
-        </h2>
-        <FormFields />
-      </form>
-    </section>
+          <SplitText
+            className="md:text-5xl text-xl py-4"
+            textAlign="start"
+            text={
+              <>
+                Beyond the obvious benefits, virtual assistants
+                <br className="max-nd:hidden" /> can address hidden needs.
+              </>
+            }
+          />
+          <SplitText
+            tag="h2"
+            textAlign="start"
+            className={`text-white text-2xl md:text-6xl font-medium py-10`}
+            text="Speak with our team today!"
+          />
+          <FadeInContent>
+            <FormFields />
+          </FadeInContent>
+        </form>
+      </section>
+    </FadeInContent>
   );
 };
 
