@@ -5,7 +5,7 @@ export const navbar = [
   },
   {
     title: "Services",
-    link: "/services",
+    link: "/#services",
   },
   {
     title: "Pricing",

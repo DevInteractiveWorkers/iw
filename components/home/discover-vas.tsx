@@ -26,7 +26,7 @@ const productizedPackages = [
 
 const DiscoverVAs = () => {
   return (
-    <section className="w-full px-2 z-10">
+    <section id="services" className="w-full px-2 z-10">
       <article className="w-full md:w-10/12 mx-auto flex flex-col items-center">
         <FadeInContent className="flex flex-col items-center">
           <Packages />

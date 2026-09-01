@@ -6,19 +6,18 @@ export default function ProductCard({
   children,
   className,
   style,
-  disableHover = false, // 1. Add the new prop with a default value
+  disableHover = false,
 }: {
   children?: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
-  disableHover?: boolean; // 2. Add the type definition
+  disableHover?: boolean;
 }) {
   return (
     <div
-      // 3. Inject the hover class only if disableHover is false
       className={`flex flex-col relative transition-all duration-200 ${
         disableHover ? "" : "hover:scale-105"
-      }`}
+      } shadow-[inset_0_0_50px_rgb(221_39_45_/_0.1)]`}
       style={style}
     >
       <div className="absolute w-full h-full -z-10">

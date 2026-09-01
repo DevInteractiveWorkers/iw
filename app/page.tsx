@@ -13,8 +13,7 @@ export default function Home() {
       <DiscoverVAs />
       <IWVideo />
       <StatsSection />
-      {/* <BenefitsBanner></BenefitsBanner> */}
-      <MainForm dark={true}></MainForm>
+      <MainForm />
     </main>
   );
 }

@@ -1,14 +1,13 @@
 import Image from "next/image";
 import React from "react";
 import NavbarComponent from "@/components/navbar";
-import DispatchAccordions from "@/components/dispatch/accordions";
 import MainForm from "@/components/form/form";
-import { ParticlesComponent } from "@/components/particles";
-import Packages from "@/components/home/packages";
 import VACard from "@/components/vas/cards";
 import Carousel from "@/components/home/reviews/carousel";
 import Folder from "@/components/folder";
 import FlipElement from "@/components/flip-element";
+import FadeInContent from "@/components/FadeInContent";
+import SplitText from "@/components/text-animation/SplitText";
 
 const Dispatch = () => {
   const tags = [
@@ -19,10 +18,29 @@ const Dispatch = () => {
     "Trained in Confidentiality and",
   ];
 
+  const dispatchers = [
+    {
+      content: "24/7 Inbound Call & Emergency Dispatch Unit",
+      imageSrc: "/home/discover-vas/vas/0.png",
+    },
+    {
+      content: "Tier-1 Helpdesk & Ticket Triage Team",
+      imageSrc: "/home/discover-vas/vas/2.png",
+    },
+    {
+      content: "Executive Operational Assistant",
+      imageSrc: "/home/discover-vas/vas/3.png",
+    },
+    {
+      content: "Outbound Cold Call & Lead Qualification Desk",
+      imageSrc: "/home/discover-vas/vas/1.png",
+    },
+  ];
+
   return (
     <section>
       <NavbarComponent></NavbarComponent>
-      <article className="flex flex-col">
+      <article className="flex flex-col py-10">
         <FlipElement className="w-1/4 max-w-[150px] pb-10">
           <Image
             width={1080}
@@ -31,18 +49,34 @@ const Dispatch = () => {
             src="/logo/03_Logo_Mark/03_Logo_Mark-01.png"
           />
         </FlipElement>
-
-        <h1 className="text-6xl">
-          24/7 Remote Dispatch
-          <br /> for Every Operation,
-          <br /> Ready to Deploy
-        </h1>
+        <SplitText
+          tag="h1"
+          className="
+            text-[clamp(2rem,4vw,3.75rem)]
+            leading-[1.05]
+            pb-6
+          "
+          textAlign="start"
+          text={
+            <>
+              24/7 Remote Dispatch
+              <br /> for Every Operation,
+              <br /> Ready to Deploy
+            </>
+          }
+        />
         <div className="flex justify-end">
-          <p className="text-xl md:w-1/3">
-            Boost response times, reduce overtime, and scale operations with
-            trained virtual dispatchers and schedulers for private security
-            companies.
-          </p>
+          <SplitText
+            className="text-xl md:w-2/3 lg:w-1/3"
+            textAlign="start"
+            text={
+              <>
+                Boost response times, reduce overtime, and scale operations with
+                trained virtual dispatchers and schedulers for private security
+                companies.
+              </>
+            }
+          />
         </div>
       </article>
       <article
@@ -60,18 +94,13 @@ const Dispatch = () => {
           autoscrollMode="on-going"
           controls={false}
         >
-          <VACarouselCard imageSrc="/home/discover-vas/vas/0.png">
-            24/7 Inbound Call & Emergency Dispatch Unit
-          </VACarouselCard>
-          <VACarouselCard imageSrc="/home/discover-vas/vas/2.png">
-            Tier-1 Helpdesk & Ticket Triage Team
-          </VACarouselCard>
-          <VACarouselCard imageSrc="/home/discover-vas/vas/3.png">
-            Executive Operational Assistant
-          </VACarouselCard>
-          <VACarouselCard imageSrc="/home/discover-vas/vas/1.png">
-            Outbound Cold Call & Lead Qualification Desk{" "}
-          </VACarouselCard>
+          {dispatchers.map((dispatcher, i) => (
+            <FadeInContent key={i} delay={i * 0.2}>
+              <VACarouselCard imageSrc={dispatcher.imageSrc}>
+                {dispatcher.content}
+              </VACarouselCard>
+            </FadeInContent>
+          ))}
         </Carousel>
       </article>
       <article className="py-10">
@@ -79,6 +108,7 @@ const Dispatch = () => {
           autoscroll
           iteration="once"
           autoscrollMode="on-going"
+          // reverseScroll
           controls={false}
         >
           {tags.map((tag, i) => (
@@ -93,38 +123,46 @@ const Dispatch = () => {
         </Carousel>
       </article>
       <article className="py-10 flex flex-col gap-10">
-        <h2 className="text-6xl">
-          Our Support = More Solutions
-          <br />
-          We Cover Every Shift
-        </h2>
-        <Folder
-          items={[
-            {
-              title: "24/7 Call Handling",
-              text: "Scale coverage instantly with bilingual, security-trained VAs who handle calls, dispatch, and scheduling around the clock.",
-              src: "/dispatch/1.png",
-              imagePosition: { objectPosition: "center right" },
-            },
-            {
-              title: "Instant Guard Deployment Remote Support",
-              text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate quaerat, quia autem voluptatem mollitia ab, tenetur assumenda fugiat, hic sunt veritatis illo. Nemo animi vel voluptates! Doloribus officiis omnis nulla.",
-              src: "/security.png",
-              imagePosition: { objectPosition: "30% center" },
-            },
-            {
-              title: "Accurate Shift Scheduling",
-              text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate quaerat, quia autem voluptatem mollitia ab, tenetur assumenda fugiat, hic sunt veritatis illo. Nemo animi vel voluptates! Doloribus officiis omnis nulla.",
-              src: "/top-view.png",
-              imagePosition: { objectPosition: "center bottom" },
-            },
-            {
-              title: "Seamless Communication",
-              text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate quaerat, quia autem voluptatem mollitia ab, tenetur assumenda fugiat, hic sunt veritatis illo. Nemo animi vel voluptates! Doloribus officiis omnis nulla.",
-              src: "/welcome-our-team-young-modern-man-wear-shaking-hands-while-working-creative-office 1.png",
-            },
-          ]}
+        <SplitText
+          className="text-6xl"
+          textAlign="start"
+          text={
+            <>
+              Our Support = More Solutions
+              <br />
+              We Cover Every Shift
+            </>
+          }
         />
+        <FadeInContent>
+          <Folder
+            items={[
+              {
+                title: "24/7 Call Handling",
+                text: "Scale coverage instantly with bilingual, security-trained VAs who handle calls, dispatch, and scheduling around the clock.",
+                src: "/dispatch/1.png",
+                imagePosition: { objectPosition: "center right" },
+              },
+              {
+                title: "Instant Guard Deployment Remote Support",
+                text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate quaerat, quia autem voluptatem mollitia ab, tenetur assumenda fugiat, hic sunt veritatis illo. Nemo animi vel voluptates! Doloribus officiis omnis nulla.",
+                src: "/security.png",
+                imagePosition: { objectPosition: "30% center" },
+              },
+              {
+                title: "Accurate Shift Scheduling",
+                text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate quaerat, quia autem voluptatem mollitia ab, tenetur assumenda fugiat, hic sunt veritatis illo. Nemo animi vel voluptates! Doloribus officiis omnis nulla.",
+                src: "/top-view.png",
+                imagePosition: { objectPosition: "center bottom" },
+              },
+              {
+                title: "Seamless Communication",
+                text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate quaerat, quia autem voluptatem mollitia ab, tenetur assumenda fugiat, hic sunt veritatis illo. Nemo animi vel voluptates! Doloribus officiis omnis nulla.",
+                src: "/welcome-our-team-young-modern-man-wear-shaking-hands-while-working-creative-office 1.png",
+              },
+            ]}
+          />
+        </FadeInContent>
       </article>
       <MainForm dark={false}></MainForm>
     </section>

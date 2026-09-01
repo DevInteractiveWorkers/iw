@@ -12,7 +12,7 @@ const NavbarComponent = () => {
       >
         <Link href="/">
           <Image
-            className="hover:scale-110 transition-transform h-[31px] object-contain"
+            className="hover:scale-95 transition-transform duration-150 h-[31px] object-contain"
             src={"/logo/01_Primary_Logo/Primary_Logo-04.png"}
             alt="Interactiveworkers Logo"
             width={200}
@@ -23,14 +23,14 @@ const NavbarComponent = () => {
         <div className="md:w-1/4 w-full flex gap-2 justify-center col-span-2">
           <Link
             href={"/affiliate"}
-            className="basis-full bg-white text-center text-black rounded py-1 items-center justify-center content-center"
+            className="basis-full bg-white text-center text-black active:text-iw-red-1 rounded py-1 items-center justify-center content-center hover:scale-95 transition-[transform,_color] duration-150"
           >
             Affiliate Program
           </Link>
           <Link
             href={"https://calendly.com/interactiveworkersgm/30min"}
             target="_blank"
-            className="basis-full bg-white text-center text-black rounded py-1 items-center justify-center content-center"
+            className="basis-full bg-white text-center text-black active:text-iw-red-1 rounded py-1 items-center justify-center content-center hover:scale-95 transition-[transform,_color] duration-150"
           >
             Book a Call
           </Link>

@@ -6,7 +6,9 @@ export default function Input({
   ...props
 }: InputHTMLAttributes<HTMLInputElement>) {
   return (
-    <div className="py-2 my-2 border-b border-white text-white relative flex">
+    <div
+      className={`py-2 my-2 border-b border-white text-white relative flex ${props.className}`}
+    >
       <input
         required={required}
         className="peer bg-transparent outline-none w-full"

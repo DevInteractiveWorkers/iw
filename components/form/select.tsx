@@ -72,7 +72,9 @@ export default function Select({
   return (
     <div
       ref={dropdownRef}
-      className="py-2 my-2 border-b border-white text-white relative flex items-center justify-between w-full cursor-pointer select-none"
+      className={
+        "py-2 my-2 border-b border-white text-white relative flex items-center justify-between w-full cursor-pointer select-none"
+      }
       onClick={() => setIsOpen(!isOpen)}
       {...props}
     >

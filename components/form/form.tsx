@@ -13,7 +13,18 @@ import Image from "next/image";
 import FadeInContent from "../FadeInContent";
 import SplitText from "../text-animation/SplitText";
 
-const MainForm = ({ dark }: { dark?: boolean | number }) => {
+const MainForm = ({
+  heading = (
+    <>
+      Beyond the obvious benefits, virtual assistants
+      <br className="max-nd:hidden" /> can address hidden needs.
+    </>
+  ),
+  subheading = "Speak with our team today!",
+}: {
+  heading?: string | React.ReactNode | false;
+  subheading?: string | React.ReactNode | false;
+}) => {
   const [sending, isSending] = useState(false);
   const [sent, isSent] = useState(false);
   const [message, setMessage] = useState("");
@@ -153,35 +164,36 @@ const MainForm = ({ dark }: { dark?: boolean | number }) => {
     <FadeInContent>
       <section className="grid md:grid-cols-[auto_auto] border-t md:pt-20 py-10">
         <FadeInContent>
-          <Image
-            width={1080}
-            height={1080}
-            className="w-auto px-10 md:max-w-[400px] md:sticky md:top-20 top-10"
-            alt="logo"
-            src={"/logo/01_Primary_Logo/Primary_Logo-04.png"}
-          />
+          {(heading || subheading) && (
+            <Image
+              width={1080}
+              height={1080}
+              className="w-auto px-10 md:max-w-[400px] md:sticky md:top-20 top-10"
+              alt="logo"
+              src={"/logo/01_Primary_Logo/Primary_Logo-04.png"}
+            />
+          )}
         </FadeInContent>
         <form
           className="flex flex-col md:px-10 px-4 mb-10"
           onSubmit={handleSubmit}
           name="Contact Form"
         >
-          <SplitText
-            className="md:text-5xl text-xl py-4"
-            textAlign="start"
-            text={
-              <>
-                Beyond the obvious benefits, virtual assistants
-                <br className="max-nd:hidden" /> can address hidden needs.
-              </>
-            }
-          />
-          <SplitText
-            tag="h2"
-            textAlign="start"
-            className={`text-white text-2xl md:text-6xl font-medium py-10`}
-            text="Speak with our team today!"
-          />
+          {heading && (
+            <SplitText
+              className="md:text-5xl text-xl py-4"
+              textAlign="start"
+              text={heading}
+            />
+          )}
+          {subheading && (
+            <SplitText
+              tag="h2"
+              textAlign="start"
+              className={`text-white text-2xl md:text-6xl font-medium py-10`}
+              text={subheading}
+            />
+          )}
           <FadeInContent>
             <FormFields />
           </FadeInContent>
