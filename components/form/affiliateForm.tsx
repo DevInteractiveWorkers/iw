@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import { smallFormData, sendAffiliateMail } from "../lib/utils";
 import { Button, Select, Textarea, TextInput } from "flowbite-react";
+import CTAButton from "../cta-button";
+import Input from "./input";
 
 const AffiliateForm = () => {
   const [isSending, setIsSending] = useState(false);
@@ -32,9 +34,9 @@ const AffiliateForm = () => {
     }
   };
   return (
-    <div className={`relative w-full px-1 pb-8 bg-[#E6E6E6] mt-16 `} id="form">
+    <div id="form">
       <form
-        className={`flex flex-col gap-4 md:w-3/4 mx-auto relative -top-8 rounded-[66px] py-12 bg-[#EFEFEF]`}
+        className={`flex flex-col gap-4 md:w-3/4 mx-auto relative -top-8 rounded-[66px] py-12`}
         onSubmit={handleSubmit}
       >
         <span className="block mx-auto w-fit text-center text-xl md:text-4xl text-iw-red-1 my-4 uppercase">
@@ -46,50 +48,48 @@ const AffiliateForm = () => {
           className={`mx-auto w-11/12 md:w-2/3 transition-all duration-75 ${isCompleted ? "opacity-0 z-0 absolute" : "flex opacity-100 z-40"} flex-col gap-3`}
         >
           <div className="flex md:flex-row flex-col gap-3">
-            <TextInput
+            <Input
               className="md:basis-1/2"
               id="firstname"
               type="text"
               placeholder="Name*"
               required
-              shadow
               disabled={isSending}
             />
-            <TextInput
+            <Input
               className="md:basis-1/2"
               id="phone"
               type="text"
               placeholder="Phone Number (Optional)"
-              shadow
               disabled={isSending}
             />
           </div>
           <div className="flex md:flex-row flex-col gap-3">
-            <TextInput
+            <Input
               className="w-full"
               id="email"
               type="email"
               placeholder="Email*"
               required
-              shadow
               disabled={isSending}
             />
           </div>
           <div className="flex md:flex-row flex-col gap-2 md:gap-0 mt-4">
-            <Button
-              theme={{
-                inner: {
-                  base: "flex items-stretch transition-all duration-200 justify-center",
-                },
-              }}
-              className="block w-40 mx-auto  bg-transparent border border-iw-red-2 text-iw-red-2 hover:bg-iw-red-2 enabled:hover:bg-iw-red-2 hover:text-white font-medium rounded-lg text-base px-3 py-1.5 text-center"
+            <CTAButton
+              style={
+                {
+                  "--primary-color": "#dd272d",
+                  "--secondary-color": "#fff",
+                } as React.CSSProperties
+              }
+              className="block w-40 mx-auto font-medium rounded-lg text-base px-3 py-1.5 text-center"
               data-dismiss-target="#alert-additional-content-1"
               aria-label="Close"
               type="submit"
-              isProcessing={isSending}
+              disabled={isSending}
             >
               Join now!
-            </Button>
+            </CTAButton>
           </div>
         </div>
         <div

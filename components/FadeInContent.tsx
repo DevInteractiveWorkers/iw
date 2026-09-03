@@ -130,7 +130,7 @@ const FadeInContent: React.FC<FadeInContentProps> = ({
   ]);
 
   return (
-    <div ref={ref} className={`invisible ${className}`} {...props}>
+    <div ref={ref} className={className} {...props}>
       {children}
     </div>
   );

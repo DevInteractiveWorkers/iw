@@ -164,7 +164,7 @@ const Dispatch = () => {
           />
         </FadeInContent>
       </article>
-      <MainForm dark={false}></MainForm>
+      <MainForm />
     </section>
   );
 };

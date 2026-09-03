@@ -1,15 +1,15 @@
 import React from "react";
 import Image from "next/image";
-import NavbarComponent from "./@/components/navbar/index";
 import FAQ from "@/components/about/faq/faq";
 import Values from "@/components/about/values/values";
 import MainForm from "@/components/form/form";
 import { ParticlesComponent } from "@/components/particles";
+import NavbarComponent from "@/components/navbar";
 
 const AboutUs = () => {
   return (
     <div>
-      <NavbarComponent dark={false}></NavbarComponent>
+      <NavbarComponent />
       <section className="flex flex-col justify-between relative">
         {/* <div className='absolute w-2/3 h-12 bg-iw-red-1 rounded-3xl right-0 -top-6 z-0'></div> */}
 
@@ -103,7 +103,7 @@ const AboutUs = () => {
           color="#3A3A3A"
           className="h-svh top-3/4 -z-10 opacity-15"
         />
-        <MainForm dark={false}></MainForm>
+        <MainForm />
       </section>
     </div>
   );

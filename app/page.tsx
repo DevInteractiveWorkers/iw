@@ -7,7 +7,7 @@ import NavbarComponent from "@/components/navbar";
 
 export default function Home() {
   return (
-    <main className="flex flex-col min-h-screen">
+    <main className="">
       <NavbarComponent />
       <IntroBanner />
       <DiscoverVAs />

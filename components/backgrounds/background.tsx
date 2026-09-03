@@ -4,6 +4,8 @@ import DotField from "../DotField";
 import { ParticlesComponent } from "../particles";
 import ColorBends from "./ColorBends";
 import MoltenMetal from "./MoltenMetal";
+import { Background } from "@julscodes/blob-background";
+import "@julscodes/blob-background/styles.css";
 
 export default function IWBg() {
   return (
@@ -29,8 +31,8 @@ export default function IWBg() {
             glowRadius={140}
             sparkle={false}
             waveAmplitude={0}
-            gradientFrom="#363636"
-            gradientTo="#323232"
+            gradientFrom="rgb(255, 255, 255, 0.5)"
+            gradientTo="rgb(255, 255, 255, 0.5)"
             glowColor="#000000"
           />
         </div>

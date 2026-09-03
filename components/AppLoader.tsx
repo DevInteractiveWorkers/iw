@@ -10,7 +10,7 @@ export default function AppLoader({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const alreadyVisited = sessionStorage.getItem("loaded");
 
-    if (alreadyVisited) return;
+    // if (alreadyVisited) return;
 
     setShowLoader(true);
 
@@ -105,7 +105,6 @@ export default function AppLoader({ children }: { children: React.ReactNode }) {
 
       <main
         className={`
-          overflow-x-hidden
           w-full
           transition-opacity
           duration-700

@@ -65,9 +65,12 @@ const AutoScrollReviews = () => {
           onChange={setCurrent}
         >
           {reviews.map((review, i) => (
-            <FadeInContent className="w-min h-full" delay={i * 0.2}>
+            <FadeInContent
+              key={i}
+              className="w-min h-full my-10"
+              delay={i * 0.2}
+            >
               <ReviewComponent
-                key={i}
                 index={i}
                 name={review.author_name}
                 company={review.company}

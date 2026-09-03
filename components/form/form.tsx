@@ -12,6 +12,7 @@ import Textarea from "./textarea";
 import Image from "next/image";
 import FadeInContent from "../FadeInContent";
 import SplitText from "../text-animation/SplitText";
+import { Background } from "@julscodes/blob-background";
 
 const MainForm = ({
   heading = (

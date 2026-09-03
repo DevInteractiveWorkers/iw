@@ -1,10 +1,15 @@
+"use client";
+
 import Image from "next/image";
 import React from "react";
 import CTAButton from "../cta-button";
 import FlipElement from "../flip-element";
 import SplitText from "../text-animation/SplitText";
+import { useRouter } from "next/navigation";
 
 const IntroBanner = () => {
+  const router = useRouter();
+
   return (
     <section className="w-full min-h-[50vh] text-white relative flex items-center justify-center">
       <article className="z-10 flex flex-col items-center md:py-40">
@@ -44,7 +49,12 @@ const IntroBanner = () => {
             </>
           }
         />
-        <CTAButton className="my-10 text-iw-red-1" />
+        <CTAButton
+          onClick={() =>
+            router.push("https://calendly.com/interactiveworkersgm/30min")
+          }
+          className="my-10 text-iw-red-1"
+        />
       </article>
     </section>
   );
