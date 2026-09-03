@@ -11,7 +11,7 @@ export default function IWBg() {
   return (
     <>
       <div
-        className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden"
+        className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden bg-black"
         style={{
           // Fades out smoothly on both the top and bottom edges
           maskImage:

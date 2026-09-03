@@ -17,10 +17,10 @@ const SmallForm = ({ setHidden }: { setHidden: Function }) => {
       email: target.email.value,
     };
 
-    const empty = Object.values(data).filter((item) => {
-      item === "";
-    });
-    const completed = empty.length <= 1 && (await sendMail(data));
+    const completed =
+      data.fullName.trim() !== "" &&
+      data.email.trim() !== "" &&
+      (await sendMail(data));
 
     if (completed) {
       setIsSending(false);

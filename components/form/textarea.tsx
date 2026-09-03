@@ -4,11 +4,16 @@ export default function Textarea({
   placeholder = "Type Something...",
   required,
   rows = 4,
+  id,
+  name,
   ...props
 }: TextareaHTMLAttributes<HTMLTextAreaElement>) {
   return (
     <div className="py-2 my-2 border-b border-white text-white relative flex">
       <textarea
+        {...props}
+        id={id}
+        name={name ?? id}
         required={required}
         rows={rows}
         className="peer bg-transparent outline-none focus:border-none w-full border-none p-0"

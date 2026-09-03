@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import React from "react";
-import CTAButton from "../cta-button";
+import CTAButton from "../buttons/cta-button";
 import FlipElement from "../flip-element";
 import SplitText from "../text-animation/SplitText";
 import { useRouter } from "next/navigation";

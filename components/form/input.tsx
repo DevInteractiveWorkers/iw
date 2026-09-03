@@ -3,6 +3,8 @@ import { InputHTMLAttributes } from "react";
 export default function Input({
   placeholder = "Type Something...",
   required,
+  id,
+  name,
   ...props
 }: InputHTMLAttributes<HTMLInputElement>) {
   return (
@@ -11,6 +13,8 @@ export default function Input({
     >
       <input
         {...props}
+        id={id}
+        name={name ?? id}
         required={required}
         className="peer bg-transparent w-full border-none outline-none focus:outline-none focus:ring-0 focus:shadow-none autofill:bg-transparent [&:-webkit-autofill]:[transition:background-color_9999s_ease-in-out_0s] [&:-webkit-autofill]:[-webkit-text-fill-color:white] px-2"
         placeholder=""

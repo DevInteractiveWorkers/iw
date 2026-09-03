@@ -13,36 +13,41 @@ interface SelectProps
 
 export default function Select({
   placeholder = "Select an option...",
-  required,
+  required = false,
   value: controlledValue,
   onChange,
   children,
   ...props
 }: SelectProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState(controlledValue || "");
+  const [selectedValue, setSelectedValue] = useState(controlledValue ?? "");
   const [selectedLabel, setSelectedLabel] = useState("");
+
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Keep internal state synced with controlled value
+  const options = React.Children.toArray(children).filter(
+    (child) => React.isValidElement(child) && child.type === "option",
+  );
+
+  // Sync controlled value
   useEffect(() => {
-    if (controlledValue !== undefined) {
-      setSelectedValue(controlledValue);
+    if (controlledValue === undefined) return;
 
-      const selectedOption = React.Children.toArray(children).find(
-        (child) =>
-          React.isValidElement(child) &&
-          child.type === "option" &&
-          child.props.value === controlledValue,
-      );
+    setSelectedValue(controlledValue);
 
-      if (React.isValidElement(selectedOption)) {
-        setSelectedLabel(String(selectedOption.props.children));
-      }
+    const selectedOption = options.find(
+      (child) =>
+        React.isValidElement(child) &&
+        String(child.props.value ?? child.props.children ?? "") ===
+          controlledValue,
+    );
+
+    if (React.isValidElement(selectedOption)) {
+      setSelectedLabel(String(selectedOption.props.children ?? ""));
     }
   }, [controlledValue, children]);
 
-  // Close dropdown when clicking outside
+  // Close when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -55,49 +60,35 @@ export default function Select({
 
     document.addEventListener("mousedown", handleClickOutside);
 
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
 
   const handleSelect = (value: string, label: string) => {
     setSelectedValue(value);
     setSelectedLabel(label);
     setIsOpen(false);
+
     onChange?.(value);
   };
-
-  const options = React.Children.toArray(children).filter(
-    (child) => React.isValidElement(child) && child.type === "option",
-  );
 
   return (
     <div
       ref={dropdownRef}
-      className={
-        "py-2 my-2 border-b border-white text-white relative flex items-center justify-between w-full cursor-pointer select-none"
-      }
-      onClick={() => setIsOpen(!isOpen)}
+      className="py-2 my-2 border-b border-white text-white relative flex items-center justify-between w-full cursor-pointer select-none"
+      onClick={() => setIsOpen((prev) => !prev)}
+      aria-required={required}
       {...props}
     >
-      {/* Hidden native input for required validation/form submission */}
-      {required && (
-        <input
-          type="text"
-          name={props.id}
-          required={required}
-          value={selectedValue}
-          onChange={() => {}}
-          tabIndex={-1}
-          aria-hidden="true"
-          className="opacity-0 pointer-events-none"
-        />
-      )}
+      <input type="hidden" name={props.id} value={selectedValue} readOnly />
 
-      {/* Display selection or empty state */}
-      <div className="bg-transparent outline-none w-full absolute">
-        {selectedLabel || ""}
+      {/* Selected value */}
+      <div className="bg-transparent outline-none w-full pointer-events-none">
+        {selectedLabel}
       </div>
 
-      {/* Floating Placeholder */}
+      {/* Placeholder */}
       <span
         className={`absolute pointer-events-none transition-all duration-150 left-0 ${
           isOpen || selectedLabel
@@ -108,7 +99,7 @@ export default function Select({
         {placeholder}
       </span>
 
-      {/* Dropdown Arrow Indicator */}
+      {/* Arrow */}
       <svg
         width="11"
         height="7"
@@ -125,21 +116,23 @@ export default function Select({
         />
       </svg>
 
-      {/* Options Menu Dropdown */}
+      {/* Options */}
       {isOpen && (
         <div className="bg-black border border-white absolute top-full left-0 w-full mt-1 py-1 flex flex-col z-50 shadow-xl rounded-md max-h-60 overflow-y-auto">
-          {options.map((child) => {
+          {options.map((child, index) => {
             if (!React.isValidElement(child)) return null;
 
-            const value = String(child.props.value ?? "");
-            const label =
-              typeof child.props.children === "string"
-                ? child.props.children
-                : String(child.props.children ?? value);
+            // If option has value, use it.
+            // Otherwise use its text as the value.
+            const value = String(
+              child.props.value ?? child.props.children ?? "",
+            );
+
+            const label = String(child.props.children ?? value);
 
             return (
               <button
-                key={value}
+                key={`${value}-${index}`}
                 type="button"
                 className="text-left px-4 py-2 hover:bg-white/20 w-full text-white"
                 onClick={(event) => {
@@ -147,7 +140,7 @@ export default function Select({
                   handleSelect(value, label);
                 }}
               >
-                {child.props.children}
+                {label}
               </button>
             );
           })}

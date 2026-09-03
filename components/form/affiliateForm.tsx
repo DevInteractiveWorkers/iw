@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { smallFormData, sendAffiliateMail } from "../lib/utils";
 import { Button, Select, Textarea, TextInput } from "flowbite-react";
-import CTAButton from "../cta-button";
+import CTAButton from "../buttons/cta-button";
 import Input from "./input";
 
 const AffiliateForm = () => {
@@ -20,10 +20,10 @@ const AffiliateForm = () => {
       email: target.email.value,
     };
 
-    const empty = Object.values(data).filter((item) => {
-      item === "";
-    });
-    const completed = empty.length <= 1 && (await sendAffiliateMail(data));
+    const completed =
+      data.fullName.trim() !== "" &&
+      data.email.trim() !== "" &&
+      (await sendAffiliateMail(data));
 
     if (completed) {
       setIsSending(false);

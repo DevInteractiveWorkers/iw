@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes } from "react";
 import "./cta-button.css";
-import SplitText from "./text-animation/SplitText";
+import SplitText from "../text-animation/SplitText";
 
 export default function CTAButton(
   props: ButtonHTMLAttributes<HTMLButtonElement>,

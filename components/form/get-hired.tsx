@@ -56,7 +56,12 @@ const GetHired = ({
         file: Buffer.from(arrayBuffer),
       };
 
-      const empty = Object.values(data).filter((item) => item === "");
+      // location is optional in the UI (no `required` on its Input), so it's
+      // excluded from the completeness check below.
+      const { location, ...requiredFields } = data;
+      const empty = Object.values(requiredFields).filter(
+        (item) => item === "",
+      );
 
       const completed = empty.length === 0 && (await sendGetHiredMail(data));
 

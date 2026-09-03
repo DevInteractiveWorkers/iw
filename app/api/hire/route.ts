@@ -1,6 +1,7 @@
-import { sendEmail } from "@/app/components/lib/sendEmail";
+// Send Hire Mail
+import { sendEmail } from "@/components/lib/sendEmail";
+import { getCurrentDate } from "@/components/lib/utils";
 import { NextRequest, NextResponse } from "next/server";
-import { getCurrentDate } from "@/app/components/lib/utils";
 
 export async function POST(req: NextRequest): Promise<Response> {
   const data = await req.json();

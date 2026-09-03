@@ -5,14 +5,14 @@ import React, { useState } from "react";
 import { sendMail, formData } from "../lib/utils";
 import Link from "next/link";
 import professionalOptions from "./professionalOptions";
-import Loader from "../loader";
 import Input from "./input";
 import Select from "./select";
 import Textarea from "./textarea";
 import Image from "next/image";
 import FadeInContent from "../FadeInContent";
 import SplitText from "../text-animation/SplitText";
-import { Background } from "@julscodes/blob-background";
+import FormButton from "../buttons/form-buttons";
+import Loader, { LoadingPage } from "../loader";
 
 const MainForm = ({
   heading = (
@@ -30,57 +30,37 @@ const MainForm = ({
   const [sent, isSent] = useState(false);
   const [message, setMessage] = useState("");
 
-  const handleSubmit = async (event: any) => {
-    isSending(true);
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const target = event.target;
+    isSending(true);
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
     const data: formData = {
-      fullName: target.firstname.value + " " + target.lastname.value,
-      company: target.company.value,
-      phone: target.phone.value,
-      email: target.email.value,
-      size: target.size.value,
-      staff: target.staff.value,
-      country: target.country.value,
-      professional: target.professional.value,
-      message: target.message.value,
+      fullName:
+        `${formData.get("firstname") ?? ""} ${formData.get("lastname") ?? ""}`.trim(),
+      company: String(formData.get("company") ?? ""),
+      phone: String(formData.get("phone") ?? ""),
+      email: String(formData.get("email") ?? ""),
+      size: String(formData.get("size") ?? ""),
+      staff: String(formData.get("staff") ?? ""),
+      country: String(formData.get("country") ?? ""),
+      professional: String(formData.get("professional") ?? ""),
+      message: String(formData.get("message") ?? ""),
     };
 
-    /*
-    try {
-      const response = await fetch(
-        "https://services.leadconnectorhq.com/hooks/dtfCxBE6SEYaCMFTlgu5/webhook-trigger/fd180225-d8a8-404d-ad1b-22c8b4e90eb8",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        }
-      );
-    } catch (error) {
-      console.log("error");
-    }
-    */
-
     const empty = Object.values(data).filter((item) => item === "");
+
     const completed = empty.length === 0 && (await sendMail(data));
 
     if (completed) {
       isSending(false);
       isSent(true);
+
       setTimeout(() => isSent(false), 5000);
-      if (message) setMessage("");
-      target.firstname.value = "";
-      target.lastname.value = "";
-      target.company.value = "";
-      target.phone.value = "";
-      target.email.value = "";
-      target.size.value = "";
-      target.staff.value = "";
-      target.country.value = "";
-      target.professional.value = "";
-      target.message.value = "";
+
+      form.reset();
     } else {
       isSending(false);
       setMessage("There was a problem to contact us. Please try again later.");
@@ -90,43 +70,96 @@ const MainForm = ({
   const FormFields = () => (
     <>
       <div className="grid md:grid-cols-2 gap-3">
-        <Input id="firstname" type="text" placeholder="First name" required />
-        <Input id="lastname" type="text" placeholder="Last name" required />
+        <Input
+          id="firstname"
+          name="firstname"
+          type="text"
+          placeholder="First name"
+          autoComplete="given-name"
+          required
+        />
+
+        <Input
+          id="lastname"
+          name="lastname"
+          type="text"
+          placeholder="Last name"
+          autoComplete="family-name"
+          required
+        />
       </div>
-      <Input id="company" type="text" placeholder="Company's Name" required />
+
+      <Input
+        id="company"
+        name="company"
+        type="text"
+        placeholder="Company's Name"
+        autoComplete="organization"
+        required
+      />
+
       <div className="grid md:grid-cols-2 gap-3">
-        <Input id="phone" type="text" placeholder="Phone Number" required />
-        <Input id="email" type="email" placeholder="Email" />
+        <Input
+          id="phone"
+          name="phone"
+          type="tel"
+          placeholder="Phone Number"
+          autoComplete="tel"
+          required
+        />
+
+        <Input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="Email"
+          autoComplete="email"
+          required
+        />
       </div>
+
       <Input
         id="size"
+        name="size"
         type="text"
         placeholder="Your company size (current staff number)"
+        autoComplete="off"
         required
       />
+
       <Input
         id="staff"
+        name="staff"
         type="text"
         placeholder="Number of Staff Required?"
+        autoComplete="off"
         required
       />
+
       <Input
         id="country"
+        name="country"
         type="text"
         placeholder="Which country are you based in?"
+        autoComplete="country-name"
         required
       />
-      <h4 className={`font-medium md:text-2xl text-xl mt-4`}>
+
+      <h4 className="font-medium md:text-2xl text-xl mt-4">
         Choose your Professional
       </h4>
+
       <Select id="professional" required>
         {professionalOptions.map((option, index) => (
           <option key={index}>{option}</option>
         ))}
       </Select>
+
       <Textarea
         id="message"
+        name="message"
         placeholder="What's your question? Or what kind of outsourcing help do you need?"
+        autoComplete="off"
         required
         rows={1}
       />
@@ -144,20 +177,16 @@ const MainForm = ({
         </Label>
       </div>
       {message && <div className="text-iw-red-1 flex">{message}</div>}
-      {sending ? (
-        <div className="w-full flex justify">
-          <div className="w-1/2 flex">
-            <Loader />
-          </div>
-        </div>
-      ) : (
-        <button
-          type="submit"
-          className={`uppercase rounded font-bold text-4xl px-10 py-5 max-w-fit mt-8 ${!sent ? "bg-iw-red-1" : "bg-[#808080] pointer-events-none cursor-not-allowed"} text-white`}
-        >
-          {!sent ? "Send mail" : "Sent"}
-        </button>
-      )}
+
+      <FormButton disabled={sending || sent}>
+        {sending ? (
+          <Loader className="min-w-[2.25rem] min-h-[2.25rem] px-10" />
+        ) : !sent ? (
+          "Send mail"
+        ) : (
+          "Sent"
+        )}
+      </FormButton>
     </>
   );
 
