@@ -36,7 +36,7 @@ export default function PageDivision({ className = "" }: PageDivisionProps) {
     <div
       ref={ref}
       aria-hidden="true"
-      className={`absolute top-0 left-0 h-px w-full overflow-hidden ${className}`}
+      className={`absolute left-0 h-px w-full overflow-hidden ${className}`}
     >
       <div
         className={`h-full w-full origin-left bg-[currentColor] transition-transform duration-1000 ease-out ${

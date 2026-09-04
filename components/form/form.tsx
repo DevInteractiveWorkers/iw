@@ -194,7 +194,7 @@ const MainForm = ({
   return (
     <FadeInContent>
       <section className="grid md:grid-cols-[auto_auto] md:pt-20 py-10">
-        <PageDivision />
+        <PageDivision className="top-0" />
         <FadeInContent>
           {(heading || subheading) && (
             <Image
