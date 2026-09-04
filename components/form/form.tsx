@@ -13,6 +13,7 @@ import FadeInContent from "../FadeInContent";
 import SplitText from "../text-animation/SplitText";
 import FormButton from "../buttons/form-buttons";
 import Loader, { LoadingPage } from "../loader";
+import PageDivision from "../page-division";
 
 const MainForm = ({
   heading = (
@@ -192,7 +193,8 @@ const MainForm = ({
 
   return (
     <FadeInContent>
-      <section className="grid md:grid-cols-[auto_auto] border-t md:pt-20 py-10">
+      <section className="grid md:grid-cols-[auto_auto] md:pt-20 py-10">
+        <PageDivision />
         <FadeInContent>
           {(heading || subheading) && (
             <Image
