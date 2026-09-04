@@ -6,37 +6,23 @@ import Switch from "@/components/switch";
 import Ticket from "@/components/pricing/ticket";
 import Image from "next/image";
 import Link from "next/link";
+import PageHero from "@/components/page-hero";
 
 export default function PricingPage() {
   return (
     <section id="pricing">
       <NavbarComponent />
-
-      <article className="flex flex-col py-10">
-        <FlipElement className="w-1/4 max-w-[150px] pb-10">
-          <Image
-            width={1080}
-            height={1080}
-            alt="logo"
-            src="/logo/03_Logo_Mark/03_Logo_Mark-01.png"
-          />
-        </FlipElement>
-
-        <h1
-          className="
-            text-[clamp(2rem,4vw,3.75rem)]
-            leading-[1.05]
-            pb-6
-          "
-        >
-          Our Specialized Productized
-          <br />
-          Packages are a versatile solution
-          <br />
-          for any business
-        </h1>
-      </article>
-
+      <PageHero
+        heading={
+          <>
+            Our Specialized Productized
+            <br />
+            Packages are a versatile solution
+            <br />
+            for any business
+          </>
+        }
+      />
       <article className="flex flex-col border-t pb-20">
         <div className="flex justify-end py-6">
           <div className="flex gap-4 sm:gap-6 justify-center items-center">

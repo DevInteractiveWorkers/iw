@@ -8,6 +8,7 @@ import Folder from "@/components/folder";
 import FlipElement from "@/components/flip-element";
 import FadeInContent from "@/components/FadeInContent";
 import SplitText from "@/components/text-animation/SplitText";
+import PageHero from "@/components/page-hero";
 
 const Dispatch = () => {
   const tags = [
@@ -40,45 +41,23 @@ const Dispatch = () => {
   return (
     <section>
       <NavbarComponent></NavbarComponent>
-      <article className="flex flex-col py-10">
-        <FlipElement className="w-1/4 max-w-[150px] pb-10">
-          <Image
-            width={1080}
-            height={1080}
-            alt="logo"
-            src="/logo/03_Logo_Mark/03_Logo_Mark-01.png"
-          />
-        </FlipElement>
-        <SplitText
-          tag="h1"
-          className="
-            text-[clamp(2rem,4vw,3.75rem)]
-            leading-[1.05]
-            pb-6
-          "
-          textAlign="start"
-          text={
-            <>
-              24/7 Remote Dispatch
-              <br /> for Every Operation,
-              <br /> Ready to Deploy
-            </>
-          }
-        />
-        <div className="flex justify-end">
-          <SplitText
-            className="text-xl md:w-2/3 lg:w-1/3"
-            textAlign="start"
-            text={
-              <>
-                Boost response times, reduce overtime, and scale operations with
-                trained virtual dispatchers and schedulers for private security
-                companies.
-              </>
-            }
-          />
-        </div>
-      </article>
+
+      <PageHero
+        heading={
+          <>
+            24/7 Remote Dispatch
+            <br /> for Every Operation,
+            <br /> Ready to Deploy
+          </>
+        }
+        description={
+          <>
+            Boost response times, reduce overtime, and scale operations with
+            trained virtual dispatchers and schedulers for private security
+            companies.
+          </>
+        }
+      />
       <article
         className="w-full"
         style={{

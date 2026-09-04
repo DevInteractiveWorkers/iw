@@ -17,7 +17,7 @@ export default function ProductCard({
     <div
       className={`flex flex-col relative transition-all duration-200 ${
         disableHover ? "" : "hover:scale-105"
-      } shadow-[inset_0_0_50px_rgb(221_39_45_/_0.1)]`}
+      } shadow-[inset_0_0_50px_rgb(221_39_45_/_0.1)] rounded`}
       style={style}
     >
       <div className="absolute w-full h-full -z-10">
