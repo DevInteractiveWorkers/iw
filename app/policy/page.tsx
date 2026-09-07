@@ -4,7 +4,7 @@ import NavbarComponent from "@/components/navbar";
 const PolicyPage = () => {
   return (
     <div className="bg-iw-red-3 pb-8 md:pb-24">
-      <NavbarComponent></NavbarComponent>
+      <NavbarComponent />
       <section className="text-white w-3/4 mx-auto py-8 policy">
         <div>
           <div>

@@ -6,7 +6,7 @@ export default function NotFound() {
   return (
     <section className="h-screen relative flex justify-center items-center">
       <div className="w-full absolute top-0">
-        <NavbarComponent dark={true} />
+        <NavbarComponent />
       </div>
       <div className="absolute flex flex-col items-center">
         <Link href={"/"}>

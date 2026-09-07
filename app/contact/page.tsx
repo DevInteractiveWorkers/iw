@@ -8,7 +8,7 @@ import PageHero from "@/components/page-hero";
 const ContactUs = () => {
   return (
     <main className="flex flex-col min-h-screen text-white">
-      <NavbarComponent></NavbarComponent>
+      <NavbarComponent />
       <section>
         <PageHero
           heading={
