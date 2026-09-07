@@ -22,8 +22,11 @@ export default function Question({
 }: QuestionProps) {
   const contentId = `question-content-${index}`;
 
+  // Formats numbers like 1 -> "01", 9 -> "09", 10 -> "10"
+  const formattedIndex = String(index).padStart(2, "0");
+
   return (
-    <div className="w-full border-b-2 border-[#333333]">
+    <div className="w-full border-b border-white">
       <button
         type="button"
         onClick={onClick}
@@ -38,16 +41,8 @@ export default function Question({
       >
         {/* Question header */}
         <div className="flex items-center justify-between gap-6">
-          <h4
-            className="
-              text-lg
-              md:text-xl
-              font-semibold
-              p-2
-              md:px-8
-              flex-1
-            "
-          >
+          <span>{formattedIndex}</span>
+          <h4 className="text-lg md:text-xl font-medium p-2 flex-1">
             {item.question}
           </h4>
 
@@ -91,7 +86,7 @@ export default function Question({
             >
               <path
                 fill="currentColor"
-                d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z"
+                d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s-14.3-32-32-32l352 0c17.7 0 32 14.3 32 32z"
               />
             </svg>
           </div>

@@ -50,7 +50,7 @@ const AffiliatePage = () => {
               </FadeInContent>
             ))}
           </div>
-          <div className="grid grid-cols-2 py-4">
+          <div className="grid grid-cols-2 py-4 pt-6">
             <h2 className="text-[clamp(2rem,4vw,3.75rem)] leading-[1.05] pb-6">
               Why partner
               <br />
@@ -80,7 +80,7 @@ const AffiliatePage = () => {
           <div className="flex justify-end">
             <PageDivision />
             <SplitText
-              className="text-xl md:w-2/3 lg:w-1/3"
+              className="text-xl md:w-2/3 lg:w-1/3 pt-4"
               textAlign="end"
               text={
                 <>
@@ -92,8 +92,8 @@ const AffiliatePage = () => {
           </div>
         </article>
       </section>
-      <AffiliateForm></AffiliateForm>
-      <AffiliatesFAQ></AffiliatesFAQ>
+      <AffiliatesFAQ />
+      <AffiliateForm />
     </div>
   );
 };
