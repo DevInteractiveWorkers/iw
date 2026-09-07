@@ -8,7 +8,7 @@ import { ParticlesComponent } from "@/components/particles";
 const VAs = () => {
   return (
     <div>
-      <NavbarComponent></NavbarComponent>
+      <NavbarComponent />
       <section>
         <article className="banner-va flex flex-col md:flex-row items-center justify-center py-8 md:pb-4 max-w-full overflow-hidden">
           <div className="text-white basis-1/3 py-4 md:py-0">
