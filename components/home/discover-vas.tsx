@@ -33,7 +33,7 @@ const DiscoverVAs = () => {
         </FadeInContent>
         <SplitText
           delay={100}
-          className="font-light lg:text-5xl text-base z-40 text-center leading-none pt-14 pb-4"
+          className="font-light lg:text-5xl text-base text-center leading-none pt-14 pb-4"
           text={"Specialized Productized Packages"}
         />
         <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-6 justify-between my-4 md:my-32">

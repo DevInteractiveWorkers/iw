@@ -6,7 +6,7 @@ import { navbar } from "@/app/content/navbar";
 
 const Footer = () => {
   return (
-    <footer className="text-white text-sm w-full bg-iw-red-2 pt-8 lg:px-20 sm:px-10 px-4 md:rounded-t-xl rounded-t-md grid grid-cols-1 md:gap-2 gap-4">
+    <footer className="text-white text-sm w-full bg-iw-red-2 pt-8 lg:px-20 sm:px-10 px-4 md:rounded-t-xl rounded-t-md grid grid-cols-1 md:gap-2 gap-4 z-[1000] sticky">
       <div className="flex flex-col md:flex-row gap-3 md:gap-0 justify-between items-center pb-10 border-b border-b-white">
         <Link href="/">
           <Image
