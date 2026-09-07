@@ -65,7 +65,7 @@ const VAs = () => {
         </div>
         <Teams></Teams>
       </section>
-      <MainForm dark={true}></MainForm>
+      <MainForm />
     </div>
   );
 };
