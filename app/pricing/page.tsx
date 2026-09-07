@@ -1,14 +1,17 @@
-import FlipElement from "@/components/flip-element";
+"use client";
+
 import MainForm from "@/components/form/form";
 import NavbarComponent from "@/components/navbar";
 import ProductCard from "@/components/product-card";
 import Switch from "@/components/switch";
 import Ticket from "@/components/pricing/ticket";
-import Image from "next/image";
 import Link from "next/link";
 import PageHero from "@/components/page-hero";
+import { useIsMobile } from "@/lib/useMobile";
 
 export default function PricingPage() {
+  const isMobile = useIsMobile();
+
   return (
     <section id="pricing">
       <NavbarComponent />
@@ -32,7 +35,8 @@ export default function PricingPage() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-[auto_65%] lg:grid-cols-[auto_80%] gap-6">
+        <div className="grid md:grid-cols-[auto_65%] lg:grid-cols-[auto_80%] gap-6 items-stretch">
+          {/* LEFT */}
           <aside className="h-full">
             <ProductCard
               className="p-6 h-full"
@@ -61,43 +65,41 @@ export default function PricingPage() {
             </ProductCard>
           </aside>
 
-          <div className="grid grid-cols-1 gap-6 pb-6">
-            {/* Custom */}
-            <div className="grid md:grid-cols-[70%_auto] grid-cols-1">
-              <ProductCard
-                className="p-6 min-h-25 flex flex-col gap-10 max-md:overflow-hidden"
-                disableHover
-              >
-                <Arrow className="max-md:hidden" />
-                <div className="grid md:grid-cols-[60%_auto] grid-cols-1">
-                  <div className="flex items-baseline gap-2 flex-wrap">
-                    <h2 className="text-[clamp(3.5rem,5vw,6rem)] leading-none pb-2">
-                      Start with
-                      <br /> ONE-WEEK
-                      <br /> FREE
-                    </h2>
-                  </div>
-                  <div className="flex justify-end">
-                    <Ticket />
-                  </div>
-                </div>
-                <Arrow />
-              </ProductCard>
-            </div>
-            {/* Custom */}
+          {/* RIGHT */}
+          <div className="grid grid-rows-2 gap-6 min-h-0">
+            {/* ONE-WEEK */}
             <ProductCard
-              className="p-6 grid grid-cols-1 items-end h-full min-h-25"
+              className="p-6 flex flex-col gap-10 h-full min-h-0 max-md:overflow-hidden"
+              style={{ width: isMobile ? "100%" : "70%" }}
+              disableHover
+            >
+              <Arrow className="max-md:hidden" />
+
+              <div className="grid md:grid-cols-[60%_auto] grid-cols-1 flex-1">
+                <div className="flex items-baseline gap-2 flex-wrap">
+                  <h2 className="text-[clamp(3.5rem,5vw,6rem)] leading-none pb-2">
+                    Start with
+                    <br /> ONE-WEEK
+                    <br /> FREE
+                  </h2>
+                </div>
+
+                <div className="flex justify-end">
+                  <Ticket />
+                </div>
+              </div>
+
+              <Arrow />
+            </ProductCard>
+
+            {/* CUSTOM */}
+            <ProductCard
+              className="p-6 grid grid-cols-1 items-end h-full min-h-0"
               disableHover
             >
               <div className="h-full md:w-1/2">
                 <div className="flex items-baseline gap-2 flex-wrap">
-                  <h2
-                    className="
-                      text-[clamp(2rem,5vw,3.75rem)]
-                      leading-none
-                      pb-2
-                    "
-                  >
+                  <h2 className="text-[clamp(2rem,5vw,3.75rem)] leading-none pb-2">
                     Custom
                   </h2>
 
@@ -119,10 +121,9 @@ export default function PricingPage() {
 
               <div className="flex w-full justify-end">
                 <Link
-                  href={"https://calendly.com/interactiveworkersgm/30min"}
+                  href="https://calendly.com/interactiveworkersgm/30min"
                   target="_blank"
-                  className="px-8 py-4 flex items-center justify-center bg-black rounded h-max underline md:w-1/2 hover:scale-95 active:bg-white active:text-iw-red-1
-                transition-all duration-150"
+                  className="px-8 py-4 flex items-center justify-center bg-black rounded h-max underline md:w-1/2 hover:scale-95 active:bg-white active:text-iw-red-1 transition-all duration-150"
                 >
                   Book Your Free 15-Minute Discovery Call
                 </Link>
@@ -130,12 +131,7 @@ export default function PricingPage() {
             </ProductCard>
           </div>
         </div>
-        <h6
-          className="
-            text-[clamp(2rem,4vw,3.75rem)]
-            leading-[1.05]
-          "
-        >
+        <h6 className="text-[clamp(2rem,4vw,3.75rem)] leading-[1.05] pt-10">
           More quality less overload with the right support
         </h6>
       </article>
