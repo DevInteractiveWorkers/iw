@@ -1,72 +1,41 @@
 import React from "react";
-import NavbarComponent from "../components/navbar";
-import MainForm from "../components/form/form";
-import Image from "next/image";
-import Socials from "../components/footer/socials";
-import GetHired from "../components/form/get-hired";
-import { ParticlesComponent } from "../components/particles";
+import NavbarComponent from "@/components/navbar";
+import MainForm from "@/components/form/form";
+import GetHired from "@/components/form/get-hired";
+import SplitText from "@/components/text-animation/SplitText";
+import PageHero from "@/components/page-hero";
 
 const ContactUs = () => {
   return (
-    <div className="bg-iw-red-3 pb-8 md:pb-24">
+    <main className="flex flex-col min-h-screen text-white">
       <NavbarComponent></NavbarComponent>
-      <section className="">
-        <h1 className="text-4xl uppercase text-white font-extrabold my-12 mx-auto w-fit md:ml-24">
-          Contact Us
-        </h1>
-        <article className="flex flex-col md:flex-row w-11/12 bg-white rounded-r-[66px]">
-          <MainForm dark={2}></MainForm>
-          <div className="basis-2/6 flex flex-col justify-center text-center items-center text-lg pb-8 md:pb-0 relative">
-            <ParticlesComponent
-              id="contact-us-particles"
-              color="#3A3A3A"
-              className="opacity-15"
-            />
-            <div className="z-10">
-              <Image
-                className="-mb-12"
-                src={"/contact/interactive-worker.png"}
-                alt="Interactive worker"
-                width={302}
-                height={387}
-              ></Image>
-              <h2 className="font-black text-4xl text-[#820707] uppercase">
-                Info
-              </h2>
-              <div className="mt-4 text-xl font-medium">
-                {" "}
-                <Image
-                  className="inline mr-1"
-                  src={"/contact/phone.svg"}
-                  alt="Interactive Email"
-                  width={17}
-                  height={15}
-                ></Image>{" "}
-                <span>+1 332-206-2891</span>
-              </div>
-              <div className="text-xl font-medium">
-                {" "}
-                <Image
-                  className="inline mr-1"
-                  src={"/contact/email.svg"}
-                  alt="Interactive Email"
-                  width={18}
-                  height={15}
-                ></Image>{" "}
-                <span>info@interactiveworkers.com</span>
-              </div>
-              <h3 className="font-bold mt-4 text-[#333333]">
-                @interactiveworkers
-              </h3>
-              <Socials className="mt-8 justify-center md:justify-start"></Socials>
-            </div>
-          </div>
+      <section>
+        <PageHero
+          heading={
+            <span className="text-[clamp(4rem,4vw,7rem)] font-medium leading-[1.05] pb-6">
+              Get in touch
+            </span>
+          }
+          description={
+            <>
+              Feel free to contact us anytime! Have a project in mind? Reach out
+              to us, and we'll discuss the best way to move forward.
+            </>
+          }
+        />
+        <article>
+          <MainForm heading={false} subheading={false} />
         </article>
-        <article className="w-full md:w-3/4 mx-auto mt-8 bg-white rounded-[66px]">
-          <GetHired></GetHired>
+        <article>
+          <SplitText
+            className="md:text-5xl text-xl py-4"
+            textAlign="start"
+            text={"Do you want to joint our team?"}
+          />
+          <GetHired heading={false} subheading={false} />
         </article>
       </section>
-    </div>
+    </main>
   );
 };
 

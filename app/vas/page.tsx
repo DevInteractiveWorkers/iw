@@ -1,15 +1,14 @@
 import React from "react";
-import NavbarComponent from "../components/navbar";
+import NavbarComponent from "@/components/navbar";
 import Image from "next/image";
-import Features from "./../components/vas/features";
-import MainForm from "../components/form/form";
-import Teams from "../components/vas/teams";
-import { ParticlesComponent } from "../components/particles";
+import MainForm from "@/components/form/form";
+import Teams from "@/components/vas/teams";
+import { ParticlesComponent } from "@/components/particles";
 
 const VAs = () => {
   return (
     <div>
-      <NavbarComponent dark={true}></NavbarComponent>
+      <NavbarComponent></NavbarComponent>
       <section>
         <article className="banner-va flex flex-col md:flex-row items-center justify-center py-8 md:pb-4 max-w-full overflow-hidden">
           <div className="text-white basis-1/3 py-4 md:py-0">
@@ -64,7 +63,6 @@ const VAs = () => {
             ></ParticlesComponent>
           </div>
         </div>
-        <Features></Features>
         <Teams></Teams>
       </section>
       <MainForm dark={true}></MainForm>

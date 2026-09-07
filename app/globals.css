@@ -6,17 +6,32 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --iw-primary-red: #dd272d;
+  --iw-secondary-red: #c1272d;
+  --iw-tertiary-red: #800202;
 }
 
-/* body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+:root {
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ffffff;
+  }
 } */
+
+*::selection {
+  background-color: rgb(221, 39, 45, 0.8);
+  color: white;
+}
 
 @layer utilities {
   .text-balance {
@@ -24,6 +39,13 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  scroll-margin-top: 2.5rem;
+}
 .glass {
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
@@ -116,4 +138,43 @@
 
 .policy ul {
   list-style-type: disc;
+}
+
+.corner-scoop {
+  corner-shape: scoop;
+}
+
+.flip-item {
+  display: inline-block;
+}
+
+.flip-once {
+  animation: flip-scale 1.2s ease-in-out forwards;
+}
+
+/* .animate-flip, */
+.group svg:hover.animate-flip.heart {
+  animation: flip-scale 1.2s ease-in-out infinite;
+}
+
+@keyframes flip-scale {
+  0% {
+    transform: scale(1) scaleX(1);
+  }
+  50% {
+    transform: scale(1.5) scaleX(-1);
+  }
+  100% {
+    transform: scale(1) scaleX(1);
+  }
+}
+
+/* scrollbar */
+
+* {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }

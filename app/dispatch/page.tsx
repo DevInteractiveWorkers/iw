@@ -1,46 +1,167 @@
 import Image from "next/image";
 import React from "react";
-import NavbarComponent from "../components/navbar";
-import DispatchAccordions from "../components/dispatch/accordions";
-import MainForm from "../components/form/form";
-import { ParticlesComponent } from "../components/particles";
+import NavbarComponent from "@/components/navbar";
+import MainForm from "@/components/form/form";
+import VACard from "@/components/vas/cards";
+import Carousel from "@/components/home/reviews/carousel";
+import Folder from "@/components/folder";
+import FlipElement from "@/components/flip-element";
+import FadeInContent from "@/components/FadeInContent";
+import SplitText from "@/components/text-animation/SplitText";
+import PageHero from "@/components/page-hero";
 
 const Dispatch = () => {
+  const tags = [
+    "Trained in Confidentiality and Security Protocols",
+    "24/7 Adaptability",
+    "Proactive Communication",
+    "Bilingual English/Spanish",
+    "Trained in Confidentiality and",
+  ];
+
+  const dispatchers = [
+    {
+      content: "24/7 Inbound Call & Emergency Dispatch Unit",
+      imageSrc: "/home/discover-vas/vas/0.png",
+    },
+    {
+      content: "Tier-1 Helpdesk & Ticket Triage Team",
+      imageSrc: "/home/discover-vas/vas/2.png",
+    },
+    {
+      content: "Executive Operational Assistant",
+      imageSrc: "/home/discover-vas/vas/3.png",
+    },
+    {
+      content: "Outbound Cold Call & Lead Qualification Desk",
+      imageSrc: "/home/discover-vas/vas/1.png",
+    },
+  ];
+
   return (
-    <div>
+    <section>
       <NavbarComponent></NavbarComponent>
-      <article className="banner-dispatch flex flex-col md:flex-row items-center justify-center py-8 md:pb-4 max-w-full overflow-hidden">
-        <div className="basis-1/3 py-4 md:py-0"></div>
-        <div className="lg:absolute left-[15%] z-40 text-white">
-          <h1 className="text-3xl md:text-6xl font-black ml-2 mb-4">
-            DISPATCH <br /> SOLUTIONS
-          </h1>
-          <h2 className="text-xl md:text-3xl font-normal py-1 px-2 bg-iw-red-1">
-            24/7 surveillance for your business.
-          </h2>
-          <h3 className="text-xl md:text-3xl font-normal w-fit py-1 px-2 my-1 bg-iw-red-1">
-            Prevention is always key!
-          </h3>
-        </div>
-        <Image
-          className="w-full md:basis-2/5 md:max-w-[45%]"
-          src={"/dispatch/banner-0.png"}
-          alt="Dispatch's Interactive Banner"
-          width={743}
-          height={485}
-        ></Image>
+
+      <PageHero
+        heading={
+          <>
+            24/7 Remote Dispatch
+            <br /> for Every Operation,
+            <br /> Ready to Deploy
+          </>
+        }
+        description={
+          <>
+            Boost response times, reduce overtime, and scale operations with
+            trained virtual dispatchers and schedulers for private security
+            companies.
+          </>
+        }
+      />
+      <article
+        className="w-full"
+        style={{
+          maskImage:
+            "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)",
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)",
+        }}
+      >
+        <Carousel
+          autoscroll
+          iteration="once"
+          autoscrollMode="on-going"
+          controls={false}
+        >
+          {dispatchers.map((dispatcher, i) => (
+            <FadeInContent key={i} delay={i * 0.2}>
+              <VACarouselCard imageSrc={dispatcher.imageSrc}>
+                {dispatcher.content}
+              </VACarouselCard>
+            </FadeInContent>
+          ))}
+        </Carousel>
       </article>
-      <div className="bg-[#181621] py-16 md:py-24 relative">
-        <ParticlesComponent
-          id="dispatch-particle"
-          className="opacity-15"
-        ></ParticlesComponent>
-        <section className="flex flex-col gap-8 w-5/6 mx-auto">
-          <DispatchAccordions></DispatchAccordions>
-        </section>
-      </div>
-      <MainForm dark={false}></MainForm>
-    </div>
+      <article className="py-10">
+        <Carousel
+          autoscroll
+          iteration="once"
+          autoscrollMode="on-going"
+          // reverseScroll
+          controls={false}
+        >
+          {tags.map((tag, i) => (
+            <div
+              key={i}
+              className="flex items-center gap-4 whitespace-nowrap px-2"
+            >
+              <span>{tag}</span>
+              <span aria-hidden="true">•</span>
+            </div>
+          ))}
+        </Carousel>
+      </article>
+      <article className="py-10 flex flex-col gap-10">
+        <SplitText
+          className="text-6xl"
+          textAlign="start"
+          text={
+            <>
+              Our Support = More Solutions
+              <br />
+              We Cover Every Shift
+            </>
+          }
+        />
+        <FadeInContent>
+          <Folder
+            items={[
+              {
+                title: "24/7 Call Handling",
+                text: "Scale coverage instantly with bilingual, security-trained VAs who handle calls, dispatch, and scheduling around the clock.",
+                src: "/dispatch/1.png",
+                imagePosition: { objectPosition: "center right" },
+              },
+              {
+                title: "Instant Guard Deployment Remote Support",
+                text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate quaerat, quia autem voluptatem mollitia ab, tenetur assumenda fugiat, hic sunt veritatis illo. Nemo animi vel voluptates! Doloribus officiis omnis nulla.",
+                src: "/security.png",
+                imagePosition: { objectPosition: "30% center" },
+              },
+              {
+                title: "Accurate Shift Scheduling",
+                text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate quaerat, quia autem voluptatem mollitia ab, tenetur assumenda fugiat, hic sunt veritatis illo. Nemo animi vel voluptates! Doloribus officiis omnis nulla.",
+                src: "/top-view.png",
+                imagePosition: { objectPosition: "center bottom" },
+              },
+              {
+                title: "Seamless Communication",
+                text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate quaerat, quia autem voluptatem mollitia ab, tenetur assumenda fugiat, hic sunt veritatis illo. Nemo animi vel voluptates! Doloribus officiis omnis nulla.",
+                src: "/welcome-our-team-young-modern-man-wear-shaking-hands-while-working-creative-office 1.png",
+              },
+            ]}
+          />
+        </FadeInContent>
+      </article>
+      <MainForm />
+    </section>
+  );
+};
+
+const VACarouselCard = ({
+  imageSrc,
+  children,
+}: {
+  imageSrc: string;
+  children: React.ReactNode;
+}) => {
+  return (
+    <VACard
+      imageSrc={imageSrc}
+      style={{ maxWidth: 400, marginTop: "25%", height: 500 }}
+    >
+      {children}
+    </VACard>
   );
 };
 

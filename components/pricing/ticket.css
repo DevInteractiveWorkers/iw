@@ -1,0 +1,327 @@
+.container-cards-ticket {
+  position: relative;
+  z-index: 20;
+}
+
+/* =========================
+   BACKDROP
+   ========================= */
+
+.ticket-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 15;
+
+  background: rgba(0, 0, 0, 0);
+
+  backdrop-filter: blur(0);
+  -webkit-backdrop-filter: blur(0);
+
+  pointer-events: none;
+
+  transition:
+    background 0.6s ease,
+    backdrop-filter 0.6s ease,
+    -webkit-backdrop-filter 0.6s ease;
+}
+
+.ticket-backdrop-open {
+  background: rgba(0, 0, 0, 0.55);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  pointer-events: auto;
+}
+
+/* =========================
+   TICKET
+   ========================= */
+
+.card-ticket {
+  position: relative;
+
+  display: grid;
+
+  transform-style: preserve-3d;
+
+  border-radius: 1rem;
+
+  transition:
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    width 0.8s ease,
+    height 0.8s ease,
+    scale 0.4s ease;
+
+  z-index: 20;
+
+  animation: animation-card 10s infinite;
+}
+
+/* Pause floating animation when interacting */
+.card-ticket:hover {
+  animation-play-state: paused;
+  scale: 0.95;
+}
+
+/* =========================
+   NORMAL HOVER
+   ========================= */
+
+.card-ticket:hover .ticket-front,
+.card-ticket.card-ticket-open .ticket-front {
+  transform: rotate(-2deg);
+}
+
+.card-ticket:hover .ticket-back,
+.card-ticket.card-ticket-open .ticket-back {
+  transform: rotate(7deg);
+}
+
+/* =========================
+   PINNED / OPEN STATE
+   (applied while the ticket is position: fixed and under JS control)
+   ========================= */
+
+.card-ticket-open {
+  z-index: 31;
+  pointer-events: auto;
+  animation: none;
+  transform-style: preserve-3d;
+}
+
+/* Disable normal hover rotations while pinned */
+.card-ticket-open:hover .ticket-front,
+.card-ticket-open:hover .ticket-back {
+  transform: none;
+}
+
+/* =========================
+   FRONT / BACK FACES
+   ========================= */
+
+.ticket-front,
+.ticket-back {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.ticket-front {
+  transform: rotateY(0deg);
+}
+
+.ticket-back {
+  transform: rotateY(0deg);
+}
+
+/* =========================
+   REVEALED CONTENT
+   ========================= */
+
+.ticket-reveal {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+
+  transform: rotateY(180deg);
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+
+  pointer-events: none;
+}
+
+.card-ticket-open .ticket-reveal {
+  pointer-events: auto;
+}
+
+.ticket-reveal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 2rem;
+
+  width: 100%;
+  height: 100%;
+
+  color: #111;
+}
+
+/* =========================
+   CLOSE
+   ========================= */
+
+.ticket-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9999px;
+
+  background: #111;
+  color: white;
+
+  font-size: 28px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.ticket-close:hover {
+  transform: rotate(90deg);
+}
+
+/* =========================
+   SHINE
+   ========================= */
+
+.ticket-front {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.ticket-front::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: -100px;
+  width: 80px;
+  height: 140%;
+
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0)
+  );
+
+  transform: translateX(-150px) rotate(20deg);
+  filter: blur(10px);
+  pointer-events: none;
+  z-index: 5;
+
+  animation: light-ticket 10s infinite;
+}
+
+.ticket-back {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.ticket-back::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: -100px;
+  width: 80px;
+  height: 140%;
+
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.9),
+    rgba(255, 255, 255, 0)
+  );
+
+  transform: translateX(-150px) rotate(20deg);
+  filter: blur(10px);
+  pointer-events: none;
+  z-index: 2;
+
+  animation: light-barcode 10s infinite;
+}
+
+/* =========================
+   FLOATING ANIMATION
+   perspective(1200px) is baked into the transform here instead of
+   living as a `perspective` property on an ancestor, so it never
+   turns that ancestor into a containing block for fixed descendants.
+   ========================= */
+
+@keyframes animation-card {
+  0% {
+    transform: perspective(1200px) translateZ(0) rotateY(0deg);
+  }
+  25% {
+    transform: perspective(1200px) translateX(-10px) rotateY(-8deg);
+  }
+  50% {
+    transform: perspective(1200px) translateZ(0) rotateY(0deg);
+  }
+  75% {
+    transform: perspective(1200px) translateX(10px) rotateY(8deg);
+  }
+  100% {
+    transform: perspective(1200px) translateZ(0) rotateY(0deg);
+  }
+}
+
+/* =========================
+   LIGHT
+   ========================= */
+
+@keyframes light-ticket {
+  0%,
+  20% {
+    transform: translateX(-150px) rotate(20deg);
+  }
+  45% {
+    transform: translateX(450px) rotate(20deg);
+  }
+  65%,
+  100% {
+    transform: translateX(-150px) rotate(20deg);
+  }
+}
+
+@keyframes light-barcode {
+  0%,
+  35% {
+    transform: translateX(-150px) rotate(20deg);
+  }
+  60% {
+    transform: translateX(350px) rotate(20deg);
+  }
+  75%,
+  100% {
+    transform: translateX(-150px) rotate(20deg);
+  }
+}
+
+/* =========================
+   REDUCED MOTION
+   ========================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .card-ticket,
+  .ticket-front::before,
+  .ticket-back::before {
+    animation: none;
+  }
+
+  .card-ticket {
+    transition: none;
+  }
+}

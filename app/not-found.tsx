@@ -1,5 +1,5 @@
 import Image from "next/image";
-import NavbarComponent from "./components/navbar";
+import NavbarComponent from "@/components/navbar";
 import Link from "next/link";
 
 export default function NotFound() {
