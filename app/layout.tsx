@@ -32,7 +32,7 @@ export default function RootLayout({
       >
         <AppLoader>
           <IWBg />
-          <div className="px-[clamp(16px,8vw,80px)] -z-10">{children}</div>
+          <div className="px-[clamp(1rem,8vw,50rem)] -z-10">{children}</div>
           <Blured />
           <Analytics></Analytics>
           <Script id="tawk" strategy="lazyOnload">
