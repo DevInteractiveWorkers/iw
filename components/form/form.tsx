@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Checkbox, Label } from "flowbite-react";
+import { Label } from "flowbite-react";
 import React, { useState } from "react";
 import { sendMail, formData } from "../lib/utils";
 import Link from "next/link";
@@ -14,6 +14,7 @@ import SplitText from "../text-animation/SplitText";
 import FormButton from "../buttons/form-buttons";
 import Loader, { LoadingPage } from "../loader";
 import PageDivision from "../page-division";
+import Checkbox from "./checkbox";
 
 const MainForm = ({
   heading = (
@@ -169,10 +170,11 @@ const MainForm = ({
         <br /> Reply STOP to opt-out of messaging.
       </p>
       <div className="flex items-center gap-2">
-        <Checkbox id="agree" required className="text-iw-red-1" />
-        <Label htmlFor="agree" className={`flex text-white`}>
+        <Checkbox id="agree" name="agree" required />
+
+        <Label htmlFor="agree" className="flex text-white">
           I agree with the&nbsp;
-          <Link href="/policy" className="text-iw-red-1 hover:underline ">
+          <Link href="/policy" className="text-iw-red-1 hover:underline">
             Privacy Policy
           </Link>
         </Label>
