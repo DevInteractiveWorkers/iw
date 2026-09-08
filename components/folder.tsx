@@ -141,12 +141,12 @@ export default function Folder({ items }: { items: FolderItem[] }) {
               alt={item.title}
               src={item.src}
               className={`
-                pointer-events-none
-                absolute
-                inset-0
-                w-full
-                h-full
-                object-cover
+              pointer-events-none
+              absolute
+              inset-0
+              w-full
+              h-full
+              object-cover
                 ${activeItem === item ? "opacity-100" : "opacity-0"}
                 transition-all duration-300
                 `}

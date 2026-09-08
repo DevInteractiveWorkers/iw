@@ -74,7 +74,7 @@ const Dispatch = () => {
           controls={false}
         >
           {dispatchers.map((dispatcher, i) => (
-            <FadeInContent key={i} delay={i * 0.2}>
+            <FadeInContent key={i} delay={i * 0.2} className="my-10">
               <VACarouselCard imageSrc={dispatcher.imageSrc}>
                 {dispatcher.content}
               </VACarouselCard>
@@ -82,12 +82,21 @@ const Dispatch = () => {
           ))}
         </Carousel>
       </article>
-      <article className="py-10">
+      <article
+        className="py-10"
+        style={{
+          maskImage:
+            "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)",
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)",
+        }}
+      >
         <Carousel
           autoscroll
           iteration="once"
           autoscrollMode="on-going"
-          // reverseScroll
+          reverseScroll
+          stopOnHover={false}
           controls={false}
         >
           {tags.map((tag, i) => (
@@ -113,7 +122,7 @@ const Dispatch = () => {
             </>
           }
         />
-        <FadeInContent>
+        <FadeInContent className="md:px-[clamp(1rem,8vw,50rem)]">
           <Folder
             items={[
               {
