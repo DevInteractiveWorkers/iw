@@ -21,27 +21,27 @@ const whyUs: AffiliateCardProps[] = [
 
 const AffiliatePage = () => {
   return (
-    <div className="relative overflow-x-hidden">
-      <NavbarComponent />
-      <PageHero
-        heading={
-          <>
-            Join the InteractiveWorkers
-            <br />
-            affiliate program!
-          </>
-        }
-        description={
-          <>
-            At InteractiveWorkers, we connect startups and small businesses with
-            top-tier remote talent. Now, with the launch of our Affiliate
-            Program, you have the opportunity to partner with us and boost your
-            earnings while helping companies grow with our trusted virtual
-            staffing solutions.
-          </>
-        }
-      />
+    <>
       <section className="w-full px-2 z-10">
+        <NavbarComponent />
+        <PageHero
+          heading={
+            <>
+              Join the InteractiveWorkers
+              <br />
+              affiliate program!
+            </>
+          }
+          description={
+            <>
+              At InteractiveWorkers, we connect startups and small businesses
+              with top-tier remote talent. Now, with the launch of our Affiliate
+              Program, you have the opportunity to partner with us and boost
+              your earnings while helping companies grow with our trusted
+              virtual staffing solutions.
+            </>
+          }
+        />
         <article className="w-full md:w-10/12 mx-auto flex flex-col items-center my-4 md:my-32">
           <div className="w-full grid grid-cols-2 lg:grid-cols-3 gap-6 justify-between">
             {whyUs.map((c, i) => (
@@ -64,9 +64,7 @@ const AffiliatePage = () => {
             </p>
           </div>
         </article>
-      </section>
-      <section>
-        <article className="flex flex-col py-10 relative">
+        <article className="flex flex-col relative">
           <SplitText
             tag="h2"
             className="
@@ -94,7 +92,7 @@ const AffiliatePage = () => {
       </section>
       <AffiliatesFAQ />
       <AffiliateForm />
-    </div>
+    </>
   );
 };
 

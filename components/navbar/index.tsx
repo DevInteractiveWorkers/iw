@@ -6,9 +6,18 @@ import Image from "next/image";
 
 const NavbarComponent = () => {
   return (
-    <nav className="w-full">
+    <nav className="w-full sticky top-0 left-0 z-[500]">
       <div
-        className={`border-b flex items-center justify-between max-md:grid grid-cols-2 justify-items-stretch py-4 gap-4`}
+        className="absolute top-0 left-0 w-full h-full backdrop-blur-md -z-10"
+        style={{
+          maskImage:
+            "linear-gradient(to right, transparent 0%, black 2%, black 95%, transparent 100%)",
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent 0%, black 2%, black 95%, transparent 100%)",
+        }}
+      />
+      <div
+        className={`border-b flex items-center justify-between max-md:grid grid-cols-2 justify-items-stretch py-4 gap-4 z-10`}
       >
         <Link href="/">
           <Image

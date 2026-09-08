@@ -7,9 +7,9 @@ import PageHero from "@/components/page-hero";
 
 const ContactUs = () => {
   return (
-    <main className="flex flex-col min-h-screen text-white">
-      <NavbarComponent />
-      <section>
+    <>
+      <section className="flex flex-col text-white">
+        <NavbarComponent />
         <PageHero
           heading={
             <span className="text-[clamp(4rem,4vw,7rem)] font-medium leading-[1.05] pb-6">
@@ -23,6 +23,8 @@ const ContactUs = () => {
             </>
           }
         />
+      </section>
+      <section>
         <article>
           <MainForm heading={false} subheading={false} />
         </article>
@@ -35,7 +37,7 @@ const ContactUs = () => {
           <GetHired heading={false} subheading={false} />
         </article>
       </section>
-    </main>
+    </>
   );
 };
 

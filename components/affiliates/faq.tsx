@@ -9,7 +9,7 @@ const AffiliatesFAQ = () => {
   const [opened, setOpened] = useState(-1);
 
   return (
-    <article className="w-3/4 mx-auto pb-10">
+    <article className="w-3/4 mx-auto py-10">
       <div className="grid md:grid-cols-2 grid-cols-1 gap-6">
         <ProductCard className="md:p-10 p-4" disableHover>
           <h3 className="font-medium">Frequently asked questions</h3>

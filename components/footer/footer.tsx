@@ -26,7 +26,11 @@ const Footer = () => {
         <ul className="flex md:flex-row flex-col md:gap-6 gap-2">
           {navbar.map((item, i) => (
             <li key={`item-${i}`}>
-              <Link href={item.link} className="hover:underline">
+              <Link
+                href={item.link}
+                className="relative after:absolute after:left-1/2 after:top-full after:w-0 after:h-px after:bg-[currentColor]
+                hover:after:left-0 hover:after:w-full after:transition-all after:duration-150 active:text-iw-red-3"
+              >
                 {item.title}
               </Link>
             </li>
