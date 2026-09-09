@@ -3,14 +3,20 @@
 import { useEffect, useRef, useState } from "react";
 import Reviews from "./home/reviews";
 import FadeInContent from "./FadeInContent";
+import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 
 export default function StatsSection() {
+  const { ref } = useScrollIntoView<HTMLElement>();
+
   return (
     <section
       id="stats"
-      className="flex flex-col items-center justify-center w-full relative"
+      className="flex flex-col items-center justify-center w-full relative min-h-screen"
     >
-      <article className="md:w-10/12 w-11/12 px-2 sm:py-10 z-10 grid md:grid-cols-4 sm:grid-cols-2 max-md:gap-10 max-sm:gap-4 items-start justify-center md:justify-items-center">
+      <article
+        ref={ref}
+        className="md:w-10/12 w-11/12 px-2 md:py-20 sm:py-10 z-10 grid md:grid-cols-4 sm:grid-cols-2 max-md:gap-10 max-sm:gap-4 items-start justify-center md:justify-items-center"
+      >
         <Stat title="Clients Reach Worldwide" number={1000} symbol="+" />
         <Stat title="Uptime SLA" number={99.9} symbol="%" decimal />
         <Stat title="Project Shipped" number={365} symbol="+" />

@@ -1,9 +1,12 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import VACard from "../vas/cards";
 import Packages from "./packages";
 import FadeInContent from "../FadeInContent";
 import SplitText from "../text-animation/SplitText";
+import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 
 const productizedPackages = [
   {
@@ -25,8 +28,10 @@ const productizedPackages = [
 ];
 
 const DiscoverVAs = () => {
+  const { ref } = useScrollIntoView<HTMLElement>({ offset: 80 });
+
   return (
-    <section id="services" className="w-full px-2 z-10">
+    <section ref={ref} id="services" className="w-full px-2 z-10">
       <article className="w-full md:w-10/12 mx-auto flex flex-col items-center">
         <FadeInContent className="flex flex-col items-center">
           <Packages />
@@ -36,7 +41,7 @@ const DiscoverVAs = () => {
           className="font-light lg:text-5xl text-base text-center leading-none pt-14 pb-4"
           text={"Specialized Productized Packages"}
         />
-        <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-6 justify-between my-4 md:my-32">
+        <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-6 justify-between my-4 md:mb-32">
           {productizedPackages.map((pkg, i) => (
             <FadeInContent key={i} delay={i * 0.1}>
               <VACard imageSrc={pkg.imageSrc}>{pkg.content}</VACard>

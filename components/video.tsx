@@ -1,9 +1,17 @@
+"use client";
+
+import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 import FadeInContent from "./FadeInContent";
 import VideoPlayer from "./video-player";
 
 export default function IWVideo() {
+  const { ref } = useScrollIntoView<HTMLElement>();
+
   return (
-    <section className="w-full px-2 py-10 z-10 flex flex-col items-center justify-center relative">
+    <section
+      ref={ref}
+      className="w-full px-2 min-h-screen py-10 z-10 flex flex-col items-center justify-center relative"
+    >
       <FadeInContent>
         <article className="flex items-center justify-center">
           <VideoPlayer

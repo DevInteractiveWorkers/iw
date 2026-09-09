@@ -7,13 +7,15 @@ import NavbarComponent from "@/components/navbar";
 
 export default function Home() {
   return (
-    <main className="">
-      <NavbarComponent />
-      <IntroBanner />
-      <DiscoverVAs />
-      <IWVideo />
-      <StatsSection />
+    <>
+      <main>
+        <NavbarComponent />
+        <IntroBanner />
+        <DiscoverVAs />
+        <IWVideo />
+        <StatsSection />
+      </main>
       <MainForm />
-    </main>
+    </>
   );
 }

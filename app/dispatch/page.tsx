@@ -1,14 +1,15 @@
-import Image from "next/image";
+"use client";
+
 import React from "react";
 import NavbarComponent from "@/components/navbar";
 import MainForm from "@/components/form/form";
 import VACard from "@/components/vas/cards";
 import Carousel from "@/components/home/reviews/carousel";
 import Folder from "@/components/folder";
-import FlipElement from "@/components/flip-element";
 import FadeInContent from "@/components/FadeInContent";
 import SplitText from "@/components/text-animation/SplitText";
 import PageHero from "@/components/page-hero";
+import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 
 const Dispatch = () => {
   const tags = [
@@ -38,113 +39,125 @@ const Dispatch = () => {
     },
   ];
 
-  return (
-    <section>
-      <NavbarComponent></NavbarComponent>
+  const { ref: carouselRef } = useScrollIntoView<HTMLElement>({
+    offset: 80,
+  });
 
-      <PageHero
-        heading={
-          <>
-            24/7 Remote Dispatch
-            <br /> for Every Operation,
-            <br /> Ready to Deploy
-          </>
-        }
-        description={
-          <>
-            Boost response times, reduce overtime, and scale operations with
-            trained virtual dispatchers and schedulers for private security
-            companies.
-          </>
-        }
-      />
-      <article
-        className="w-full"
-        style={{
-          maskImage:
-            "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)",
-          WebkitMaskImage:
-            "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)",
-        }}
-      >
-        <Carousel
-          autoscroll
-          iteration="once"
-          autoscrollMode="on-going"
-          controls={false}
-        >
-          {dispatchers.map((dispatcher, i) => (
-            <FadeInContent key={i} delay={i * 0.2}>
-              <VACarouselCard imageSrc={dispatcher.imageSrc}>
-                {dispatcher.content}
-              </VACarouselCard>
-            </FadeInContent>
-          ))}
-        </Carousel>
-      </article>
-      <article className="py-10">
-        <Carousel
-          autoscroll
-          iteration="once"
-          autoscrollMode="on-going"
-          // reverseScroll
-          controls={false}
-        >
-          {tags.map((tag, i) => (
-            <div
-              key={i}
-              className="flex items-center gap-4 whitespace-nowrap px-2"
-            >
-              <span>{tag}</span>
-              <span aria-hidden="true">•</span>
-            </div>
-          ))}
-        </Carousel>
-      </article>
-      <article className="py-10 flex flex-col gap-10">
-        <SplitText
-          className="text-6xl"
-          textAlign="start"
-          text={
+  const { ref: folderRef } = useScrollIntoView<HTMLElement>({
+    offset: 80,
+  });
+
+  return (
+    <>
+      <section>
+        <NavbarComponent></NavbarComponent>
+        <PageHero
+          heading={
             <>
-              Our Support = More Solutions
-              <br />
-              We Cover Every Shift
+              24/7 Remote Dispatch
+              <br /> for Every Operation,
+              <br /> Ready to Deploy
+            </>
+          }
+          description={
+            <>
+              Boost response times, reduce overtime, and scale operations with
+              trained virtual dispatchers and schedulers for private security
+              companies.
             </>
           }
         />
-        <FadeInContent>
-          <Folder
-            items={[
-              {
-                title: "24/7 Call Handling",
-                text: "Scale coverage instantly with bilingual, security-trained VAs who handle calls, dispatch, and scheduling around the clock.",
-                src: "/dispatch/1.png",
-                imagePosition: { objectPosition: "center right" },
-              },
-              {
-                title: "Instant Guard Deployment Remote Support",
-                text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate quaerat, quia autem voluptatem mollitia ab, tenetur assumenda fugiat, hic sunt veritatis illo. Nemo animi vel voluptates! Doloribus officiis omnis nulla.",
-                src: "/security.png",
-                imagePosition: { objectPosition: "30% center" },
-              },
-              {
-                title: "Accurate Shift Scheduling",
-                text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate quaerat, quia autem voluptatem mollitia ab, tenetur assumenda fugiat, hic sunt veritatis illo. Nemo animi vel voluptates! Doloribus officiis omnis nulla.",
-                src: "/top-view.png",
-                imagePosition: { objectPosition: "center bottom" },
-              },
-              {
-                title: "Seamless Communication",
-                text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate quaerat, quia autem voluptatem mollitia ab, tenetur assumenda fugiat, hic sunt veritatis illo. Nemo animi vel voluptates! Doloribus officiis omnis nulla.",
-                src: "/welcome-our-team-young-modern-man-wear-shaking-hands-while-working-creative-office 1.png",
-              },
-            ]}
+        <article
+          ref={carouselRef}
+          className="w-full flex flex-col items-center justify-center my-10"
+          style={{
+            maskImage:
+              "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)",
+          }}
+        >
+          <Carousel
+            autoscroll
+            iteration="once"
+            autoscrollMode="on-going"
+            controls={false}
+          >
+            {dispatchers.map((dispatcher, i) => (
+              <FadeInContent key={i} delay={i * 0.2} className="my-10">
+                <VACarouselCard imageSrc={dispatcher.imageSrc}>
+                  {dispatcher.content}
+                </VACarouselCard>
+              </FadeInContent>
+            ))}
+          </Carousel>
+          <Carousel
+            autoscroll
+            iteration="once"
+            autoscrollMode="on-going"
+            reverseScroll
+            stopOnHover={false}
+            controls={false}
+          >
+            {tags.map((tag, i) => (
+              <div
+                key={i}
+                className="flex items-center gap-4 whitespace-nowrap px-2"
+              >
+                <span>{tag}</span>
+                <span aria-hidden="true">•</span>
+              </div>
+            ))}
+          </Carousel>
+        </article>
+        <article
+          ref={folderRef}
+          className="min-h-screen py-10 flex flex-col justify-center gap-10"
+        >
+          <SplitText
+            className="text-6xl"
+            textAlign="start"
+            text={
+              <>
+                Our Support = More Solutions
+                <br />
+                We Cover Every Shift
+              </>
+            }
           />
-        </FadeInContent>
-      </article>
+          <FadeInContent className="md:px-[clamp(1rem,8vw,50rem)]">
+            <Folder
+              items={[
+                {
+                  title: "24/7 Call Handling",
+                  text: "Scale coverage instantly with bilingual, security-trained VAs who handle calls, dispatch, and scheduling around the clock.",
+                  src: "/dispatch/1.png",
+                  imagePosition: { objectPosition: "center right" },
+                },
+                {
+                  title: "Instant Guard Deployment Remote Support",
+                  text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate quaerat, quia autem voluptatem mollitia ab, tenetur assumenda fugiat, hic sunt veritatis illo. Nemo animi vel voluptates! Doloribus officiis omnis nulla.",
+                  src: "/security.png",
+                  imagePosition: { objectPosition: "30% center" },
+                },
+                {
+                  title: "Accurate Shift Scheduling",
+                  text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate quaerat, quia autem voluptatem mollitia ab, tenetur assumenda fugiat, hic sunt veritatis illo. Nemo animi vel voluptates! Doloribus officiis omnis nulla.",
+                  src: "/top-view.png",
+                  imagePosition: { objectPosition: "center bottom" },
+                },
+                {
+                  title: "Seamless Communication",
+                  text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate quaerat, quia autem voluptatem mollitia ab, tenetur assumenda fugiat, hic sunt veritatis illo. Nemo animi vel voluptates! Doloribus officiis omnis nulla.",
+                  src: "/welcome-our-team-young-modern-man-wear-shaking-hands-while-working-creative-office 1.png",
+                },
+              ]}
+            />
+          </FadeInContent>
+        </article>
+      </section>
       <MainForm />
-    </section>
+    </>
   );
 };
 

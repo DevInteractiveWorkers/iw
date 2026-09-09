@@ -12,6 +12,7 @@ interface CarouselProps {
   autoscrollMode?: "paused" | "on-going";
   speed?: number;
   slides?: 1 | "all";
+  stopOnHover?: boolean;
 }
 
 export default function Carousel({
@@ -25,11 +26,13 @@ export default function Carousel({
   autoscrollMode = "paused",
   speed = 50,
   slides = "all",
+  stopOnHover = true,
 }: CarouselProps) {
   const [current, setCurrent] = useState<number>(0);
   const [dragStartX, setDragStartX] = useState<number | null>(null);
   const [dragging, setDragging] = useState<boolean>(false);
   const [offset, setOffset] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
   const trackRef = useRef<HTMLDivElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -56,12 +59,14 @@ export default function Carousel({
   };
 
   const startAutoscroll = () => {
-    if (!autoscroll) return;
+    if (!autoscroll || isHovered) return;
     clearTimers();
 
     if (autoscrollMode === "paused") {
       if (iteration === "loop") {
         intervalRef.current = setInterval(() => {
+          if (isHovered) return;
+
           setCurrent((c) =>
             reverseScroll
               ? c > 0
@@ -74,6 +79,8 @@ export default function Carousel({
         }, timer * 1000);
       } else if (iteration === "once") {
         timeoutRef.current = setTimeout(() => {
+          if (isHovered) return;
+
           setCurrent((c) =>
             reverseScroll
               ? c > 0
@@ -87,14 +94,20 @@ export default function Carousel({
       }
     } else if (autoscrollMode === "on-going") {
       let lastTime = performance.now();
+
       const animate = (time: number) => {
+        if (isHovered) return;
+
         const delta = (time - lastTime) / 1000;
         lastTime = time;
+
         setOffset((prev) =>
           reverseScroll ? prev + speed * delta : prev - speed * delta,
         );
+
         requestRef.current = requestAnimationFrame(animate);
       };
+
       requestRef.current = requestAnimationFrame(animate);
     }
   };
@@ -110,6 +123,7 @@ export default function Carousel({
     reverseScroll,
     timer,
     speed,
+    isHovered,
   ]);
 
   const resetAutoscroll = () => {
@@ -151,18 +165,30 @@ export default function Carousel({
 
   useEffect(() => {
     if (autoscrollMode !== "on-going" || !trackRef.current) return;
+
     const trackWidth = trackRef.current.scrollWidth / 2;
-    if (offset <= -trackWidth || offset >= trackWidth) {
-      setOffset(0);
+
+    if (reverseScroll) {
+      if (offset >= 0) {
+        setOffset(-trackWidth);
+      }
+    } else {
+      if (offset <= -trackWidth) {
+        setOffset(0);
+      }
     }
-  }, [offset, autoscrollMode]);
+  }, [offset, autoscrollMode, reverseScroll]);
 
   const windowSize = 2;
   const start = Math.max(0, safeCurrent - windowSize);
   const end = Math.min(total, safeCurrent + windowSize);
 
   return (
-    <div className="w-full">
+    <div
+      className="w-full"
+      onMouseEnter={() => stopOnHover && setIsHovered(true)}
+      onMouseLeave={() => stopOnHover && setIsHovered(false)}
+    >
       <div
         className="w-full overflow-hidden"
         ref={trackRef}

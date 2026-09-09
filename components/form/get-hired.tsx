@@ -59,9 +59,7 @@ const GetHired = ({
       // location is optional in the UI (no `required` on its Input), so it's
       // excluded from the completeness check below.
       const { location, ...requiredFields } = data;
-      const empty = Object.values(requiredFields).filter(
-        (item) => item === "",
-      );
+      const empty = Object.values(requiredFields).filter((item) => item === "");
 
       const completed = empty.length === 0 && (await sendGetHiredMail(data));
 
@@ -207,16 +205,16 @@ const GetHired = ({
                     <path
                       d="M12.1997 1L12.1997 15M12.1997 1C11.2194 1 9.38785 3.79202 8.69971 4.5M12.1997 1C13.18 1 15.0116 3.79202 15.6997 4.5"
                       stroke="white"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                     <path
                       d="M23.4 17.8C23.4 21.2748 22.6748 22 19.2 22H5.2C1.7252 22 1 21.2748 1 17.8"
                       stroke="white"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </svg>
                 </label>

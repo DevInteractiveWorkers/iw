@@ -7,6 +7,7 @@ import { Analytics } from "@vercel/analytics/react";
 import IWBg from "@/components/backgrounds/background";
 import AppLoader from "@/components/AppLoader";
 import Blured from "@/components/footer/blured";
+import { ScrollAlert } from "@/components/scroll-alert/alert";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -32,7 +33,10 @@ export default function RootLayout({
       >
         <AppLoader>
           <IWBg />
-          <div className="px-[clamp(16px,8vw,80px)] -z-10">{children}</div>
+          <div className="px-[clamp(1rem,8vw,50rem)] -z-10">
+            <ScrollAlert />
+            {children}
+          </div>
           <Blured />
           <Analytics></Analytics>
           <Script id="tawk" strategy="lazyOnload">

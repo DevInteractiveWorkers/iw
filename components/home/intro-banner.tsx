@@ -6,12 +6,18 @@ import CTAButton from "../buttons/cta-button";
 import FlipElement from "../flip-element";
 import SplitText from "../text-animation/SplitText";
 import { useRouter } from "next/navigation";
+import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 
 const IntroBanner = () => {
   const router = useRouter();
 
+  const { ref } = useScrollIntoView<HTMLElement>();
+
   return (
-    <section className="w-full min-h-[50vh] text-white relative flex items-center justify-center">
+    <section
+      ref={ref}
+      className="w-full min-h-[50vh] text-white relative flex items-center justify-center"
+    >
       <article className="z-10 flex flex-col items-center md:py-40">
         <FlipElement>
           <Image

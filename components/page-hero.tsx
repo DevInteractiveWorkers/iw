@@ -1,7 +1,9 @@
+"use client";
 import Image from "next/image";
 import FlipElement from "./flip-element";
 import SplitText from "./text-animation/SplitText";
 import PageDivision from "./page-division";
+import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 
 interface PageHeroAttributes {
   id?: string;
@@ -14,8 +16,10 @@ export default function PageHero({
   heading,
   description,
 }: PageHeroAttributes) {
+  const { ref } = useScrollIntoView<HTMLElement>();
+
   return (
-    <article id={id} className="flex flex-col py-10 relative">
+    <article ref={ref} id={id} className="flex flex-col py-10 relative">
       <FlipElement className="w-1/4 max-w-[150px] pb-10 mt-20">
         <Image
           width={1080}

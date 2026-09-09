@@ -113,7 +113,15 @@ export default function Ticket() {
         onClick={handleClose}
       />
 
+
       <div className="container-cards-ticket">
+        
+      <button 
+        onClick={handleClose} className={`absolute z-100 text-white hover:scale-95 transition-all duration-200
+        ${isOpen ? "opacity-100":"opacity-0 pointer-events-none"}
+        `}>
+          <code>[CLOSE]</code>
+          </button>
         <button
           onClick={handleOpen}
           id="ticket"
@@ -186,7 +194,7 @@ export default function Ticket() {
               {/* BARCODE SIDE */}
               <div
                 aria-label="Open ticket"
-                className="ticket-back bg-[#ddd] h-full w-max overflow-hidden corner-scoop rounded-r-xl px-4 py-10 transition-all duration-300 origin-bottom-right"
+                className="ticket-back bg-[#ddd] h-full w-max overflow-hidden corner-scoop rounded-r-xl px-4 py-10 transition-all duration-300 origin-bottom-right flex items-center justify-center"
               >
                 <Image
                   src="/bar-code.png"
@@ -195,28 +203,26 @@ export default function Ticket() {
                   alt="bar-code"
                   className="object-contain w-min h-min max-h-[250px] pointer-events-none opacity-0"
                 />
+                <Image                    
+                  src="/ticket-back.png"
+                  width={1080}
+                  height={1080}
+                  alt="ticket-back"
+                  className="absolute pointer-events-none h-9/12 w-auto object-contain"
+                />
               </div>
 
-              <div className="ticket-front bg-white text-iw-red-1 corner-scoop rounded-l-xl  w-max min-w-[clamp(500px,20vw,200px)] transition-all duration-300 origin-bottom-right">
-                <div className="flex items-start justify-end p-4 gap-4 h-full rounded-r-xl">
+              <div className="ticket-front bg-[#B7B7B7] text-white corner-scoop rounded-l-xl  w-max min-w-[clamp(500px,20vw,200px)] transition-all duration-300 origin-bottom-right">
+                <div className="flex flex-col items-start justify-center p-4 gap-4 h-full rounded-r-xl">
                   <Image
                     width={1080}
                     height={1080}
                     className="w-min max-w-[50px] object-contain"
                     alt="logo"
-                    src="/logo/03_Logo_Mark/03_Logo_Mark-02.png"
+                    src="/logo/03_Logo_Mark/03_Logo_Mark-01.png"
                   />
-                  <span className="uppercase font-medium text-[clamp(1rem,5vw,2rem)] leading-[0.8] pointer-events-none select-none">
-                    Click here to
-                  </span>
-                  <span className="uppercase text-wrap font-medium text-[clamp(2rem,5vw,4rem)] leading-[0.8] pointer-events-none select-none">
-                    Book
-                    <br />
-                    your free
-                    <br />
-                    discovery
-                    <br />
-                    call
+                  <span className="uppercase font-medium text-[clamp(4rem,5vw,6rem)] leading-[0.8] pointer-events-none select-none">
+                    Click<br/> here!
                   </span>
                 </div>
               </div>
