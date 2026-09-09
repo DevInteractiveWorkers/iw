@@ -15,6 +15,7 @@ import FormButton from "../buttons/form-buttons";
 import Loader, { LoadingPage } from "../loader";
 import PageDivision from "../page-division";
 import Checkbox from "./checkbox";
+import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 
 const MainForm = ({
   heading = (
@@ -192,10 +193,13 @@ const MainForm = ({
       </FormButton>
     </>
   );
-
+  const { ref } = useScrollIntoView<HTMLElement>();
   return (
     <FadeInContent>
-      <section className="grid md:grid-cols-[auto_auto] md:pt-20 py-10">
+      <section
+        ref={ref}
+        className="grid md:grid-cols-[auto_auto] md:pt-20 py-10"
+      >
         <PageDivision className="top-0" />
         <FadeInContent>
           {(heading || subheading) && (

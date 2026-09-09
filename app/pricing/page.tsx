@@ -8,14 +8,17 @@ import Ticket from "@/components/pricing/ticket";
 import Link from "next/link";
 import PageHero from "@/components/page-hero";
 import { useIsMobile } from "@/lib/useMobile";
+import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 
 export default function PricingPage() {
   const isMobile = useIsMobile();
 
+  const { ref } = useScrollIntoView<HTMLElement>();
+
   return (
     <>
-      <NavbarComponent />
       <section id="pricing">
+        <NavbarComponent />
         <PageHero
           heading={
             <>
@@ -27,7 +30,7 @@ export default function PricingPage() {
             </>
           }
         />
-        <article className="flex flex-col border-t pb-20">
+        <article ref={ref} className="flex flex-col border-t pb-20">
           <div className="flex justify-end py-6">
             <div className="flex gap-4 sm:gap-6 justify-center items-center">
               <label>Long Term</label>

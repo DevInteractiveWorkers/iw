@@ -9,10 +9,12 @@ import PageDivision from "../page-division";
 import Image from "next/image";
 import SplitText from "../text-animation/SplitText";
 import Loader from "../loader";
+import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 
 const AffiliateForm = () => {
   const [isSending, setIsSending] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
+  const { ref } = useScrollIntoView<HTMLElement>();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -46,7 +48,10 @@ const AffiliateForm = () => {
 
   return (
     <FadeInContent>
-      <section className="grid md:grid-cols-[auto_auto] md:pt-20 py-10">
+      <section
+        ref={ref}
+        className="grid md:grid-cols-[auto_auto] md:pt-20 py-10"
+      >
         <PageDivision className="top-0" />
         <FadeInContent>
           <Image

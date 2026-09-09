@@ -1,14 +1,15 @@
-import Image from "next/image";
+"use client";
+
 import React from "react";
 import NavbarComponent from "@/components/navbar";
 import MainForm from "@/components/form/form";
 import VACard from "@/components/vas/cards";
 import Carousel from "@/components/home/reviews/carousel";
 import Folder from "@/components/folder";
-import FlipElement from "@/components/flip-element";
 import FadeInContent from "@/components/FadeInContent";
 import SplitText from "@/components/text-animation/SplitText";
 import PageHero from "@/components/page-hero";
+import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 
 const Dispatch = () => {
   const tags = [
@@ -38,6 +39,14 @@ const Dispatch = () => {
     },
   ];
 
+  const { ref: carouselRef } = useScrollIntoView<HTMLElement>({
+    offset: 80,
+  });
+
+  const { ref: folderRef } = useScrollIntoView<HTMLElement>({
+    offset: 80,
+  });
+
   return (
     <>
       <section>
@@ -59,7 +68,8 @@ const Dispatch = () => {
           }
         />
         <article
-          className="w-full"
+          ref={carouselRef}
+          className="w-full flex flex-col items-center justify-center my-10"
           style={{
             maskImage:
               "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)",
@@ -81,16 +91,6 @@ const Dispatch = () => {
               </FadeInContent>
             ))}
           </Carousel>
-        </article>
-        <article
-          className="py-10"
-          style={{
-            maskImage:
-              "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)",
-            WebkitMaskImage:
-              "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)",
-          }}
-        >
           <Carousel
             autoscroll
             iteration="once"
@@ -110,7 +110,10 @@ const Dispatch = () => {
             ))}
           </Carousel>
         </article>
-        <article className="py-10 flex flex-col gap-10">
+        <article
+          ref={folderRef}
+          className="min-h-screen py-10 flex flex-col justify-center gap-10"
+        >
           <SplitText
             className="text-6xl"
             textAlign="start"

@@ -4,12 +4,15 @@ import { useState } from "react";
 import { faq } from "@/app/content/affiliates-faq";
 import Question from "./question";
 import ProductCard from "../product-card";
+import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 
 const AffiliatesFAQ = () => {
   const [opened, setOpened] = useState(-1);
 
+  const { ref } = useScrollIntoView<HTMLElement>();
+
   return (
-    <article className="w-3/4 mx-auto py-10">
+    <article ref={ref} className="w-3/4 mx-auto py-10">
       <div className="grid md:grid-cols-2 grid-cols-1 gap-6">
         <ProductCard className="md:p-10 p-4" disableHover>
           <h3 className="font-medium">Frequently asked questions</h3>

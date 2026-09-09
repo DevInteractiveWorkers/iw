@@ -10,6 +10,7 @@ import PageHero from "@/components/page-hero";
 import FadeInContent from "@/components/FadeInContent";
 import SplitText from "@/components/text-animation/SplitText";
 import PageDivision from "@/components/page-division";
+import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 
 type AffiliateCardProps = { src: string; title: string };
 
@@ -20,6 +21,8 @@ const whyUs: AffiliateCardProps[] = [
 ];
 
 const AffiliatePage = () => {
+  const { ref } = useScrollIntoView<HTMLElement>();
+
   return (
     <>
       <section className="w-full px-2 z-10">
@@ -42,7 +45,10 @@ const AffiliatePage = () => {
             </>
           }
         />
-        <article className="w-full md:w-10/12 mx-auto flex flex-col items-center my-4 md:my-32">
+        <article
+          ref={ref}
+          className="w-full md:w-10/12 mx-auto flex flex-col items-center my-4 md:my-32"
+        >
           <div className="w-full grid grid-cols-2 lg:grid-cols-3 gap-6 justify-between">
             {whyUs.map((c, i) => (
               <FadeInContent key={i} delay={i * 0.1}>
