@@ -85,6 +85,14 @@ const config: Config = {
           },
           "100%": { transform: "translate(0%, 0%)", zIndex: "1" },
         },
+        "scroll-alert": {
+          "0%, 100%": {
+            opacity: "0",
+          },
+          "40%, 60%": {
+            opacity: "1",
+          },
+        },
       },
       animation: {
         marquee: "marquee 30s linear infinite",
@@ -99,6 +107,9 @@ const config: Config = {
         "move-around-2": "move-around-2 3s linear infinite",
         "move-around-3": "move-around-3 3s linear infinite",
         flip: "flip 2s linear infinite",
+        "scroll-alert-1": "scroll-alert 1.8s ease-in-out infinite",
+        "scroll-alert-2": "scroll-alert 1.8s ease-in-out 0.3s infinite",
+        "scroll-alert-3": "scroll-alert 1.8s ease-in-out 0.6s infinite",
       },
     },
   },
