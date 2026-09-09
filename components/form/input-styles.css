@@ -45,9 +45,9 @@
 }
 
 .check-path {
-  stroke-dasharray: 40;
-  stroke-dashoffset: 40;
-  transition: stroke-dashoffset 0.3s ease 0.1s;
+  strokedasharray: 40;
+  strokedashoffset: 40;
+  transition: strokeDashoffset 0.3s ease 0.1s;
 }
 
 /* Checked State */
@@ -61,7 +61,7 @@
 }
 
 .ios-checkbox input:checked + .checkbox-wrapper .check-path {
-  stroke-dashoffset: 0;
+  strokedashoffset: 0;
 }
 
 /* Hover Effects */

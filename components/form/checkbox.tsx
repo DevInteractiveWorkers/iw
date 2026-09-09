@@ -23,9 +23,9 @@ export default function Checkbox({
         <div className="checkbox-bg"></div>
         <svg fill="none" viewBox="0 0 24 24" className="checkbox-icon">
           <path
-            stroke-linejoin="round"
-            stroke-linecap="round"
-            stroke-width="3"
+            strokeLinejoin="round"
+            strokeLinecap="round"
+            strokeWidth="3"
             stroke="currentColor"
             d="M4 12L10 18L20 6"
             className="check-path"

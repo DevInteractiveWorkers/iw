@@ -35,7 +35,7 @@ export default function Loader(
             {...cProps}
           >
             <animate
-              attributeName="stroke-dasharray"
+              attributeName="strokeDasharray"
               dur="1.5s"
               calcMode="spline"
               values="0 150;42 150;42 150;42 150"
@@ -45,7 +45,7 @@ export default function Loader(
               {...svgProps}
             />
             <animate
-              attributeName="stroke-dashoffset"
+              attributeName="strokeDashoffset"
               dur="1.5s"
               calcMode="spline"
               values="0;-16;-59;-59"
