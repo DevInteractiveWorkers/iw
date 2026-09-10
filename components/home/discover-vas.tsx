@@ -31,7 +31,7 @@ const DiscoverVAs = () => {
   const { ref } = useScrollIntoView<HTMLElement>({ offset: 80 });
 
   return (
-    <section ref={ref} id="services" className="w-full px-2 z-10">
+    <section ref={ref} id="services" className="w-full px-2 z-10 pb-10">
       <article className="w-full md:w-10/12 mx-auto flex flex-col items-center">
         <FadeInContent className="flex flex-col items-center">
           <Packages />

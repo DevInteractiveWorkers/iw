@@ -13,13 +13,24 @@ interface UseScrollIntoViewOptions {
   onChange?: (isVisible: boolean) => void;
 }
 
+/*
+ * Shared between ALL instances of this hook.
+ *
+ * This is what prevents:
+ *
+ * IWVideo -> Stats -> Reviews -> ...
+ *
+ * from all trying to snap during the same scroll animation.
+ */
+let globalScrollLockUntil = 0;
+
 export function useScrollIntoView<T extends HTMLElement = HTMLElement>(
   options: UseScrollIntoViewOptions = {},
 ) {
   const {
     threshold = 0.2,
     behavior = "smooth",
-    animationDuration = 700,
+    animationDuration = 800,
     exitDelay = 100,
     block = "directional",
     offset = 0,
@@ -29,8 +40,23 @@ export function useScrollIntoView<T extends HTMLElement = HTMLElement>(
 
   const elementRef = useRef<T | null>(null);
 
+  /*
+   * Whether THIS element is currently considered visible.
+   */
   const visibleRef = useRef(false);
+
+  /*
+   * Prevent this instance from triggering repeatedly.
+   */
   const animatingRef = useRef(false);
+
+  /*
+   * Tracks whether this element has already been seen during
+   * the current scroll movement.
+   *
+   * This is important when another section is snapping.
+   */
+  const enteredDuringLockRef = useRef(false);
 
   const directionRef = useRef<"up" | "down">("down");
   const lastScrollYRef = useRef(0);
@@ -38,7 +64,9 @@ export function useScrollIntoView<T extends HTMLElement = HTMLElement>(
   const [isInView, setIsInView] = useState(false);
 
   /*
-   * Track scroll direction
+   * ---------------------------------------------------------
+   * Scroll direction
+   * ---------------------------------------------------------
    */
   useEffect(() => {
     if (!enabled) return;
@@ -65,7 +93,9 @@ export function useScrollIntoView<T extends HTMLElement = HTMLElement>(
   }, [enabled]);
 
   /*
-   * Observe target element
+   * ---------------------------------------------------------
+   * Intersection observer
+   * ---------------------------------------------------------
    */
   useEffect(() => {
     if (!enabled) return;
@@ -81,14 +111,37 @@ export function useScrollIntoView<T extends HTMLElement = HTMLElement>(
         setIsInView(isIntersecting);
         onChange?.(isIntersecting);
 
-        if (animatingRef.current) return;
-
         /*
-         * Entered viewport
+         * -----------------------------------------------------
+         * Element entered viewport
+         * -----------------------------------------------------
          */
         if (isIntersecting && !visibleRef.current) {
           visibleRef.current = true;
+
+          /*
+           * If another section is currently performing
+           * an automatic scroll, DO NOT start another one.
+           *
+           * We still mark this element as visible so that it
+           * doesn't immediately trigger after the lock expires.
+           */
+          if (Date.now() < globalScrollLockUntil) {
+            enteredDuringLockRef.current = true;
+            return;
+          }
+
+          if (animatingRef.current) return;
+
           animatingRef.current = true;
+
+          /*
+           * Lock ALL other useScrollIntoView instances.
+           *
+           * Give the browser a little extra time beyond the
+           * actual smooth-scroll animation to settle.
+           */
+          globalScrollLockUntil = Date.now() + animationDuration + 150;
 
           const rect = element.getBoundingClientRect();
 
@@ -98,10 +151,34 @@ export function useScrollIntoView<T extends HTMLElement = HTMLElement>(
 
           let targetScrollY: number;
 
+          /*
+           * ---------------------------------------------------
+           * Directional positioning
+           * ---------------------------------------------------
+           */
           if (block === "directional") {
             if (direction === "down") {
+              /*
+               * Scrolling down:
+               *
+               *   ┌────────────── viewport
+               *   │
+               *   │  offset
+               *   │
+               *   │  ELEMENT
+               *   │
+               */
               targetScrollY = currentScrollY + rect.top - offset;
             } else {
+              /*
+               * Scrolling up:
+               *
+               *   │  ELEMENT
+               *   │
+               *   │  offset
+               *   │
+               *   └────────────── viewport
+               */
               targetScrollY =
                 currentScrollY + rect.bottom - window.innerHeight + offset;
             }
@@ -129,7 +206,7 @@ export function useScrollIntoView<T extends HTMLElement = HTMLElement>(
           }
 
           /*
-           * Keep the target inside the document.
+           * Don't scroll outside the document.
            */
           const maxScroll =
             document.documentElement.scrollHeight - window.innerHeight;
@@ -141,18 +218,25 @@ export function useScrollIntoView<T extends HTMLElement = HTMLElement>(
             behavior,
           });
 
+          /*
+           * Release THIS instance after the animation.
+           */
           window.setTimeout(() => {
             animatingRef.current = false;
-          }, animationDuration);
+          }, animationDuration + 150);
 
           return;
         }
 
         /*
-         * Left viewport
+         * -----------------------------------------------------
+         * Element left viewport
+         * -----------------------------------------------------
          */
         if (!isIntersecting && visibleRef.current) {
           visibleRef.current = false;
+
+          enteredDuringLockRef.current = false;
 
           window.setTimeout(() => {
             animatingRef.current = false;

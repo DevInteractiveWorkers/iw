@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useState, useRef, useLayoutEffect } from "react";
+import React, { useState, useRef, useLayoutEffect, useEffect } from "react";
 
 interface Item {
   title: string;
@@ -10,16 +10,25 @@ interface Item {
 
 const ItemList = ({ items }: { items: Item[]; hover?: boolean }) => {
   const pathname = usePathname();
+  const [currentUrl, setCurrentUrl] = useState<string>(pathname);
+
+  useEffect(() => {
+    const updateUrl = () => {
+      setCurrentUrl(window.location.pathname + window.location.hash);
+    };
+
+    updateUrl();
+
+    window.addEventListener("hashchange", updateUrl);
+    return () => window.removeEventListener("hashchange", updateUrl);
+  }, [pathname]);
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const handleOpen = () => setIsOpen((prev) => !prev);
 
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
 
-  // 1. Determine active index based on route match
-  const activeIndex = items.findIndex((item) => item.link === pathname);
-
-  // 2. Target either hovered item or active item as fallback
+  const activeIndex = items.findIndex((item) => item.link === currentUrl);
   const targetIndex =
     hoverIndex !== null ? hoverIndex : activeIndex !== -1 ? activeIndex : null;
 
@@ -39,7 +48,6 @@ const ItemList = ({ items }: { items: Item[]; hover?: boolean }) => {
 
   const itemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
-  // 3. Update indicator position based on target index
   useLayoutEffect(() => {
     if (targetIndex !== null && itemRefs.current[targetIndex]) {
       const currentEl = itemRefs.current[targetIndex];
@@ -55,7 +63,7 @@ const ItemList = ({ items }: { items: Item[]; hover?: boolean }) => {
     } else {
       setIndicatorStyle((prev) => ({ ...prev, opacity: 0 }));
     }
-  }, [targetIndex, pathname]);
+  }, [targetIndex, currentUrl]);
 
   return (
     <>
@@ -88,7 +96,7 @@ const ItemList = ({ items }: { items: Item[]; hover?: boolean }) => {
         className={`bg-transparent flex gap-4 relative max-md:fixed max-md:flex-col max-md:w-2/3 max-md:bg-black/85 max-md:top-0 max-md:right-0 max-md:h-full max-md:z-20 max-md:py-4 max-md:border-l max-md:rounded-l-xl max-md:backdrop-blur ${
           isOpen ? "max-md:translate-x-0" : "max-md:translate-x-full"
         } transition-all duration-100`}
-        onMouseLeave={() => setHoverIndex(null)} // Reset hover when mouse leaves nav
+        onMouseLeave={() => setHoverIndex(null)}
       >
         {/* Background Highlight Indicator */}
         <div
@@ -106,7 +114,7 @@ const ItemList = ({ items }: { items: Item[]; hover?: boolean }) => {
 
         {/* Navigation Links */}
         {items.map((item, key) => {
-          const isActive = item.link === pathname;
+          const isActive = item.link === currentUrl;
           const isHighlighted = targetIndex === key;
 
           return (
@@ -121,6 +129,7 @@ const ItemList = ({ items }: { items: Item[]; hover?: boolean }) => {
                 isHighlighted ? "text-black" : "text-white"
               }`}
               onMouseEnter={() => setHoverIndex(key)}
+              onClick={() => setCurrentUrl(item.link)} // Instant update on click
             >
               {item.title}
             </Link>
