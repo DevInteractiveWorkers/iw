@@ -13,7 +13,7 @@ const VIDEO_URL = {
 };
 
 export default function IWVideo() {
-  const { ref } = useScrollIntoView<HTMLElement>({ offset: 80 });
+  const { ref } = useScrollIntoView<HTMLElement>({ offset: 160 });
 
   const isMobile = useIsMobile();
 
@@ -22,7 +22,7 @@ export default function IWVideo() {
       className="
         relative z-10
         flex w-full items-center justify-center
-        px-0 md:min-h-screen md:px-2 py-10
+        px-0 md:px-2 py-10
       "
     >
       <FadeInContent>

@@ -6,6 +6,8 @@ import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const TRANSITION_MS = 800;
+const TICKET_SCALE = 1.15;
+
 const IDENTITY_TRANSFORM =
   "perspective(1200px) translate3d(0, 0, 0) rotateY(0deg) scale(1)";
 
@@ -27,11 +29,36 @@ export default function Ticket() {
   const computeCenteredTransform = useCallback((rect: PinnedRect) => {
     const elCenterX = rect.left + rect.width / 2;
     const elCenterY = rect.top + rect.height / 2;
+
     const deltaX = window.innerWidth / 2 - elCenterX;
     const deltaY = window.innerHeight / 2 - elCenterY;
 
-    return `perspective(1200px) translate3d(${deltaX}px, ${deltaY}px, 0) rotateY(180deg) scale(1.15)`;
+    return `perspective(1200px) translate3d(${deltaX}px, ${deltaY}px, 0) rotateY(180deg) scale(${TICKET_SCALE})`;
   }, []);
+
+  /**
+   * Position the close button underneath the centered ticket.
+   *
+   * The ticket is centered at 50vh and scaled to 1.15, so we calculate
+   * the visual bottom of the transformed ticket and place the button
+   * underneath it.
+   */
+  const getCloseButtonStyle = useCallback(() => {
+    if (!pinnedRect || !isOpen) {
+      return undefined;
+    }
+
+    const ticketCenterY = window.innerHeight / 2;
+    const scaledHeight = pinnedRect.height * TICKET_SCALE;
+    const ticketBottom = ticketCenterY + scaledHeight / 2;
+
+    return {
+      position: "fixed" as const,
+      top: `${ticketBottom + 24}px`,
+      left: "50%",
+      transform: "translateX(-50%)",
+    };
+  }, [pinnedRect, isOpen]);
 
   const handleOpen = () => {
     const el = ticketRef.current;
@@ -79,12 +106,15 @@ export default function Ticket() {
   useEffect(() => {
     if (!isOpen || !pinnedRect) return;
 
-    const handleResize = () =>
+    const handleResize = () => {
       setTransformValue(computeCenteredTransform(pinnedRect));
+    };
 
     window.addEventListener("resize", handleResize);
 
-    return () => window.removeEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, [isOpen, pinnedRect, computeCenteredTransform]);
 
   useEffect(() => {
@@ -113,15 +143,21 @@ export default function Ticket() {
         onClick={handleClose}
       />
 
-
       <div className="container-cards-ticket">
-        
-      <button 
-        onClick={handleClose} className={`absolute z-100 text-white hover:scale-95 transition-all duration-200
-        ${isOpen ? "opacity-100":"opacity-0 pointer-events-none"}
-        `}>
+        {/* CLOSE BUTTON */}
+        <button
+          onClick={handleClose}
+          className={`z-[100] text-white hover:scale-95 transition-all duration-200 ${
+            isOpen
+              ? "opacity-100 pointer-events-auto"
+              : "opacity-0 pointer-events-none"
+          }`}
+          style={getCloseButtonStyle()}
+        >
           <code>[CLOSE]</code>
-          </button>
+        </button>
+
+        {/* TICKET */}
         <button
           onClick={handleOpen}
           id="ticket"
@@ -187,9 +223,9 @@ export default function Ticket() {
 
           <div className="ticket-reveal corner-scoop">
             <Link
-              href={"https://calendly.com/interactiveworkersgm/30min"}
+              href="https://calendly.com/interactiveworkersgm/30min"
               target="_blank"
-              className={`grid grid-cols-[auto_auto] gap-8 w-max group/ticket`}
+              className="grid grid-cols-[auto_auto] gap-8 w-max group/ticket"
             >
               {/* BARCODE SIDE */}
               <div
@@ -203,7 +239,8 @@ export default function Ticket() {
                   alt="bar-code"
                   className="object-contain w-min h-min max-h-[250px] pointer-events-none opacity-0"
                 />
-                <Image                    
+
+                <Image
                   src="/ticket-back.png"
                   width={1080}
                   height={1080}
@@ -212,7 +249,8 @@ export default function Ticket() {
                 />
               </div>
 
-              <div className="ticket-front bg-[#B7B7B7] text-white corner-scoop rounded-l-xl  w-max min-w-[clamp(500px,20vw,200px)] transition-all duration-300 origin-bottom-right">
+              {/* CLICK HERE SIDE */}
+              <div className="ticket-front bg-[#B7B7B7] text-white corner-scoop rounded-l-xl w-max min-w-[clamp(500px,20vw,200px)] transition-all duration-300 origin-bottom-right">
                 <div className="flex flex-col items-start justify-center p-4 gap-4 h-full rounded-r-xl">
                   <Image
                     width={1080}
@@ -221,8 +259,11 @@ export default function Ticket() {
                     alt="logo"
                     src="/logo/03_Logo_Mark/03_Logo_Mark-01.png"
                   />
+
                   <span className="uppercase font-medium text-[clamp(4rem,5vw,6rem)] leading-[0.8] pointer-events-none select-none">
-                    Click<br/> here!
+                    Click
+                    <br />
+                    here!
                   </span>
                 </div>
               </div>
