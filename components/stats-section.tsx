@@ -6,7 +6,7 @@ import FadeInContent from "./FadeInContent";
 import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 
 export default function StatsSection() {
-  const { ref } = useScrollIntoView<HTMLElement>();
+  const { ref } = useScrollIntoView<HTMLElement>({ offset: 80 });
 
   return (
     <section
