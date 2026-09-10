@@ -40,7 +40,7 @@ const Dispatch = () => {
   ];
 
   const { ref: carouselRef } = useScrollIntoView<HTMLElement>({
-    offset: 80,
+    offset: 0,
   });
 
   const { ref: folderRef } = useScrollIntoView<HTMLElement>({

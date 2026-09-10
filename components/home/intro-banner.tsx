@@ -11,7 +11,7 @@ import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 const IntroBanner = () => {
   const router = useRouter();
 
-  const { ref } = useScrollIntoView<HTMLElement>();
+  const { ref } = useScrollIntoView<HTMLElement>({ offset: 80 });
 
   return (
     <section
