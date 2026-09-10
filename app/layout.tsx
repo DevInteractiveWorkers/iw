@@ -8,6 +8,7 @@ import IWBg from "@/components/backgrounds/background";
 import AppLoader from "@/components/AppLoader";
 import Blured from "@/components/footer/blured";
 import { ScrollAlert } from "@/components/scroll-alert/alert";
+import PageTransition from "@/components/page-transition";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -35,7 +36,9 @@ export default function RootLayout({
           <IWBg />
           <div className="px-[clamp(1rem,8vw,50rem)] -z-10">
             <ScrollAlert />
-            {children}
+            <PageTransition type="fade" duration={0.8}>
+              {children}
+            </PageTransition>
           </div>
           <Blured />
           <Analytics></Analytics>

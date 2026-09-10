@@ -21,7 +21,7 @@ const whyUs: AffiliateCardProps[] = [
 ];
 
 const AffiliatePage = () => {
-  const { ref } = useScrollIntoView<HTMLElement>();
+  const { ref } = useScrollIntoView<HTMLElement>({ offset: 80 });
 
   return (
     <>
