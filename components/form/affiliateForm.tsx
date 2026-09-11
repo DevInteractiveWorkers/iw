@@ -53,7 +53,7 @@ const AffiliateForm = () => {
         className="grid md:grid-cols-[auto_auto] md:pt-20 py-10"
       >
         <PageDivision className="top-0" />
-        <FadeInContent>
+        <FadeInContent className="pointer-events-none select-none">
           <Image
             width={1080}
             height={1080}

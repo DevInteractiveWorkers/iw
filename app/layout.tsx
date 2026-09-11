@@ -36,9 +36,7 @@ export default function RootLayout({
           <IWBg />
           <div className="px-[clamp(1rem,8vw,50rem)] -z-10">
             <ScrollAlert />
-            <PageTransition type="fade" duration={0.8}>
-              {children}
-            </PageTransition>
+            <PageTransition type="slide-fade">{children}</PageTransition>
           </div>
           <Blured />
           <Analytics></Analytics>
