@@ -16,7 +16,7 @@ export default function PageHero({
   heading,
   description,
 }: PageHeroAttributes) {
-  const { ref } = useScrollIntoView<HTMLElement>();
+  const { ref } = useScrollIntoView<HTMLElement>({ offset: 80 });
 
   return (
     <article ref={ref} id={id} className="flex flex-col py-10 relative">

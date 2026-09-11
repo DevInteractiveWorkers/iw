@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useIsMobile } from "./useMobile";
 
 interface UseScrollIntoViewOptions {
   threshold?: number;
@@ -16,11 +17,8 @@ interface UseScrollIntoViewOptions {
 /*
  * Shared between ALL instances of this hook.
  *
- * This is what prevents:
- *
- * IWVideo -> Stats -> Reviews -> ...
- *
- * from all trying to snap during the same scroll animation.
+ * This prevents multiple sections from trying to snap
+ * during the same scroll animation.
  */
 let globalScrollLockUntil = 0;
 
@@ -38,6 +36,8 @@ export function useScrollIntoView<T extends HTMLElement = HTMLElement>(
     onChange,
   } = options;
 
+  const isMobile = useIsMobile();
+
   const elementRef = useRef<T | null>(null);
 
   /*
@@ -51,10 +51,8 @@ export function useScrollIntoView<T extends HTMLElement = HTMLElement>(
   const animatingRef = useRef(false);
 
   /*
-   * Tracks whether this element has already been seen during
-   * the current scroll movement.
-   *
-   * This is important when another section is snapping.
+   * Tracks whether this element entered during
+   * another section's scroll lock.
    */
   const enteredDuringLockRef = useRef(false);
 
@@ -69,7 +67,10 @@ export function useScrollIntoView<T extends HTMLElement = HTMLElement>(
    * ---------------------------------------------------------
    */
   useEffect(() => {
-    if (!enabled) return;
+    /*
+     * Completely disable the scroll behavior on mobile.
+     */
+    if (!enabled || isMobile) return;
 
     lastScrollYRef.current = window.scrollY;
 
@@ -90,7 +91,7 @@ export function useScrollIntoView<T extends HTMLElement = HTMLElement>(
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [enabled]);
+  }, [enabled, isMobile]);
 
   /*
    * ---------------------------------------------------------
@@ -98,7 +99,23 @@ export function useScrollIntoView<T extends HTMLElement = HTMLElement>(
    * ---------------------------------------------------------
    */
   useEffect(() => {
-    if (!enabled) return;
+    /*
+     * Completely disable the observer on mobile.
+     */
+    if (!enabled || isMobile) {
+      /*
+       * Reset the state when switching from desktop
+       * to mobile.
+       */
+      if (isMobile) {
+        visibleRef.current = false;
+        animatingRef.current = false;
+        enteredDuringLockRef.current = false;
+        setIsInView(false);
+      }
+
+      return;
+    }
 
     const element = elementRef.current;
 
@@ -120,11 +137,10 @@ export function useScrollIntoView<T extends HTMLElement = HTMLElement>(
           visibleRef.current = true;
 
           /*
-           * If another section is currently performing
-           * an automatic scroll, DO NOT start another one.
+           * Another section is currently performing
+           * an automatic scroll.
            *
-           * We still mark this element as visible so that it
-           * doesn't immediately trigger after the lock expires.
+           * Do not start another scroll.
            */
           if (Date.now() < globalScrollLockUntil) {
             enteredDuringLockRef.current = true;
@@ -136,17 +152,12 @@ export function useScrollIntoView<T extends HTMLElement = HTMLElement>(
           animatingRef.current = true;
 
           /*
-           * Lock ALL other useScrollIntoView instances.
-           *
-           * Give the browser a little extra time beyond the
-           * actual smooth-scroll animation to settle.
+           * Lock ALL instances of this hook.
            */
           globalScrollLockUntil = Date.now() + animationDuration + 150;
 
           const rect = element.getBoundingClientRect();
-
           const currentScrollY = window.scrollY;
-
           const direction = directionRef.current;
 
           let targetScrollY: number;
@@ -158,27 +169,8 @@ export function useScrollIntoView<T extends HTMLElement = HTMLElement>(
            */
           if (block === "directional") {
             if (direction === "down") {
-              /*
-               * Scrolling down:
-               *
-               *   ┌────────────── viewport
-               *   │
-               *   │  offset
-               *   │
-               *   │  ELEMENT
-               *   │
-               */
               targetScrollY = currentScrollY + rect.top - offset;
             } else {
-              /*
-               * Scrolling up:
-               *
-               *   │  ELEMENT
-               *   │
-               *   │  offset
-               *   │
-               *   └────────────── viewport
-               */
               targetScrollY =
                 currentScrollY + rect.bottom - window.innerHeight + offset;
             }
@@ -219,7 +211,7 @@ export function useScrollIntoView<T extends HTMLElement = HTMLElement>(
           });
 
           /*
-           * Release THIS instance after the animation.
+           * Release this instance after the animation.
            */
           window.setTimeout(() => {
             animatingRef.current = false;
@@ -235,7 +227,6 @@ export function useScrollIntoView<T extends HTMLElement = HTMLElement>(
          */
         if (!isIntersecting && visibleRef.current) {
           visibleRef.current = false;
-
           enteredDuringLockRef.current = false;
 
           window.setTimeout(() => {
@@ -255,6 +246,7 @@ export function useScrollIntoView<T extends HTMLElement = HTMLElement>(
     };
   }, [
     enabled,
+    isMobile,
     threshold,
     behavior,
     animationDuration,
