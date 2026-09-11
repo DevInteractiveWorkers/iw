@@ -59,14 +59,14 @@ const AffiliatePage = () => {
         ref={ref}
         className="w-full md:w-10/12 mx-auto flex flex-col items-center my-4 md:my-32"
       >
-        <div className="w-full grid grid-cols-2 lg:grid-cols-3 gap-6 justify-between">
+        <div className="w-full grid md:grid-cols-2 lg:grid-cols-3 gap-6 justify-between">
           {whyUs.map((c, i) => (
             <FadeInContent key={i} delay={i * 0.1}>
               <AffiliateCard {...c} />
             </FadeInContent>
           ))}
         </div>
-        <div className="grid grid-cols-2 py-4 pt-6">
+        <div className="grid md:grid-cols-2 py-4 pt-6">
           <h2 className="text-[clamp(2rem,4vw,3.75rem)] leading-[1.05] pb-6">
             Why partner
             <br />

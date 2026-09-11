@@ -106,8 +106,7 @@ export const Vas: VA[] = [
     team: 3,
   },
   {
-    position: "Executive Operational Assistant + Inbox Zero
-Manager",
+    position: "Executive Operational Assistant + Inbox Zero Manager",
     img: "19.png",
     team: 4,
   },
