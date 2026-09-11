@@ -33,8 +33,9 @@ const IntroBanner = () => {
           text={
             <>
               At InteractiveWorkers, <br />
-              we transform the <br />
-              concept of outsourcing.
+              we replace the cost and risk <br />
+              of local hiring with fully <br />
+              managed operational units.
             </>
           }
           className="font-medium lg:text-6xl text-base text-center leading-none pb-4"
@@ -47,11 +48,8 @@ const IntroBanner = () => {
           className="font-light text-sm lg:text-xl text-center"
           text={
             <>
-              We transform complex remote staffing
-              <br /> into ready-to-scale operational units—complete with
-              pre-configured
-              <br /> hardware, zero HR liability, and guaranteed 100%
-              continuity.
+              Hardware, coverage, and continuity included <br />
+              you get infrastructure, not a freelancer.
             </>
           }
         />

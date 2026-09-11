@@ -11,13 +11,13 @@ const NavbarComponent = () => {
         className="absolute top-0 left-0 w-full h-full backdrop-blur-md -z-10"
         style={{
           maskImage:
-            "linear-gradient(to right, transparent 0%, black 2%, black 95%, transparent 100%)",
+            "linear-gradient(to right, transparent 3%, black 10%, black 90%, transparent 97%)",
           WebkitMaskImage:
-            "linear-gradient(to right, transparent 0%, black 2%, black 95%, transparent 100%)",
+            "linear-gradient(to right, transparent 3%, black 10%, black 90%, transparent 97%)",
         }}
       />
       <div
-        className={`border-b flex items-center justify-between max-md:grid grid-cols-2 justify-items-stretch py-4 gap-4 z-10`}
+        className={`border-b flex items-center justify-between max-md:grid grid-cols-2 justify-items-stretch py-4 gap-4 z-10 mx-[clamp(1rem,8vw,50rem)]`}
       >
         <Link href="/">
           <Image
