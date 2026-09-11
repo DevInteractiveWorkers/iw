@@ -1,7 +1,7 @@
 {
   "git": {
     "deploymentEnabled": {
-      "admin": false
+      "rebranding": false
     }
   }
 }
