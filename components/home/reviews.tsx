@@ -5,6 +5,7 @@ import { SampleReviews } from "./sample-reviews";
 import Carousel from "./reviews/carousel";
 import ProductCard from "../product-card";
 import FadeInContent from "../FadeInContent";
+import { useIsMobile } from "@/lib/useMobile";
 
 export default function Reviews() {
   return (
@@ -17,6 +18,7 @@ export default function Reviews() {
 const AutoScrollReviews = () => {
   const [reviews, setReviews] = useState(SampleReviews);
   const [current, setCurrent] = useState(1);
+  const isMobile = useIsMobile();
 
   return (
     <div className="relative grid md:grid-cols-[400px_auto] overflow-x-hidden items-center">
@@ -60,7 +62,8 @@ const AutoScrollReviews = () => {
         <Carousel
           autoscroll
           iteration="once"
-          autoscrollMode="on-going"
+          slides={isMobile ? 1 : "all"}
+          autoscrollMode={isMobile ? "paused" : "on-going"}
           controls={false}
           onChange={setCurrent}
         >

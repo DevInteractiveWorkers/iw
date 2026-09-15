@@ -10,6 +10,7 @@ import FadeInContent from "@/components/FadeInContent";
 import SplitText from "@/components/text-animation/SplitText";
 import PageHero from "@/components/page-hero";
 import { useScrollIntoView } from "@/lib/use-scroll-into-view";
+import { useIsMobile } from "@/lib/useMobile";
 
 const Dispatch = () => {
   const tags = [
@@ -47,6 +48,8 @@ const Dispatch = () => {
     offset: 80,
   });
 
+  const isMobile = useIsMobile();
+
   return (
     <section>
       <PageHero
@@ -77,6 +80,7 @@ const Dispatch = () => {
       >
         <Carousel
           autoscroll
+          slides={isMobile ? 1 : "all"}
           iteration="once"
           autoscrollMode="on-going"
           controls={false}

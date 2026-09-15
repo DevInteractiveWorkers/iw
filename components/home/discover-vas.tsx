@@ -50,8 +50,9 @@ const DiscoverVAs = () => {
         </div>
         <FadeInContent>
           <Link
-            href={"/vas"}
-            className="bg-white text-center text-black rounded py-2 px-10 items-center justify-center text-xl"
+            href={"/affiliate"}
+            className="bg-white text-center text-black rounded py-2 px-10 items-center justify-center text-xl
+            active:text-iw-red-1 hover:scale-95 transition-[transform,_color] duration-150"
           >
             Affiliate Program
           </Link>
