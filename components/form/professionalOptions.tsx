@@ -9,7 +9,6 @@ const professionalOptions = [
   "Scheduling Agent",
   "Outbound Cold Call & Lead Qualification Desk",
   "Executive Operational Assistant + Inbox Zero Manager",
-  "Executive Operational Assistant + Inbox Zero Manager",
   "General VA",
   "Recruiting VA",
   "Intake Coordinators VA",
@@ -28,4 +27,5 @@ const professionalOptions = [
   "Telemarketing Agent",
   "Real Estate Agent",
 ];
+
 export default professionalOptions;

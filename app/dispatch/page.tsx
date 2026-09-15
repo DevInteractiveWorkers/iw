@@ -138,19 +138,19 @@ const Dispatch = () => {
               },
               {
                 title: "Instant Guard Deployment Remote Support",
-                text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate quaerat, quia autem voluptatem mollitia ab, tenetur assumenda fugiat, hic sunt veritatis illo. Nemo animi vel voluptates! Doloribus officiis omnis nulla.",
+                text: "Ensure active field safety and full protocol compliance. Remote dispatchers monitor officer check-ins, verify posts, and respond immediately to incident escalations.",
                 src: "/security.png",
                 imagePosition: { objectPosition: "30% center" },
               },
               {
                 title: "Accurate Shift Scheduling",
-                text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate quaerat, quia autem voluptatem mollitia ab, tenetur assumenda fugiat, hic sunt veritatis illo. Nemo animi vel voluptates! Doloribus officiis omnis nulla.",
+                text: "Eliminate unstaffed posts and scheduling conflicts. Remote dispatchers manage officer rosters, handle last-minute call-outs, and keep shift handoffs smooth.",
                 src: "/top-view.png",
                 imagePosition: { objectPosition: "center bottom" },
               },
               {
                 title: "Seamless Communication",
-                text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate quaerat, quia autem voluptatem mollitia ab, tenetur assumenda fugiat, hic sunt veritatis illo. Nemo animi vel voluptates! Doloribus officiis omnis nulla.",
+                text: "Maintain a real-time line of communication between client sites, field guards, and management for rapid coordination during critical events.",
                 src: "/welcome-our-team-young-modern-man-wear-shaking-hands-while-working-creative-office 1.png",
               },
             ]}

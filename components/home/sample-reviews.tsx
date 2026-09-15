@@ -17,13 +17,13 @@ export const SampleReviews: Review[] = [
     rating: 5,
     text: "The talent and professionals that Interactive Workers brings are hard workers and dedicated. As someone who uses their services to fill up positions in my organization, I highly recommend IW to businesses looking to outsource their work.",
   },
-  {
-    author_name: "Juan Carlos Cedeño",
-    rating: 5,
-    text: "I recommend InteractiveWorkers to any company or business seeking to drastically reduce their workload, their bilingual staff is highly talented and committed, they also have an on site team of supervisors who are involved in every task their Va's are assigned to in order to ensure it is successfully accomplished. One of the things I like the most about them is they offer full accountability, adaptability and the fact that their operations centers are equipped with the latest in technology and backup systems which makes them capable of maintaining any operation running seamlessly 24/7.",
-  },
-  { author_name: "Alejandro Mendez", rating: 5 },
-  { author_name: "Rita Bastidas", rating: 5 },
+  // {
+  //   author_name: "Juan Carlos Cedeño",
+  //   rating: 5,
+  //   text: "I recommend InteractiveWorkers to any company or business seeking to drastically reduce their workload, their bilingual staff is highly talented and committed, they also have an on site team of supervisors who are involved in every task their Va's are assigned to in order to ensure it is successfully accomplished. One of the things I like the most about them is they offer full accountability, adaptability and the fact that their operations centers are equipped with the latest in technology and backup systems which makes them capable of maintaining any operation running seamlessly 24/7.",
+  // },
+  // { author_name: "Alejandro Mendez", rating: 5 },
+  // { author_name: "Rita Bastidas", rating: 5 },
   // Not real reviews from this point.
   /*
   {
