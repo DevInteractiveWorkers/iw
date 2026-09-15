@@ -18,6 +18,9 @@ export default function FooterForm() {
     case "/affiliate": {
       return <AffiliateForms />;
     }
+    case "/policy": {
+      return;
+    }
     default: {
       return <MainForm />;
     }

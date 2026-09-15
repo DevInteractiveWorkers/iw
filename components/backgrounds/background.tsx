@@ -1,13 +1,15 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import DotField from "../DotField";
-import { ParticlesComponent } from "../particles";
 import ColorBends from "./ColorBends";
-import MoltenMetal from "./MoltenMetal";
-import { Background } from "@julscodes/blob-background";
 import "@julscodes/blob-background/styles.css";
 
 export default function IWBg() {
+  const pathname = usePathname();
+
+  if (pathname === "/policy") return;
+
   return (
     <>
       <div
