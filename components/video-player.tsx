@@ -1,6 +1,7 @@
 "use client";
 
 import { useIsMobile } from "@/lib/useMobile";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 interface VideoPlayerProps {
@@ -26,6 +27,17 @@ export default function VideoPlayer({
   const [isMuted, setIsMuted] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
+  // --- Progress bar interaction state ---
+  const [bufferedPercent, setBufferedPercent] = useState(0);
+  const [isScrubbing, setIsScrubbing] = useState(false);
+  const [isBarHovered, setIsBarHovered] = useState(false);
+  // Ratio (0-1) of the pointer's current position on the bar, while
+  // hovering or scrubbing. `null` means "not currently interacting".
+  const [hoverRatio, setHoverRatio] = useState<number | null>(null);
+  const wasPlayingBeforeScrubRef = useRef(false);
+
+  const isMobile = useIsMobile();
+
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -46,12 +58,20 @@ export default function VideoPlayer({
       setIsMuted(video.muted);
     };
 
+    const onProgress = () => {
+      if (video.duration && video.buffered.length > 0) {
+        const end = video.buffered.end(video.buffered.length - 1);
+        setBufferedPercent(Math.min((end / video.duration) * 100, 100));
+      }
+    };
+
     video.addEventListener("loadedmetadata", onLoadedMetadata);
     video.addEventListener("timeupdate", onTimeUpdate);
     video.addEventListener("play", onPlay);
     video.addEventListener("pause", onPause);
     video.addEventListener("ended", onEnded);
     video.addEventListener("volumechange", onVolumeChange);
+    video.addEventListener("progress", onProgress);
 
     return () => {
       video.removeEventListener("loadedmetadata", onLoadedMetadata);
@@ -60,6 +80,7 @@ export default function VideoPlayer({
       video.removeEventListener("pause", onPause);
       video.removeEventListener("ended", onEnded);
       video.removeEventListener("volumechange", onVolumeChange);
+      video.removeEventListener("progress", onProgress);
     };
   }, []);
 
@@ -84,20 +105,86 @@ export default function VideoPlayer({
     }
   };
 
-  const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
-    const video = videoRef.current;
+  // Convert a clientX coordinate into a 0-1 ratio along the progress bar.
+  const getRatioFromClientX = (clientX: number) => {
     const bar = progressRef.current;
-
-    if (!video || !bar || !duration) return;
+    if (!bar) return 0;
 
     const rect = bar.getBoundingClientRect();
+    if (rect.width === 0) return 0;
 
-    const ratio = Math.min(
-      Math.max((e.clientX - rect.left) / rect.width, 0),
-      1,
-    );
+    return Math.min(Math.max((clientX - rect.left) / rect.width, 0), 1);
+  };
 
-    video.currentTime = ratio * duration;
+  // Move the video (and UI) to a given ratio without waiting for the
+  // browser's own timeupdate event, so scrubbing feels instant.
+  const scrubToRatio = (ratio: number) => {
+    const video = videoRef.current;
+    if (!video || !duration) return;
+
+    const time = ratio * duration;
+    video.currentTime = time;
+    setCurrentTime(time);
+  };
+
+  const handleProgressPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    const video = videoRef.current;
+    const bar = progressRef.current;
+    if (!video || !bar || !duration) return;
+
+    e.preventDefault();
+    bar.setPointerCapture(e.pointerId);
+
+    wasPlayingBeforeScrubRef.current = !video.paused;
+    // Pause while actively scrubbing so the video doesn't fight the drag.
+    video.pause();
+
+    setIsScrubbing(true);
+    const ratio = getRatioFromClientX(e.clientX);
+    setHoverRatio(ratio);
+    scrubToRatio(ratio);
+  };
+
+  const handleProgressPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!duration) return;
+
+    const ratio = getRatioFromClientX(e.clientX);
+    setHoverRatio(ratio);
+
+    if (isScrubbing) {
+      scrubToRatio(ratio);
+    }
+  };
+
+  const endScrub = (e: React.PointerEvent<HTMLDivElement>) => {
+    const bar = progressRef.current;
+    if (bar && bar.hasPointerCapture(e.pointerId)) {
+      bar.releasePointerCapture(e.pointerId);
+    }
+
+    if (isScrubbing) {
+      setIsScrubbing(false);
+      if (wasPlayingBeforeScrubRef.current) {
+        videoRef.current?.play();
+      }
+    }
+  };
+
+  const handleProgressPointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    endScrub(e);
+  };
+
+  const handleProgressPointerCancel = (
+    e: React.PointerEvent<HTMLDivElement>,
+  ) => {
+    endScrub(e);
+  };
+
+  const handleProgressPointerEnter = () => setIsBarHovered(true);
+
+  const handleProgressPointerLeave = () => {
+    setIsBarHovered(false);
+    if (!isScrubbing) setHoverRatio(null);
   };
 
   const toggleMute = () => {
@@ -155,8 +242,17 @@ export default function VideoPlayer({
 
   const progressPercent = duration ? (currentTime / duration) * 100 : 0;
 
+  // While actively scrubbing, the playhead/fill should track the pointer
+  // directly rather than waiting for currentTime state to catch up.
+  const displayPercent =
+    isScrubbing && hoverRatio !== null ? hoverRatio * 100 : progressPercent;
+
+  const showTooltip =
+    (isBarHovered || isScrubbing) && hoverRatio !== null && duration > 0;
+  const tooltipTime = hoverRatio !== null ? hoverRatio * duration : 0;
+  const tooltipPercent = hoverRatio !== null ? hoverRatio * 100 : 0;
+
   const showThumbnail = Boolean(thumbnail) && !isPlaying;
-  const isMobile = useIsMobile();
 
   return (
     <div
@@ -178,15 +274,27 @@ export default function VideoPlayer({
           type="button"
           aria-label="Play video"
           onClick={togglePlay}
-          className={`absolute inset-0 flex items-center justify-center bg-black bg-cover bg-center transition-opacity duration-300 ${
-            showThumbnail ? "opacity-100" : "pointer-events-none opacity-0"
-          }`}
-          style={{
-            backgroundImage: `url(${thumbnail})`,
-          }}
+          className={`absolute inset-0 flex items-center justify-center group/thumbnail`}
         >
-          <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 text-black shadow-lg transition-transform hover:scale-105">
-            <PlayIcon className="h-7 w-7 translate-x-0.5" />
+          <Image
+            src={thumbnail}
+            alt={`thumbnail`}
+            width={1080}
+            height={1080}
+            className={`z-0 absolute top-0 left-0 w-full h-full object-cover ${isPlaying ? "opacity-0" : "opacity-100"} transition-opacity duration-300`}
+          />
+          <span
+            className={`z-10 flex h-16 w-16 items-center justify-center rounded-full bg-black/20 backdrop-blur-sm text-white shadow-lg transition-all hover:scale-105 duration-300 ${
+              isPlaying
+                ? "group-hover/thumbnail:opacity-100 opacity-0"
+                : "opacity-100"
+            }`}
+          >
+            {isPlaying ? (
+              <PauseIcon className="h-10 w-10" />
+            ) : (
+              <PlayIcon className="h-10 w-10" />
+            )}
           </span>
         </button>
       )}
@@ -200,26 +308,75 @@ export default function VideoPlayer({
           transition-opacity duration-300
           opacity-0
           ${
-            !isPlaying || !hasStarted
+            !isPlaying || !hasStarted || isScrubbing
               ? "group-hover/video-container:opacity-100"
               : "pointer-events-none group-hover/video-container:pointer-events-auto group-hover/video-container:opacity-100"
           }
+          ${isScrubbing ? "!opacity-100" : ""}
         `}
       >
+        {/* Bigger invisible hit area around the visual bar so the touch
+            target is comfortable on mobile without changing the bar's
+            visual thickness. */}
         <div
-          ref={progressRef}
-          onClick={handleSeek}
-          className="group/bar relative h-1.5 w-full cursor-pointer rounded-full bg-white/30"
+          className={`group/bar relative -my-3 flex touch-none select-none items-center py-3 ${
+            isMobile ? "cursor-default" : "cursor-pointer"
+          }`}
+          onPointerDown={handleProgressPointerDown}
+          onPointerMove={handleProgressPointerMove}
+          onPointerUp={handleProgressPointerUp}
+          onPointerCancel={handleProgressPointerCancel}
+          onPointerEnter={handleProgressPointerEnter}
+          onPointerLeave={handleProgressPointerLeave}
         >
-          <div
-            className="absolute inset-y-0 left-0 rounded-full bg-white"
-            style={{ width: `${progressPercent}%` }}
-          />
+          {/* Time preview tooltip */}
+          {showTooltip && (
+            <div
+              className="pointer-events-none absolute bottom-full mb-2 -translate-x-1/2 whitespace-nowrap rounded bg-black/90 px-1.5 py-0.5 text-xs font-medium tabular-nums text-white shadow"
+              style={{
+                left: `${tooltipPercent}%`,
+              }}
+            >
+              {formatTime(tooltipTime)}
+            </div>
+          )}
 
           <div
-            className="absolute top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white opacity-0 transition-opacity group-hover/bar:opacity-100"
-            style={{ left: `${progressPercent}%` }}
-          />
+            ref={progressRef}
+            className={`relative w-full rounded-full bg-white/30 transition-[height] duration-150 ${
+              isScrubbing
+                ? "h-2"
+                : isBarHovered
+                  ? "h-2"
+                  : isMobile
+                    ? "h-1.5"
+                    : "h-1"
+            }`}
+          >
+            {/* Buffered / seekable range */}
+            <div
+              className="absolute inset-y-0 left-0 rounded-full bg-white/40"
+              style={{ width: `${bufferedPercent}%` }}
+            />
+
+            {/* Played progress */}
+            <div
+              className="absolute inset-y-0 left-0 rounded-full bg-iw-red-1"
+              style={{ width: `${displayPercent}%` }}
+            />
+
+            {/* Playhead */}
+            <div
+              className={`absolute top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-iw-red-1 shadow-md ring-2 ring-white transition-opacity ${
+                isMobile ? "h-4 w-4" : "h-3 w-3"
+              } ${
+                isScrubbing || isBarHovered
+                  ? "opacity-100"
+                  : "opacity-0 group-hover/bar:opacity-100"
+              }`}
+              style={{ left: `${displayPercent}%` }}
+            />
+          </div>
         </div>
 
         <div className="flex items-center gap-3 pb-1 text-white">
