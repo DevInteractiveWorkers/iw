@@ -1,5 +1,6 @@
 "use client";
 
+import { useIsMobile } from "@/lib/useMobile";
 import "./ticket.css";
 import Image from "next/image";
 import Link from "next/link";
@@ -26,22 +27,37 @@ export default function Ticket() {
   const ticketRef = useRef<HTMLButtonElement>(null);
   const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const computeCenteredTransform = useCallback((rect: PinnedRect) => {
-    const elCenterX = rect.left + rect.width / 2;
-    const elCenterY = rect.top + rect.height / 2;
+  const isMobile = useIsMobile();
 
-    const deltaX = window.innerWidth / 2 - elCenterX;
-    const deltaY = window.innerHeight / 2 - elCenterY;
+  const computeCenteredTransform = useCallback(
+    (rect: PinnedRect) => {
+      const elCenterX = rect.left + rect.width / 2;
+      const elCenterY = rect.top + rect.height / 2;
 
-    return `perspective(1200px) translate3d(${deltaX}px, ${deltaY}px, 0) rotateY(180deg) scale(${TICKET_SCALE})`;
-  }, []);
+      const deltaX = window.innerWidth / 2 - elCenterX;
+      const deltaY = window.innerHeight / 2 - elCenterY;
+
+      // On mobile the wide ticket layout doesn't fit the narrow viewport,
+      // so we additionally spin it 90deg around Z to fit it on screen.
+      // The rotateY(180deg) is still needed to flip to the back face
+      // (ticket-reveal); rotateZ(90deg) just reorients that flipped
+      // ticket to fit a portrait mobile screen.
+      const rotation = isMobile
+        ? "rotateZ(90deg) rotateY(180deg)"
+        : "rotateY(180deg)";
+
+      return `perspective(1200px) translate3d(${deltaX}px, ${deltaY}px, 0) ${rotation} scale(${TICKET_SCALE})`;
+    },
+    [isMobile],
+  );
 
   /**
    * Position the close button underneath the centered ticket.
    *
    * The ticket is centered at 50vh and scaled to 1.15, so we calculate
    * the visual bottom of the transformed ticket and place the button
-   * underneath it.
+   * underneath it. On mobile the ticket is additionally rotated 90deg,
+   * so its visual height on screen is actually its original width.
    */
   const getCloseButtonStyle = useCallback(() => {
     if (!pinnedRect || !isOpen) {
@@ -49,7 +65,8 @@ export default function Ticket() {
     }
 
     const ticketCenterY = window.innerHeight / 2;
-    const scaledHeight = pinnedRect.height * TICKET_SCALE;
+    const effectiveHeight = isMobile ? pinnedRect.width : pinnedRect.height;
+    const scaledHeight = effectiveHeight * TICKET_SCALE;
     const ticketBottom = ticketCenterY + scaledHeight / 2;
 
     return {
@@ -58,7 +75,7 @@ export default function Ticket() {
       left: "50%",
       transform: "translateX(-50%)",
     };
-  }, [pinnedRect, isOpen]);
+  }, [pinnedRect, isOpen, isMobile]);
 
   const handleOpen = () => {
     const el = ticketRef.current;
@@ -164,7 +181,7 @@ export default function Ticket() {
           ref={ticketRef}
           className={`grid grid-cols-[auto_auto] w-max group/ticket card-ticket ${
             pinnedRect ? "card-ticket-open" : ""
-          }`}
+          } ${isOpen && isMobile ? "ticket-mobile-rotate" : ""}`}
           style={
             pinnedRect
               ? {
@@ -251,7 +268,9 @@ export default function Ticket() {
 
               {/* CLICK HERE SIDE */}
               <div className="ticket-front bg-[#B7B7B7] text-white corner-scoop rounded-l-xl w-max min-w-[clamp(500px,20vw,200px)] transition-all duration-300 origin-bottom-right">
-                <div className="flex flex-col items-start justify-center p-4 gap-4 h-full rounded-r-xl">
+                <div
+                  className={`flex flex-col items-start justify-center p-4 gap-4 h-full rounded-r-xl ${isMobile && isOpen && "-rotate-90 -translate-y-1/2"}`}
+                >
                   <Image
                     width={1080}
                     height={1080}
