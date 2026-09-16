@@ -16,6 +16,7 @@ import Loader, { LoadingPage } from "../loader";
 import PageDivision from "../page-division";
 import Checkbox from "./checkbox";
 import { useScrollIntoView } from "@/lib/use-scroll-into-view";
+import { useIsMobile } from "@/lib/useMobile";
 
 const MainForm = ({
   heading = (
@@ -32,6 +33,7 @@ const MainForm = ({
   const [sending, isSending] = useState(false);
   const [sent, isSent] = useState(false);
   const [message, setMessage] = useState("");
+  const isMobile = useIsMobile();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -164,7 +166,7 @@ const MainForm = ({
         placeholder="What's your question? Or what kind of outsourcing help do you need?"
         autoComplete="off"
         required
-        rows={1}
+        rows={isMobile ? 2 : 1}
       />
       <p className="py-4">
         Messages and data rates may apply. (Message frequency will vary).

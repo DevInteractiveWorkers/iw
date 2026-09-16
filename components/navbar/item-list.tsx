@@ -125,7 +125,7 @@ const ItemList = ({ items }: { items: Item[]; hover?: boolean }) => {
                 itemRefs.current[key] = el;
               }}
               aria-current={isActive ? "page" : undefined}
-              className={`relative z-10 px-4 transition-all duration-150 max-md:w-max lg:text-base md:text-xs ${
+              className={`relative z-10 px-4 transition-all duration-150 max-md:w-full lg:text-base md:text-xs ${
                 isHighlighted ? "text-black" : "text-white"
               }`}
               onMouseEnter={() => setHoverIndex(key)}

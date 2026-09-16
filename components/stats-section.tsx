@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import Reviews from "./home/reviews";
 import FadeInContent from "./FadeInContent";
 import { useScrollIntoView } from "@/lib/use-scroll-into-view";
+import VideoPlayer from "./video-player";
+import SplitText from "./text-animation/SplitText";
 
 export default function StatsSection() {
   const { ref } = useScrollIntoView<HTMLElement>({ offset: 80 });
@@ -25,6 +27,37 @@ export default function StatsSection() {
       <article className="z-10">
         <FadeInContent>
           <Reviews />
+        </FadeInContent>
+      </article>
+      <SplitText
+        className="text-[clamp(2rem,4vw,3.75rem)] leading-[1.05] pb-6 font-medium"
+        text="What they say about us:"
+      />
+      <article
+        className="
+        relative z-10
+        flex w-full items-center justify-center
+        px-0 md:px-2 py-10
+      "
+      >
+        <FadeInContent
+          className="
+            flex w-full items-center justify-center
+            md:h-auto
+            md:w-full
+          "
+        >
+          <VideoPlayer
+            src={"/testimonies/VT01 - Alexandra.mp4"}
+            className="
+              h-full
+              w-full
+              rounded-none
+              md:h-auto
+              md:w-7/12
+              md:rounded-xl
+            "
+          />
         </FadeInContent>
       </article>
     </section>

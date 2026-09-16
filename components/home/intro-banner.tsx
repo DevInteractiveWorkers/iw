@@ -48,8 +48,8 @@ const IntroBanner = () => {
           className="font-light text-sm lg:text-xl text-center"
           text={
             <>
-              Hardware, coverage, and continuity included <br />
-              you get infrastructure, not a freelancer.
+              Hardware and continuity included. <br />
+              You get infrastructure, not a freelancer.
             </>
           }
         />
