@@ -181,14 +181,14 @@ export default function PricingPage() {
                         built-in redundancy. Your unit is fully provisioned and
                         managed as operational infrastructure.
                         <br />
-                        <br />
-                        <ul className="md:pl-6 pl-4 list-disc flex flex-col gap-1">
-                          <li>Zero Hardware &amp; IT Hassle</li>
-                          <li>Dedicated Backup &amp; Standby Support</li>
-                          <li>Zero HR &amp; Legal Liability</li>
-                          <li>One flat, tax-deductible monthly invoice</li>
-                        </ul>
                       </p>
+                      <br />
+                      <ul className="md:pl-6 pl-4 list-disc flex flex-col gap-1">
+                        <li>Zero Hardware &amp; IT Hassle</li>
+                        <li>Dedicated Backup &amp; Standby Support</li>
+                        <li>Zero HR &amp; Legal Liability</li>
+                        <li>One flat, tax-deductible monthly invoice</li>
+                      </ul>
                     </>
                   ) : (
                     <>
