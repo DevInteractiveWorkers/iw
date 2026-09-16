@@ -11,19 +11,19 @@ import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 const productizedPackages = [
   {
     content: "24/7 Inbound Call & Emergency Dispatch Unit",
-    imageSrc: "/home/discover-vas/vas/0.png",
+    imageSrc: "/team-2026/camila_01.png",
   },
   {
     content: "Tier-1 Helpdesk & Ticket Triage Team",
-    imageSrc: "/home/discover-vas/vas/2.png",
+    imageSrc: "/team-2026/chantal_01.png",
   },
   {
     content: "Executive Operational Assistant",
-    imageSrc: "/home/discover-vas/vas/3.png",
+    imageSrc: "/team-2026/claudia_01.png",
   },
   {
     content: "Outbound Cold Call & Lead Qualification Desk",
-    imageSrc: "/home/discover-vas/vas/1.png",
+    imageSrc: "/team-2026/andere_03.png",
   },
 ];
 

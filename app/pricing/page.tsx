@@ -18,6 +18,7 @@ export default function PricingPage() {
   return (
     <section id="pricing">
       <PageHero
+        align="center"
         heading={
           <>
             Our Specialized Productized
@@ -29,19 +30,10 @@ export default function PricingPage() {
         }
       />
 
-      <article ref={ref} className="flex flex-col border-t pb-20">
+      <article ref={ref} className="flex flex-col pb-20">
         <div className="flex justify-center py-6">
           <div className="flex gap-4 sm:gap-6 justify-center items-center">
-            <label
-              className={
-                isTerm === "long-term"
-                  ? "font-semibold"
-                  : "text-muted-foreground"
-              }
-            >
-              Long Term
-            </label>
-
+            <label>Long Term</label>
             <Switch
               checked={isTerm === "project"}
               onChange={() =>
@@ -50,14 +42,7 @@ export default function PricingPage() {
                 )
               }
             />
-
-            <label
-              className={
-                isTerm === "project" ? "font-semibold" : "text-muted-foreground"
-              }
-            >
-              Per Project
-            </label>
+            <label>Per Project</label>
           </div>
         </div>
 
@@ -69,36 +54,38 @@ export default function PricingPage() {
               style={{ height: "100%" }}
               disableHover
             >
-              <h4 className="text-[clamp(1.5rem,2.5vw,1.875rem)] font-medium leading-tight">
-                Want more traffic and leads?
-              </h4>
+              <div className="sticky top-20 left-0">
+                <h4 className="text-[clamp(1.5rem,2.5vw,1.875rem)] font-medium leading-tight">
+                  Want more traffic and leads?
+                </h4>
 
-              <p className="py-6 text-[clamp(1rem,1.5vw,1.25rem)]">
-                Get a Specialized Productized Package that starts with your
-                goals.
-              </p>
+                <p className="py-6 text-[clamp(1rem,1.5vw,1.25rem)]">
+                  Get a Specialized Productized Package that starts with your
+                  goals.
+                </p>
 
-              <h5 className="text-[clamp(1.5rem,2.5vw,1.875rem)] font-medium">
-                Why us?
-              </h5>
+                <h5 className="text-[clamp(1.5rem,2.5vw,1.875rem)] font-medium">
+                  Why us?
+                </h5>
 
-              <ul className="py-6 text-[clamp(1rem,1.5vw,1.25rem)] flex flex-col gap-6">
-                <li>Bilingual (English and Spanish)</li>
-                <li>Adaptable</li>
-                <li>Professionals in their field</li>
-                <li>24/7 Availability</li>
-              </ul>
+                <ul className="py-6 text-[clamp(1rem,1.5vw,1.25rem)] flex flex-col gap-6">
+                  <li>Bilingual (English and Spanish)</li>
+                  <li>Adaptable</li>
+                  <li>Professionals in their field</li>
+                  <li>24/7 Availability</li>
+                </ul>
+              </div>
             </ProductCard>
           </aside>
 
           {/* RIGHT COLUMN */}
           <div
             key={isTerm}
-            className="grid grid-rows-2 gap-6 min-h-0 animate-in fade-in duration-150"
+            className="grid gap-6 min-h-0 animate-in fade-in duration-150"
           >
             {/* TOP CARD */}
             <ProductCard
-              className="p-6 flex flex-col gap-10 h-full min-h-0 max-md:overflow-hidden"
+              className="p-6 flex flex-col gap-10 h-full min-h-0 max-md:overflow-hidden justify-center"
               style={{
                 width: isTerm === "project" || isMobile ? "100%" : "70%",
               }}
@@ -188,15 +175,15 @@ export default function PricingPage() {
                         Build operational continuity around your business with a
                         dedicated, cross-trained team that stays aligned with
                         your workflows as you grow.
-                      </p>
-                      <br />
-                      <p>
+                        <br />
+                        <br />
                         No hardware burden, no local payroll administration, and
                         built-in redundancy. Your unit is fully provisioned and
                         managed as operational infrastructure.
+                        <br />
                       </p>
                       <br />
-                      <ul className="md:pl-6 p-4 list-disc flex flex-col gap-1">
+                      <ul className="md:pl-6 pl-4 list-disc flex flex-col gap-1">
                         <li>Zero Hardware &amp; IT Hassle</li>
                         <li>Dedicated Backup &amp; Standby Support</li>
                         <li>Zero HR &amp; Legal Liability</li>

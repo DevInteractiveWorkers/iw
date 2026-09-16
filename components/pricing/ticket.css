@@ -156,6 +156,26 @@
 }
 
 /* =========================
+   MOBILE ROTATION (90deg)
+   Applied in addition to card-ticket-open when the ticket is opened
+   on a mobile viewport. The ticket's own rotateY(180deg) flip (baked
+   into the inline transform in ticket.tsx) still runs to reveal the
+   back face; this class just spins that flipped ticket an extra
+   90deg around Z so its wide layout fits a narrow mobile screen.
+   The reveal content is counter-rotated -90deg so the text (and its
+   layout) reads upright instead of sideways.
+   ========================= */
+
+.ticket-mobile-rotate {
+  transform-style: preserve-3d;
+}
+
+.ticket-mobile-rotate .ticket-reveal-content {
+  transform: rotateZ(-90deg);
+  transform-origin: center center;
+}
+
+/* =========================
    CLOSE
    ========================= */
 

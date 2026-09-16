@@ -9,17 +9,24 @@ interface PageHeroAttributes {
   id?: string;
   heading: string | React.ReactNode;
   description?: string | React.ReactNode;
+  align?: React.CSSProperties["textAlign"];
 }
 
 export default function PageHero({
   id,
   heading,
   description,
+  align = "start",
 }: PageHeroAttributes) {
   const { ref } = useScrollIntoView<HTMLElement>({ offset: 80 });
 
   return (
-    <article ref={ref} id={id} className="flex flex-col py-10 relative">
+    <article
+      ref={ref}
+      id={id}
+      className="flex flex-col py-10 relative w-full"
+      style={{ alignItems: align }}
+    >
       <FlipElement className="w-1/4 max-w-[150px] pb-10 mt-20">
         <Image
           width={1080}
@@ -35,7 +42,7 @@ export default function PageHero({
             leading-[1.05]
             pb-6
           "
-        textAlign="start"
+        textAlign={align}
         text={heading}
       />
       <div className="flex justify-end">
