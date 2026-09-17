@@ -17,6 +17,7 @@ const ContactUs = () => {
             we'll scope the right operational unit for it.
           </>
         }
+        division={false}
       />
     </section>
   );

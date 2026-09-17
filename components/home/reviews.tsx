@@ -7,6 +7,7 @@ import Carousel from "./reviews/carousel";
 import ProductCard from "../product-card";
 import FadeInContent from "../FadeInContent";
 import { useIsMobile } from "@/lib/useMobile";
+import { ReviewsSummary } from "./reviews-summary";
 
 export default function Reviews() {
   return (
@@ -35,38 +36,6 @@ const ReviewCard = ({
       fullReview={false}
     />
   </FadeInContent>
-);
-
-const ReviewsSummary = ({ interactive = false }: { interactive?: boolean }) => (
-  <ProductCard
-    className={`flex flex-col justify-between min-h-[400px] h-full
-      ${
-        interactive
-          ? "items-start relative md:min-w-[300px] md:max-w-[500px] transition-all duration-500 pointer-events-none z-50"
-          : ""
-      }`}
-  >
-    <div className="p-5 w-full h-min border-white/50 border-b">
-      <label className="text-7xl">5.0</label>
-
-      <p className="md:text-2xl font-light">
-        We've delivered{" "}
-        <b className="font-bold">
-          56+
-          <br /> projects
-        </b>{" "}
-        that help
-        <br /> companies generate
-        <br /> real results.
-      </p>
-    </div>
-
-    <div className="flex w-full h-full p-4 items-center justify-center">
-      <button className="bg-black md:px-20 px-4 py-5 rounded-full hover:scale-95 active:bg-white active:text-iw-red-1 transition-all duration-200 pointer-events-auto">
-        Leave a review
-      </button>
-    </div>
-  </ProductCard>
 );
 
 const ReviewsMask = ({ children }: { children: React.ReactNode }) => (
