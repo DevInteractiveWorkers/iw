@@ -13,14 +13,12 @@ export default function IWBg() {
 
   if (pathname === "/pricing")
     return (
-      // <BackgroundWrapper>
       <div className="absolute top-0 left-0 -z-10 w-full h-screen">
         <div className="absolute top-0 left-0 -z-10 w-full h-screen">
           <LightRays />
         </div>
         <LightRays raysColor="#dd272d" />
       </div>
-      // </BackgroundWrapper>
     );
 
   return (
@@ -69,7 +67,7 @@ export default function IWBg() {
 function BackgroundWrapper({ children }: { children?: React.ReactNode }) {
   return (
     <div
-      className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden bg-black"
+      className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden bg-transparent"
       style={{
         maskImage:
           "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",

@@ -10,6 +10,7 @@ interface PageHeroAttributes {
   heading: string | React.ReactNode;
   description?: string | React.ReactNode;
   align?: React.CSSProperties["textAlign"];
+  division?: boolean;
 }
 
 export default function PageHero({
@@ -17,6 +18,7 @@ export default function PageHero({
   heading,
   description,
   align = "start",
+  division = true,
 }: PageHeroAttributes) {
   const { ref } = useScrollIntoView<HTMLElement>({ offset: 80 });
 
@@ -45,14 +47,24 @@ export default function PageHero({
         textAlign={align}
         text={heading}
       />
-      <div className="flex justify-end">
+      <div
+        className="flex w-full"
+        style={{
+          justifyContent:
+            align !== "start" && align !== "end"
+              ? align
+              : align === "start"
+                ? "end"
+                : "start",
+        }}
+      >
         <SplitText
           className="text-xl md:w-2/3 lg:w-1/3"
-          textAlign="start"
+          textAlign={align}
           text={description}
         />
       </div>
-      <PageDivision className="bottom-0" />
+      {division && <PageDivision className="bottom-0" />}
     </article>
   );
 }
