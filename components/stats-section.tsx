@@ -48,7 +48,9 @@ export default function StatsSection() {
           "
         >
           <VideoPlayer
-            src={"/testimonies/VT01 - Alexandra.mp4"}
+            src={
+              "https://s3.interactiveworkers.com/demo/52d026a9-2910-4eb5-8395-aeecedc29f13.mp4"
+            }
             className="
               h-full
               w-full
