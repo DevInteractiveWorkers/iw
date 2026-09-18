@@ -104,6 +104,7 @@ export default function AppLoader({ children }: { children: React.ReactNode }) {
       )}
 
       <main
+        id="app"
         className={`
           w-full
           transition-opacity

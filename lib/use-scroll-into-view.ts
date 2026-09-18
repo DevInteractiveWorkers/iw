@@ -32,7 +32,7 @@ export function useScrollIntoView<T extends HTMLElement = HTMLElement>(
     exitDelay = 100,
     block = "directional",
     offset = 0,
-    enabled = true,
+    enabled = false,
     onChange,
   } = options;
 

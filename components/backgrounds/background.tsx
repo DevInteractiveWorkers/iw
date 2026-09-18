@@ -1,17 +1,25 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { motion, type Variants } from "framer-motion";
 import DotField from "../DotField";
 import ColorBends from "./ColorBends";
 import "@julscodes/blob-background/styles.css";
 import LightRays from "./LightRays";
+import { usePageTransition } from "../PagetransitionContext";
 
-export default function IWBg() {
-  const pathname = usePathname();
+const CUSTOM_BG_ROUTES = ["/pricing"];
 
-  if (pathname === "/policy") return;
+const fadeVariants: Variants = {
+  initial: { opacity: 0 },
+  center: { opacity: 1 },
+  exit: { opacity: 0 },
+};
 
-  if (pathname === "/pricing")
+function BackgroundForPath({ path }: { path: string }) {
+  if (path === "/policy") return null;
+
+  if (path === "/pricing") {
     return (
       <div className="absolute top-0 left-0 -z-10 w-full h-screen">
         <div className="absolute top-0 left-0 -z-10 w-full h-screen">
@@ -20,30 +28,10 @@ export default function IWBg() {
         <LightRays raysColor="#dd272d" />
       </div>
     );
+  }
 
   return (
     <BackgroundWrapper>
-      {/* <ParticlesComponent id="landing-particles" color="#000" /> */}
-      {/* <MoltenMetal
-        color1="#C1272D"
-        color2="#C1272D"
-        color3="#e32828"
-        colorMode="molten"
-        speed={0.35}
-        scale={4}
-        detail={3}
-        glow={1.6}
-        coreSize={0.1}
-        swirl={1}
-        fold={-0.2}
-        blackPoint={0.05}
-        brightness={1.3}
-        opacity={1}
-        grain
-        grainIntensity={0.05}
-        mouseInteraction
-        mouseStrength={0.3}
-      /> */}
       <ColorBends
         rotation={95}
         speed={0.2}
@@ -61,6 +49,32 @@ export default function IWBg() {
         bandWidth={6}
       />
     </BackgroundWrapper>
+  );
+}
+
+export default function IWBg() {
+  const pathname = usePathname();
+  const { committedPath, pendingPath, phase, isFirstRender, duration } =
+    usePageTransition();
+
+  const involvesCustomBg =
+    CUSTOM_BG_ROUTES.includes(committedPath) ||
+    (pendingPath !== null && CUSTOM_BG_ROUTES.includes(pendingPath));
+
+  if (!involvesCustomBg) {
+    return <BackgroundForPath path={pathname} />;
+  }
+
+  return (
+    <motion.div
+      key={committedPath}
+      variants={fadeVariants}
+      initial={isFirstRender ? false : "initial"}
+      animate={phase}
+      transition={{ duration, ease: "easeInOut" }}
+    >
+      <BackgroundForPath path={committedPath} />
+    </motion.div>
   );
 }
 

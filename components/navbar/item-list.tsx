@@ -1,14 +1,21 @@
 "use client";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState, useRef, useLayoutEffect, useEffect } from "react";
+import { isInternalHref } from "../PagetransitionContext";
+import { TransitionLink } from "../link";
 
 interface Item {
   title: string;
   link: string;
 }
 
-const ItemList = ({ items }: { items: Item[]; hover?: boolean }) => {
+interface ItemListProps {
+  items: Item[];
+  hover?: boolean;
+  isTransitioning?: boolean;
+}
+
+const ItemList = ({ items, isTransitioning }: ItemListProps) => {
   const pathname = usePathname();
   const [currentUrl, setCurrentUrl] = useState<string>(pathname);
 
@@ -98,7 +105,6 @@ const ItemList = ({ items }: { items: Item[]; hover?: boolean }) => {
         } transition-all duration-100`}
         onMouseLeave={() => setHoverIndex(null)}
       >
-        {/* Background Highlight Indicator */}
         <div
           className="bg-white rounded transition-all duration-300 pointer-events-none"
           style={{
@@ -112,27 +118,26 @@ const ItemList = ({ items }: { items: Item[]; hover?: boolean }) => {
           }}
         />
 
-        {/* Navigation Links */}
         {items.map((item, key) => {
           const isActive = item.link === currentUrl;
           const isHighlighted = targetIndex === key;
 
           return (
-            <Link
+            <TransitionLink
               key={key}
               href={item.link}
               ref={(el) => {
                 itemRefs.current[key] = el;
               }}
               aria-current={isActive ? "page" : undefined}
+              aria-disabled={isTransitioning || undefined}
               className={`relative z-10 px-4 transition-all duration-150 max-md:w-full lg:text-base md:text-xs ${
                 isHighlighted ? "text-black" : "text-white"
-              }`}
+              } ${isTransitioning ? "pointer-events-none" : ""}`}
               onMouseEnter={() => setHoverIndex(key)}
-              onClick={() => setCurrentUrl(item.link)} // Instant update on click
             >
               {item.title}
-            </Link>
+            </TransitionLink>
           );
         })}
       </div>

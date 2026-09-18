@@ -3,7 +3,6 @@
 import { Label } from "flowbite-react";
 import React, { useState } from "react";
 import { sendMail, formData } from "../lib/utils";
-import Link from "next/link";
 import professionalOptions from "./professionalOptions";
 import Input from "./input";
 import Select from "./select";
@@ -17,6 +16,7 @@ import PageDivision from "../page-division";
 import Checkbox from "./checkbox";
 import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 import { useIsMobile } from "@/lib/useMobile";
+import { TransitionLink } from "../link";
 
 const MainForm = ({
   heading = (
@@ -177,9 +177,12 @@ const MainForm = ({
 
         <Label htmlFor="agree" className="flex text-white">
           I agree with the&nbsp;
-          <Link href="/policy" className="text-iw-red-1 hover:underline">
+          <TransitionLink
+            href="/policy"
+            className="text-iw-red-1 hover:underline"
+          >
             Privacy Policy
-          </Link>
+          </TransitionLink>
         </Label>
       </div>
       {message && <div className="text-iw-red-1 flex">{message}</div>}

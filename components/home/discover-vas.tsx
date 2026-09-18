@@ -1,12 +1,12 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 import VACard from "../vas/cards";
 import Packages from "./packages";
 import FadeInContent from "../FadeInContent";
 import SplitText from "../text-animation/SplitText";
 import { useScrollIntoView } from "@/lib/use-scroll-into-view";
+import { TransitionLink } from "../link";
 
 const productizedPackages = [
   {
@@ -49,13 +49,13 @@ const DiscoverVAs = () => {
           ))}
         </div>
         <FadeInContent>
-          <Link
+          <TransitionLink
             href={"/affiliate"}
             className="bg-white text-center text-black rounded py-2 px-10 items-center justify-center text-xl
             active:text-iw-red-1 hover:scale-95 transition-[transform,_color] duration-150"
           >
             Affiliate Program
-          </Link>
+          </TransitionLink>
         </FadeInContent>
       </article>
     </section>
