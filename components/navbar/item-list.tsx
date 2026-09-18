@@ -1,7 +1,6 @@
 "use client";
 import { usePathname } from "next/navigation";
 import React, { useState, useRef, useLayoutEffect, useEffect } from "react";
-import { isInternalHref } from "../PagetransitionContext";
 import { TransitionLink } from "../link";
 
 interface Item {
@@ -135,6 +134,7 @@ const ItemList = ({ items, isTransitioning }: ItemListProps) => {
                 isHighlighted ? "text-black" : "text-white"
               } ${isTransitioning ? "pointer-events-none" : ""}`}
               onMouseEnter={() => setHoverIndex(key)}
+              onClick={() => setIsOpen(false)}
             >
               {item.title}
             </TransitionLink>
