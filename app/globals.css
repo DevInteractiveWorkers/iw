@@ -39,7 +39,7 @@
   }
 }
 
-html {
+main#app {
   scroll-behavior: smooth;
 }
 

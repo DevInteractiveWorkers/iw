@@ -4,15 +4,28 @@ import { usePathname } from "next/navigation";
 import { motion, type Variants, type AnimationDefinition } from "framer-motion";
 import { ReactNode, useEffect, useRef, useState } from "react";
 
-type TransitionType = "fade" | "slide" | "scale" | "slide-fade";
+export type TransitionType = "fade" | "slide" | "scale" | "slide-fade";
 
 interface PageTransitionProps {
   children: ReactNode;
+  /** Which built-in transition to use. Defaults to "fade". */
   type?: TransitionType;
+  /** Animation duration (seconds) for both exit and enter. Defaults to 0.35. */
   duration?: number;
+  /**
+   * Optional extra className applied to the animated wrapper.
+   * Layout-safe: no positioning/sizing classes are added by default,
+   * so this won't affect surrounding markup or stacking contexts.
+   */
   className?: string;
 }
 
+/**
+ * Each transition defines three states:
+ * - initial: where the INCOMING page starts before animating in
+ * - center:  the fully visible, settled state
+ * - exit:    where the OUTGOING page animates to before being removed
+ */
 const variantMap: Record<TransitionType, Variants> = {
   fade: {
     initial: { opacity: 0 },
@@ -36,6 +49,11 @@ const variantMap: Record<TransitionType, Variants> = {
   },
 };
 
+type CommittedState = {
+  path: string;
+  node: ReactNode;
+};
+
 export default function PageTransition({
   children,
   type = "fade",
@@ -45,25 +63,49 @@ export default function PageTransition({
   const pathname = usePathname();
   const variants = variantMap[type];
 
-  const [committed, setCommitted] = useState<{ path: string; node: ReactNode }>(
-    {
-      path: pathname,
-      node: children,
-    },
-  );
+  // `committed` is what's actually rendered. It deliberately lags behind
+  // the live `pathname`/`children`: it only "catches up" once the
+  // outgoing page has fully finished its exit animation. This is what
+  // forces a strict exit -> swap -> enter sequence, rather than the new
+  // route's content appearing mid-exit (which is what happens if you
+  // rely solely on AnimatePresence keyed on pathname in the App Router,
+  // since `children` and `pathname` update in the same commit).
+  const [committed, setCommitted] = useState<CommittedState>({
+    path: pathname,
+    node: children,
+  });
 
+  // "center" = settled/visible, "exit" = currently animating out.
   const [phase, setPhase] = useState<"center" | "exit">("center");
 
+  // Skip the enter animation on the very first paint (there's no
+  // previous page to transition from), but allow it on every
+  // subsequent route change.
+  const isFirstRender = useRef(true);
+  useEffect(() => {
+    isFirstRender.current = false;
+  }, []);
+
+  // Route changed (pathname no longer matches what's committed/rendered)
+  // -> kick off the exit animation of the CURRENTLY DISPLAYED page.
+  // We deliberately don't touch `committed` yet, so the old content
+  // stays on screen, untouched, while it animates out.
   useEffect(() => {
     if (pathname !== committed.path) {
       setPhase("exit");
     }
   }, [pathname, committed.path]);
 
-  const isFirstRender = useRef(true);
-  useEffect(() => {
-    isFirstRender.current = false;
-  }, []);
+  const handleAnimationComplete = (definition: AnimationDefinition) => {
+    if (definition !== "exit") return;
+
+    // Old page has fully finished animating out — only now do we swap
+    // in the new page's content. This updates `committed.path`, which
+    // changes the `key` below, so React mounts a brand-new element that
+    // plays the "initial" -> "center" enter animation.
+    setCommitted({ path: pathname, node: children });
+    setPhase("center");
+  };
 
   return (
     <motion.div
@@ -72,12 +114,7 @@ export default function PageTransition({
       initial={isFirstRender.current ? false : "initial"}
       animate={phase}
       transition={{ duration, ease: "easeInOut" }}
-      onAnimationComplete={(definition: AnimationDefinition) => {
-        if (definition === "exit") {
-          setCommitted({ path: pathname, node: children });
-          setPhase("center");
-        }
-      }}
+      onAnimationComplete={handleAnimationComplete}
       className={className}
     >
       {committed.node}

@@ -8,13 +8,14 @@ import IWBg from "@/components/backgrounds/background";
 import AppLoader from "@/components/AppLoader";
 import Blured from "@/components/footer/blured";
 import { ScrollAlert } from "@/components/scroll-alert/alert";
-import PageTransition from "@/components/page-transition";
 import FooterForm from "@/components/footer/current-form";
 import NavbarComponent from "@/components/navbar";
+import { PageTransitionProvider } from "@/components/PagetransitionContext";
+import { PageTransitionOutlet } from "@/components/page-transition-outlet";
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"], // Choose the weights you need
+  weight: ["400", "500", "600", "700"],
   variable: "--font-poppins",
   display: "swap",
 });
@@ -35,17 +36,26 @@ export default function RootLayout({
         className={`${poppins.className} scroll-smooth bg-black text-white`}
       >
         <AppLoader>
-          <IWBg />
-          <PageTransition type="slide-fade">
-            <ScrollAlert />
+          <PageTransitionProvider type="fade">
+            <IWBg />
             <div>
               <NavbarComponent />
-              <div className="px-[clamp(1rem,8vw,50rem)] -z-10">{children}</div>
+              <PageTransitionOutlet>
+                <ScrollAlert />
+                <div className="px-[clamp(1rem,8vw,50rem)] -z-10">
+                  {children}
+                </div>
+              </PageTransitionOutlet>
             </div>
-            <div className="px-[clamp(1rem,8vw,50rem)] -z-10">
-              <FooterForm />
-            </div>
-          </PageTransition>
+            <PageTransitionOutlet>
+              <div className="px-[clamp(1rem,8vw,50rem)] -z-10">
+                <FooterForm />
+              </div>
+            </PageTransitionOutlet>
+            <PageTransitionOutlet>
+              <Footer />
+            </PageTransitionOutlet>
+          </PageTransitionProvider>
           <Blured />
           <Analytics></Analytics>
           <Script id="tawk" strategy="lazyOnload">
@@ -59,7 +69,6 @@ export default function RootLayout({
               s0.parentNode.insertBefore(s1,s0);
               })();`}
           </Script>
-          <Footer />
         </AppLoader>
       </body>
     </html>

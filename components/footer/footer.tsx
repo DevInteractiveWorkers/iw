@@ -3,12 +3,13 @@ import React from "react";
 import Socials from "./socials";
 import Link from "next/link";
 import { navbar } from "@/app/content/navbar";
+import { TransitionLink } from "../link";
 
 const Footer = () => {
   return (
     <footer className="text-white text-sm w-full bg-iw-red-2 pt-8 lg:px-20 sm:px-10 px-4 md:rounded-t-xl rounded-t-md grid grid-cols-1 md:gap-2 gap-4 z-[1000] sticky">
       <div className="flex flex-col md:flex-row gap-3 md:gap-0 justify-between items-center pb-10 border-b border-b-white">
-        <Link href="/">
+        <TransitionLink href="/">
           <Image
             className="hover:scale-95 transition-transform duration-150 h-[31px] object-contain"
             src={"/logo/01_Primary_Logo/Primary_Logo-04.png"}
@@ -16,7 +17,7 @@ const Footer = () => {
             width={200}
             height={31}
           />
-        </Link>
+        </TransitionLink>
         <h5 className="text-center">
           © Copyright 2006 - 2024 Interactiveworkers. All Rights Reserved
         </h5>
@@ -26,13 +27,13 @@ const Footer = () => {
         <ul className="flex md:flex-row flex-col md:gap-6 gap-2">
           {navbar.map((item, i) => (
             <li key={`item-${i}`}>
-              <Link
+              <TransitionLink
                 href={item.link}
                 className="relative after:absolute after:left-1/2 after:top-full after:w-0 after:h-px after:bg-[currentColor]
                 hover:after:left-0 hover:after:w-full after:transition-all after:duration-150 active:text-iw-red-3"
               >
                 {item.title}
-              </Link>
+              </TransitionLink>
             </li>
           ))}
         </ul>
