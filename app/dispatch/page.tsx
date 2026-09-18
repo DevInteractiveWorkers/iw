@@ -168,6 +168,10 @@ const VACarouselCard = ({
   imageSrc: string;
   children: React.ReactNode;
 }) => {
+  const isMobile = useIsMobile();
+
+  if (isMobile) return <VACard imageSrc={imageSrc}>{children}</VACard>;
+
   return (
     <VACard
       imageSrc={imageSrc}
