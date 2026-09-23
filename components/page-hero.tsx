@@ -35,6 +35,7 @@ export default function PageHero({
           height={1080}
           alt="logo"
           src="/logo/03_Logo_Mark/03_Logo_Mark-01.png"
+          className="select-none"
         />
       </FlipElement>
       <SplitText

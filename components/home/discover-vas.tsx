@@ -19,7 +19,7 @@ const productizedPackages = [
   },
   {
     content: "Executive Operational Assistant",
-    imageSrc: "/team-2026/claudia_01.png",
+    imageSrc: "/team-2026/eduardo_01.png",
   },
   {
     content: "Outbound Cold Call & Lead Qualification Desk",
