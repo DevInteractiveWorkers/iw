@@ -1,8 +1,6 @@
 "use client";
 
 import React from "react";
-import NavbarComponent from "@/components/navbar";
-import MainForm from "@/components/form/form";
 import VACard from "@/components/vas/cards";
 import Carousel from "@/components/home/reviews/carousel";
 import Folder from "@/components/folder";
@@ -11,6 +9,7 @@ import SplitText from "@/components/text-animation/SplitText";
 import PageHero from "@/components/page-hero";
 import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 import { useIsMobile } from "@/lib/useMobile";
+import { dispatchers } from "../content/dispatchers";
 
 const Dispatch = () => {
   const tags = [
@@ -19,25 +18,6 @@ const Dispatch = () => {
     "Proactive Communication",
     "Bilingual English/Spanish",
     "Trained in Confidentiality and",
-  ];
-
-  const dispatchers = [
-    {
-      content: "24/7 Inbound Call & Emergency Dispatch Unit",
-      imageSrc: "/team-2026/camila_01.png",
-    },
-    {
-      content: "Tier-1 Helpdesk & Ticket Triage Team",
-      imageSrc: "/team-2026/chantal_01.png",
-    },
-    {
-      content: "Executive Operational Assistant",
-      imageSrc: "/team-2026/claudia_01.png",
-    },
-    {
-      content: "Outbound Cold Call & Lead Qualification Desk",
-      imageSrc: "/team-2026/andere_03.png",
-    },
   ];
 
   const { ref: carouselRef } = useScrollIntoView<HTMLElement>({
@@ -133,8 +113,8 @@ const Dispatch = () => {
               {
                 title: "24/7 Call Handling",
                 text: "Scale coverage instantly with bilingual, security-trained VAs who handle calls, dispatch, and scheduling around the clock.",
-                src: "/dispatch/1.png",
-                imagePosition: { objectPosition: "center right" },
+                // src: "/dispatch/1.png",
+                src: "/top-view.png",
               },
               {
                 title: "Instant Guard Deployment Remote Support",
@@ -145,13 +125,13 @@ const Dispatch = () => {
               {
                 title: "Accurate Shift Scheduling",
                 text: "Eliminate unstaffed posts and scheduling conflicts. Remote dispatchers manage officer rosters, handle last-minute call-outs, and keep shift handoffs smooth.",
-                src: "/top-view.png",
-                imagePosition: { objectPosition: "center bottom" },
+                src: "/stock/iw-2026-scheduling.png",
+                imagePosition: { objectPosition: "center center" },
               },
               {
                 title: "Seamless Communication",
                 text: "Maintain a real-time line of communication between client sites, field guards, and management for rapid coordination during critical events.",
-                src: "/welcome-our-team-young-modern-man-wear-shaking-hands-while-working-creative-office 1.png",
+                src: "/stock/por_siempre_nacho.png",
               },
             ]}
           />

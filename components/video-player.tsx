@@ -269,13 +269,13 @@ export default function VideoPlayer({
         playsInline
       />
 
-      {thumbnail && (
-        <button
-          type="button"
-          aria-label="Play video"
-          onClick={togglePlay}
-          className={`absolute inset-0 flex items-center justify-center group/thumbnail`}
-        >
+      <button
+        type="button"
+        aria-label="Play video"
+        onClick={togglePlay}
+        className={`absolute inset-0 flex items-center justify-center group/thumbnail`}
+      >
+        {thumbnail && (
           <Image
             src={thumbnail}
             alt={`thumbnail`}
@@ -283,21 +283,21 @@ export default function VideoPlayer({
             height={1080}
             className={`z-0 absolute top-0 left-0 w-full h-full object-cover ${isPlaying ? "opacity-0" : "opacity-100"} transition-opacity duration-300`}
           />
-          <span
-            className={`z-10 flex h-16 w-16 items-center justify-center rounded-full bg-black/20 backdrop-blur-sm text-white shadow-lg transition-all hover:scale-105 duration-300 ${
-              isPlaying
-                ? "group-hover/thumbnail:opacity-100 opacity-0"
-                : "opacity-100"
-            }`}
-          >
-            {isPlaying ? (
-              <PauseIcon className="h-10 w-10" />
-            ) : (
-              <PlayIcon className="h-10 w-10" />
-            )}
-          </span>
-        </button>
-      )}
+        )}
+        <span
+          className={`z-10 flex h-16 w-16 items-center justify-center rounded-full bg-black/20 backdrop-blur-sm text-white shadow-lg transition-all hover:scale-105 duration-300 ${
+            isPlaying
+              ? "group-hover/thumbnail:opacity-100 opacity-0"
+              : "opacity-100"
+          }`}
+        >
+          {isPlaying ? (
+            <PauseIcon className="h-10 w-10" />
+          ) : (
+            <PlayIcon className="h-10 w-10" />
+          )}
+        </span>
+      </button>
 
       <div
         className={`

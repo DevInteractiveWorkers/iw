@@ -17,7 +17,8 @@ export default function StatsSection() {
     >
       <article
         ref={ref}
-        className="md:w-10/12 w-11/12 px-2 md:py-20 sm:py-10 z-10 grid md:grid-cols-4 sm:grid-cols-2 max-md:gap-10 max-sm:gap-4 items-start justify-center md:justify-items-center"
+        className="md:w-10/12 w-11/12 px-2 md:py-20 sm:py-10 z-10 grid lg:grid-cols-4 sm:grid-cols-2 
+        max-md:gap-10 max-sm:gap-4 items-start justify-center md:justify-items-center"
       >
         <Stat title="Clients Reach Worldwide" number={1000} symbol="+" />
         <Stat title="Uptime SLA" number={99.9} symbol="%" decimal />
@@ -129,7 +130,7 @@ function Stat({
   return (
     <div ref={ref} className="flex flex-col">
       <span
-        className={`lg:text-[clamp(6rem,5vw,7rem)] md:text-[clamp(4rem,4vw,5rem)] text-[clamp(2rem,8vw,3rem)] font-medium flex w-max ${symbol === "stars" ? "flex-row-reverse" : "flex-row"} items-center justify-center`}
+        className={`xl:text-[clamp(6rem,5vw,7rem)] lg:text-[clamp(5rem,5vw,6rem)] md:text-[clamp(4rem,4vw,5rem)] text-[clamp(2rem,8vw,3rem)] font-medium flex w-max ${symbol === "stars" ? "flex-row-reverse" : "flex-row"} items-center justify-center`}
       >
         {formattedNumber}
         {symbol === "stars" ? (
