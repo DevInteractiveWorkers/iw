@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import ProductCard from "../product-card";
+import BorderGlow from "../border-glow/border-glow";
 
 interface VACardProps {
   children?: React.ReactNode;
@@ -25,9 +26,9 @@ const VACard = ({ children, imageSrc, style }: VACardProps) => {
         }
       }
     >
-      <div className="relative w-full aspect-[275/341] -mt-[25%] border-b border-white/50 z-10 overflow-hidden">
+      <div className="relative w-full aspect-[275/341] -mt-[25%]  z-10 overflow-hidden pointer-events-none">
         <Image
-          className="object-cover object-top select-none pointer-events-none"
+          className="object-cover object-top select-none"
           src={imageSrc}
           alt="packages"
           fill
@@ -35,7 +36,16 @@ const VACard = ({ children, imageSrc, style }: VACardProps) => {
           quality={100}
         />
       </div>
-      <div className="text-center font-medium text-[clamp(1rem,1vw,1.5rem)] min-h-[4.5rem] flex items-center justify-center px-4 z-10 pointer-events-none">
+      <div className="relative text-center font-medium text-[clamp(1rem,1vw,1.5rem)] min-h-[4.5rem] flex items-center justify-center px-4 z-20 pointer-events-">
+        <div className="absolute w-full h-full top-0 left-0">
+          <BorderGlow
+            animated
+            borderRadius="0px 0px 5px 5px"
+            className="w-full h-full pointer-events-auto"
+            colors={[]}
+          />
+        </div>
+
         <h3>{children}</h3>
       </div>
     </ProductCard>

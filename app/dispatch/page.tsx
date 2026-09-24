@@ -153,8 +153,7 @@ const VACarouselCard = ({
   if (isMobile) return <VACard imageSrc={imageSrc}>{children}</VACard>;
 
   return (
-    <VACard
-      imageSrc={imageSrc}
+    <div
       style={{
         width: 400,
         height: 500,
@@ -162,13 +161,11 @@ const VACarouselCard = ({
         minHeight: 500,
         maxWidth: 400,
         maxHeight: 500,
-        marginTop: "25%",
-        flexShrink: 0,
         boxSizing: "border-box",
       }}
     >
-      {children}
-    </VACard>
+      <VACard imageSrc={imageSrc}>{children}</VACard>
+    </div>
   );
 };
 

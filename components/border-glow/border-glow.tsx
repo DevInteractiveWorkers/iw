@@ -7,7 +7,7 @@ interface BorderGlowProps {
   edgeSensitivity?: number;
   glowColor?: string;
   backgroundColor?: string;
-  borderRadius?: number;
+  borderRadius?: number | string;
   glowRadius?: number;
   glowIntensity?: number;
   coneSpread?: number;
@@ -115,7 +115,7 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
   className = "",
   edgeSensitivity = 30,
   glowColor = "358 73 51",
-  backgroundColor = "rgb(221 39 45 / 0.1)",
+  backgroundColor = "rgb(255 255 255 / 0)",
   borderRadius = 28,
   glowRadius = 40,
   glowIntensity = 1.0,
@@ -235,7 +235,10 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
         {
           "--card-bg": backgroundColor,
           "--edge-sensitivity": edgeSensitivity,
-          "--border-radius": `${borderRadius}px`,
+          "--border-radius":
+            typeof borderRadius === "number"
+              ? `${borderRadius}px`
+              : borderRadius,
           "--glow-padding": `${glowRadius}px`,
           "--cone-spread": coneSpread,
           "--fill-opacity": fillOpacity,
