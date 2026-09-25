@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${poppins.className} scroll-smooth dark:bg-black dark:text-white bg-white text-black transition-all duration-3000`}
+        className={`${poppins.className} scroll-smooth dark:bg-black dark:text-white bg-white text-black transition-color duration-500`}
       >
         <AppLoader>
           <PageTransitionProvider type="fade">
