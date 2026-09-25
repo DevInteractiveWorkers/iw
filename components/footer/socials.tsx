@@ -4,7 +4,7 @@ import React from "react";
 
 const Socials = ({ className }: { className?: string }) => {
   return (
-    <div className={`flex gap-4 ${className} text-white`}>
+    <div className={`flex gap-4 ${className} `}>
       <SocialLink href="https://www.facebook.com/interactiveworkers">
         <svg
           width="28"

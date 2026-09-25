@@ -164,7 +164,7 @@ export default function Ticket() {
         {/* CLOSE BUTTON */}
         <button
           onClick={handleClose}
-          className={`z-[100] text-white hover:scale-95 transition-all duration-200 ${
+          className={`z-[100]  hover:scale-95 transition-all duration-200 ${
             isOpen
               ? "opacity-100 pointer-events-auto"
               : "opacity-0 pointer-events-none"
@@ -267,7 +267,7 @@ export default function Ticket() {
               </div>
 
               {/* CLICK HERE SIDE */}
-              <div className="ticket-front bg-[#B7B7B7] text-white corner-scoop rounded-l-xl w-max min-w-[clamp(500px,20vw,200px)] transition-all duration-300 origin-bottom-right">
+              <div className="ticket-front bg-[#B7B7B7]  corner-scoop rounded-l-xl w-max min-w-[clamp(500px,20vw,200px)] transition-all duration-300 origin-bottom-right">
                 <div
                   className={`flex flex-col items-start justify-center p-4 gap-4 h-full rounded-r-xl ${isMobile && isOpen && "-rotate-90 -translate-y-1/2"}`}
                 >

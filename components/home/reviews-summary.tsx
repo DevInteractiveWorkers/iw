@@ -43,7 +43,7 @@ export const ReviewsSummary: React.FC<ReviewsSummaryProps> = ({
           <button
             type="button"
             onClick={() => setIsOpen(true)}
-            className="bg-black text-white md:px-12 px-6 py-5 rounded-full hover:scale-95 active:bg-white active:text-iw-red-1 transition-all duration-200 pointer-events-auto cursor-pointer"
+            className="bg-black  md:px-12 px-6 py-5 rounded-full hover:scale-95 active:bg-white active:text-iw-red-1 transition-all duration-200 pointer-events-auto cursor-pointer"
           >
             Leave a review
           </button>
@@ -57,7 +57,7 @@ export const ReviewsSummary: React.FC<ReviewsSummaryProps> = ({
             <h3 className="text-2xl font-medium pb-2">
               Review InteractiveWorkers
             </h3>
-            <p className="text-white/70 text-sm">
+            <p className="/70 text-sm">
               We appreciate your feedback! To keep our ratings verified, reviews
               are hosted directly on our Google Business Profile.
             </p>
@@ -66,7 +66,7 @@ export const ReviewsSummary: React.FC<ReviewsSummaryProps> = ({
               <button
                 type="button"
                 onClick={() => setIsOpen(false)}
-                className="px-4 py-2 rounded-lg text-white/70 hover:bg-white hover:text-iw-red-1 transition-all duration-300"
+                className="px-4 py-2 rounded-lg /70 hover:bg-white hover:text-iw-red-1 transition-all duration-300"
               >
                 Cancel
               </button>
@@ -75,7 +75,7 @@ export const ReviewsSummary: React.FC<ReviewsSummaryProps> = ({
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsOpen(false)}
-                className="px-6 py-2 bg-black text-white rounded-lg hover:opacity-90 font-medium inline-block hover:text-iw-red-1 transition-all duration-300"
+                className="px-6 py-2 bg-black  rounded-lg hover:opacity-90 font-medium inline-block hover:text-iw-red-1 transition-all duration-300"
               >
                 Continue to Google
               </a>

@@ -79,7 +79,7 @@ const ItemList = ({ items, isTransitioning }: ItemListProps) => {
         aria-label="Toggle navigation"
       >
         <svg
-          className="w-6 h-6 text-white"
+          className="w-6 h-6 "
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -105,7 +105,7 @@ const ItemList = ({ items, isTransitioning }: ItemListProps) => {
         onMouseLeave={() => setHoverIndex(null)}
       >
         <div
-          className="bg-white rounded transition-all duration-300 pointer-events-none"
+          className="dark:bg-white bg-iw-red-1 rounded transition-all duration-300 pointer-events-none"
           style={{
             position: "absolute",
             width: `${indicatorStyle.width}px`,
@@ -131,7 +131,7 @@ const ItemList = ({ items, isTransitioning }: ItemListProps) => {
               aria-current={isActive ? "page" : undefined}
               aria-disabled={isTransitioning || undefined}
               className={`relative z-10 px-4 transition-all duration-150 max-md:w-full lg:text-base md:text-xs ${
-                isHighlighted ? "text-black" : "text-white"
+                isHighlighted ? "dark:text-black text-white" : ""
               } ${isTransitioning ? "pointer-events-none" : ""}`}
               onMouseEnter={() => setHoverIndex(key)}
               onClick={() => setIsOpen(false)}

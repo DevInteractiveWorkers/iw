@@ -16,7 +16,7 @@ const IntroBanner = () => {
   return (
     <section
       ref={ref}
-      className="w-full min-h-[50vh] text-white relative flex items-center justify-center"
+      className="w-full min-h-[50vh]  relative flex items-center justify-center"
     >
       <article className="z-10 flex flex-col items-center md:py-40">
         <FlipElement>
@@ -25,7 +25,14 @@ const IntroBanner = () => {
             alt={"InteractiveWorkers"}
             width={1080}
             height={1080}
-            className="md:max-w-40 max-w-36 animate-loading-flip py-4"
+            className="md:max-w-40 max-w-36 animate-loading-flip py-4 dark:block hidden"
+          />
+          <Image
+            src={"/logo/03_Logo_Mark/03_Logo_Mark-02.png"}
+            alt={"InteractiveWorkers"}
+            width={1080}
+            height={1080}
+            className="md:max-w-40 max-w-36 animate-loading-flip py-4 block dark:hidden"
           />
         </FlipElement>
         <SplitText
@@ -57,7 +64,9 @@ const IntroBanner = () => {
           onClick={() =>
             router.push("https://calendly.com/interactiveworkersgm/30min")
           }
-          className="my-10 text-iw-red-1"
+          className="my-10 
+          dark:[--primary-color:#fff] dark:[--secondary-color:#dd272d] dark:[--tertiary-color:#fff]
+          [--primary-color:#000] [--secondary-color:#dd272d] [--tertiary-color:#fff]"
         />
       </article>
     </section>

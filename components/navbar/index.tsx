@@ -7,6 +7,7 @@ import ItemList from "./item-list";
 import Image from "next/image";
 import { TransitionLink } from "../link";
 import { usePageTransition } from "../PagetransitionContext";
+import ThemeSwitch from "./theme-switch";
 
 const NavbarComponent = () => {
   const { isTransitioning } = usePageTransition();
@@ -27,8 +28,15 @@ const NavbarComponent = () => {
       >
         <TransitionLink href="/">
           <Image
-            className="hover:scale-95 transition-transform duration-150 h-[31px] object-contain"
+            className="hover:scale-95 transition-transform duration-150 h-[31px] object-contain dark:block hidden"
             src={"/logo/01_Primary_Logo/Primary_Logo-04.png"}
+            alt="Interactiveworkers Logo"
+            width={200}
+            height={31}
+          />
+          <Image
+            className="hover:scale-95 transition-transform duration-150 h-[31px] object-contain block dark:hidden"
+            src={"/logo/01_Primary_Logo/Primary_Logo-06.png"}
             alt="Interactiveworkers Logo"
             width={200}
             height={31}
@@ -42,16 +50,17 @@ const NavbarComponent = () => {
         />
 
         <div className="md:w-1/4 w-full flex gap-2 justify-center col-span-2">
+          <ThemeSwitch />
           <TransitionLink
             href={"/affiliate"}
-            className="basis-full bg-white text-center text-black active:text-iw-red-1 rounded py-1 items-center justify-center content-center hover:scale-95 transition-[transform,_color] duration-150"
+            className="basis-full dark:bg-white bg-iw-red-1 text-center dark:text-black text-white active:text-iw-red-1 rounded py-1 items-center justify-center content-center hover:scale-95 transition-[transform,_color] duration-150"
           >
             Affiliate Program
           </TransitionLink>
           <Link
             href={"https://calendly.com/interactiveworkersgm/30min"}
             target="_blank"
-            className="basis-full bg-white text-center text-black active:text-iw-red-1 rounded py-1 items-center justify-center content-center hover:scale-95 transition-[transform,_color] duration-150"
+            className="basis-full dark:bg-white bg-iw-red-1 text-center dark:text-black text-white active:text-iw-red-1 rounded py-1 items-center justify-center content-center hover:scale-95 transition-[transform,_color] duration-150"
           >
             Book a Call
           </Link>

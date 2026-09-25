@@ -4,6 +4,7 @@ import Socials from "./socials";
 import Link from "next/link";
 import { navbar } from "@/app/content/navbar";
 import { TransitionLink } from "../link";
+import ThemeSwitch from "../navbar/theme-switch";
 
 const Footer = () => {
   return (
@@ -24,7 +25,7 @@ const Footer = () => {
         <Socials />
       </div>
       <div className="md:flex grid grid-cols-[auto_auto] md:items-center items-end justify-between pb-2 group/footer">
-        <ul className="flex md:flex-row flex-col md:gap-6 gap-2">
+        <ul className="flex md:flex-row flex-col md:gap-6 gap-2 items-center">
           {navbar.map((item, i) => (
             <li key={`item-${i}`}>
               <TransitionLink
@@ -36,6 +37,9 @@ const Footer = () => {
               </TransitionLink>
             </li>
           ))}
+          <li>
+            <ThemeSwitch />
+          </li>
         </ul>
         <p className="text-right justify-end group-hover/footer:opacity-100 opacity-0 transition-all duration-500 ">
           developed by{" "}

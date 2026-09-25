@@ -15,6 +15,7 @@ const VACard = ({ children, imageSrc, style }: VACardProps) => {
   return (
     <ProductCard
       className="flex flex-col relative pointer-events-none w-full h-full"
+      decorative
       style={
         style ?? {
           position: "relative",
@@ -23,6 +24,7 @@ const VACard = ({ children, imageSrc, style }: VACardProps) => {
           alignItems: "flex-start",
           marginTop: "25%",
           flexShrink: 0,
+          overflow: "visible",
         }
       }
     >
@@ -37,7 +39,16 @@ const VACard = ({ children, imageSrc, style }: VACardProps) => {
         />
       </div>
       <div className="relative text-center font-medium text-[clamp(1rem,1vw,1.5rem)] min-h-[4.5rem] flex items-center justify-center px-4 z-20 pointer-events-">
-        <div className="absolute w-full h-full top-0 left-0">
+        <div className="absolute w-full h-full top-0 left-0 dark:hidden block">
+          <BorderGlow
+            animated
+            borderRadius="0px 0px 5px 5px"
+            className="w-full h-full pointer-events-auto"
+            colors={[]}
+            glowColor="359 100 90"
+          />
+        </div>
+        <div className="absolute w-full h-full top-0 left-0 hidden dark:block">
           <BorderGlow
             animated
             borderRadius="0px 0px 5px 5px"

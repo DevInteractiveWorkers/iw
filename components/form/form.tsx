@@ -175,7 +175,7 @@ const MainForm = ({
       <div className="flex items-center gap-2">
         <Checkbox id="agree" name="agree" required />
 
-        <Label htmlFor="agree" className="flex text-white">
+        <Label htmlFor="agree" className="flex ">
           I agree with the&nbsp;
           <TransitionLink
             href="/policy"
@@ -208,13 +208,22 @@ const MainForm = ({
         <PageDivision className="top-0" />
         <FadeInContent className="pointer-events-none select-none">
           {(heading || subheading) && (
-            <Image
-              width={1080}
-              height={1080}
-              className="w-auto px-10 md:max-w-[400px] md:sticky md:top-20 top-10"
-              alt="logo"
-              src={"/logo/01_Primary_Logo/Primary_Logo-04.png"}
-            />
+            <>
+              <Image
+                width={1080}
+                height={1080}
+                className="w-auto px-10 md:max-w-[400px] md:sticky md:top-20 top-10 dark:block hidden"
+                alt="logo"
+                src={"/logo/01_Primary_Logo/Primary_Logo-04.png"}
+              />
+              <Image
+                width={1080}
+                height={1080}
+                className="w-auto px-10 md:max-w-[400px] md:sticky md:top-20 top-10 block dark:hidden"
+                alt="logo"
+                src={"/logo/01_Primary_Logo/Primary_Logo-06.png"}
+              />
+            </>
           )}
         </FadeInContent>
         <form
@@ -233,7 +242,7 @@ const MainForm = ({
             <SplitText
               tag="h2"
               textAlign="start"
-              className={`text-white text-2xl md:text-6xl font-medium py-10`}
+              className={` text-2xl md:text-6xl font-medium py-10`}
               text={subheading}
             />
           )}

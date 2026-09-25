@@ -11,7 +11,7 @@ const FAQ = () => {
       <h3 className="w-1/2 text-xl md:text-4xl font-extrabold mx-auto text-center text-iw-red-1 p-2 border-4 border-iw-red-1 rounded-full my-6">
         Virtual Assistants FAQS
       </h3>
-      <div className="text-white flex flex-wrap gap-4 justify-between flex-col md:flex-row">
+      <div className=" flex flex-wrap gap-4 justify-between flex-col md:flex-row">
         {faq.map((item, i) => {
           return (
             <div

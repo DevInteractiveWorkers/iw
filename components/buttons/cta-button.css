@@ -3,6 +3,15 @@
 :root {
   --primary-color: #fff;
   --secondary-color: #dd272d;
+  --tertiary-color: #fff;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --primary-color: #dd272d;
+    --secondary-color: #dd272d;
+    --tertiary-color: #fff;
+  }
 }
 
 .animated-button {
@@ -61,7 +70,7 @@
 
 .animated-button:hover {
   box-shadow: 0 0 0 12px transparent;
-  color: var(--primary-color);
+  color: var(--tertiary-color);
   border-radius: 5px;
 }
 
@@ -78,7 +87,7 @@
 }
 
 .animated-button:hover svg {
-  fill: var(--primary-color);
+  fill: var(--tertiary-color);
 }
 
 .animated-button:active {

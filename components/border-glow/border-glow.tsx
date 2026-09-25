@@ -229,6 +229,12 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
   return (
     <div
       ref={cardRef}
+      // Tracking pointer position on the outer wrapper (not the glow layer)
+      // is what lets the glow follow the cursor while staying non-blocking:
+      // .edge-light has pointer-events: none and .border-glow-inner sits
+      // above it (z-index: 2, pointer-events: auto) in border-glow.css, so
+      // this listener still fires via bubbling from any child, including
+      // interactive content.
       onPointerMove={handlePointerMove}
       className={`border-glow-card ${className}`}
       style={
@@ -248,7 +254,18 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
       }
     >
       <span className="edge-light" />
-      <div className="border-glow-inner backdrop-blur-md">{children}</div>
+      <div
+        className="border-glow-inner backdrop-blur-md"
+        // BorderGlow is often used purely as a decorative shine/overlay with
+        // no children (see ProductCard). In that case this div is an empty
+        // box stretched over the whole card — it must not swallow clicks.
+        // When there IS real content, it needs pointer-events so that
+        // content stays interactive. Inline style wins over the CSS
+        // default in border-glow.css either way.
+        style={{ pointerEvents: children ? "auto" : "none" }}
+      >
+        {children}
+      </div>
     </div>
   );
 };

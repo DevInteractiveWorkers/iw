@@ -25,7 +25,7 @@ const customTabsTheme: CustomFlowbiteTheme["tabs"] = {
         default: {
           base: "rounded-xl",
           active: {
-            on: "text-white bg-iw-red-1",
+            on: " bg-iw-red-1",
             off: "text-[#333333] hover:bg-gray-50 hover:text-gray-600",
           },
         },
@@ -39,15 +39,15 @@ const customTabsTheme: CustomFlowbiteTheme["tabs"] = {
         pills: {
           base: "",
           active: {
-            on: "rounded-lg bg-cyan-600 text-white",
-            off: "rounded-lg hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white",
+            on: "rounded-lg bg-cyan-600 ",
+            off: "rounded-lg hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:",
           },
         },
         fullWidth: {
           base: "ml-0 flex w-full rounded-none first:ml-0",
           active: {
-            on: "active rounded-none bg-gray-100 p-4 text-gray-900 dark:bg-gray-700 dark:text-white",
-            off: "rounded-none bg-white hover:bg-gray-50 hover:text-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white",
+            on: "active rounded-none bg-gray-100 p-4 text-gray-900 dark:bg-gray-700 dark:",
+            off: "rounded-none bg-white hover:bg-gray-50 hover:text-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:",
           },
         },
       },
@@ -61,13 +61,7 @@ const customTabsTheme: CustomFlowbiteTheme["tabs"] = {
 };
 
 const VATeamCard = ({ va, className }: { va: VA; className?: string }) => {
-  return (
-    <VACard
-      imageSrc={`/vas/teams/${va.img}`}
-    >
-      {va.position}
-    </VACard>
-  );
+  return <VACard imageSrc={`/vas/teams/${va.img}`}>{va.position}</VACard>;
 };
 
 const Teams = () => {
@@ -100,7 +94,7 @@ const Teams = () => {
             title={tab.name}
           >
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-10 xl:gap-16 mt-16">
-              <div className="p-8 py-16 xl:py-32 flex flex-col items-center justify-center text-center gap-4 bg-iw-red-1 rounded-[66px] text-white col-span-2 we-build-bg">
+              <div className="p-8 py-16 xl:py-32 flex flex-col items-center justify-center text-center gap-4 bg-iw-red-1 rounded-[66px]  col-span-2 we-build-bg">
                 <h4 className="text-xl sm:text-3xl md:text-6xl font-extrabold md:mb-4 max-w-fit">
                   Are you looking for a specific profession?
                 </h4>
@@ -125,7 +119,7 @@ const Teams = () => {
               })}
             </div>
             <button
-              className="p-4 bg-iw-red-1 uppercase text-white font-extrabold text-base md:text-xl rounded-xl block mx-auto w-fit my-4 md:my-8"
+              className="p-4 bg-iw-red-1 uppercase  font-extrabold text-base md:text-xl rounded-xl block mx-auto w-fit my-4 md:my-8"
               onClick={(e) => setExpanded(!expanded)}
             >
               {expanded ? "See More" : "See Less"}

@@ -1,6 +1,6 @@
 const PolicyPage = () => {
   return (
-    <section className="text-white md:w-3/4 mx-auto py-8 policy overflow-hidden max-md:text-sm">
+    <section className=" md:w-3/4 mx-auto py-8 policy overflow-hidden max-md:text-sm">
       <div className="leading-[1.25]">
         <div>
           <h1>Privacy Policy</h1>

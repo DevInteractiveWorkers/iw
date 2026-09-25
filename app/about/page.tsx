@@ -21,10 +21,10 @@ const AboutUs = () => {
           quality={100}
         ></Image>
         <div className="absolute pl-1 md:pl-[5%] w-1/2 top-1/2">
-          <h1 className="relative text-white font-regular text-base md:text-xl lg:text-3xl z-40 bg-iw-red-1 w-3/4 pl-8 uppercase">
+          <h1 className="relative  font-regular text-base md:text-xl lg:text-3xl z-40 bg-iw-red-1 w-3/4 pl-8 uppercase">
             We are
           </h1>
-          <h2 className="relative text-white font-black text-base md:text-2xl lg:text-4xl z-40 pl-8">
+          <h2 className="relative  font-black text-base md:text-2xl lg:text-4xl z-40 pl-8">
             InteractiveWorkers
           </h2>
         </div>
@@ -53,11 +53,11 @@ const AboutUs = () => {
           color="#3A3A3A"
           className="-z-10 h-screen top-0 -mt-10 opacity-15"
         />
-        <h3 className="font-extrabold text-xl md:text-4xl uppercase bg-iw-red-1 text-white w-3/4 md:w-1/2 rounded-r-full py-8 text-center">
+        <h3 className="font-extrabold text-xl md:text-4xl uppercase bg-iw-red-1  w-3/4 md:w-1/2 rounded-r-full py-8 text-center">
           Who we are
         </h3>
         <div className="bg-iw-red-1 w-full flex flex-col md:flex-row">
-          <div className="bg-[#282828] rounded-[60px] basis-[60%] px-4 md:px-16 -my-2 text-white text-xl max-h-[500px]">
+          <div className="bg-[#282828] rounded-[60px] basis-[60%] px-4 md:px-16 -my-2  text-xl max-h-[500px]">
             <div className="py-8 px-4">
               <h4 className="text-iw-red-1 font-extrabold">
                 InteractiveWorkers:
@@ -74,7 +74,7 @@ const AboutUs = () => {
               height={404}
             ></Image>
           </div>
-          <div className="basis-[40%] text-white text-base md:text-lg font-medium flex items-center">
+          <div className="basis-[40%]  text-base md:text-lg font-medium flex items-center">
             <p className="p-8">
               {" "}
               With four years of experience, we provide expert support to propel
@@ -88,7 +88,7 @@ const AboutUs = () => {
         </div>
       </article>
 
-      <article className="relative values-bg text-white my-8 justify-center items-center gap-3">
+      <article className="relative values-bg  my-8 justify-center items-center gap-3">
         <h4 className="absolute ml-auto mr-auto left-0 right-0 top-[2%] md:top-[10%] text-2xl md:text-4xl font-extrabold p-4 text-center w-3/4 md:w-1/2 bg-[#c1272c70] rounded-3xl">
           OUR <span className="font-normal">CORE VALUES AS A</span> COMPANY
         </h4>

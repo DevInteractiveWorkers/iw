@@ -6,7 +6,7 @@ import { BenefitCard } from "./benefits/benefit-card";
 
 const BenefitsBanner = () => {
   return (
-    <section className="relative text-white py-12 lg:py-24 xl:py-28 text-center z-10 w-full max-w-full">
+    <section className="relative  py-12 lg:py-24 xl:py-28 text-center z-10 w-full max-w-full">
       <Image
         className="w-1/3 absolute z-0 md:-top-0 -right-0"
         src={"/home/space-elements-2.png"}
