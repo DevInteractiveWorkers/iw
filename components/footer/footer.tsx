@@ -6,6 +6,7 @@ import { navbar } from "@/app/content/navbar";
 import { TransitionLink } from "../link";
 import ThemeSwitch from "../navbar/theme-switch";
 import FooterForm from "./current-form";
+import PageDivision from "../page-division";
 
 const Footer = (props: HTMLAttributes<HTMLElement>) => {
   const { className } = props;
@@ -42,7 +43,7 @@ const Footer = (props: HTMLAttributes<HTMLElement>) => {
         <path d="M1253.42 65.1137C1246.75 67.9565 1237.51 65.6745 1235.52 53.7425C1234.8 49.6233 1232.11 48.3469 1229.7 49.0625C1226.43 50.0487 1225.71 54.8835 1225.71 64.9783V90.1381C1225.71 95.6883 1227.12 98.6665 1232.54 99.0919V105.493H1190.34V99.0919C1195.6 98.6665 1197.03 95.6883 1197.03 90.1381V58.4418C1197.03 52.8916 1195.6 49.9134 1190.34 49.4879V43.0868L1217.49 36.6857H1223.04V46.9159C1227.03 40.244 1233.14 36.6857 1241.8 36.6857C1249.48 36.6857 1255.88 40.244 1259.28 46.7805C1261.84 51.6152 1261.97 61.42 1253.46 65.1137H1253.42Z" />
         <path d="M1301.17 61.8455C1311.98 66.5255 1328.32 70.9347 1322.64 90.2735C1319.1 102.496 1306.72 106.905 1291.23 106.905C1280.28 106.905 1269.07 102.786 1261.95 99.5174V80.4687H1267.93C1271.91 94.3927 1279.43 98.8019 1288.39 100.214C1294.34 101.355 1300.18 100.504 1300.9 96.0944C1301.62 91.1244 1293.09 88.7071 1282.01 83.737C1263.11 75.344 1260.54 60.1436 1267.93 47.7862C1273.61 38.5422 1285.12 36.5504 1295.21 36.8405C1302.47 37.1305 1312.27 39.6832 1318.65 43.9571V61.1493H1312.7C1309 49.2172 1303.03 43.8024 1295.21 43.1062C1291.39 42.8161 1287.4 44.6727 1286.69 47.6508C1285.27 53.8973 1290.81 57.3202 1301.19 61.8648L1301.17 61.8455Z" />
       </svg>
-      <div className="group/footer flex md:flex-row flex-col-reverse w-full md:justify-between mt-4">
+      <div className="group/footer flex md:flex-row flex-col w-full md:justify-between mt-4">
         <p className="md:text-right max-md:text-center max-md:text-xs justify-end group-hover/footer:opacity-100 opacity-0 transition-all duration-500 ">
           Developed by{" "}
           <span className="relative hover:text-[#008080] transition-colors duration-500 z-10 after:bg-white after:absolute after:top-0 hover:after:left-0 after:left-1/2 after:w-0 hover:after:w-full after:h-full after:-z-10 after:transition-all after:duration-500">
@@ -66,72 +67,18 @@ const Footer = (props: HTMLAttributes<HTMLElement>) => {
           </span>
           .
         </p>
-        <div className="flex flex-row gap-3 items-center justify-center">
+        <div className="flex flex-row gap-3 items-center justify-center relative max-md:pt-3">
+          <PageDivision className="top-0 md:hidden" />
           <h5 className="md:text-end text-center">
             © Copyright 2026 Interactiveworkers. All Rights Reserved.
           </h5>
-          <ThemeSwitch />
-        </div>
-      </div>
-    </footer>
-  );
-  return (
-    <footer className="text-white text-sm w-full bg-iw-red-2 pt-8 lg:px-20 sm:px-10 px-4 md:rounded-t-xl rounded-t-md grid grid-cols-1 md:gap-2 gap-4 z-[1000] sticky">
-      <div className="flex flex-col md:flex-row gap-3 md:gap-0 justify-between items-center pb-10 border-b border-b-white">
-        <TransitionLink href="/">
-          <Image
-            className="hover:scale-95 transition-transform duration-150 h-[31px] object-contain"
-            src={"/logo/01_Primary_Logo/Primary_Logo-04.png"}
-            alt="Interactiveworkers Logo"
-            width={200}
-            height={31}
-          />
-        </TransitionLink>
-        <h5 className="text-center">
-          © Copyright 2006 - 2024 Interactiveworkers. All Rights Reserved
-        </h5>
-        <Socials />
-      </div>
-      <div className="md:flex grid grid-cols-[auto_auto] md:items-center items-end justify-between pb-2 group/footer">
-        <ul className="flex md:flex-row flex-col md:gap-6 gap-2 items-center">
-          {navbar.map((item, i) => (
-            <li key={`item-${i}`}>
-              <TransitionLink
-                href={item.link}
-                className="relative after:absolute after:left-1/2 after:top-full after:w-0 after:h-px after:bg-[currentColor]
-                hover:after:left-0 hover:after:w-full after:transition-all after:duration-150 active:text-iw-red-3"
-              >
-                {item.title}
-              </TransitionLink>
-            </li>
-          ))}
-          <li>
+          <div className="max-md:hidden">
             <ThemeSwitch />
-          </li>
-        </ul>
-        <p className="text-right justify-end group-hover/footer:opacity-100 opacity-0 transition-all duration-500 ">
-          developed by{" "}
-          <span className="relative hover:text-[#008080] transition-colors duration-500 z-10 after:bg-white after:absolute after:top-0 hover:after:left-0 after:left-1/2 after:w-0 hover:after:w-full after:h-full after:-z-10 after:transition-all after:duration-500">
-            @
-            <Link
-              href={"https://julscode.vercel.app"}
-              className="hover:underline"
-            >
-              julscodes
-            </Link>
-          </span>
-          <br />
-          designed by{" "}
-          <span className="relative hover:text-[#FF4200] transition-colors duration-500 z-10 after:bg-black after:absolute after:top-0 hover:after:left-0 after:left-1/2 after:w-0 hover:after:w-full after:h-full after:-z-10 after:transition-all after:duration-500">
-            @
-            <Link
-              href={"https://www.behance.net/gabocarrion"}
-              className="hover:underline"
-            >
-              gabocarrion
-            </Link>
-          </span>
-        </p>
+          </div>
+        </div>
+        <div className="md:hidden w-full flex flex-col items-center justify-center">
+          <Socials />
+        </div>
       </div>
     </footer>
   );

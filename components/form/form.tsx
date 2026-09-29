@@ -219,7 +219,7 @@ const MainForm = ({
             <br /> Reply STOP to opt-out of messaging.
           </p>
           <div className="flex flex-col md:items-end">
-            <div className="w-max">
+            <div className="md:w-max w-full">
               <div className="flex items-center gap-2">
                 <Checkbox id="agree" name="agree" required />
 
