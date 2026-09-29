@@ -33,7 +33,7 @@ function ContactForms() {
     <>
       <section>
         <article>
-          <MainForm heading={false} subheading={false} />
+          <MainForm heading={false} />
         </article>
         <article ref={ref}>
           <SplitText

@@ -12,6 +12,7 @@ import FooterForm from "@/components/footer/current-form";
 import NavbarComponent from "@/components/navbar";
 import { PageTransitionProvider } from "@/components/PagetransitionContext";
 import { PageTransitionOutlet } from "@/components/page-transition-outlet";
+import PageDivision from "@/components/page-division";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -47,16 +48,12 @@ export default function RootLayout({
                 </div>
               </PageTransitionOutlet>
             </div>
+            <Blured />
             <PageTransitionOutlet>
-              <div className="px-[clamp(1rem,8vw,50rem)] -z-10">
-                <FooterForm />
-              </div>
-            </PageTransitionOutlet>
-            <PageTransitionOutlet>
-              <Footer />
+              <PageDivision className="relative px-[clamp(1rem,8vw,50rem)]" />
+              <Footer className="px-[clamp(1rem,8vw,50rem)] z-[1000]" />
             </PageTransitionOutlet>
           </PageTransitionProvider>
-          <Blured />
           <Analytics></Analytics>
           <Script id="tawk" strategy="lazyOnload">
             {`var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();

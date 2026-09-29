@@ -77,7 +77,7 @@ const SocialLink = ({
     <Link
       href={href}
       target="_blank"
-      className="p-px rounded hover:bg-white hover:text-iw-red-2 transition-colors duration-200"
+      className="hover:text-iw-red-2 transition-colors duration-200"
     >
       {children}
     </Link>
