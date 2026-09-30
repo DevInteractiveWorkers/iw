@@ -3,6 +3,7 @@ import DiscoverVAs from "@/components/home/discover-vas";
 import IWVideo from "@/components/video";
 import StatsSection from "@/components/stats-section";
 import IWGlobe from "@/components/globe";
+import WhyUs from "@/components/why-us";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
         </div>
       </div> */}
       <IntroBanner />
+      <WhyUs />
       <DiscoverVAs />
       <IWVideo />
       <StatsSection />

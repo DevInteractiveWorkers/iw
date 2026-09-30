@@ -7,6 +7,7 @@ import FadeInContent from "../FadeInContent";
 import SplitText from "../text-animation/SplitText";
 import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 import { TransitionLink } from "../link";
+import PageDivision from "../page-division";
 
 const productizedPackages = [
   {
@@ -32,15 +33,22 @@ const DiscoverVAs = () => {
 
   return (
     <section ref={ref} id="services" className="w-full px-2 z-10 pb-10">
-      <article className="w-full md:w-10/12 mx-auto flex flex-col items-center">
-        <FadeInContent className="flex flex-col items-center">
-          <Packages />
-        </FadeInContent>
-        <SplitText
-          delay={100}
-          className="font-light lg:text-5xl text-base text-center leading-none pt-14 pb-4"
-          text={"Specialized Productized Packages"}
-        />
+      <article className="w-full mx-auto flex flex-col items-center">
+        <div className="w-full relative">
+          <PageDivision className="bottom-0" />
+          <SplitText
+            delay={100}
+            textAlign="start"
+            className="font-medium lg:text-5xl leading-none pt-14 pb-4"
+            text={
+              <>
+                Highly specialized
+                <br /> operational units run by
+                <br /> expert representatives
+              </>
+            }
+          />
+        </div>
         <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-6 justify-between my-4 md:mb-32">
           {productizedPackages.map((pkg, i) => (
             <FadeInContent key={i} delay={i * 0.1}>

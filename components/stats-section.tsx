@@ -20,9 +20,9 @@ export default function StatsSection() {
         className="md:w-10/12 w-11/12 px-2 md:py-20 sm:py-10 z-10 grid lg:grid-cols-4 sm:grid-cols-2 
         max-md:gap-10 max-sm:gap-4 items-start justify-center md:justify-items-center"
       >
-        <Stat title="Clients Reach Worldwide" number={1000} symbol="+" />
+        <Stat title="Clients Reach Worldwide" number={42} symbol="+" />
         <Stat title="Uptime SLA" number={99.9} symbol="%" decimal />
-        <Stat title="Project Shipped" number={365} symbol="+" />
+        <Stat title="Project Shipped" number={150} symbol="+" />
         <Stat title="Average Rating" number={5.0} symbol="stars" decimal />
       </article>
       <article className="z-10">
@@ -30,7 +30,14 @@ export default function StatsSection() {
           <Reviews />
         </FadeInContent>
       </article>
-      <SplitText
+      <div className="w-full flex justify-end">
+        <SplitText
+          textAlign="start"
+          className="text-[clamp(2rem,4vw,3.75rem)] leading-[1.05] pb-6 font-light w-3/4"
+          text="Beyond the obvious benefits, virtual assistants can address hidden needs."
+        />
+      </div>
+      {/* <SplitText
         className="text-[clamp(2rem,4vw,3.75rem)] leading-[1.05] pb-6 font-medium"
         text="What they say about us:"
       />
@@ -62,7 +69,7 @@ export default function StatsSection() {
             "
           />
         </FadeInContent>
-      </article>
+      </article> */}
     </section>
   );
 }
