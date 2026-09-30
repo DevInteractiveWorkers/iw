@@ -84,13 +84,13 @@ export default function Select({
       <input type="hidden" name={props.id} value={selectedValue} readOnly />
 
       {/* Selected value */}
-      <div className="bg-transparent outline-none w-full pointer-events-none">
+      <div className="bg-transparent outline-none w-full pointer-events-none absolute">
         {selectedLabel}
       </div>
 
       {/* Placeholder */}
       <span
-        className={`absolute pointer-events-none transition-all duration-150 left-0 ${
+        className={`pointer-events-none transition-all duration-150 left-0 ${
           isOpen || selectedLabel
             ? "-translate-y-full opacity-50 text-xs"
             : "translate-y-0 opacity-100 text-sm"

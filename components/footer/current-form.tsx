@@ -33,13 +33,13 @@ function ContactForms() {
     <>
       <section>
         <article>
-          <MainForm heading={false} />
+          <MainForm heading={false} socials={false} />
         </article>
         <article ref={ref}>
           <SplitText
             className="md:text-5xl text-xl py-4"
             textAlign="start"
-            text={"Do you want to joint our team?"}
+            text={"Do you want to join our team?"}
           />
           <GetHired heading={false} subheading={false} />
         </article>

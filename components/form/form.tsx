@@ -20,8 +20,10 @@ import Socials from "../footer/socials";
 
 const MainForm = ({
   heading = "Speak with our team today!",
+  socials = true,
 }: {
   heading?: string | React.ReactNode | false;
+  socials?: boolean;
 }) => {
   const [sending, isSending] = useState(false);
   const [sent, isSent] = useState(false);
@@ -81,42 +83,44 @@ const MainForm = ({
             text={heading}
           />
         )}
-        <div className="relative max-md:hidden">
-          <div className="flex items-start justify-around py-10 md:absolute top-0 left-0 w-full h-full">
-            <ul className="flex flex-col gap-2 items-start">
-              <li>
-                <TransitionLink
-                  href={"/"}
-                  className="relative after:absolute after:left-1/2 after:top-full after:w-0 after:h-px after:bg-[currentColor]
-                    hover:after:left-0 hover:after:w-full after:transition-all after:duration-150 active:text-iw-red-3"
-                >
-                  Home
-                </TransitionLink>
-              </li>
-              {navbar.map((item, i) => (
-                <li key={`item-${i}`}>
+        {socials && (
+          <div className="relative max-md:hidden">
+            <div className="flex items-start justify-around py-10 md:absolute top-0 left-0 w-full h-full">
+              <ul className="flex flex-col gap-2 items-start">
+                <li>
                   <TransitionLink
-                    href={item.link}
+                    href={"/"}
                     className="relative after:absolute after:left-1/2 after:top-full after:w-0 after:h-px after:bg-[currentColor]
                     hover:after:left-0 hover:after:w-full after:transition-all after:duration-150 active:text-iw-red-3"
                   >
-                    {item.title}
+                    Home
                   </TransitionLink>
                 </li>
-              ))}{" "}
-              <li>
-                <TransitionLink
-                  href={"/policy"}
-                  className="relative after:absolute after:left-1/2 after:top-full after:w-0 after:h-px after:bg-[currentColor]
+                {navbar.map((item, i) => (
+                  <li key={`item-${i}`}>
+                    <TransitionLink
+                      href={item.link}
+                      className="relative after:absolute after:left-1/2 after:top-full after:w-0 after:h-px after:bg-[currentColor]
                     hover:after:left-0 hover:after:w-full after:transition-all after:duration-150 active:text-iw-red-3"
-                >
-                  Privacy Policy
-                </TransitionLink>
-              </li>
-            </ul>
-            <Socials />
+                    >
+                      {item.title}
+                    </TransitionLink>
+                  </li>
+                ))}{" "}
+                <li>
+                  <TransitionLink
+                    href={"/policy"}
+                    className="relative after:absolute after:left-1/2 after:top-full after:w-0 after:h-px after:bg-[currentColor]
+                    hover:after:left-0 hover:after:w-full after:transition-all after:duration-150 active:text-iw-red-3"
+                  >
+                    Privacy Policy
+                  </TransitionLink>
+                </li>
+              </ul>
+              <Socials />
+            </div>
           </div>
-        </div>
+        )}
         <div className="grid md:grid-cols-2 gap-3 md:col-span-2 col-span-1">
           <Input
             id="firstname"

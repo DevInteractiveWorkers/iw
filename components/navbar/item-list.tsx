@@ -99,9 +99,10 @@ const ItemList = ({ items, isTransitioning }: ItemListProps) => {
       </button>
 
       <div
-        className={`bg-transparent flex gap-4 relative max-md:fixed max-md:flex-col max-md:w-2/3 max-md:bg-black/85 max-md:top-0 max-md:right-0 max-md:h-full max-md:z-20 max-md:py-4 max-md:border-l max-md:rounded-l-xl max-md:backdrop-blur ${
-          isOpen ? "max-md:translate-x-0" : "max-md:translate-x-full"
-        } transition-all duration-100`}
+        className={`bg-transparent flex gap-4 relative max-md:fixed max-md:flex-col max-md:w-2/3 dark:max-md:bg-black/85 max-md:bg-white/85  max-md:top-0 max-md:right-0 
+          max-md:h-full max-md:z-20 max-md:py-4 max-md:border-l max-md:rounded-l-xl max-md:backdrop-blur ${
+            isOpen ? "max-md:translate-x-0" : "max-md:translate-x-full"
+          } transition-all duration-100`}
         onMouseLeave={() => setHoverIndex(null)}
       >
         <div

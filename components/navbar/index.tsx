@@ -24,7 +24,7 @@ const NavbarComponent = () => {
         }}
       />
       <div
-        className={`border-b flex items-center justify-between max-md:grid grid-cols-2 justify-items-stretch py-4 gap-4 z-10 mx-[clamp(1rem,8vw,50rem)]`}
+        className={`border-b dark:border-white border-black flex items-center justify-between max-md:grid grid-cols-2 justify-items-stretch py-4 gap-4 z-10 mx-[clamp(1rem,8vw,50rem)]`}
       >
         <TransitionLink href="/">
           <Image

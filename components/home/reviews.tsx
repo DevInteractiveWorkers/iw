@@ -4,14 +4,13 @@ import { useState } from "react";
 import ReviewComponent from "./reviews/review-component";
 import { SampleReviews } from "./sample-reviews";
 import Carousel from "./reviews/carousel";
-import ProductCard from "../product-card";
 import FadeInContent from "../FadeInContent";
 import { useIsMobile } from "@/lib/useMobile";
 import { ReviewsSummary } from "./reviews-summary";
 
 export default function Reviews() {
   return (
-    <article id="reviews" className="w-dvw overflow-x-hidden">
+    <article id="reviews" className="w-full">
       <AutoScrollReviews />
     </article>
   );
@@ -65,7 +64,7 @@ const AutoScrollReviews = () => {
             items-center justify-items-center py-10
           "
         >
-          <FadeInContent className="w-full h-full my-10 min-h-[400px]">
+          <FadeInContent className="w-full h-full md:my-10 min-h-[400px]">
             <ReviewsSummary />
           </FadeInContent>
 
@@ -74,7 +73,7 @@ const AutoScrollReviews = () => {
               key={i}
               review={review}
               index={i}
-              className="w-full h-full my-10"
+              className="w-full h-full md:my-10"
             />
           ))}
         </div>
