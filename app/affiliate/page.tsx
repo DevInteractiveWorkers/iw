@@ -45,15 +45,15 @@ const AffiliatePage = () => {
             Affiliate Program!
           </>
         }
-        description={
-          <>
-            At InteractiveWorkers, we help businesses replace the cost and risk
-            of local hiring with fully managed operational units. With our
-            Affiliate Program, you earn by referring companies to infrastructure
-            they'll want to keep, not a freelancer they'll churn through in 90
-            days
-          </>
-        }
+        // description={
+        //   <>
+        //     At InteractiveWorkers, we help businesses replace the cost and risk
+        //     of local hiring with fully managed operational units. With our
+        //     Affiliate Program, you earn by referring companies to infrastructure
+        //     they'll want to keep, not a freelancer they'll churn through in 90
+        //     days
+        //   </>
+        // }
       />
       <article
         ref={ref}
@@ -61,7 +61,7 @@ const AffiliatePage = () => {
       >
         <div className="w-full grid md:grid-cols-2 lg:grid-cols-3 gap-6 justify-between">
           {whyUs.map((c, i) => (
-            <FadeInContent key={i} delay={i * 0.1}>
+            <FadeInContent key={i} delay={i * 0.1} className="h-full">
               <AffiliateCard {...c} />
             </FadeInContent>
           ))}
@@ -110,7 +110,10 @@ const AffiliatePage = () => {
 
 const AffiliateCard = ({ src, title, objectPosition }: AffiliateCardProps) => {
   return (
-    <ProductCard className="pointer-events-none" style={{ overflow: "hidden" }}>
+    <ProductCard
+      className="pointer-events-none"
+      style={{ overflow: "hidden", height: "100%", flex: 1 }}
+    >
       <Image
         src={src}
         alt={title}

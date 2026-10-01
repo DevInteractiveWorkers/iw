@@ -35,7 +35,7 @@ export default function ProductCard({
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`flex flex-col relative overflow-hidden transition-all duration-200 ${
+      className={`flex flex-col relative transition-all duration-300 ${
         disableHover ? "" : "hover:scale-100 hover:-translate-y-[5%]"
       } dark:shadow-[inset_0_0_50px_rgb(221_39_45_/_0.2)] shadow-[inset_0_0_50px_rgb(221_39_45_/_0.5)] rounded text-white
       after:rounded-[5px] after:backdrop-blur-md after:absolute after:pointer-events-none after:top-0 after:left-0 after:w-full after:h-full after:-z-10

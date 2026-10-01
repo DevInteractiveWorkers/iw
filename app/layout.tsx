@@ -50,7 +50,6 @@ export default function RootLayout({
             </div>
             <Blured />
             <PageTransitionOutlet>
-              <PageDivision className="relative px-[clamp(1rem,8vw,50rem)]" />
               <Footer className="px-[clamp(1rem,8vw,50rem)] z-[1000]" />
             </PageTransitionOutlet>
           </PageTransitionProvider>

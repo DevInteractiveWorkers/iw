@@ -6,7 +6,7 @@ export default function WhyUs() {
   return (
     <section className="relative mb-10 min-h-screen w-full flex flex-col items-center gap-6">
       <PageDivision className="top-0" />
-      <div className="w-full">
+      <div className="w-full sticky top-5">
         <SplitText
           delay={100}
           className="font-medium lg:text-5xl leading-none pt-14 pb-4"
@@ -30,7 +30,7 @@ export default function WhyUs() {
       />
       <WhyUsCard
         title="Turnkey IT Infrastructure"
-        src="/stock/por_siempre_nacho.png"
+        src="/stock/iw-2026-scheduling.png"
         style={{ position: "sticky", top: "10rem" }}
         icon={"notes"}
         content={
@@ -44,7 +44,7 @@ export default function WhyUs() {
       />
       <WhyUsCard
         title="Bulletproof Reliability"
-        src="/stock/por_siempre_nacho.png"
+        src="/stock/iw-team-2026.png"
         style={{ position: "sticky", top: "15rem" }}
         icon={"computer"}
         content={

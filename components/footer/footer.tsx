@@ -15,6 +15,7 @@ const Footer = (props: HTMLAttributes<HTMLElement>) => {
     <footer
       className={`relative w-full min-h-screen flex flex-col justify-between py-6 ${className}`}
     >
+      <PageDivision className="relative" />
       <FooterForm />
       <svg
         className="w-full h-auto dark:text-white text-black"

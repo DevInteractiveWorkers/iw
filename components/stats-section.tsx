@@ -30,13 +30,13 @@ export default function StatsSection() {
           <Reviews />
         </FadeInContent>
       </article>
-      <div className="w-full flex justify-end">
+      {/* <div className="w-full flex justify-end">
         <SplitText
           textAlign="start"
           className="text-[clamp(2rem,4vw,3.75rem)] leading-[1.05] pb-6 font-light w-3/4"
           text="Beyond the obvious benefits, virtual assistants can address hidden needs."
         />
-      </div>
+      </div> */}
       {/* <SplitText
         className="text-[clamp(2rem,4vw,3.75rem)] leading-[1.05] pb-6 font-medium"
         text="What they say about us:"
