@@ -22,7 +22,6 @@ export default function Folder({ items }: { items: FolderItem[] }) {
       className="grid grid-cols-1 lg:grid-cols-2"
       disableHover
       style={{ borderRadius: 5, overflow: "hidden" }}
-      shineZIndex={-10}
     >
       {/* Accordion */}
       <ul className="w-full">
