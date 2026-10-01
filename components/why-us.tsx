@@ -6,7 +6,7 @@ export default function WhyUs() {
   return (
     <section className="relative mb-10 min-h-screen w-full flex flex-col items-center gap-6">
       <PageDivision className="top-0" />
-      <div className="w-full sticky top-5">
+      <div className="w-full md:sticky top-5">
         <SplitText
           delay={100}
           className="font-medium lg:text-5xl leading-none pt-14 pb-4"
