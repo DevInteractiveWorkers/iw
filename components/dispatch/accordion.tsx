@@ -64,7 +64,7 @@ const DispatchAccordion: React.FC<DispatchAccordionProps> = ({
       )}
 
       <div
-        className={`relative text-white ${textAlign === "left" ? "" : "flex justify-end"} ${layout !== "background" && "md:w-9/12"} ${offset && "mt-10"}`}
+        className={`relative  ${textAlign === "left" ? "" : "flex justify-end"} ${layout !== "background" && "md:w-9/12"} ${offset && "mt-10"}`}
       >
         {backgroundImage && layout === "background" && (
           <Image
@@ -78,7 +78,7 @@ const DispatchAccordion: React.FC<DispatchAccordionProps> = ({
         <div
           className={`${
             layout === "background"
-              ? "relative z-40 text-white px-6 md:px-16 pt-16 pb-6 rounded-3xl w-9/12 md:w-7/12"
+              ? "relative z-40  px-6 md:px-16 pt-16 pb-6 rounded-3xl w-9/12 md:w-7/12"
               : layout === "imageLeft"
                 ? "px-6 md:px-12 pt-16 pb-6 bg-white text-iw-red-2"
                 : "px-6 md:px-12 pt-12 pb-6 bg-iw-red-2"

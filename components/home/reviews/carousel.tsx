@@ -15,11 +15,6 @@ interface CarouselProps {
   stopOnHover?: boolean;
 }
 
-/**
- * Internal pagination component. Extracted from the main component so the
- * dots + "which dots are visible" windowing logic can be read/tested on its
- * own. Purely presentational — all state lives in the parent.
- */
 function CarouselControls({
   total,
   current,
@@ -71,34 +66,21 @@ export default function Carousel({
 }: CarouselProps) {
   const [current, setCurrent] = useState<number>(0);
 
-  // Hovered *item* (not just a boolean) so we can visually emphasize the
-  // specific slide under the pointer, and so continuous-mode animation can
-  // simply stop mutating the DOM while a slide is hovered (which, since we
-  // never wrote a new transform, automatically "preserves" that slide's
-  // position instead of freezing at whatever offset the rAF last computed).
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-  // Bumped on manual navigation (drag / dot click) so the paused-mode
-  // autoplay effect below restarts its timer, mirroring the old
-  // `resetAutoscroll()` calls without needing an imperative timer manager.
   const [restartToken, setRestartToken] = useState(0);
   const bumpRestart = () => setRestartToken((t) => t + 1);
 
-  // --- Drag/pointer state lives in refs: it drives interaction logic only,
-  // never rendering, so there's no reason for it to be React state. ---
   const dragStartXRef = useRef<number | null>(null);
   const draggingRef = useRef(false);
 
-  // --- Continuous-mode ("on-going") offset lives in a ref + is written
-  // straight to the DOM from rAF, never through setState, so autoscroll
-  // speed isn't bottlenecked by React's render cycle. ---
   const offsetRef = useRef(0);
   const lastTimeRef = useRef<number | null>(null);
   const rafRef = useRef<number | null>(null);
   const hoveredIndexRef = useRef<number | null>(null);
 
-  const trackRef = useRef<HTMLDivElement>(null); // outer, overflow-hidden, pointer target
-  const innerRef = useRef<HTMLDivElement>(null); // inner flex row that actually translates
+  const trackRef = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
 
   const childrenArray = React.Children.toArray(children);
   const carouselArray =
@@ -119,10 +101,6 @@ export default function Carousel({
     hoveredIndexRef.current = hoveredIndex;
   }, [hoveredIndex]);
 
-  // --- Centralized navigation. Every interaction (autoplay tick, drag,
-  // dot click) now funnels through these two functions instead of each
-  // repeating its own wrap-around ternary. `wrap` controls whether hitting
-  // an edge loops around (autoplay) or simply stops (drag). ---
   const goToNext = useCallback(
     (wrap: boolean) => {
       setCurrent((c) => {
@@ -148,11 +126,6 @@ export default function Carousel({
     else goToNext(true);
   }, [reverseScroll, goToPrevious, goToNext]);
 
-  // --- Paused-mode ("discrete slides") autoplay. A single effect owns the
-  // whole timer lifecycle: React's cleanup clears the previous timer
-  // whenever a dependency changes, so there's no manual clearInterval /
-  // clearTimeout juggling from multiple call sites like the old
-  // startAutoscroll()/resetAutoscroll() pair. ---
   useEffect(() => {
     if (!autoscroll || autoscrollMode !== "paused" || isPaused) return;
 
@@ -161,9 +134,6 @@ export default function Carousel({
       return () => clearInterval(id);
     }
 
-    // iteration === "once": fires a single time per "restart" (autoplay
-    // turning on, hover ending, or manual navigation) rather than
-    // repeating indefinitely.
     const id = setTimeout(advanceAuto, timer * 1000);
     return () => clearTimeout(id);
   }, [
@@ -176,9 +146,6 @@ export default function Carousel({
     restartToken,
   ]);
 
-  // --- Continuous-mode ("on-going" marquee) animation. Runs its own rAF
-  // loop that writes directly to the DOM via innerRef, and simply skips the
-  // update while a slide is hovered — no state changes, no jitter. ---
   useEffect(() => {
     if (!autoscroll || autoscrollMode !== "on-going") return;
 
@@ -213,8 +180,6 @@ export default function Carousel({
     };
   }, [autoscroll, autoscrollMode, reverseScroll, speed, stopOnHover]);
 
-  // --- Pointer Events replace the old separate mouse/touch handler pairs.
-  // One set of handlers now covers mouse, touch, and pen input. ---
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     if (autoscrollMode === "on-going") return;
     dragStartXRef.current = e.clientX;
@@ -269,12 +234,6 @@ export default function Carousel({
           ref={innerRef}
           className="flex items-center"
           style={{
-            // Paused mode is driven by React state (`safeCurrent`), so it's
-            // fine to set transform/transition here every render. On-going
-            // mode is driven imperatively by the rAF loop above — we
-            // deliberately omit `transform`/`transition` from this style
-            // object in that mode so React never overwrites what the rAF
-            // loop wrote directly to the DOM.
             ...(autoscrollMode === "on-going"
               ? {}
               : {

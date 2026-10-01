@@ -10,7 +10,7 @@ export default function Checkbox({
   ...props
 }: CheckboxProps) {
   return (
-    <label className="ios-checkbox">
+    <label className="ios-checkbox [--checkbox-bg:#fff] [--checkbox-border:#dd272d] dark:[--checkbox-bg:#000] dark:[--checkbox-border:#fff]">
       <input
         {...props}
         id={id}

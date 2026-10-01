@@ -79,7 +79,7 @@ const SmallForm = ({ setHidden }: { setHidden: Function }) => {
                   base: "flex items-stretch transition-all duration-200 justify-center",
                 },
               }}
-              className="block w-40 mx-auto  bg-transparent border border-iw-red-2 text-iw-red-2 hover:bg-iw-red-2 enabled:hover:bg-iw-red-2 hover:text-white font-medium rounded-lg text-base px-3 py-1.5 text-center"
+              className="block w-40 mx-auto  bg-transparent border border-iw-red-2 text-iw-red-2 hover:bg-iw-red-2 enabled:hover:bg-iw-red-2 hover: font-medium rounded-lg text-base px-3 py-1.5 text-center"
               data-dismiss-target="#alert-additional-content-1"
               aria-label="Close"
               type="submit"
@@ -94,7 +94,7 @@ const SmallForm = ({ setHidden }: { setHidden: Function }) => {
                 },
               }}
               type="button"
-              className="block w-40 mx-auto  bg-transparent border border-iw-red-2 text-iw-red-2 hover:bg-iw-red-2 enabled:hover:bg-iw-red-2 hover:text-white font-medium rounded-lg text-base px-3 py-1.5 text-center"
+              className="block w-40 mx-auto  bg-transparent border border-iw-red-2 text-iw-red-2 hover:bg-iw-red-2 enabled:hover:bg-iw-red-2 hover: font-medium rounded-lg text-base px-3 py-1.5 text-center"
               data-dismiss-target="#alert-additional-content-1"
               aria-label="Close"
               onClick={() => {

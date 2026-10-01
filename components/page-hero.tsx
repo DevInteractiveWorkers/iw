@@ -35,7 +35,14 @@ export default function PageHero({
           height={1080}
           alt="logo"
           src="/logo/03_Logo_Mark/03_Logo_Mark-01.png"
-          className="select-none"
+          className="select-none dark:block hidden"
+        />
+        <Image
+          width={1080}
+          height={1080}
+          alt="logo"
+          src="/logo/03_Logo_Mark/03_Logo_Mark-02.png"
+          className="select-none block dark:hidden"
         />
       </FlipElement>
       <SplitText

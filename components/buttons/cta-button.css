@@ -3,6 +3,15 @@
 :root {
   --primary-color: #fff;
   --secondary-color: #dd272d;
+  --tertiary-color: #fff;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --primary-color: #dd272d;
+    --secondary-color: #dd272d;
+    --tertiary-color: #fff;
+  }
 }
 
 .animated-button {
@@ -50,6 +59,7 @@
   border-radius: 50%;
   opacity: 0;
   transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  aspect-ratio: 1 / 1;
 }
 
 .animated-button .text {
@@ -61,7 +71,7 @@
 
 .animated-button:hover {
   box-shadow: 0 0 0 12px transparent;
-  color: var(--primary-color);
+  color: var(--tertiary-color);
   border-radius: 5px;
 }
 
@@ -78,7 +88,7 @@
 }
 
 .animated-button:hover svg {
-  fill: var(--primary-color);
+  fill: var(--tertiary-color);
 }
 
 .animated-button:active {
@@ -87,7 +97,8 @@
 }
 
 .animated-button:hover .circle {
-  width: 220px;
-  height: 220px;
+  width: 150%;
+  height: 200%;
+  aspect-ratio: 1 / 1;
   opacity: 1;
 }

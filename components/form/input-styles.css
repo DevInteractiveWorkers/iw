@@ -1,10 +1,13 @@
 /* From Uiverse.io by kyle1dev */
 
-.ios-checkbox {
+:root {
   --checkbox-size: 20px;
   --checkbox-color: var(--iw-primary-red);
   --checkbox-bg: #000;
   --checkbox-border: #fff;
+}
+
+.ios-checkbox {
   position: relative;
   display: inline-block;
   cursor: pointer;
@@ -29,7 +32,7 @@
   inset: 0;
   border-radius: 5px;
   border: 2px solid var(--checkbox-border);
-  background: #000;
+  background: var(--checkbox-bg);
   transition: all 0.2s ease;
 }
 

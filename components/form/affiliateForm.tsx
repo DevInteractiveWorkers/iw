@@ -57,9 +57,16 @@ const AffiliateForm = () => {
           <Image
             width={1080}
             height={1080}
-            className="w-auto px-10 md:max-w-[400px] md:sticky md:top-20 top-10"
+            className="w-auto px-10 md:max-w-[400px] md:sticky md:top-20 top-10 dark:block hidden"
             alt="logo"
             src={"/logo/01_Primary_Logo/Primary_Logo-04.png"}
+          />
+          <Image
+            width={1080}
+            height={1080}
+            className="w-auto px-10 md:max-w-[400px] md:sticky md:top-20 top-10 block dark:hidden"
+            alt="logo"
+            src={"/logo/01_Primary_Logo/Primary_Logo-06.png"}
           />
         </FadeInContent>
         <form
@@ -127,13 +134,7 @@ const AffiliateForm = () => {
             />
 
             <CTAButton
-              style={
-                {
-                  "--primary-color": "#dd272d",
-                  "--secondary-color": "#fff",
-                } as React.CSSProperties
-              }
-              className="rounded font-bold text-4xl px-10 py-5 max-w-fit mt-8"
+              className="[--primary-color:#dd272d] [--secondary-color:#dd272d] [--tertiary-color:#fff] dark:[--secondary-color:#fff] dark:[--tertiary-color:#dd272d] rounded font-bold text-4xl px-10 py-5 max-w-fit mt-8"
               type="submit"
               disabled={isSending}
             >

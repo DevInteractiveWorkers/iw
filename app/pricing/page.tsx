@@ -90,6 +90,7 @@ export default function PricingPage() {
                 width: isTerm === "project" || isMobile ? "100%" : "70%",
               }}
               disableHover
+              decorative
             >
               {isTerm === "long-term" ? (
                 <>

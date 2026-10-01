@@ -97,7 +97,7 @@ const Testimonies = () => {
                 <button onClick={() => videoRef.current?.requestFullscreen()}>
                   {/* <IconButton
                   icon="expand"
-                  className="text-white w-7"
+                  className=" w-7"
                   stroke={1}
                 /> */}
                   <Image
@@ -137,7 +137,7 @@ const Testimonies = () => {
                 </div>
 
                 {/* Time */}
-                <div className="text-white md:text-sm text-xs flex">
+                <div className=" md:text-sm text-xs flex">
                   {videoCurrentTime > 0
                     ? formatTime(videoCurrentTime)
                     : "--:--"}{" "}

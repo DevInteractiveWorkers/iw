@@ -4,6 +4,7 @@ import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 import FadeInContent from "./FadeInContent";
 import VideoPlayer from "./video-player";
 import { useIsMobile } from "@/lib/useMobile";
+import ColorBends from "./backgrounds/ColorBends";
 
 const VIDEO_URL = {
   desktop:
@@ -20,11 +21,37 @@ export default function IWVideo() {
   return (
     <section
       className="
-        relative z-10
+        relative
         flex w-full items-center justify-center
         px-0 md:px-2 py-10
       "
     >
+      <div
+        className="w-dvw h-screen absolute pointer-events-none -z-10"
+        style={{
+          maskImage:
+            "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
+          WebkitMaskImage:
+            "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
+        }}
+      >
+        <ColorBends
+          rotation={95}
+          speed={0.2}
+          colors={["#C1272D", "#DD272D", "#C1272D"]}
+          transparent
+          autoRotate={0}
+          scale={1.2}
+          frequency={1}
+          warpStrength={1}
+          mouseInfluence={0}
+          parallax={0.3}
+          noise={0.15}
+          iterations={1}
+          intensity={1.3}
+          bandWidth={6}
+        />
+      </div>
       <FadeInContent>
         <article
           ref={ref}

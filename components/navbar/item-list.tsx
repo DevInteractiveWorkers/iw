@@ -79,7 +79,7 @@ const ItemList = ({ items, isTransitioning }: ItemListProps) => {
         aria-label="Toggle navigation"
       >
         <svg
-          className="w-6 h-6 text-white"
+          className="w-6 h-6 "
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -99,13 +99,14 @@ const ItemList = ({ items, isTransitioning }: ItemListProps) => {
       </button>
 
       <div
-        className={`bg-transparent flex gap-4 relative max-md:fixed max-md:flex-col max-md:w-2/3 max-md:bg-black/85 max-md:top-0 max-md:right-0 max-md:h-full max-md:z-20 max-md:py-4 max-md:border-l max-md:rounded-l-xl max-md:backdrop-blur ${
-          isOpen ? "max-md:translate-x-0" : "max-md:translate-x-full"
-        } transition-all duration-100`}
+        className={`bg-transparent flex gap-4 relative max-md:fixed max-md:flex-col max-md:w-2/3 dark:max-md:bg-black/85 max-md:bg-white/85  max-md:top-0 max-md:right-0 
+          max-md:h-full max-md:z-20 max-md:py-4 max-md:border-l max-md:rounded-l-xl max-md:backdrop-blur ${
+            isOpen ? "max-md:translate-x-0" : "max-md:translate-x-full"
+          } transition-all duration-100`}
         onMouseLeave={() => setHoverIndex(null)}
       >
         <div
-          className="bg-white rounded transition-all duration-300 pointer-events-none"
+          className="dark:bg-white bg-iw-red-1 rounded transition-all duration-300 pointer-events-none"
           style={{
             position: "absolute",
             width: `${indicatorStyle.width}px`,
@@ -131,7 +132,7 @@ const ItemList = ({ items, isTransitioning }: ItemListProps) => {
               aria-current={isActive ? "page" : undefined}
               aria-disabled={isTransitioning || undefined}
               className={`relative z-10 px-4 transition-all duration-150 max-md:w-full lg:text-base md:text-xs ${
-                isHighlighted ? "text-black" : "text-white"
+                isHighlighted ? "dark:text-black text-white" : ""
               } ${isTransitioning ? "pointer-events-none" : ""}`}
               onMouseEnter={() => setHoverIndex(key)}
               onClick={() => setIsOpen(false)}

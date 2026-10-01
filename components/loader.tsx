@@ -15,7 +15,7 @@ export default function Loader(
       {...divProps}
       className={
         className ??
-        "text-white min-w-[24px] min-h-[24px] w-1/4 loading-page-loader:w-1/10 overflow-visible"
+        " min-w-[24px] min-h-[24px] w-1/4 loading-page-loader:w-1/10 overflow-visible"
       }
     >
       <svg

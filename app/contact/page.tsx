@@ -4,7 +4,7 @@ import PageHero from "@/components/page-hero";
 
 const ContactUs = () => {
   return (
-    <section className="flex flex-col text-white">
+    <section className="flex flex-col ">
       <PageHero
         heading={
           <span className="text-[clamp(4rem,4vw,7rem)] font-medium leading-[1.05] pb-6">

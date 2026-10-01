@@ -15,13 +15,13 @@
   border: 1px solid rgb(255 255 255 / 15%);
   background: var(--card-bg, rgb(221 39 45 / 0.1));
   overflow: visible;
-  box-shadow:
-    rgba(0, 0, 0, 0.1) 0px 1px 2px,
-    rgba(0, 0, 0, 0.1) 0px 2px 4px,
-    rgba(0, 0, 0, 0.1) 0px 4px 8px,
-    rgba(0, 0, 0, 0.1) 0px 8px 16px,
-    rgba(0, 0, 0, 0.1) 0px 16px 32px,
-    rgba(0, 0, 0, 0.1) 0px 32px 64px;
+  /* box-shadow:
+    rgba(64, 3, 3, 0.1) 0px 1px 2px,
+    rgba(64, 3, 3, 0.1) 0px 2px 4px,
+    rgba(64, 3, 3, 0.1) 0px 4px 8px,
+    rgba(64, 3, 3, 0.1) 0px 8px 16px,
+    rgba(64, 3, 3, 0.1) 0px 16px 32px,
+    rgba(64, 3, 3, 0.1) 0px 32px 64px; */
 }
 
 .border-glow-card::before,
@@ -33,6 +33,9 @@
   border-radius: inherit;
   transition: opacity 0.25s ease-out;
   z-index: -1;
+  /* Glow/mesh layers are purely decorative — never let them capture pointer
+     events, and never let them out-stack the actual content layer below. */
+  pointer-events: none;
 }
 
 .border-glow-card:not(:hover):not(.sweep-active)::before,
@@ -200,6 +203,8 @@
 .border-glow-card > .edge-light {
   inset: calc(var(--glow-padding) * -1);
   pointer-events: none;
+  /* Below .border-glow-inner (z-index: 2) so content always paints on top,
+     regardless of DOM order changes elsewhere. */
   z-index: 1;
 
   mask-image: conic-gradient(
@@ -220,6 +225,7 @@
 .border-glow-card > .edge-light::before {
   content: "";
   position: absolute;
+  pointer-events: none;
   color: #dd272d33;
   inset: var(--glow-padding);
   border-radius: inherit;
@@ -244,5 +250,9 @@
   flex-direction: column;
   position: relative;
   overflow: auto;
-  z-index: 1;
+  /* Must be above .edge-light (z-index: 1) so buttons/links/inputs inside
+     the card always receive pointer events, no matter how the glow layers
+     are stacked or reordered. */
+  z-index: 2;
+  pointer-events: auto;
 }

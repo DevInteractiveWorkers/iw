@@ -76,7 +76,7 @@ export default function Select({
   return (
     <div
       ref={dropdownRef}
-      className="py-2 my-2 border-b border-white text-white relative flex items-center justify-between w-full cursor-pointer select-none"
+      className="py-2 my-2 border-b dark:border-white border-black relative flex items-center justify-between w-full cursor-pointer select-none"
       onClick={() => setIsOpen((prev) => !prev)}
       aria-required={required}
       {...props}
@@ -84,13 +84,13 @@ export default function Select({
       <input type="hidden" name={props.id} value={selectedValue} readOnly />
 
       {/* Selected value */}
-      <div className="bg-transparent outline-none w-full pointer-events-none">
+      <div className="bg-transparent outline-none w-full pointer-events-none absolute">
         {selectedLabel}
       </div>
 
       {/* Placeholder */}
       <span
-        className={`absolute pointer-events-none transition-all duration-150 left-0 ${
+        className={`pointer-events-none transition-all duration-150 left-0 ${
           isOpen || selectedLabel
             ? "-translate-y-full opacity-50 text-xs"
             : "translate-y-0 opacity-100 text-sm"
@@ -112,13 +112,13 @@ export default function Select({
       >
         <path
           d="M4.58605 5.99828L0.294875 1.70711C-0.33509 1.07714 0.111077 0 1.00198 0H9.58432C10.4752 0 10.9214 1.07714 10.2914 1.70711L6.00026 5.99828C5.60973 6.3888 4.97657 6.3888 4.58605 5.99828Z"
-          fill="white"
+          fill="currentColor"
         />
       </svg>
 
       {/* Options */}
       {isOpen && (
-        <div className="bg-black border border-white absolute top-full left-0 w-full mt-1 py-1 flex flex-col z-50 shadow-xl rounded-md max-h-60 overflow-y-auto">
+        <div className="dark:bg-black bg-white border dark:border-white border-black absolute top-full left-0 w-full mt-1 py-1 flex flex-col z-50 shadow-xl rounded-md max-h-60 overflow-y-auto">
           {options.map((child, index) => {
             if (!React.isValidElement(child)) return null;
 
@@ -134,7 +134,7 @@ export default function Select({
               <button
                 key={`${value}-${index}`}
                 type="button"
-                className="text-left px-4 py-2 hover:bg-white/20 w-full text-white"
+                className="text-left px-4 py-2 dark:hover:bg-white/20 hover:bg-black/5 w-full "
                 onClick={(event) => {
                   event.stopPropagation();
                   handleSelect(value, label);

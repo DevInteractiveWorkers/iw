@@ -7,28 +7,23 @@ import professionalOptions from "./professionalOptions";
 import Input from "./input";
 import Select from "./select";
 import Textarea from "./textarea";
-import Image from "next/image";
 import FadeInContent from "../FadeInContent";
 import SplitText from "../text-animation/SplitText";
 import FormButton from "../buttons/form-buttons";
-import Loader, { LoadingPage } from "../loader";
-import PageDivision from "../page-division";
+import Loader from "../loader";
 import Checkbox from "./checkbox";
 import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 import { useIsMobile } from "@/lib/useMobile";
 import { TransitionLink } from "../link";
+import { navbar } from "@/app/content/navbar";
+import Socials from "../footer/socials";
 
 const MainForm = ({
-  heading = (
-    <>
-      Beyond the obvious benefits, virtual assistants
-      <br className="max-nd:hidden" /> can address hidden needs.
-    </>
-  ),
-  subheading = "Speak with our team today!",
+  heading = "Speak with our team today!",
+  socials = true,
 }: {
   heading?: string | React.ReactNode | false;
-  subheading?: string | React.ReactNode | false;
+  socials?: boolean;
 }) => {
   const [sending, isSending] = useState(false);
   const [sent, isSent] = useState(false);
@@ -72,176 +67,194 @@ const MainForm = ({
     }
   };
 
-  const FormFields = () => (
-    <>
-      <div className="grid md:grid-cols-2 gap-3">
-        <Input
-          id="firstname"
-          name="firstname"
-          type="text"
-          placeholder="First name"
-          autoComplete="given-name"
-          required
-        />
-
-        <Input
-          id="lastname"
-          name="lastname"
-          type="text"
-          placeholder="Last name"
-          autoComplete="family-name"
-          required
-        />
-      </div>
-
-      <Input
-        id="company"
-        name="company"
-        type="text"
-        placeholder="Company's Name"
-        autoComplete="organization"
-        required
-      />
-
-      <div className="grid md:grid-cols-2 gap-3">
-        <Input
-          id="phone"
-          name="phone"
-          type="tel"
-          placeholder="Phone Number"
-          autoComplete="tel"
-          required
-        />
-
-        <Input
-          id="email"
-          name="email"
-          type="email"
-          placeholder="Email"
-          autoComplete="email"
-          required
-        />
-      </div>
-
-      <Input
-        id="size"
-        name="size"
-        type="text"
-        placeholder="Your company size (current staff number)"
-        autoComplete="off"
-        required
-      />
-
-      <Input
-        id="staff"
-        name="staff"
-        type="text"
-        placeholder="Number of Staff Required?"
-        autoComplete="off"
-        required
-      />
-
-      <Input
-        id="country"
-        name="country"
-        type="text"
-        placeholder="Which country are you based in?"
-        autoComplete="country-name"
-        required
-      />
-
-      <h4 className="font-medium md:text-2xl text-xl mt-4">
-        Choose your Professional
-      </h4>
-
-      <Select id="professional" required>
-        {professionalOptions.map((option, index) => (
-          <option key={index}>{option}</option>
-        ))}
-      </Select>
-
-      <Textarea
-        id="message"
-        name="message"
-        placeholder="What's your question? Or what kind of outsourcing help do you need?"
-        autoComplete="off"
-        required
-        rows={isMobile ? 2 : 1}
-      />
-      <p className="py-4">
-        Messages and data rates may apply. (Message frequency will vary).
-        <br /> Reply STOP to opt-out of messaging.
-      </p>
-      <div className="flex items-center gap-2">
-        <Checkbox id="agree" name="agree" required />
-
-        <Label htmlFor="agree" className="flex text-white">
-          I agree with the&nbsp;
-          <TransitionLink
-            href="/policy"
-            className="text-iw-red-1 hover:underline"
-          >
-            Privacy Policy
-          </TransitionLink>
-        </Label>
-      </div>
-      {message && <div className="text-iw-red-1 flex">{message}</div>}
-
-      <FormButton disabled={sending || sent}>
-        {sending ? (
-          <Loader className="min-w-[2.25rem] min-h-[2.25rem] px-10" />
-        ) : !sent ? (
-          "Send mail"
-        ) : (
-          "Sent"
-        )}
-      </FormButton>
-    </>
-  );
-  const { ref } = useScrollIntoView<HTMLElement>();
+  const { ref } = useScrollIntoView<HTMLFormElement>();
   return (
     <FadeInContent>
-      <section
+      <form
         ref={ref}
-        className="grid md:grid-cols-[auto_auto] md:pt-20 py-10"
+        className="md:grid md:grid-cols-3 flex flex-col"
+        onSubmit={handleSubmit}
+        name="Contact Form"
       >
-        <PageDivision className="top-0" />
-        <FadeInContent className="pointer-events-none select-none">
-          {(heading || subheading) && (
-            <Image
-              width={1080}
-              height={1080}
-              className="w-auto px-10 md:max-w-[400px] md:sticky md:top-20 top-10"
-              alt="logo"
-              src={"/logo/01_Primary_Logo/Primary_Logo-04.png"}
+        {heading && (
+          <SplitText
+            className={`text-4xl md:text-6xl font-medium md:py-10 md:col-span-2 col-span-1`}
+            textAlign="start"
+            text={heading}
+          />
+        )}
+        {socials && (
+          <div className="relative max-md:hidden">
+            <div className="flex items-start justify-around py-10 md:absolute top-0 left-0 w-full h-full">
+              <ul className="flex flex-col gap-2 items-start">
+                <li>
+                  <TransitionLink
+                    href={"/"}
+                    className="relative after:absolute after:left-1/2 after:top-full after:w-0 after:h-px after:bg-[currentColor]
+                    hover:after:left-0 hover:after:w-full after:transition-all after:duration-150 active:text-iw-red-3"
+                  >
+                    Home
+                  </TransitionLink>
+                </li>
+                {navbar.map((item, i) => (
+                  <li key={`item-${i}`}>
+                    <TransitionLink
+                      href={item.link}
+                      className="relative after:absolute after:left-1/2 after:top-full after:w-0 after:h-px after:bg-[currentColor]
+                    hover:after:left-0 hover:after:w-full after:transition-all after:duration-150 active:text-iw-red-3"
+                    >
+                      {item.title}
+                    </TransitionLink>
+                  </li>
+                ))}{" "}
+                <li>
+                  <TransitionLink
+                    href={"/policy"}
+                    className="relative after:absolute after:left-1/2 after:top-full after:w-0 after:h-px after:bg-[currentColor]
+                    hover:after:left-0 hover:after:w-full after:transition-all after:duration-150 active:text-iw-red-3"
+                  >
+                    Privacy Policy
+                  </TransitionLink>
+                </li>
+              </ul>
+              <Socials />
+            </div>
+          </div>
+        )}
+        <div className="grid md:grid-cols-2 gap-3 md:col-span-2 col-span-1">
+          <Input
+            id="firstname"
+            name="firstname"
+            type="text"
+            placeholder="First name"
+            autoComplete="given-name"
+            required
+          />
+
+          <Input
+            id="lastname"
+            name="lastname"
+            type="text"
+            placeholder="Last name"
+            autoComplete="family-name"
+            required
+          />
+        </div>
+        <div className="col-span-2">
+          <Input
+            id="company"
+            name="company"
+            type="text"
+            placeholder="Company's Name"
+            autoComplete="organization"
+            required
+          />
+        </div>
+        <div className="grid md:grid-cols-2 gap-3 md:col-span-2 col-span-1">
+          <Input
+            id="phone"
+            name="phone"
+            type="tel"
+            placeholder="Phone Number"
+            autoComplete="tel"
+            required
+          />
+          <Input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="Email"
+            autoComplete="email"
+            required
+          />
+        </div>
+        <div className="col-span-2">
+          <Input
+            id="size"
+            name="size"
+            type="text"
+            placeholder="Your company size (current staff number)"
+            autoComplete="off"
+            required
+          />
+        </div>
+        <div className="grid md:grid-cols-2 gap-3 md:col-span-2 col-span-1">
+          <Input
+            id="staff"
+            name="staff"
+            type="text"
+            placeholder="Number of Staff Required?"
+            autoComplete="off"
+            required
+          />
+          <Input
+            id="country"
+            name="country"
+            type="text"
+            placeholder="Which country are you based in?"
+            autoComplete="country-name"
+            required
+          />
+        </div>
+        <h4 className="font-medium md:text-2xl text-xl mt-4 md:col-span-2 col-span-1">
+          Choose your Professional
+        </h4>
+        <div className="grid md:grid-cols-3 gap-3 md:col-span-3">
+          <Select id="professional" required>
+            {professionalOptions.map((option, index) => (
+              <option key={index}>{option}</option>
+            ))}
+          </Select>
+          <div className="md:col-span-2 col-span-1">
+            <Textarea
+              id="message"
+              name="message"
+              placeholder="What's your question? Or what kind of outsourcing help do you need?"
+              autoComplete="off"
+              required
+              rows={isMobile ? 2 : 1}
             />
-          )}
-        </FadeInContent>
-        <form
-          className="flex flex-col md:px-10 px-4 mb-10"
-          onSubmit={handleSubmit}
-          name="Contact Form"
-        >
-          {heading && (
-            <SplitText
-              className="md:text-5xl text-xl py-4"
-              textAlign="start"
-              text={heading}
-            />
-          )}
-          {subheading && (
-            <SplitText
-              tag="h2"
-              textAlign="start"
-              className={`text-white text-2xl md:text-6xl font-medium py-10`}
-              text={subheading}
-            />
-          )}
-          <FadeInContent>
-            <FormFields />
-          </FadeInContent>
-        </form>
-      </section>
+          </div>
+        </div>
+        <div className="col-span-3 grid md:grid-cols-[auto_auto] grid-cols-1 gap-3 py-4">
+          <p className="max-md:text-xs max-md:text-center">
+            Messages and data rates may apply.
+            <br className="md:hidden" /> (Message frequency will vary).
+            <br /> Reply STOP to opt-out of messaging.
+          </p>
+          <div className="flex flex-col md:items-end">
+            <div className="md:w-max w-full">
+              <div className="flex items-center gap-2">
+                <Checkbox id="agree" name="agree" required />
+
+                <Label htmlFor="agree" className="flex ">
+                  I agree with the&nbsp;
+                  <TransitionLink
+                    href="/policy"
+                    className="text-iw-red-1 hover:underline"
+                  >
+                    Privacy Policy
+                  </TransitionLink>
+                </Label>
+              </div>
+              <FormButton className="mt-3 flex justify-center w-full uppercase [--primary-color:#dd272d] dark:[--primary-color:#fff]">
+                {sending ? (
+                  <Loader className="min-w-[2.25rem] min-h-[2.25rem] px-10" />
+                ) : !sent ? (
+                  "Send mail"
+                ) : (
+                  "Sent"
+                )}
+              </FormButton>
+            </div>
+          </div>
+        </div>
+        {message && (
+          <div className="text-iw-red-1 flex justify-end w-full col-span-3">
+            {message}
+          </div>
+        )}
+      </form>
     </FadeInContent>
   );
 };

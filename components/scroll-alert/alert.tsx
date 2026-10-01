@@ -81,7 +81,7 @@ export const ScrollAlert = () => {
         width="75"
         height="75"
         viewBox="0 0 186 420"
-        fill="#fff"
+        className="dark:fill-white fill-iw-red-1"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path

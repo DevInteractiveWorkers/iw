@@ -1,11 +1,11 @@
 export const navbar = [
   {
-    title: "Dispatch",
-    link: "/dispatch",
+    title: "About",
+    link: "/about",
   },
   {
-    title: "Services",
-    link: "/#services",
+    title: "Dispatch",
+    link: "/dispatch",
   },
   {
     title: "Pricing",

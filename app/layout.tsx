@@ -8,10 +8,10 @@ import IWBg from "@/components/backgrounds/background";
 import AppLoader from "@/components/AppLoader";
 import Blured from "@/components/footer/blured";
 import { ScrollAlert } from "@/components/scroll-alert/alert";
-import FooterForm from "@/components/footer/current-form";
 import NavbarComponent from "@/components/navbar";
 import { PageTransitionProvider } from "@/components/PagetransitionContext";
 import { PageTransitionOutlet } from "@/components/page-transition-outlet";
+import { ThemeProvider } from "@/components/ThemeContext";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -19,6 +19,8 @@ const poppins = Poppins({
   variable: "--font-poppins",
   display: "swap",
 });
+
+const themeInitScript = `(function(){try{var s=localStorage.getItem("theme");var d=s?s==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches;document.documentElement.classList.toggle("dark",d);}catch(e){}})();`;
 
 export const metadata: Metadata = {
   title: "InteractiveWorkers",
@@ -31,35 +33,34 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body
-        className={`${poppins.className} scroll-smooth bg-black text-white`}
+        className={`${poppins.className} scroll-smooth dark:bg-black dark:text-white bg-white text-black transition-color duration-500`}
       >
-        <AppLoader>
-          <PageTransitionProvider type="fade">
-            <IWBg />
-            <div>
-              <NavbarComponent />
-              <PageTransitionOutlet>
-                <ScrollAlert />
-                <div className="px-[clamp(1rem,8vw,50rem)] -z-10">
-                  {children}
-                </div>
-              </PageTransitionOutlet>
-            </div>
-            <PageTransitionOutlet>
-              <div className="px-[clamp(1rem,8vw,50rem)] -z-10">
-                <FooterForm />
+        <ThemeProvider>
+          <AppLoader>
+            <PageTransitionProvider type="fade">
+              <IWBg />
+              <div>
+                <NavbarComponent />
+                <PageTransitionOutlet>
+                  <ScrollAlert />
+                  <div className="px-[clamp(1rem,8vw,50rem)] -z-10">
+                    {children}
+                  </div>
+                </PageTransitionOutlet>
               </div>
-            </PageTransitionOutlet>
-            <PageTransitionOutlet>
-              <Footer />
-            </PageTransitionOutlet>
-          </PageTransitionProvider>
-          <Blured />
-          <Analytics></Analytics>
-          <Script id="tawk" strategy="lazyOnload">
-            {`var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+              <Blured />
+              <PageTransitionOutlet>
+                <Footer className="px-[clamp(1rem,8vw,50rem)] z-[1000]" />
+              </PageTransitionOutlet>
+            </PageTransitionProvider>
+            <Analytics></Analytics>
+            <Script id="tawk" strategy="lazyOnload">
+              {`var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
             (function(){
               var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
               s1.async=true;
@@ -68,8 +69,9 @@ export default function RootLayout({
               s1.setAttribute('crossorigin','*');
               s0.parentNode.insertBefore(s1,s0);
               })();`}
-          </Script>
-        </AppLoader>
+            </Script>
+          </AppLoader>
+        </ThemeProvider>
       </body>
     </html>
   );

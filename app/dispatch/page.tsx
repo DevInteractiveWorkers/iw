@@ -9,9 +9,16 @@ import SplitText from "@/components/text-animation/SplitText";
 import PageHero from "@/components/page-hero";
 import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 import { useIsMobile } from "@/lib/useMobile";
+import CTAButton from "@/components/buttons/cta-button";
+import { useRouter } from "next/navigation";
+import FlipElement from "@/components/flip-element";
+import Image from "next/image";
+import ColorBends from "@/components/backgrounds/ColorBends";
 import { dispatchers } from "../content/dispatchers";
 
 const Dispatch = () => {
+  const router = useRouter();
+
   const tags = [
     "Trained in Confidentiality and Security Protocols",
     "24/7 Adaptability",
@@ -35,9 +42,9 @@ const Dispatch = () => {
       <PageHero
         heading={
           <>
-            24/7 Remote Dispatch
-            <br /> for Every Operation,
-            <br /> Ready to Deploy
+            Elite 24/7 Managed
+            <br /> Dispatch & CCTV
+            <br /> Monitoring Units
           </>
         }
         description={
@@ -58,7 +65,19 @@ const Dispatch = () => {
             "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)",
         }}
       >
-        <Carousel
+        <div className="w-full grid grid-cols-2 lg:grid-cols-3 lg:w-9/12 gap-6 justify-between my-4 md:mb-32">
+          {dispatchers.map((dispatcher, i) => (
+            <FadeInContent key={i} delay={i * 0.1}>
+              <VACard
+                imageSrc={dispatcher.imageSrc}
+                content={dispatcher.innerContent}
+              >
+                {dispatcher.content}
+              </VACard>
+            </FadeInContent>
+          ))}
+        </div>
+        {/* <Carousel
           autoscroll
           slides={isMobile ? 1 : "all"}
           iteration="once"
@@ -72,7 +91,7 @@ const Dispatch = () => {
               </VACarouselCard>
             </FadeInContent>
           ))}
-        </Carousel>
+        </Carousel> */}
         <Carousel
           autoscroll
           iteration="once"
@@ -101,9 +120,9 @@ const Dispatch = () => {
           textAlign="start"
           text={
             <>
-              Our Support = More Solutions
-              <br />
-              We Cover Every Shift
+              Why Elite Companies
+              <br /> Choose Our Dispatch
+              <br /> Infrastructure
             </>
           }
         />
@@ -111,31 +130,108 @@ const Dispatch = () => {
           <Folder
             items={[
               {
-                title: "24/7 Call Handling",
-                text: "Scale coverage instantly with bilingual, security-trained VAs who handle calls, dispatch, and scheduling around the clock.",
-                // src: "/dispatch/1.png",
-                src: "/top-view.png",
-              },
-              {
-                title: "Instant Guard Deployment Remote Support",
-                text: "Ensure active field safety and full protocol compliance. Remote dispatchers monitor officer check-ins, verify posts, and respond immediately to incident escalations.",
+                title: "100% Uptime SLA & Built-In Redundancy",
+                text: "A dispatch center cannot afford downtime. Our managed units are engineered with shift-overlaps and backup personnel. If a representative has an emergency, our system seamlessly rotates in a fully briefed specialist. Your lines stay open 24/7/365.",
                 src: "/security.png",
+              },
+              {
+                title: "Turnkey Enterprise Hardware (Zero IT Hassle)",
+                text: "Security and dispatch require secure tech. We do not rely on a representative's personal laptop. InteractiveWorkers provisions, secures, and maintains all necessary hardware and high-speed infrastructure, ensuring bank-level data compliance.",
                 imagePosition: { objectPosition: "30% center" },
-              },
-              {
-                title: "Accurate Shift Scheduling",
-                text: "Eliminate unstaffed posts and scheduling conflicts. Remote dispatchers manage officer rosters, handle last-minute call-outs, and keep shift handoffs smooth.",
                 src: "/stock/iw-2026-scheduling.png",
-                imagePosition: { objectPosition: "center center" },
               },
               {
-                title: "Seamless Communication",
-                text: "Maintain a real-time line of communication between client sites, field guards, and management for rapid coordination during critical events.",
+                title: "Zero HR Liability & Overhead Cost",
+                text: "Scale your 24/7 coverage without the massive burden of local overnight payroll, overtime taxes, or complex labor laws. We act as the Employer of Record (EOR). You get the operational output; we absorb the liability.",
+                imagePosition: { objectPosition: "center center" },
                 src: "/stock/por_siempre_nacho.png",
               },
             ]}
           />
         </FadeInContent>
+      </article>
+      <article className="z-10 flex flex-col items-center md:py-40 relative">
+        <div
+          className="w-dvw h-screen absolute top-0 pointer-events-none -z-10"
+          style={{
+            maskImage:
+              "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
+          }}
+        >
+          <ColorBends
+            rotation={95}
+            speed={0.2}
+            colors={["#C1272D", "#DD272D", "#C1272D"]}
+            transparent
+            autoRotate={0}
+            scale={1.2}
+            frequency={1}
+            warpStrength={1}
+            mouseInfluence={0}
+            parallax={0.3}
+            noise={0.15}
+            iterations={1}
+            intensity={1.3}
+            bandWidth={6}
+          />
+        </div>
+        <FlipElement>
+          <Image
+            src={"/logo/03_Logo_Mark/03_Logo_Mark-01.png"}
+            alt={"InteractiveWorkers"}
+            width={1080}
+            height={1080}
+            className="md:max-w-40 max-w-36 animate-loading-flip py-4 dark:block hidden"
+          />
+          <Image
+            src={"/logo/03_Logo_Mark/03_Logo_Mark-02.png"}
+            alt={"InteractiveWorkers"}
+            width={1080}
+            height={1080}
+            className="md:max-w-40 max-w-36 animate-loading-flip py-4 block dark:hidden"
+          />
+        </FlipElement>
+        <SplitText
+          tag="h3"
+          text={
+            <>
+              Ready to Secure
+              <br /> Your Operations?
+            </>
+          }
+          className="font-medium lg:text-6xl text-base text-center leading-none pb-4"
+          delay={100}
+          threshold={0.1}
+          textAlign="center"
+        />
+        <CTAButton
+          onClick={() =>
+            router.push("https://calendly.com/interactiveworkersgm/30min")
+          }
+          className="my-10 
+          dark:[--primary-color:#fff] dark:[--secondary-color:#dd272d] dark:[--tertiary-color:#fff]
+          [--primary-color:#000] [--secondary-color:#dd272d] [--tertiary-color:#fff]"
+        />
+        <div className="grid md:grid-cols-2 grid-cols-1 gap-6 absolute bottom-20">
+          <SplitText
+            splitType="lines"
+            textAlign="start"
+            className="font-light text-2xl lg:text-4xl"
+            text={
+              <>
+                Don't leave your most critical communication hub understaffed.
+              </>
+            }
+          />
+          <SplitText
+            splitType="lines"
+            textAlign="start"
+            className="font-light text-2xl lg:text-4xl text-center text-wrap"
+            text={<>Let us build your custom, dedicated dispatch unit todays</>}
+          />
+        </div>
       </article>
     </section>
   );
@@ -153,8 +249,7 @@ const VACarouselCard = ({
   if (isMobile) return <VACard imageSrc={imageSrc}>{children}</VACard>;
 
   return (
-    <VACard
-      imageSrc={imageSrc}
+    <div
       style={{
         width: 400,
         height: 500,
@@ -162,13 +257,11 @@ const VACarouselCard = ({
         minHeight: 500,
         maxWidth: 400,
         maxHeight: 500,
-        marginTop: "25%",
-        flexShrink: 0,
         boxSizing: "border-box",
       }}
     >
-      {children}
-    </VACard>
+      <VACard imageSrc={imageSrc}>{children}</VACard>
+    </div>
   );
 };
 

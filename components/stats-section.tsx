@@ -20,9 +20,9 @@ export default function StatsSection() {
         className="md:w-10/12 w-11/12 px-2 md:py-20 sm:py-10 z-10 grid lg:grid-cols-4 sm:grid-cols-2 
         max-md:gap-10 max-sm:gap-4 items-start justify-center md:justify-items-center"
       >
-        <Stat title="Clients Reach Worldwide" number={1000} symbol="+" />
+        <Stat title="Clients Reach Worldwide" number={42} symbol="+" />
         <Stat title="Uptime SLA" number={99.9} symbol="%" decimal />
-        <Stat title="Project Shipped" number={365} symbol="+" />
+        <Stat title="Project Shipped" number={150} symbol="+" />
         <Stat title="Average Rating" number={5.0} symbol="stars" decimal />
       </article>
       <article className="z-10">
@@ -30,7 +30,14 @@ export default function StatsSection() {
           <Reviews />
         </FadeInContent>
       </article>
-      <SplitText
+      {/* <div className="w-full flex justify-end">
+        <SplitText
+          textAlign="start"
+          className="text-[clamp(2rem,4vw,3.75rem)] leading-[1.05] pb-6 font-light w-3/4"
+          text="Beyond the obvious benefits, virtual assistants can address hidden needs."
+        />
+      </div> */}
+      {/* <SplitText
         className="text-[clamp(2rem,4vw,3.75rem)] leading-[1.05] pb-6 font-medium"
         text="What they say about us:"
       />
@@ -62,7 +69,7 @@ export default function StatsSection() {
             "
           />
         </FadeInContent>
-      </article>
+      </article> */}
     </section>
   );
 }
@@ -135,15 +142,11 @@ function Stat({
         {formattedNumber}
         {symbol === "stars" ? (
           <svg
-            className="lg:w-[clamp(5rem,4vw,6rem)] md:w-[clamp(3rem,3vw,4rem)] w-[clamp(1rem,6vw,2rem)]"
+            className="lg:w-[clamp(5rem,4vw,6rem)] md:w-[clamp(3rem,3vw,4rem)] w-[clamp(1rem,6vw,2rem)] dark:fill-white fill-black"
             viewBox="0 0 70 67"
-            fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <path
-              d="M34.036 0.690964C34.3354 -0.230347 35.6388 -0.230344 35.9381 0.690967L43.5119 24.0007C43.6458 24.4127 44.0297 24.6917 44.463 24.6917L68.9723 24.6917C69.941 24.6917 70.3438 25.9313 69.56 26.5007L49.7316 40.9069C49.3811 41.1615 49.2345 41.6129 49.3683 42.0249L56.9421 65.3346C57.2415 66.256 56.187 67.0221 55.4033 66.4527L35.5748 52.0465C35.2244 51.7918 34.7498 51.7918 34.3993 52.0465L14.5708 66.4527C13.7871 67.0221 12.7326 66.256 13.032 65.3346L20.6058 42.0249C20.7397 41.6129 20.593 41.1615 20.2425 40.9069L0.414079 26.5007C-0.369635 25.9313 0.0331426 24.6917 1.00187 24.6917L25.5112 24.6917C25.9444 24.6917 26.3283 24.4127 26.4622 24.0007L34.036 0.690964Z"
-              fill="white"
-            />
+            <path d="M34.036 0.690964C34.3354 -0.230347 35.6388 -0.230344 35.9381 0.690967L43.5119 24.0007C43.6458 24.4127 44.0297 24.6917 44.463 24.6917L68.9723 24.6917C69.941 24.6917 70.3438 25.9313 69.56 26.5007L49.7316 40.9069C49.3811 41.1615 49.2345 41.6129 49.3683 42.0249L56.9421 65.3346C57.2415 66.256 56.187 67.0221 55.4033 66.4527L35.5748 52.0465C35.2244 51.7918 34.7498 51.7918 34.3993 52.0465L14.5708 66.4527C13.7871 67.0221 12.7326 66.256 13.032 65.3346L20.6058 42.0249C20.7397 41.6129 20.593 41.1615 20.2425 40.9069L0.414079 26.5007C-0.369635 25.9313 0.0331426 24.6917 1.00187 24.6917L25.5112 24.6917C25.9444 24.6917 26.3283 24.4127 26.4622 24.0007L34.036 0.690964Z" />
           </svg>
         ) : (
           symbol
