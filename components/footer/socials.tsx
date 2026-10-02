@@ -1,10 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 const Socials = ({ className }: { className?: string }) => {
   return (
-    <div className={`flex gap-4 ${className} `}>
+    <div className={`flex gap-4 ${className} text-iw-red-2`}>
       <SocialLink href="https://www.facebook.com/interactiveworkers">
         <svg
           width="28"

@@ -1,7 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { navbar } from "@/app/content/navbar";
 import ItemList from "./item-list";
 import Image from "next/image";
@@ -12,8 +13,62 @@ import ThemeSwitch from "./theme-switch";
 const NavbarComponent = () => {
   const { isTransitioning } = usePageTransition();
 
+  const pathname = usePathname();
+  const navRef = useRef<HTMLElement>(null);
+  const [navbarDark, setNavbarDark] = useState(false);
+
+  useEffect(() => {
+    let frame = 0;
+
+    const detectBackground = () => {
+      frame = 0;
+      const nav = navRef.current;
+      if (!nav) return;
+
+      const navRect = nav.getBoundingClientRect();
+      const y = navRect.top + navRect.height / 2;
+
+      // Later elements in document order are nested deeper or painted on top
+      const candidates = document.querySelectorAll<HTMLElement>(
+        ".bg-iw-red-2, .bg-white",
+      );
+      let match: HTMLElement | undefined;
+      candidates.forEach((el) => {
+        if (nav.contains(el)) return;
+        const rect = el.getBoundingClientRect();
+        const collides =
+          rect.width > 0 &&
+          rect.top <= y &&
+          rect.bottom >= y &&
+          rect.left < navRect.right &&
+          rect.right > navRect.left;
+        if (collides) match = el;
+      });
+      if (!match) return;
+
+      setNavbarDark(match.classList.contains("bg-iw-red-2"));
+    };
+
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(detectBackground);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    detectBackground();
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, [pathname]);
+
   return (
-    <nav className="w-full sticky top-0 left-0 z-[500]">
+    <nav
+      ref={navRef}
+      className={`w-full sticky top-0 left-0 z-[500] ${navbarDark ? "dark text-white" : ""}`}
+    >
       <div
         className="absolute top-0 left-0 w-full h-full backdrop-blur-md -z-10"
         style={{

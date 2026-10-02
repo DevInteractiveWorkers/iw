@@ -31,26 +31,7 @@ function BackgroundForPath({ path }: { path: string }) {
     );
   }
 
-  return (
-    <BackgroundWrapper>
-      <ColorBends
-        rotation={95}
-        speed={0.2}
-        colors={["#C1272D", "#DD272D", "#C1272D"]}
-        transparent
-        autoRotate={0}
-        scale={1.2}
-        frequency={1}
-        warpStrength={1}
-        mouseInfluence={0.4}
-        parallax={0.3}
-        noise={0.15}
-        iterations={1}
-        intensity={1.3}
-        bandWidth={6}
-      />
-    </BackgroundWrapper>
-  );
+  return <div className="absolute bottom-0 w-dvw h-screen bg-iw-red-2 -z-10" />;
 }
 
 export default function IWBg() {

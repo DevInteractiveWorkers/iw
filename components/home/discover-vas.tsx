@@ -7,6 +7,7 @@ import SplitText from "../text-animation/SplitText";
 import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 import PageDivision from "../page-division";
 import { TransitionLink } from "../link";
+import CTAButton from "../buttons/cta-button";
 
 const productizedPackages = [
   {
@@ -79,24 +80,35 @@ const DiscoverVAs = () => {
     <section
       ref={ref}
       id="services"
-      className="w-full px-2 z-10 pb-10 min-h-screen"
+      className="z-10 pb-10 min-h-screen bg-white px-[clamp(1rem,8vw,50rem)]"
     >
       <article className="w-full mx-auto flex flex-col items-center">
-        <div className="w-full relative">
-          <PageDivision className="bottom-0" />
-          <SplitText
-            delay={100}
-            textAlign="start"
-            className="font-medium lg:text-5xl leading-none pt-14 pb-4"
-            text={
-              <>
-                Highly specialized
-                <br /> operational units run by
-                <br /> expert representatives
-              </>
-            }
-          />
-        </div>
+        <SplitText
+          delay={100}
+          textAlign="center"
+          className="font-medium lg:text-5xl leading-none pt-14 pb-4"
+          text={
+            <>
+              Hire Your <br />
+              Remote Team
+            </>
+          }
+        />
+        <SplitText
+          className="text-md md:w-2/3 lg:w-1/3"
+          textAlign={"center"}
+          text={
+            <>
+              Scale your operations effortlessly with{" "}
+              <b className="font-semibold">top-tier remote professionals.</b>
+              From dedicated administrative support to{" "}
+              <b className="font-semibold">specialized technical talent</b>, we
+              connect growing businesses with pre-vetted virtual assistants who
+              drive productivity and growth.
+            </>
+          }
+        />
+        <CTAButton className="my-10 [--primary-color:#000] [--secondary-color:#dd272d] [--tertiary-color:#fff]" />
         <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-6 justify-between my-4 md:mb-32">
           {productizedPackages.map((pkg, i) => (
             <FadeInContent key={i} delay={i * 0.1}>
@@ -106,17 +118,6 @@ const DiscoverVAs = () => {
             </FadeInContent>
           ))}
         </div>
-        <FadeInContent>
-          <div className="hover:scale-95 transition-all duration-150">
-            <TransitionLink
-              href={"/affiliate"}
-              className="rounded py-2 px-10 text-xl dark:bg-white bg-iw-red-1 dark:text-black text-white dark:active:text-iw-red-1 active:text-white
-              transition-all duration-150"
-            >
-              Affiliate Program
-            </TransitionLink>
-          </div>
-        </FadeInContent>
       </article>
     </section>
   );

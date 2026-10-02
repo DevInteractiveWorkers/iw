@@ -61,7 +61,8 @@ export default function AppLoader({ children }: { children: React.ReactNode }) {
         <div
           className={`
             fixed inset-0 z-[9999]
-            bg-black
+            dark:bg-black bg-white
+            dark:text-white text-black
             flex items-end justify-start
             transition-opacity duration-700
             ${hideLoader ? "opacity-0" : "opacity-100"}
