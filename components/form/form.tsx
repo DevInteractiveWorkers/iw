@@ -78,7 +78,7 @@ const MainForm = ({
       >
         {heading && (
           <SplitText
-            className={`text-4xl md:text-6xl font-medium md:py-10 md:col-span-2 col-span-1`}
+            className={`text-4xl md:text-6xl font-medium md:py-10 md:col-span-2 col-span-1 text-iw-red-2`}
             textAlign="start"
             text={heading}
           />
@@ -196,7 +196,7 @@ const MainForm = ({
             required
           />
         </div>
-        <h4 className="font-medium md:text-2xl text-xl mt-4 md:col-span-2 col-span-1">
+        <h4 className="font-medium md:text-2xl text-xl mt-4 md:col-span-2 col-span-1 text-iw-red-2">
           Choose your Professional
         </h4>
         <div className="grid md:grid-cols-3 gap-3 md:col-span-3">

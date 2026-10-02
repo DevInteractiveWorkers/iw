@@ -47,7 +47,7 @@ function readStoredTheme(): string | null {
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme | null>(null);
+  const [theme, setThemeState] = useState<Theme | null>("light");
 
   useEffect(() => {
     setThemeState(resolveTheme(readStoredTheme()));

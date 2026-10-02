@@ -35,10 +35,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <script />
       </head>
       <body
-        className={`${poppins.className} scroll-smooth dark:bg-black dark:text-white bg-white text-black transition-color duration-500`}
+        className={`${poppins.className} scroll-smooth  bg-white text-black transition-color duration-500`}
       >
         <ThemeProvider>
           <AppLoader>
@@ -48,9 +48,7 @@ export default function RootLayout({
                 <NavbarComponent />
                 <PageTransitionOutlet>
                   <ScrollAlert />
-                  <div className="px-[clamp(1rem,8vw,50rem)] -z-10">
-                    {children}
-                  </div>
+                  <div className="-z-10">{children}</div>
                 </PageTransitionOutlet>
               </div>
               <Blured />

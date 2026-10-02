@@ -13,63 +13,18 @@ export default function StatsSection() {
   return (
     <section
       id="stats"
-      className="flex flex-col items-center justify-center w-full relative min-h-screen"
+      className="flex flex-col items-center justify-center w-full relative"
     >
       <article
         ref={ref}
         className="md:w-10/12 w-11/12 px-2 md:py-20 sm:py-10 z-10 grid lg:grid-cols-4 sm:grid-cols-2 
-        max-md:gap-10 max-sm:gap-4 items-start justify-center md:justify-items-center"
+        max-md:gap-10 max-sm:gap-4 items-start justify-center md:justify-items-center text-white"
       >
         <Stat title="Clients Reach Worldwide" number={42} symbol="+" />
         <Stat title="Uptime SLA" number={99.9} symbol="%" decimal />
         <Stat title="Project Shipped" number={150} symbol="+" />
         <Stat title="Average Rating" number={5.0} symbol="stars" decimal />
       </article>
-      <article className="z-10">
-        <FadeInContent>
-          <Reviews />
-        </FadeInContent>
-      </article>
-      {/* <div className="w-full flex justify-end">
-        <SplitText
-          textAlign="start"
-          className="text-[clamp(2rem,4vw,3.75rem)] leading-[1.05] pb-6 font-light w-3/4"
-          text="Beyond the obvious benefits, virtual assistants can address hidden needs."
-        />
-      </div> */}
-      {/* <SplitText
-        className="text-[clamp(2rem,4vw,3.75rem)] leading-[1.05] pb-6 font-medium"
-        text="What they say about us:"
-      />
-      <article
-        className="
-        relative z-10
-        flex w-full items-center justify-center
-        px-0 md:px-2 py-10
-      "
-      >
-        <FadeInContent
-          className="
-            flex w-full items-center justify-center
-            md:h-auto
-            md:w-full
-          "
-        >
-          <VideoPlayer
-            src={
-              "https://s3.interactiveworkers.com/demo/52d026a9-2910-4eb5-8395-aeecedc29f13.mp4"
-            }
-            className="
-              h-full
-              w-full
-              rounded-none
-              md:h-auto
-              md:w-7/12
-              md:rounded-xl
-            "
-          />
-        </FadeInContent>
-      </article> */}
     </section>
   );
 }
@@ -142,7 +97,7 @@ function Stat({
         {formattedNumber}
         {symbol === "stars" ? (
           <svg
-            className="lg:w-[clamp(5rem,4vw,6rem)] md:w-[clamp(3rem,3vw,4rem)] w-[clamp(1rem,6vw,2rem)] dark:fill-white fill-black"
+            className="lg:w-[clamp(5rem,4vw,6rem)] md:w-[clamp(3rem,3vw,4rem)] w-[clamp(1rem,6vw,2rem)] fill-white"
             viewBox="0 0 70 67"
             xmlns="http://www.w3.org/2000/svg"
           >

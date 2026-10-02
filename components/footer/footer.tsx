@@ -18,7 +18,7 @@ const Footer = (props: HTMLAttributes<HTMLElement>) => {
       <PageDivision className="relative" />
       <FooterForm />
       <svg
-        className="w-full h-auto dark:text-white text-black"
+        className="w-full h-auto text-iw-red-2"
         width="1324"
         height="107"
         viewBox="0 0 1324 107"

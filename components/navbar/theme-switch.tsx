@@ -5,6 +5,7 @@ import { useTheme } from "@/components/ThemeContext";
 import "./theme-switch.css";
 
 export default function ThemeSwitch() {
+  return;
   const { theme, isDark, toggleTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 

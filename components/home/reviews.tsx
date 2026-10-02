@@ -7,11 +7,19 @@ import Carousel from "./reviews/carousel";
 import FadeInContent from "../FadeInContent";
 import { useIsMobile } from "@/lib/useMobile";
 import { ReviewsSummary } from "./reviews-summary";
+import SplitText from "../text-animation/SplitText";
 
 export default function Reviews() {
   return (
     <article id="reviews" className="w-full">
       <AutoScrollReviews />
+      <div className="w-full flex justify-end">
+        <SplitText
+          textAlign="start"
+          className="text-[clamp(2rem,4vw,3.75rem)] leading-[1.05] pb-6 font-light w-3/4"
+          text="Beyond the obvious benefits, virtual assistants can address hidden needs."
+        />
+      </div>
     </article>
   );
 }

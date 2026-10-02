@@ -118,7 +118,7 @@ export default function Select({
 
       {/* Options */}
       {isOpen && (
-        <div className="dark:bg-black bg-white border dark:border-white border-black absolute top-full left-0 w-full mt-1 py-1 flex flex-col z-50 shadow-xl rounded-md max-h-60 overflow-y-auto">
+        <div className=" bg-white border dark:border-white border-black absolute top-full left-0 w-full mt-1 py-1 flex flex-col z-50 shadow-xl rounded-md max-h-60 overflow-y-auto">
           {options.map((child, index) => {
             if (!React.isValidElement(child)) return null;
 
