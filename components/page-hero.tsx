@@ -42,7 +42,9 @@ export default function PageHero({
           className="select-none block dark:hidden"
         />
       </FlipElement>
-      <div className="grid md:grid-cols-2 grid-cols-1">
+      <div
+        className={`grid ${description ? "md:grid-cols-2" : ""} grid-cols-1`}
+      >
         <div>
           <SplitText
             tag="h1"
@@ -55,7 +57,7 @@ export default function PageHero({
             text={heading}
           />
           {ctaButton && (
-            <div>
+            <div className="w-full flex" style={{ justifyContent: align }}>
               <CTAButton {...ctaButton} />
             </div>
           )}

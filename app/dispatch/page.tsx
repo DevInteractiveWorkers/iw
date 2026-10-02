@@ -15,6 +15,94 @@ import FlipElement from "@/components/flip-element";
 import Image from "next/image";
 import ColorBends from "@/components/backgrounds/ColorBends";
 import { dispatchers } from "../content/dispatchers";
+import dynamic from "next/dynamic";
+import type { HighlightedLocation } from "@/components/globe/globe";
+import DispatchSolutionsCards, {
+  type DispatchSolutionsProps,
+} from "@/components/dispatch-solutions";
+import { IconType } from "@/components/feature-cards";
+
+interface DispatchLocation extends HighlightedLocation {
+  /** Copy shown when the location's card is expanded. */
+  services: string;
+  icon: IconType;
+}
+
+/**
+ * Single source for the globe markers and the solution cards. Module-level so
+ * the array keeps its identity across renders (the globe keys markers on it).
+ */
+const DISPATCH_LOCATIONS: DispatchLocation[] = [
+  {
+    name: "Real-Time Fleet & Field Coordination",
+    icon: "transport",
+    code: "MIA",
+    latitude: 25.7959,
+    longitude: -80.287,
+    services:
+      "Monitor active routes, assign jobs/patrols, track shipments/vehicles, and ensure on-time service delivery across your entire fleet, field team, or guard force.",
+  },
+  {
+    name: "Smart Route & Schedule Optimization",
+    icon: "map",
+    code: "IAH",
+    latitude: 29.9902,
+    longitude: -95.3368,
+    services:
+      "Maximize efficiency by reducing transit time and fuel costs, managing appointment windows, and adjusting schedules dynamically for urgent or priority requests.",
+  },
+  {
+    name: "Client & Field Team Communication",
+    icon: "chat",
+    code: "PDX",
+    latitude: 45.5898,
+    longitude: -122.5951,
+    services:
+      "Act as the central point of contact for drivers, field technicians, security personnel, customers, and vendors, providing real-time status updates, arrival estimates, and emergency support.",
+  },
+  {
+    name: "Incident & Exception Management",
+    icon: "warning",
+    code: "ATL",
+    latitude: 33.6407,
+    longitude: -84.4277,
+    services:
+      "Proactively resolve unexpected disruptions—such as traffic delays, alarm triggers, mechanical issues, weather changes, or schedule adjustments—with minimal impact on operations.",
+  },
+  {
+    name: "Software & Systems Data Management",
+    icon: "monitor",
+    code: "YYZ",
+    latitude: 43.6777,
+    longitude: -79.6248,
+    services:
+      "Keep your Dispatch/TMS software, CRMs, security management tools, and GPS platforms updated in real time.",
+  },
+  {
+    name: "InteractiveWorkers",
+    icon: "iw",
+    code: "MAR",
+    latitude: 10.5582,
+    longitude: -71.7279,
+    services: "Ready to deploy.",
+  },
+];
+
+// `react-globe.gl` touches `window` on import, so the globe is client-only.
+const IWGlobe = dynamic(() => import("@/components/globe/globe"), {
+  ssr: false,
+  loading: () => <div className="h-screen w-full" aria-hidden="true" />,
+});
+
+const toSolutionCard = ({
+  name,
+  services,
+  icon,
+}: DispatchLocation): DispatchSolutionsProps => ({
+  title: name,
+  content: services,
+  icon: icon,
+});
 
 const Dispatch = () => {
   const router = useRouter();
@@ -38,202 +126,76 @@ const Dispatch = () => {
   const isMobile = useIsMobile();
 
   return (
-    <section>
-      <PageHero
-        heading={
-          <>
-            Elite 24/7 Managed
-            <br /> Dispatch & CCTV
-            <br /> Monitoring Units
-          </>
-        }
-        description={
-          <>
-            Boost response times, reduce overtime, and scale operations with
-            trained virtual dispatchers and schedulers for private security
-            companies.
-          </>
-        }
-      />
-      <article
-        ref={carouselRef}
-        className="w-full flex flex-col items-center justify-center my-10"
-        style={{
-          maskImage:
-            "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)",
-          WebkitMaskImage:
-            "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)",
-        }}
-      >
-        <div className="w-full grid grid-cols-2 lg:grid-cols-3 lg:w-9/12 gap-6 justify-between my-4 md:mb-32">
-          {dispatchers.map((dispatcher, i) => (
-            <FadeInContent key={i} delay={i * 0.1}>
-              <VACard
-                imageSrc={dispatcher.imageSrc}
-                content={dispatcher.innerContent}
-              >
-                {dispatcher.content}
-              </VACard>
-            </FadeInContent>
-          ))}
-        </div>
-        {/* <Carousel
-          autoscroll
-          slides={isMobile ? 1 : "all"}
-          iteration="once"
-          autoscrollMode="on-going"
-          controls={false}
-        >
-          {dispatchers.map((dispatcher, i) => (
-            <FadeInContent key={i} delay={i * 0.2} className="my-10">
-              <VACarouselCard imageSrc={dispatcher.imageSrc}>
-                {dispatcher.content}
-              </VACarouselCard>
-            </FadeInContent>
-          ))}
-        </Carousel> */}
-        <Carousel
-          autoscroll
-          iteration="once"
-          autoscrollMode="on-going"
-          reverseScroll
-          stopOnHover={false}
-          controls={false}
-        >
-          {tags.map((tag, i) => (
-            <div
-              key={i}
-              className="flex items-center gap-4 whitespace-nowrap px-2"
-            >
-              <span>{tag}</span>
-              <span aria-hidden="true">•</span>
-            </div>
-          ))}
-        </Carousel>
-      </article>
-      <article
-        ref={folderRef}
-        className="min-h-screen py-10 flex flex-col justify-center gap-10"
-      >
-        <SplitText
-          className="text-6xl"
-          textAlign="start"
-          text={
-            <>
-              Why Elite Companies
-              <br /> Choose Our Dispatch
-              <br /> Infrastructure
-            </>
-          }
-        />
-        <FadeInContent className="md:px-[clamp(1rem,8vw,50rem)]">
-          <Folder
-            items={[
-              {
-                title: "100% Uptime SLA & Built-In Redundancy",
-                text: "A dispatch center cannot afford downtime. Our managed units are engineered with shift-overlaps and backup personnel. If a representative has an emergency, our system seamlessly rotates in a fully briefed specialist. Your lines stay open 24/7/365.",
-                src: "/security.png",
-              },
-              {
-                title: "Turnkey Enterprise Hardware (Zero IT Hassle)",
-                text: "Security and dispatch require secure tech. We do not rely on a representative's personal laptop. InteractiveWorkers provisions, secures, and maintains all necessary hardware and high-speed infrastructure, ensuring bank-level data compliance.",
-                imagePosition: { objectPosition: "30% center" },
-                src: "/stock/iw-2026-scheduling.png",
-              },
-              {
-                title: "Zero HR Liability & Overhead Cost",
-                text: "Scale your 24/7 coverage without the massive burden of local overnight payroll, overtime taxes, or complex labor laws. We act as the Employer of Record (EOR). You get the operational output; we absorb the liability.",
-                imagePosition: { objectPosition: "center center" },
-                src: "/stock/por_siempre_nacho.png",
-              },
-            ]}
-          />
-        </FadeInContent>
-      </article>
-      <article className="z-10 flex flex-col items-center md:py-40 relative">
-        <div
-          className="w-dvw h-screen absolute top-0 pointer-events-none -z-10"
-          style={{
-            maskImage:
-              "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
-            WebkitMaskImage:
-              "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
-          }}
-        >
-          <ColorBends
-            rotation={95}
-            speed={0.2}
-            colors={["#C1272D", "#DD272D", "#C1272D"]}
-            transparent
-            autoRotate={0}
-            scale={1.2}
-            frequency={1}
-            warpStrength={1}
-            mouseInfluence={0}
-            parallax={0.3}
-            noise={0.15}
-            iterations={1}
-            intensity={1.3}
-            bandWidth={6}
-          />
-        </div>
-        <FlipElement>
-          <Image
-            src={"/logo/03_Logo_Mark/03_Logo_Mark-01.png"}
-            alt={"InteractiveWorkers"}
-            width={1080}
-            height={1080}
-            className="md:max-w-40 max-w-36 animate-loading-flip py-4 dark:block hidden"
-          />
-          <Image
-            src={"/logo/03_Logo_Mark/03_Logo_Mark-02.png"}
-            alt={"InteractiveWorkers"}
-            width={1080}
-            height={1080}
-            className="md:max-w-40 max-w-36 animate-loading-flip py-4 block dark:hidden"
-          />
-        </FlipElement>
-        <SplitText
-          tag="h3"
-          text={
-            <>
-              Ready to Secure
-              <br /> Your Operations?
-            </>
-          }
-          className="font-medium lg:text-6xl text-base text-center leading-none pb-4"
-          delay={100}
-          threshold={0.1}
-          textAlign="center"
-        />
-        <CTAButton
-          onClick={() =>
-            router.push("https://calendly.com/interactiveworkersgm/30min")
-          }
-          className="my-10 
-          dark:[--primary-color:#fff] dark:[--secondary-color:#dd272d] dark:[--tertiary-color:#fff]
-          [--primary-color:#000] [--secondary-color:#dd272d] [--tertiary-color:#fff]"
-        />
-        <div className="grid md:grid-cols-2 grid-cols-1 gap-6 absolute bottom-20">
-          <SplitText
-            splitType="lines"
-            textAlign="start"
-            className="font-light text-2xl lg:text-4xl"
-            text={
+    <>
+      <section className="px-[clamp(1rem,8vw,50rem)]">
+        <article className="text-white">
+          <PageHero
+            division={false}
+            align="center"
+            heading={
               <>
-                Don't leave your most critical communication hub understaffed.
+                Operational Dispatchers
+                <br />
+                & Field Coordination <br />
+                Representatives
               </>
             }
+            ctaButton={{
+              onClick: () =>
+                router.push("https://calendly.com/interactiveworkersgm/30min"),
+              className:
+                "my-10 [--primary-color:#fff] [--secondary-color:#fff] [--tertiary-color:#dd272d]",
+            }}
           />
-          <SplitText
-            splitType="lines"
-            textAlign="start"
-            className="font-light text-2xl lg:text-4xl text-center text-wrap"
-            text={<>Let us build your custom, dedicated dispatch unit todays</>}
-          />
-        </div>
-      </article>
-    </section>
+        </article>
+      </section>
+      <section className="px-[clamp(1rem,8vw,50rem)] bg-white flex flex-col justify-center items-center py-10">
+        <SplitText
+          tag="h2"
+          className="
+            text-[clamp(2rem,4vw,3.75rem)]
+            leading-[1.05]
+            pb-6
+          "
+          textAlign={"center"}
+          text={
+            <>
+              Core Dispatch
+              <br />
+              Solutions
+            </>
+          }
+        />
+        <SplitText
+          className="text-xl lg:w-1/3 md:w-2/3"
+          textAlign={"center"}
+          text={
+            <>
+              Streamline your logistics, fleet management, and field operations
+              with dedicated remote dispatchers. Our operational dispatch
+              representatives handle real-time scheduling, driver/technician
+              coordination, route optimization, and client communication to
+              ensure your daily operations run flawlessly
+            </>
+          }
+        />
+        <IWGlobe
+          sway
+          highlightedLocations={DISPATCH_LOCATIONS.map((location) => {
+            return {
+              content: (
+                <DispatchSolutionsCards
+                  key={location.code}
+                  {...toSolutionCard(location)}
+                />
+              ),
+              ...location,
+            };
+          })}
+          autoRotate={false}
+        />
+      </section>
+    </>
   );
 };
 
