@@ -86,6 +86,10 @@ const config: Config = {
           },
           "100%": { transform: "translate(0%, 0%)", zIndex: "1" },
         },
+        "fade-in-up": {
+          "0%": { opacity: "0", transform: "translateY(8px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
         "scroll-alert": {
           "0%, 100%": {
             opacity: "0",
@@ -108,6 +112,7 @@ const config: Config = {
         "move-around-2": "move-around-2 3s linear infinite",
         "move-around-3": "move-around-3 3s linear infinite",
         flip: "flip 2s linear infinite",
+        "fade-in-up": "fade-in-up 0.5s ease-out",
         "scroll-alert-1": "scroll-alert 1.8s ease-in-out infinite",
         "scroll-alert-2": "scroll-alert 1.8s ease-in-out 0.3s infinite",
         "scroll-alert-3": "scroll-alert 1.8s ease-in-out 0.6s infinite",

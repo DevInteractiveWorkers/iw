@@ -21,6 +21,8 @@ import DispatchSolutionsCards, {
   type DispatchSolutionsProps,
 } from "@/components/dispatch-solutions";
 import { IconType } from "@/components/feature-cards";
+import IndustriesWeServe from "@/components/industries-we-serve";
+import KeyAdvantages from "@/components/key-advantages";
 
 interface DispatchLocation extends HighlightedLocation {
   /** Copy shown when the location's card is expanded. */
@@ -195,6 +197,8 @@ const Dispatch = () => {
           autoRotate={false}
         />
       </section>
+      <IndustriesWeServe />
+      <KeyAdvantages />
     </>
   );
 };
