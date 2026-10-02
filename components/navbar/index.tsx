@@ -70,7 +70,7 @@ const NavbarComponent = () => {
       className={`w-full sticky top-0 left-0 z-[500] ${navbarDark ? "dark text-white" : ""}`}
     >
       <div
-        className="absolute top-0 left-0 w-full h-full backdrop-blur-md -z-10"
+        className={`absolute top-0 left-0 w-full h-full backdrop-blur-md -z-10 ${navbarDark ? "dark text-white" : "bg-white/75 backdrop-brightness-[2]"}`}
         style={{
           maskImage:
             "linear-gradient(to right, transparent 3%, black 10%, black 90%, transparent 97%)",

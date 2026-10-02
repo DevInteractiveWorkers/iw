@@ -34,17 +34,31 @@ interface CountryCollection {
   features: Country[];
 }
 
+/** A point of interest drawn as a marker on the globe. */
+export interface HighlightedLocation {
+  name: string;
+  code: string;
+  latitude: number;
+  longitude: number;
+  /** Always shown above the marker. Without it, hovering shows `name`. */
+  content?: React.ReactNode;
+}
+
 export interface IWGlobeProps {
-  /** GeoJSON FeatureCollection of countries (Natural Earth `ADMIN` names). */
+  /** Locations drawn as markers, with pinned `content` or a hover name tag. */
+  highlightedLocations?: HighlightedLocation[];
   countriesUrl?: string;
-  /** `ADMIN` names of the countries drawn at full opacity. */
   highlighted?: string[];
-  /** H3 resolution, 0-15. Lower = larger hexagons. */
   resolution?: number;
-  /** Gap between hexagons, as a fraction of hexagon diameter. */
   margin?: number;
   onCountrySelect?: (country: Country | null) => void;
   dark?: boolean;
+  autoRotate?: boolean;
+  /**
+   * Gentle back-and-forth tilt around the initial view, so highlighted
+   * countries stay in frame. Only runs when `autoRotate` is false.
+   */
+  sway?: boolean;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -144,13 +158,35 @@ const arcDashInitialGap = (d: object) => (d as Route).dashInitialGap;
 const pointLat = (d: object) => (d as Airport).lat;
 const pointLng = (d: object) => (d as Airport).lng;
 
+/* ---- Highlighted locations ---------------------------------------------- */
+
+const NO_LOCATIONS: HighlightedLocation[] = [];
+
+/** Above SELECTED_ALTITUDE so a raised country never covers a marker. */
+const LOCATION_ALTITUDE = 0.08;
+/** Gap between the marker and the bottom of its tag, in px. */
+const TAG_OFFSET_PX = 14;
+
+const hasContent = (location: HighlightedLocation) => location.content != null;
+
+const locationLat = (d: object) => (d as HighlightedLocation).latitude;
+const locationLng = (d: object) => (d as HighlightedLocation).longitude;
+
 /** Countries handed to the globe per idle slice while it builds hexagons. */
 const HEX_BATCH_SIZE = 16;
 const RETRY_DELAY_MS = 1500;
 
 const BASE_ALTITUDE = 0.008;
-const HOVER_ALTITUDE = 0.045;
 const SELECTED_ALTITUDE = 0.07;
+
+const INITIAL_VIEW = { lat: 20, lng: -75, altitude: 2.3 };
+
+/* Sway: two slow sine waves with different periods trace a small, never
+   repeating-looking orbit around INITIAL_VIEW instead of a full spin. */
+const SWAY_LNG_DEG = 8;
+const SWAY_LAT_DEG = 3;
+const SWAY_LNG_PERIOD_S = 18;
+const SWAY_LAT_PERIOD_S = 11;
 
 /** Rough label point: bounding-box center of the country's largest polygon. */
 function labelPoint(country: Country): { lat: number; lng: number } {
@@ -213,12 +249,15 @@ function loadCountries(url: string): Promise<Country[]> {
 /* -------------------------------------------------------------------------- */
 
 export default function IWGlobe({
+  highlightedLocations = NO_LOCATIONS,
   countriesUrl = COUNTRIES_URL,
   highlighted = HIGHLIGHTED_COUNTRIES,
   resolution = 3,
   margin = 0.25,
   onCountrySelect,
   dark = false,
+  autoRotate = false,
+  sway = false,
 }: IWGlobeProps = {}) {
   const globeRef = useRef<GlobeMethods | undefined>(undefined);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -231,8 +270,24 @@ export default function IWGlobe({
   const [globeReady, setGlobeReady] = useState(false);
   const [revealed, setRevealed] = useState(false);
   const [loadFailed, setLoadFailed] = useState(false);
-  const [hovered, setHovered] = useState<Country | null>(null);
   const [selected, setSelected] = useState<Country | null>(null);
+  const [hoveredLocation, setHoveredLocation] =
+    useState<HighlightedLocation | null>(null);
+
+  const markerEls = useRef(new Map<HighlightedLocation, HTMLElement>());
+  const overlayEls = useRef(new Map<HighlightedLocation, HTMLDivElement>());
+
+  // Locations with `content` are always pinned; the rest get a hover tag.
+  const pinnedLocations = useMemo(
+    () => highlightedLocations.filter(hasContent),
+    [highlightedLocations],
+  );
+  const tagLocation =
+    hoveredLocation && !hasContent(hoveredLocation) ? hoveredLocation : null;
+  const overlayLocations = useMemo(
+    () => (tagLocation ? [...pinnedLocations, tagLocation] : pinnedLocations),
+    [pinnedLocations, tagLocation],
+  );
 
   const highlightSet = useMemo(() => new Set(highlighted), [highlighted]);
 
@@ -344,10 +399,10 @@ export default function IWGlobe({
 
     rendererRef.current = globe.renderer();
     setGlobeReady(true);
-    globe.pointOfView({ lat: 20, lng: -75, altitude: 2.3 }, 0);
+    globe.pointOfView(INITIAL_VIEW, 0);
 
     const controls = globe.controls();
-    controls.autoRotate = !prefersReducedMotion;
+    controls.autoRotate = autoRotate ?? !prefersReducedMotion;
     controls.autoRotateSpeed = 0.35;
     controls.enableDamping = true;
     controls.minDistance = 160;
@@ -408,6 +463,36 @@ export default function IWGlobe({
     [onCountrySelect, prefersReducedMotion],
   );
 
+  // Sway: drive the camera around INITIAL_VIEW. Starts at the initial view
+  // (sin 0 = 0) so there's no jump; paused while a country is selected.
+  useEffect(() => {
+    const globe = globeRef.current;
+    if (!sway || autoRotate || prefersReducedMotion) return;
+    if (!globeReady || !globe || selected) return;
+
+    const start = performance.now();
+    let frame = 0;
+    const tick = (now: number) => {
+      const t = (now - start) / 1000;
+      globe.pointOfView(
+        {
+          lat:
+            INITIAL_VIEW.lat +
+            SWAY_LAT_DEG * Math.sin((2 * Math.PI * t) / SWAY_LAT_PERIOD_S),
+          lng:
+            INITIAL_VIEW.lng +
+            SWAY_LNG_DEG * Math.sin((2 * Math.PI * t) / SWAY_LNG_PERIOD_S),
+          altitude: INITIAL_VIEW.altitude,
+        },
+        0,
+      );
+      frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+
+    return () => cancelAnimationFrame(frame);
+  }, [sway, autoRotate, prefersReducedMotion, globeReady, selected]);
+
   /* ---- Hexed-polygon accessors ------------------------------------------ */
 
   const hexColor = useCallback(
@@ -421,86 +506,183 @@ export default function IWGlobe({
   );
 
   const hexAltitude = useCallback(
-    (d: object) => {
-      const country = d as Country;
-      if (selected?.properties.ADMIN === country.properties.ADMIN)
-        return SELECTED_ALTITUDE;
-      if (hovered?.properties.ADMIN === country.properties.ADMIN)
-        return HOVER_ALTITUDE;
-      return BASE_ALTITUDE;
-    },
-    [hovered, selected],
+    (d: object) =>
+      selected?.properties.ADMIN === (d as Country).properties.ADMIN
+        ? SELECTED_ALTITUDE
+        : BASE_ALTITUDE,
+    [selected],
   );
+
+  /* ---- Highlighted-location markers -------------------------------------- */
+
+  // DOM markers (globe.gl HTML layer) opt back into pointer events, so they are
+  // hoverable while the rest of the globe stays click-through for page scroll.
+  // Created once per location; globe.gl hides them on the far side of the globe.
+  const locationMarker = useCallback((d: object) => {
+    const location = d as HighlightedLocation;
+    const el = document.createElement("div");
+    el.className = "pointer-events-auto cursor-pointer p-2 group";
+    el.innerHTML =
+      '<span class="block size-3 rounded-full bg-white ring-4 ring-white/40 transition-transform duration-200 group-hover:scale-150 motion-reduce:transition-none"></span>';
+
+    // Mouse: tag follows hover. Touch/pen (no hover): tap toggles the tag.
+    let pointerType = "mouse";
+    el.addEventListener("pointerdown", (e) => (pointerType = e.pointerType));
+    el.addEventListener("pointerenter", (e) => {
+      if (e.pointerType === "mouse") setHoveredLocation(location);
+    });
+    el.addEventListener("pointerleave", (e) => {
+      if (e.pointerType === "mouse")
+        setHoveredLocation((prev) => (prev === location ? null : prev));
+    });
+    el.addEventListener("click", () => {
+      if (pointerType !== "mouse")
+        setHoveredLocation((prev) => (prev === location ? null : location));
+    });
+
+    markerEls.current.set(location, el);
+    return el;
+  }, []);
+
+  // Drop the hover if its location disappears from the props.
+  useEffect(() => {
+    setHoveredLocation((prev) =>
+      prev && highlightedLocations.includes(prev) ? prev : null,
+    );
+  }, [highlightedLocations]);
+
+  // Keep every overlay (pinned content + hover tag) above its marker. One
+  // projection per overlay per frame, only while there is something to show
+  // (the globe may rotate or resize). Overlays hide with their marker when it
+  // rotates behind the globe.
+  useEffect(() => {
+    const globe = globeRef.current;
+    if (!globeReady || !globe || overlayLocations.length === 0) return;
+
+    let frame = 0;
+    const place = () => {
+      for (const location of overlayLocations) {
+        const el = overlayEls.current.get(location);
+        if (!el) continue;
+        if (markerEls.current.get(location)?.style.display === "none") {
+          el.style.visibility = "hidden";
+          continue;
+        }
+        const { x, y } = globe.getScreenCoords(
+          location.latitude,
+          location.longitude,
+          LOCATION_ALTITUDE,
+        );
+        el.style.transform = `translate(${x}px, ${y}px) translate(-50%, calc(-100% - ${TAG_OFFSET_PX}px))`;
+        el.style.visibility = "visible";
+      }
+      frame = requestAnimationFrame(place);
+    };
+    place();
+
+    return () => cancelAnimationFrame(frame);
+  }, [globeReady, overlayLocations]);
 
   const status = loadFailed ? "error" : revealed ? "ready" : "loading";
 
   return (
     <div
       ref={containerRef}
-      aria-hidden="true"
       data-globe-state={status}
-      className={`opacity-100 h-screen w-full pointer-events-none transition-[filter] duration-700 ease-in-out motion-reduce:transition-none ${dark ? "invert-0" : "invert opacity-25"}`}
+      className="relative md:h-screen h-[60vh] w-dvw"
     >
-      {/* Fade in once every batch is built. On failure the Globe unmounts
-          (freeing WebGL) and the reserved space simply stays empty. */}
       <div
-        className={`h-full w-full transition-opacity duration-1000 ease-out motion-reduce:transition-none ${status === "ready" ? "opacity-100" : "opacity-0"}`}
+        aria-hidden="true"
+        className={`opacity-100 h-full w-full pointer-events-none transition-[filter] duration-700 ease-in-out motion-reduce:transition-none ${dark ? "invert-0" : "invert opacity-25"}`}
       >
-        {!loadFailed && size.width > 0 && size.height > 0 && (
-          <Globe
-            ref={globeRef}
-            width={size.width}
-            height={size.height}
-            backgroundColor={SPACE}
-            showAtmosphere
-            atmosphereColor={ATMOSPHERE}
-            atmosphereAltitude={0.18}
-            onGlobeReady={handleGlobeReady}
-            hexPolygonsData={countries}
-            showGlobe={false}
-            //   hexPolygonGeoJsonGeometry={(d: object) => (d as Country).geometry}
-            hexPolygonColor={hexColor}
-            hexPolygonAltitude={hexAltitude}
-            hexPolygonResolution={resolution}
-            hexPolygonMargin={margin}
-            // No per-frame geometry tweening while batches stream in hidden.
-            hexPolygonsTransitionDuration={
-              revealed && !prefersReducedMotion ? 250 : 0
-            }
-            onHexPolygonHover={(polygon) =>
-              setHovered((polygon as Country | null) ?? null)
-            }
-            onHexPolygonClick={(polygon) => {
-              const country = polygon as Country;
-              select(
-                selected?.properties.ADMIN === country.properties.ADMIN
-                  ? null
-                  : country,
-              );
-            }}
-            onHexPolygonRightClick={() => select(null)}
-            // Airline routes (styled after globe.gl's airline-routes example).
-            // Reduced motion: solid, static arcs instead of travelling dashes.
-            arcsData={routes}
-            arcStartLat={arcStartLat}
-            arcStartLng={arcStartLng}
-            arcEndLat={arcEndLat}
-            arcEndLng={arcEndLng}
-            arcColor={dark ? arcColor : [white(0), white(0)]}
-            arcDashLength={prefersReducedMotion ? 1 : 1}
-            arcDashGap={prefersReducedMotion ? 0 : 1}
-            arcDashInitialGap={arcDashInitialGap}
-            arcDashAnimateTime={prefersReducedMotion ? 0 : 4000}
-            arcsTransitionDuration={0}
-            pointsData={airports}
-            pointLat={pointLat}
-            pointLng={pointLng}
-            pointColor={pointColor}
-            pointAltitude={0}
-            pointRadius={AIRPORT_RADIUS}
-            pointsMerge
-          />
-        )}
+        {/* Fade in once every batch is built. On failure the Globe unmounts
+          (freeing WebGL) and the reserved space simply stays empty. */}
+        <div
+          className={`h-full w-full transition-opacity duration-1000 ease-out motion-reduce:transition-none ${status === "ready" ? "opacity-100" : "opacity-0"}`}
+        >
+          {!loadFailed && size.width > 0 && size.height > 0 && (
+            <Globe
+              ref={globeRef}
+              width={size.width}
+              height={size.height}
+              backgroundColor={SPACE}
+              showAtmosphere
+              atmosphereColor={ATMOSPHERE}
+              atmosphereAltitude={0.18}
+              onGlobeReady={handleGlobeReady}
+              hexPolygonsData={countries}
+              showGlobe={false}
+              //   hexPolygonGeoJsonGeometry={(d: object) => (d as Country).geometry}
+              hexPolygonColor={hexColor}
+              hexPolygonAltitude={hexAltitude}
+              hexPolygonResolution={resolution}
+              hexPolygonMargin={margin}
+              // No per-frame geometry tweening while batches stream in hidden.
+              hexPolygonsTransitionDuration={
+                revealed && !prefersReducedMotion ? 250 : 0
+              }
+              onHexPolygonClick={(polygon) => {
+                const country = polygon as Country;
+                select(
+                  selected?.properties.ADMIN === country.properties.ADMIN
+                    ? null
+                    : country,
+                );
+              }}
+              onHexPolygonRightClick={() => select(null)}
+              // Airline routes (styled after globe.gl's airline-routes example).
+              // Reduced motion: solid, static arcs instead of travelling dashes.
+              arcsData={routes}
+              arcStartLat={arcStartLat}
+              arcStartLng={arcStartLng}
+              arcEndLat={arcEndLat}
+              arcEndLng={arcEndLng}
+              arcColor={dark ? arcColor : [white(0), white(0)]}
+              arcDashLength={prefersReducedMotion ? 1 : 1}
+              arcDashGap={prefersReducedMotion ? 0 : 1}
+              arcDashInitialGap={arcDashInitialGap}
+              arcDashAnimateTime={prefersReducedMotion ? 0 : 4000}
+              arcsTransitionDuration={0}
+              pointsData={airports}
+              pointLat={pointLat}
+              pointLng={pointLng}
+              pointColor={pointColor}
+              pointAltitude={0}
+              pointRadius={AIRPORT_RADIUS}
+              pointsMerge
+              htmlElementsData={highlightedLocations}
+              htmlLat={locationLat}
+              htmlLng={locationLng}
+              htmlAltitude={LOCATION_ALTITUDE}
+              htmlElement={locationMarker}
+              htmlTransitionDuration={0}
+            />
+          )}
+        </div>
+      </div>
+      {/* Overlays sit outside the faded/inverted layer so they stay legible,
+          and fade in with the globe. Pinned content keeps its own pointer
+          events; the hover name tag is decorative. */}
+      <div
+        className={`pointer-events-none absolute inset-0 transition-opacity duration-1000 ease-out motion-reduce:transition-none ${status === "ready" ? "opacity-100" : "opacity-0"}`}
+      >
+        {overlayLocations.map((location) => {
+          const pinned = hasContent(location);
+          return (
+            <div
+              key={location.code}
+              ref={(el) => {
+                if (el) overlayEls.current.set(location, el);
+                else overlayEls.current.delete(location);
+              }}
+              aria-hidden={pinned ? undefined : true}
+              // Raised while hovered, either directly or via its marker.
+              className={`invisible absolute left-0 top-0 hover:z-20 focus-within:z-20 ${location === hoveredLocation ? "z-20" : "z-0"} ${pinned ? "pointer-events-auto" : ""}`}
+            >
+              {pinned ? location.content : location.name}
+            </div>
+          );
+        })}
       </div>
     </div>
   );

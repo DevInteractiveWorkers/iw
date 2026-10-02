@@ -1,10 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import React from "react";
 import CTAButton from "../buttons/cta-button";
-import FlipElement from "../flip-element";
-import SplitText from "../text-animation/SplitText";
 import { useRouter } from "next/navigation";
 import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 import PageHero from "../page-hero";

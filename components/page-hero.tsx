@@ -4,6 +4,8 @@ import FlipElement from "./flip-element";
 import SplitText from "./text-animation/SplitText";
 import PageDivision from "./page-division";
 import { useScrollIntoView } from "@/lib/use-scroll-into-view";
+import { ButtonHTMLAttributes } from "react";
+import CTAButton from "./buttons/cta-button";
 
 interface PageHeroAttributes {
   id?: string;
@@ -11,6 +13,7 @@ interface PageHeroAttributes {
   description?: string | React.ReactNode;
   align?: React.CSSProperties["textAlign"];
   division?: boolean;
+  ctaButton?: ButtonHTMLAttributes<HTMLButtonElement>;
 }
 
 export default function PageHero({
@@ -19,6 +22,7 @@ export default function PageHero({
   description,
   align = "start",
   division = true,
+  ctaButton,
 }: PageHeroAttributes) {
   const { ref } = useScrollIntoView<HTMLElement>({ offset: 80 });
 
@@ -26,7 +30,7 @@ export default function PageHero({
     <article
       ref={ref}
       id={id}
-      className="flex flex-col py-10 relative w-full"
+      className="flex flex-col py-10 relative w-full "
       style={{ alignItems: align }}
     >
       <FlipElement className="w-1/4 max-w-[150px] pb-10 mt-20">
@@ -38,32 +42,43 @@ export default function PageHero({
           className="select-none block dark:hidden"
         />
       </FlipElement>
-      <SplitText
-        tag="h1"
-        className="
+      <div
+        className={`grid ${description ? "md:grid-cols-2" : ""} grid-cols-1`}
+      >
+        <div>
+          <SplitText
+            tag="h1"
+            className="
             text-[clamp(2rem,4vw,3.75rem)]
             leading-[1.05]
             pb-6
           "
-        textAlign={align}
-        text={heading}
-      />
-      <div
-        className="flex w-full"
-        style={{
-          justifyContent:
-            align !== "start" && align !== "end"
-              ? align
-              : align === "start"
-                ? "end"
-                : "start",
-        }}
-      >
-        <SplitText
-          className="text-xl md:w-2/3 lg:w-1/3"
-          textAlign={align}
-          text={description}
-        />
+            textAlign={align}
+            text={heading}
+          />
+          {ctaButton && (
+            <div className="w-full flex" style={{ justifyContent: align }}>
+              <CTAButton {...ctaButton} />
+            </div>
+          )}
+        </div>
+        <div
+          className="flex w-full"
+          style={{
+            justifyContent:
+              align !== "start" && align !== "end"
+                ? align
+                : align === "start"
+                  ? "end"
+                  : "start",
+          }}
+        >
+          <SplitText
+            className="text-xl lg:w-2/3"
+            textAlign={align}
+            text={description}
+          />
+        </div>
       </div>
       {division && <PageDivision className="bottom-0" />}
     </article>

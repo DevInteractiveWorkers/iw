@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { whenIdle } from "./idle";
+import { useIsMobile } from "@/lib/useMobile";
 
 /** Same promise for prefetching and for `next/dynamic`, so the chunk loads once. */
 const loadGlobe = () => import("./globe");
@@ -124,15 +125,23 @@ export default function FollowGlobe({ dark = false }: { dark?: boolean }) {
     };
   }, [dark]);
 
+  const isMobile = useIsMobile();
+
   return (
-    <div className="absolute top-0 left-0 w-full h-full">
+    <div className="absolute top-0 left-0 md:w-full h-full w-dvw">
       <div
         ref={globeRef}
         className="sticky top-0 left-0 bottom-0"
         // Initial (SSR) position; the scroll handler updates it imperatively.
-        style={{ transform: `translateX(${MAX_OFFSET_PERCENT}%)` }}
+        style={{
+          transform: isMobile ? "none" : `translateX(${MAX_OFFSET_PERCENT}%)`,
+        }}
       >
-        {mountGlobe ? <IWGlobe dark={isDark} /> : <GlobePlaceholder />}
+        {mountGlobe ? (
+          <IWGlobe dark={isDark} autoRotate={false} sway />
+        ) : (
+          <GlobePlaceholder />
+        )}
       </div>
     </div>
   );
