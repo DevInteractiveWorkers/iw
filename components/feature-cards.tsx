@@ -14,7 +14,7 @@ export default function FeatureCard({
   icon,
 }: FeatureCardProps) {
   return (
-    <div className="flex flex-col rounded-xl border border-iw-red-2 relative p-5 aspect-[3/4] max-h-[500px] items-center justify-center">
+    <div className="flex flex-col rounded-xl border border-iw-red-2 relative p-5 aspect-[3/4] max-h-[500px] items-center justify-center bg-white">
       <div className="bg-iw-red-2 aspect-square rounded-full m-5 w-max p-5 flex items-center justify-center z-10 pointer-events-none">
         <Icon icon={icon} />
       </div>
