@@ -2,12 +2,11 @@ import IntroBanner from "@/components/home/intro-banner";
 import DiscoverVAs from "@/components/home/discover-vas";
 import IWVideo from "@/components/video";
 import StatsSection from "@/components/stats-section";
-import IWGlobe from "@/components/globe";
 import WhyUs from "@/components/why-us";
 import FadeInContent from "@/components/FadeInContent";
 import Reviews from "@/components/home/reviews";
 import HowItWorks from "@/components/how-it-works";
-import FollowGlobe from "@/components/follow-globe";
+import FollowGlobe from "@/components/globe/follow-globe";
 
 export default function Home() {
   return (
