@@ -22,7 +22,7 @@ export default function IndustriesWeServe() {
       <div className="grid md:grid-cols-3 grid-cols-1 gap-6 md:px-[clamp(1rem,8vw,50rem)]">
         <IndustriesCard
           title={"Private Security & Guard Operations"}
-          className="-translate-y-1/2"
+          className="md:-translate-y-1/2"
           content={
             "Alarm response dispatch, mobile patrol tracking, guard deployment, and real-time incident reporting."
           }
@@ -35,14 +35,14 @@ export default function IndustriesWeServe() {
         />
         <IndustriesCard
           title={"Field Service"}
-          className="-translate-y-1/2"
+          className="md:-translate-y-1/2"
           content={
             "Alarm response dispatch, mobile patrol tracking, guard deployment, and real-time incident reporting."
           }
         />
         <IndustriesCard
           title={"Towing & Roadside Assistance"}
-          className="-translate-y-1/2"
+          className="md:-translate-y-1/2"
           content={"Emergency dispatch and driver routing."}
         />
         <IndustriesCard
@@ -51,7 +51,7 @@ export default function IndustriesWeServe() {
         />
         <IndustriesCard
           title={"Non-Emergency Medical Transportation (NEMT)"}
-          className="-translate-y-1/2"
+          className="md:-translate-y-1/2"
           content={"Patient pickup and transit coordination."}
         />
       </div>

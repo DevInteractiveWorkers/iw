@@ -30,7 +30,7 @@ export default function Switch({
           relative
           w-14 h-8
           rounded-full
-          border border-white/30
+          border border-iw-red-2
           bg-transparent
           transition-colors
           duration-300
@@ -46,8 +46,9 @@ export default function Switch({
           size-6
           -translate-y-1/2
           rounded-full
-          bg-white
-          transition-transform
+          bg-iw-red-2
+          peer-checked:bg-white
+          transition-all
           duration-300
           ease-out
           peer-checked:translate-x-full

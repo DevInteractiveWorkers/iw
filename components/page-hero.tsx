@@ -14,6 +14,7 @@ interface PageHeroAttributes {
   align?: React.CSSProperties["textAlign"];
   division?: boolean;
   ctaButton?: ButtonHTMLAttributes<HTMLButtonElement>;
+  dark?: boolean;
 }
 
 export default function PageHero({
@@ -23,6 +24,7 @@ export default function PageHero({
   align = "start",
   division = true,
   ctaButton,
+  dark = true,
 }: PageHeroAttributes) {
   const { ref } = useScrollIntoView<HTMLElement>({ offset: 80 });
 
@@ -38,12 +40,16 @@ export default function PageHero({
           width={1080}
           height={1080}
           alt="logo"
-          src="/logo/03_Logo_Mark/03_Logo_Mark-01.png"
-          className="select-none block dark:hidden"
+          src={
+            dark
+              ? "/logo/03_Logo_Mark/03_Logo_Mark-01.png"
+              : "/logo/03_Logo_Mark/03_Logo_Mark-02.png"
+          }
+          className="select-none block"
         />
       </FlipElement>
       <div
-        className={`grid ${description ? "md:grid-cols-2" : ""} grid-cols-1`}
+        className={`grid ${description ? (align !== "center" ? "md:grid-cols-2" : "") : ""} grid-cols-1`}
       >
         <div>
           <SplitText

@@ -8,6 +8,176 @@ import Ticket from "@/components/pricing/ticket";
 import PageHero from "@/components/page-hero";
 import { useIsMobile } from "@/lib/useMobile";
 import { useScrollIntoView } from "@/lib/use-scroll-into-view";
+import PricingCard, { type PricingCardProps } from "@/components/pricing-card";
+import FeatureCard from "@/components/feature-cards";
+import SplitText from "@/components/text-animation/SplitText";
+
+export const projectPlans: PricingCardProps[] = [
+  // Project-Based Tiers
+  {
+    planName: "Small Scope Sprint",
+    planDescription:
+      "Ideal for rapid setups, targeted audits, or single operational desk implementations.",
+    benefits: [
+      {
+        text: "Complete operational audit & workflow design",
+        isIncluded: true,
+      },
+      {
+        text: "Custom SOP buildout & initial routing configuration",
+        isIncluded: true,
+      },
+      { text: "1 to 2 Weeks estimated delivery timeline", isIncluded: true },
+      {
+        text: "Fully customizable to your specific tech stack",
+        isIncluded: true,
+      },
+    ],
+    cta: {
+      label: "Start a Project",
+      href: "https://calendly.com/interactiveworkersgm/30min",
+      variant: "primary",
+    },
+    isFeatured: false,
+  },
+  {
+    planName: "Medium Scope Build",
+    planDescription:
+      "Designed for full operational onboarding, multi-channel dispatch setup, or ticketing integrations.",
+    benefits: [
+      {
+        text: "Turnkey multi-channel integration & platform setup",
+        isIncluded: true,
+      },
+      {
+        text: "Fully provisioned workspace infrastructure & routing",
+        isIncluded: true,
+      },
+      { text: "3 to 5 Weeks estimated delivery timeline", isIncluded: true },
+      { text: "Tailored to your specific team workflows", isIncluded: true },
+    ],
+    cta: {
+      label: "Start a Project",
+      href: "https://calendly.com/interactiveworkersgm/30min",
+      variant: "primary",
+    },
+    isFeatured: true,
+  },
+  {
+    planName: "Enterprise Scope Transformation",
+    planDescription:
+      "Comprehensive end-to-end operational overhaul with custom architecture and team onboarding.",
+    benefits: [
+      {
+        text: "Full operational architecture design & 24/7 redundancy",
+        isIncluded: true,
+      },
+      {
+        text: "Complete team recruitment, training, & smooth handoff",
+        isIncluded: true,
+      },
+      { text: "6 to 10 Weeks estimated delivery timeline", isIncluded: true },
+      {
+        text: "Bespoke engineering around strict enterprise requirements",
+        isIncluded: true,
+      },
+    ],
+    cta: {
+      label: "Start a Project",
+      href: "https://calendly.com/interactiveworkersgm/30min",
+      variant: "primary",
+    },
+    isFeatured: false,
+  },
+];
+
+export const longTermPlans: PricingCardProps[] = [
+  // Long-Term Engagement Tiers
+  {
+    planName: "Dedicated Specialist Retainer",
+    planDescription:
+      "Continuous operational continuity backed by a bilingual representative and zero HR liability.",
+    benefits: [
+      {
+        text: "1 Dedicated Representative (Customer Success, SDR, or EA)",
+        isIncluded: true,
+      },
+      {
+        text: "Monthly, Quarterly, or Annual retainer options",
+        isIncluded: true,
+      },
+      {
+        text: "Enterprise-grade secured hardware & software included",
+        isIncluded: true,
+      },
+      {
+        text: "Zero local HR, payroll, or legal compliance liabilities",
+        isIncluded: true,
+      },
+    ],
+    cta: {
+      label: "Book Discovery Call",
+      href: "https://calendly.com/interactiveworkersgm/30min",
+      variant: "primary",
+    },
+    isFeatured: false,
+  },
+  {
+    planName: "Managed Operational Unit",
+    planDescription:
+      "Build operational capacity with a cross-trained team, built-in redundancy, and a dedicated supervisor.",
+    benefits: [
+      {
+        text: "3 to 5 Dedicated Representatives + Operations Lead",
+        isIncluded: true,
+      },
+      {
+        text: "Flexible monthly/quarterly terms with customizable capacity",
+        isIncluded: true,
+      },
+      {
+        text: "Guaranteed uptime SLA with built-in standby backup support",
+        isIncluded: true,
+      },
+      { text: "Single flat, tax-deductible monthly invoice", isIncluded: true },
+    ],
+    cta: {
+      label: "Book Discovery Call",
+      href: "https://calendly.com/interactiveworkersgm/30min",
+      variant: "primary",
+    },
+    isFeatured: true,
+  },
+  {
+    planName: "Enterprise Scale Hub",
+    planDescription:
+      "Multi-desk infrastructure built for round-the-clock operations and complete enterprise governance.",
+    benefits: [
+      {
+        text: "24/7/365 multi-shift operational desk coverage",
+        isIncluded: true,
+      },
+      {
+        text: "Annual agreements with custom billing & custom SLAs",
+        isIncluded: true,
+      },
+      {
+        text: "Dedicated IT, Security, and HR management oversight",
+        isIncluded: true,
+      },
+      {
+        text: "Fully tailored resource allocation & continuous optimization",
+        isIncluded: true,
+      },
+    ],
+    cta: {
+      label: "Speak with an Executive",
+      href: "https://calendly.com/interactiveworkersgm/30min",
+      variant: "primary",
+    },
+    isFeatured: false,
+  },
+];
 
 export default function PricingPage() {
   const isMobile = useIsMobile();
@@ -16,221 +186,88 @@ export default function PricingPage() {
   const { ref } = useScrollIntoView<HTMLElement>();
 
   return (
-    <section id="pricing">
-      <PageHero
-        align="center"
-        heading={
-          <>
-            Our Specialized Productized
-            <br />
-            Packages are a versatile solution
-            <br />
-            for any business
-          </>
-        }
-      />
-
-      <article ref={ref} className="flex flex-col pb-20">
-        <div className="flex justify-center py-6">
-          <div className="flex gap-4 sm:gap-6 justify-center items-center">
-            <label>Long Term</label>
-            <Switch
-              checked={isTerm === "project"}
-              onChange={() =>
-                setIsTerm((prev) =>
-                  prev === "project" ? "long-term" : "project",
-                )
+    <>
+      <section
+        id="pricing"
+        className="px-[clamp(1rem,8vw,50rem)] w-dvw bg-iw-red-2 text-white"
+      >
+        <PageHero
+          division={false}
+          align="center"
+          heading={
+            <>
+              Our Specialized Productized
+              <br />
+              Packages are a versatile solution
+              <br />
+              for any business
+            </>
+          }
+        />
+      </section>
+      <section className="px-[clamp(1rem,8vw,50rem)] w-dvw bg-white">
+        <article className="flex flex-col gap-6">
+          <SplitText
+            className="text-[clamp(2rem,4vw,3.75rem)] leading-[1] font-medium lg:w-1/2 md:w-3/2 py-10"
+            textAlign={"start"}
+            text={
+              <>
+                Elevate your digital footprint with our Bilingual Productized
+                Packages
+              </>
+            }
+          />
+          <div className="grid md:grid-cols-3 grid-cols-2 gap-6 md:px-[clamp(1rem,8vw,50rem)]">
+            <FeatureCard title={"Crafted Websites"} aspect="aspect-[2/1]" />
+            <FeatureCard title={"Website Redesign"} aspect="aspect-[2/1]" />
+            <FeatureCard
+              title={"Maintenance & Ongoing Support"}
+              aspect="aspect-[2/1]"
+            />
+            <FeatureCard title={"Paralegal Assistant"} aspect="aspect-[2/1]" />
+            <FeatureCard title={"Appointment Setter"} aspect="aspect-[2/1]" />
+            <FeatureCard
+              title={"Social Media Management"}
+              aspect="aspect-[2/1]"
+            />
+          </div>
+        </article>
+        <article ref={ref} className="flex flex-col pb-20 z-10">
+          <div className="w-full flex justify-center items-center">
+            <SplitText
+              className="text-[clamp(2rem,4vw,3.75rem)] leading-[1] font-medium lg:w-1/2 md:w-3/2 py-10"
+              textAlign={"center"}
+              text={
+                <>
+                  Get a Specialized Productized Packages that start with your
+                  goals
+                </>
               }
             />
-            <label>Per Project</label>
           </div>
-        </div>
-
-        <div className="grid md:grid-cols-[auto_65%] lg:grid-cols-[auto_80%] gap-6 items-stretch">
-          {/* LEFT COLUMN */}
-          <aside className="h-full">
-            <ProductCard
-              className="p-6 h-full"
-              style={{ height: "100%" }}
-              disableHover
-            >
-              <div className="sticky top-20 left-0">
-                <h4 className="text-[clamp(1.5rem,2.5vw,1.875rem)] font-medium leading-tight">
-                  Want more traffic and leads?
-                </h4>
-
-                <p className="py-6 text-[clamp(1rem,1.5vw,1.25rem)]">
-                  Get a Specialized Productized Package that starts with your
-                  goals.
-                </p>
-
-                <h5 className="text-[clamp(1.5rem,2.5vw,1.875rem)] font-medium">
-                  Why us?
-                </h5>
-
-                <ul className="py-6 text-[clamp(1rem,1.5vw,1.25rem)] flex flex-col gap-6">
-                  <li>Bilingual (English and Spanish)</li>
-                  <li>Adaptable</li>
-                  <li>Professionals in their field</li>
-                  <li>24/7 Availability</li>
-                </ul>
-              </div>
-            </ProductCard>
-          </aside>
-
-          {/* RIGHT COLUMN */}
-          <div
-            key={isTerm}
-            className="grid gap-6 min-h-0 animate-in fade-in duration-150"
-          >
-            {/* TOP CARD */}
-            <ProductCard
-              className="p-6 flex flex-col gap-10 h-full min-h-0 max-md:overflow-hidden justify-center"
-              style={{
-                width: isTerm === "project" || isMobile ? "100%" : "70%",
-              }}
-              disableHover
-              decorative
-            >
-              {isTerm === "long-term" ? (
-                <>
-                  <Arrow className="max-md:hidden" />
-
-                  <div className="grid md:grid-cols-[60%_auto] grid-cols-1 flex-1">
-                    <div className="flex items-baseline gap-2 flex-wrap">
-                      <h2 className="text-[clamp(3.5rem,5vw,6rem)] leading-none pb-2">
-                        Start with
-                        <br /> ONE-WEEK
-                        <br /> FREE
-                      </h2>
-                    </div>
-
-                    <div className="flex justify-end">
-                      <Ticket />
-                    </div>
-                  </div>
-
-                  <Arrow />
-                </>
-              ) : (
-                <div className="flex flex-col justify-between flex-1">
-                  <div>
-                    <h2 className="text-[clamp(2.5rem,5vw,5rem)] leading-none pb-6">
-                      Operational
-                      <br />
-                      Continuity &amp;
-                      <br />
-                      Redundancy
-                    </h2>
-
-                    <p className="text-[clamp(1rem,1.5vw,1.25rem)] max-w-xl leading-relaxed">
-                      Dedicated project execution backed by cross-trained
-                      standby agents so your scope delivers smoothly without
-                      unexpected downtime or bottlenecks.
-                    </p>
-                  </div>
-
-                  <div className="flex flex-wrap gap-x-8 gap-y-3 pt-8 text-sm md:text-base">
-                    <span>Targeted Scope</span>
-                    <span>Cross-Trained Team</span>
-                    <span>Agile Execution</span>
-                  </div>
-                </div>
-              )}
-            </ProductCard>
-
-            {/* BOTTOM CARD */}
-            <ProductCard
-              className="p-6 grid grid-cols-1 items-end h-full min-h-0"
-              disableHover
-            >
-              <div className="h-full md:w-1/2">
-                <div className="flex items-baseline gap-2 flex-wrap">
-                  <h2 className="text-[clamp(2rem,5vw,3.75rem)] leading-none pb-2">
-                    {isTerm === "long-term" ? "Dedicated" : "Custom"}
-                  </h2>
-
-                  <span className="text-xs md:text-sm whitespace-nowrap opacity-75">
-                    {isTerm === "long-term" ? "/ Long Term" : "/ Per Project"}
-                  </span>
-                </div>
-
-                <div className="w-full flex justify-between border-b border-white/20 py-4">
-                  {isTerm === "long-term" ? (
-                    <>
-                      <span>Engagement</span>
-                      <span>Ongoing</span>
-                    </>
-                  ) : (
-                    <>
-                      <span>Delivery Time</span>
-                      <span>Defined per Scope</span>
-                    </>
-                  )}
-                </div>
-
-                <div className="text-[clamp(1rem,1.5vw,1.125rem)] pt-4 leading-relaxed">
-                  {isTerm === "long-term" ? (
-                    <>
-                      <p>
-                        Build operational continuity around your business with a
-                        dedicated, cross-trained team that stays aligned with
-                        your workflows as you grow.
-                        <br />
-                        <br />
-                        No hardware burden, no local payroll administration, and
-                        built-in redundancy. Your unit is fully provisioned and
-                        managed as operational infrastructure.
-                        <br />
-                      </p>
-                      <br />
-                      <ul className="md:pl-6 pl-4 list-disc flex flex-col gap-1">
-                        <li>Zero Hardware &amp; IT Hassle</li>
-                        <li>Dedicated Backup &amp; Standby Support</li>
-                        <li>Zero HR &amp; Legal Liability</li>
-                        <li>One flat, tax-deductible monthly invoice</li>
-                      </ul>
-                    </>
-                  ) : (
-                    <>
-                      <p>
-                        Execute specific deliverables with agile project-based
-                        support. Get security-trained, bilingual professionals
-                        assigned specifically to achieve your project targets
-                        without long-term overhead.
-                      </p>
-                      <br />
-                      <ul className="md:pl-6 p-4 list-disc flex flex-col gap-1">
-                        <li>Fixed Milestone Deliverables</li>
-                        <li>Rapid Onboarding &amp; Execution</li>
-                        <li>Flexible Resource Allocation</li>
-                        <li>Transparent Project Pricing</li>
-                      </ul>
-                    </>
-                  )}
-                </div>
-              </div>
-
-              <div className="flex w-full justify-end mt-6">
-                <Link
-                  href="https://calendly.com/interactiveworkersgm/30min"
-                  target="_blank"
-                  className="px-8 py-4 flex items-center justify-center bg-black rounded h-max underline md:w-1/2 hover:scale-95 active:bg-white active:text-iw-red-1 transition-all duration-150"
-                >
-                  {isTerm === "long-term"
-                    ? "Book Your Free 15-Minute Discovery Call"
-                    : "Scope Your Custom Project"}
-                </Link>
-              </div>
-            </ProductCard>
+          <div className="flex justify-center py-6">
+            <div className="flex gap-4 sm:gap-6 justify-center items-center">
+              <label>Long Term</label>
+              <Switch
+                checked={isTerm === "project"}
+                onChange={() =>
+                  setIsTerm((prev) =>
+                    prev === "project" ? "long-term" : "project",
+                  )
+                }
+              />
+              <label>Per Project</label>
+            </div>
           </div>
-        </div>
-
-        <h6 className="text-[clamp(2rem,4vw,3.75rem)] leading-[1.05] pt-10">
-          More quality less overload with the right support
-        </h6>
-      </article>
-    </section>
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6 md:px-[clamp(1rem,8vw,50rem)]">
+            {isTerm === "project" &&
+              projectPlans.map((project) => <PricingCard {...project} />)}
+            {isTerm === "long-term" &&
+              longTermPlans.map((project) => <PricingCard {...project} />)}
+          </div>
+        </article>
+      </section>
+    </>
   );
 }
 

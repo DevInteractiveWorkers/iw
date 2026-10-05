@@ -2,19 +2,11 @@
 
 import React from "react";
 import VACard from "@/components/vas/cards";
-import Carousel from "@/components/home/reviews/carousel";
-import Folder from "@/components/folder";
-import FadeInContent from "@/components/FadeInContent";
 import SplitText from "@/components/text-animation/SplitText";
 import PageHero from "@/components/page-hero";
 import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 import { useIsMobile } from "@/lib/useMobile";
-import CTAButton from "@/components/buttons/cta-button";
 import { useRouter } from "next/navigation";
-import FlipElement from "@/components/flip-element";
-import Image from "next/image";
-import ColorBends from "@/components/backgrounds/ColorBends";
-import { dispatchers } from "../content/dispatchers";
 import dynamic from "next/dynamic";
 import type { HighlightedLocation } from "@/components/globe/globe";
 import DispatchSolutionsCards, {
@@ -25,15 +17,10 @@ import IndustriesWeServe from "@/components/industries-we-serve";
 import KeyAdvantages from "@/components/key-advantages";
 
 interface DispatchLocation extends HighlightedLocation {
-  /** Copy shown when the location's card is expanded. */
   services: string;
   icon: IconType;
 }
 
-/**
- * Single source for the globe markers and the solution cards. Module-level so
- * the array keeps its identity across renders (the globe keys markers on it).
- */
 const DISPATCH_LOCATIONS: DispatchLocation[] = [
   {
     name: "Real-Time Fleet & Field Coordination",
@@ -90,7 +77,6 @@ const DISPATCH_LOCATIONS: DispatchLocation[] = [
   },
 ];
 
-// `react-globe.gl` touches `window` on import, so the globe is client-only.
 const IWGlobe = dynamic(() => import("@/components/globe/globe"), {
   ssr: false,
   loading: () => <div className="h-screen w-full" aria-hidden="true" />,

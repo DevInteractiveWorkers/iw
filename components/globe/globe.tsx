@@ -593,7 +593,8 @@ export default function IWGlobe({
     >
       <div
         aria-hidden="true"
-        className={`opacity-100 h-full w-full pointer-events-none transition-[filter] duration-700 ease-in-out motion-reduce:transition-none ${dark ? "invert-0" : "invert opacity-25"}`}
+        className={`opacity-100 h-full w-full pointer-events-none transition-[filter] duration-700 ease-in-out motion-reduce:transition-none
+          ${dark ? "invert-0" : "invert opacity-50"}`}
       >
         {/* Fade in once every batch is built. On failure the Globe unmounts
           (freeing WebGL) and the reserved space simply stays empty. */}
@@ -617,7 +618,6 @@ export default function IWGlobe({
               hexPolygonAltitude={hexAltitude}
               hexPolygonResolution={resolution}
               hexPolygonMargin={margin}
-              // No per-frame geometry tweening while batches stream in hidden.
               hexPolygonsTransitionDuration={
                 revealed && !prefersReducedMotion ? 250 : 0
               }
@@ -630,8 +630,6 @@ export default function IWGlobe({
                 );
               }}
               onHexPolygonRightClick={() => select(null)}
-              // Airline routes (styled after globe.gl's airline-routes example).
-              // Reduced motion: solid, static arcs instead of travelling dashes.
               arcsData={routes}
               arcStartLat={arcStartLat}
               arcStartLng={arcStartLng}
@@ -660,9 +658,6 @@ export default function IWGlobe({
           )}
         </div>
       </div>
-      {/* Overlays sit outside the faded/inverted layer so they stay legible,
-          and fade in with the globe. Pinned content keeps its own pointer
-          events; the hover name tag is decorative. */}
       <div
         className={`pointer-events-none absolute inset-0 transition-opacity duration-1000 ease-out motion-reduce:transition-none ${status === "ready" ? "opacity-100" : "opacity-0"}`}
       >

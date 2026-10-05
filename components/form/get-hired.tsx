@@ -12,6 +12,8 @@ import Select from "./select";
 import FadeInContent from "../FadeInContent";
 import SplitText from "../text-animation/SplitText";
 import Checkbox from "./checkbox";
+import FormButton from "../buttons/form-buttons";
+import PageDivision from "../page-division";
 
 const GetHired = ({
   heading = (
@@ -100,169 +102,131 @@ const GetHired = ({
 
   return (
     <FadeInContent>
-      <section className="grid md:grid-cols-[auto_auto] border-t border-black dark:border-white md:pt-20 py-10">
-        <form
-          className="flex flex-col md:px-10 px-4 mb-10"
-          onSubmit={handleSubmit}
-          name="Get Hired Form"
-        >
-          {heading && (
-            <SplitText
-              className="md:text-5xl text-xl py-4"
-              textAlign="start"
-              text={heading}
+      <PageDivision className="relative" />
+      <form
+        className="grid grid-cols-[auto_auto] gap-6 mb-10"
+        onSubmit={handleSubmit}
+        name="Get Hired Form"
+      >
+        <FadeInContent>
+          <div className="grid grid-cols-2 gap-3">
+            {/* First / Last Name */}
+            <Input
+              id="firstname"
+              type="text"
+              placeholder="First name"
+              required
             />
-          )}
 
-          {subheading && (
-            <SplitText
-              tag="h2"
-              textAlign="start"
-              className=" text-2xl md:text-6xl font-medium py-10"
-              text={subheading}
+            <Input id="lastname" type="text" placeholder="Last name" required />
+
+            {/* Location */}
+            <Input
+              id="location"
+              type="text"
+              className="md:col-span-2"
+              placeholder="Location"
             />
-          )}
 
-          <FadeInContent>
-            <div className="grid md:grid-cols-2 gap-3">
-              {/* First / Last Name */}
-              <Input
-                id="firstname"
-                type="text"
-                placeholder="First name"
-                required
-              />
+            {/* Phone */}
+            <Input id="phone" type="text" placeholder="Phone Number" required />
 
-              <Input
-                id="lastname"
-                type="text"
-                placeholder="Last name"
-                required
-              />
+            {/* Email */}
+            <Input id="email" type="email" placeholder="Email" required />
 
-              {/* Location */}
-              <Input
-                id="location"
-                type="text"
-                className="md:col-span-2"
-                placeholder="Location"
-              />
+            {/* Professional */}
+            <h4 className="font-medium md:text-2xl text-xl mt-4 md:col-span-2">
+              Choose your Professional
+            </h4>
 
-              {/* Phone */}
-              <Input
-                id="phone"
-                type="text"
-                placeholder="Phone Number"
-                required
-              />
+            <Select id="professional" required>
+              {professionalOptions.map((option, index) => (
+                <option key={index}>{option}</option>
+              ))}
+            </Select>
 
-              {/* Email */}
-              <Input id="email" type="email" placeholder="Email" required />
+            {/* Resume */}
+            <div className="w-full">
+              <label
+                htmlFor="file"
+                className="py-2 my-2 border-b border-black  relative flex items-center justify-between cursor-pointer"
+              >
+                <span className="truncate">
+                  {file ? file.name : "Attach your resume here:"}
+                </span>
 
-              {/* Professional */}
-              <h4 className="font-medium md:text-2xl text-xl mt-4 md:col-span-2">
-                Choose your Professional
-              </h4>
-
-              <Select id="professional" required>
-                {professionalOptions.map((option, index) => (
-                  <option key={index}>{option}</option>
-                ))}
-              </Select>
-
-              {/* Resume */}
-              <div className="w-full">
-                <label
-                  htmlFor="file"
-                  className="py-2 my-2 border-b dark:border-white border-black  relative flex items-center justify-between cursor-pointer"
+                <svg
+                  width="25"
+                  height="23"
+                  viewBox="0 0 25 23"
+                  fill="none"
+                  className="stroke-black"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  <span className="truncate">
-                    {file ? file.name : "Attach your resume here:"}
-                  </span>
+                  <path
+                    d="M12.1997 1L12.1997 15M12.1997 1C11.2194 1 9.38785 3.79202 8.69971 4.5M12.1997 1C13.18 1 15.0116 3.79202 15.6997 4.5"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M23.4 17.8C23.4 21.2748 22.6748 22 19.2 22H5.2C1.7252 22 1 21.2748 1 17.8"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </label>
 
-                  <svg
-                    width="25"
-                    height="23"
-                    viewBox="0 0 25 23"
-                    fill="none"
-                    className="dark:stroke-white stroke-black"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M12.1997 1L12.1997 15M12.1997 1C11.2194 1 9.38785 3.79202 8.69971 4.5M12.1997 1C13.18 1 15.0116 3.79202 15.6997 4.5"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M23.4 17.8C23.4 21.2748 22.6748 22 19.2 22H5.2C1.7252 22 1 21.2748 1 17.8"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </label>
+              <input
+                ref={fileInputRef}
+                id="file"
+                name="file"
+                type="file"
+                accept=".pdf,.doc,.docx"
+                className="hidden"
+                onChange={(event) => {
+                  const selectedFile = event.target.files?.[0];
 
-                <input
-                  ref={fileInputRef}
-                  id="file"
-                  name="file"
-                  type="file"
-                  accept=".pdf,.doc,.docx"
-                  className="hidden"
-                  onChange={(event) => {
-                    const selectedFile = event.target.files?.[0];
-
-                    if (selectedFile) {
-                      setFile(selectedFile);
-                      setMessage("");
-                    }
-                  }}
-                />
-              </div>
-
-              {/* Privacy Policy */}
-
-              <div className="flex items-center gap-2 md:col-span-2">
-                <Checkbox id="agree" required className="text-iw-red-1" />
-
-                <Label htmlFor="agree" className="flex ">
-                  I agree with the&nbsp;
-                  <Link
-                    href="/policy"
-                    className="text-iw-red-1 hover:underline"
-                  >
-                    Privacy Policy
-                  </Link>
-                </Label>
-              </div>
-
-              {/* Error */}
-              {message && <div className="text-iw-red-1 flex">{message}</div>}
-
-              {/* Submit */}
-              {sending ? (
-                <div className="w-full flex justify">
-                  <div className="w-1/2 flex">
-                    <Loader />
-                  </div>
-                </div>
-              ) : (
-                <button
-                  type="submit"
-                  className={`uppercase rounded font-bold text-4xl px-10 py-5 max-w-fit mt-8 ${
-                    !sent
-                      ? "bg-iw-red-1"
-                      : "bg-[#808080] pointer-events-none cursor-not-allowed"
-                  } `}
-                >
-                  {!sent ? "Send mail" : "Sent"}
-                </button>
-              )}
+                  if (selectedFile) {
+                    setFile(selectedFile);
+                    setMessage("");
+                  }
+                }}
+              />
             </div>
-          </FadeInContent>
-        </form>
-      </section>
+          </div>
+        </FadeInContent>
+        {/* Privacy Policy */}
+        <FadeInContent className="flex h-full justify-end items-end">
+          <div className="md:w-max w-full">
+            <div className="flex items-center gap-2 md:col-span-2">
+              <Checkbox id="agree" required className="text-iw-red-1" />
+
+              <Label htmlFor="agree" className="flex ">
+                I agree with the&nbsp;
+                <Link href="/policy" className="text-iw-red-1 hover:underline">
+                  Privacy Policy
+                </Link>
+              </Label>
+            </div>
+
+            {/* Error */}
+            {message && <div className="text-iw-red-1 flex">{message}</div>}
+
+            {/* Submit */}
+            <FormButton className="mt-3 flex justify-center w-full uppercase [--primary-color:#dd272d]">
+              {sending ? (
+                <Loader className="min-w-[2.25rem] min-h-[2.25rem] px-10" />
+              ) : !sent ? (
+                "Send mail"
+              ) : (
+                "Sent"
+              )}
+            </FormButton>
+          </div>
+        </FadeInContent>
+      </form>
     </FadeInContent>
   );
 };

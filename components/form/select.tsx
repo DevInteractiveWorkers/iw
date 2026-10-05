@@ -76,7 +76,7 @@ export default function Select({
   return (
     <div
       ref={dropdownRef}
-      className="py-2 my-2 border-b dark:border-white border-black relative flex items-center justify-between w-full cursor-pointer select-none"
+      className="py-2 my-2 border-b border-black relative flex items-center justify-between w-full cursor-pointer select-none"
       onClick={() => setIsOpen((prev) => !prev)}
       aria-required={required}
       {...props}
@@ -118,7 +118,7 @@ export default function Select({
 
       {/* Options */}
       {isOpen && (
-        <div className=" bg-white border dark:border-white border-black absolute top-full left-0 w-full mt-1 py-1 flex flex-col z-50 shadow-xl rounded-md max-h-60 overflow-y-auto">
+        <div className=" bg-white border border-black absolute top-full left-0 w-full mt-1 py-1 flex flex-col z-50 shadow-xl rounded-md max-h-60 overflow-y-auto">
           {options.map((child, index) => {
             if (!React.isValidElement(child)) return null;
 
@@ -134,7 +134,7 @@ export default function Select({
               <button
                 key={`${value}-${index}`}
                 type="button"
-                className="text-left px-4 py-2 dark:hover:bg-white/20 hover:bg-black/5 w-full "
+                className="text-left px-4 py-2 hover:bg-black/5 w-full "
                 onClick={(event) => {
                   event.stopPropagation();
                   handleSelect(value, label);

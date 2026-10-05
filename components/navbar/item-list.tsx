@@ -12,9 +12,10 @@ interface ItemListProps {
   items: Item[];
   hover?: boolean;
   isTransitioning?: boolean;
+  dark?: boolean;
 }
 
-const ItemList = ({ items, isTransitioning }: ItemListProps) => {
+const ItemList = ({ items, isTransitioning, dark }: ItemListProps) => {
   const pathname = usePathname();
   const [currentUrl, setCurrentUrl] = useState<string>(pathname);
 
@@ -99,14 +100,14 @@ const ItemList = ({ items, isTransitioning }: ItemListProps) => {
       </button>
 
       <div
-        className={`bg-transparent flex gap-4 relative max-md:fixed max-md:flex-col max-md:w-2/3 dark:max-md:bg-black/85 max-md:bg-white/85  max-md:top-0 max-md:right-0 
+        className={`bg-transparent flex gap-4 relative max-md:fixed max-md:flex-col max-md:w-2/3 ${dark ? "max-md:bg-black/85" : "max-md:bg-white/85"}  max-md:top-0 max-md:right-0 
           max-md:h-full max-md:z-20 max-md:py-4 max-md:border-l max-md:rounded-l-xl max-md:backdrop-blur ${
             isOpen ? "max-md:translate-x-0" : "max-md:translate-x-full"
           } transition-all duration-100`}
         onMouseLeave={() => setHoverIndex(null)}
       >
         <div
-          className="dark:bg-white bg-iw-red-1 rounded transition-all duration-300 pointer-events-none"
+          className={`${dark ? "bg-white" : "bg-iw-red-1"} rounded transition-all duration-300 pointer-events-none`}
           style={{
             position: "absolute",
             width: `${indicatorStyle.width}px`,
@@ -132,7 +133,9 @@ const ItemList = ({ items, isTransitioning }: ItemListProps) => {
               aria-current={isActive ? "page" : undefined}
               aria-disabled={isTransitioning || undefined}
               className={`relative z-10 px-4 transition-all duration-150 max-md:w-full lg:text-base md:text-xs ${
-                isHighlighted ? "dark:text-black text-white" : ""
+                isHighlighted
+                  ? `${dark ? "text-black" : "text-white"}`
+                  : `${dark ? "text-white" : "text-black"}`
               } ${isTransitioning ? "pointer-events-none" : ""}`}
               onMouseEnter={() => setHoverIndex(key)}
               onClick={() => setIsOpen(false)}
