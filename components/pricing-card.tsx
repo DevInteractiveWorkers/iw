@@ -41,7 +41,7 @@ export default function PricingCard({
       style={style}
       disableHover
     >
-      <h1 className="md:text-[clamp(3rem,4vw,7rem)] leading-[0.75] text-3xl font-medium pb-2 border-b border-white">
+      <h1 className="md:text-[clamp(3rem,4vw,4rem)] leading-[0.75] text-3xl font-medium pb-2 border-b border-white">
         {planName}
       </h1>
       <ul className="flex flex-col gap-2">
