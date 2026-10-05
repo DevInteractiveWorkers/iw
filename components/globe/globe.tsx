@@ -593,7 +593,7 @@ export default function IWGlobe({
     >
       <div
         aria-hidden="true"
-        className={`opacity-100 h-full w-full pointer-events-none transition-[filter] duration-700 ease-in-out motion-reduce:transition-none ${dark ? "invert-0" : "invert opacity-25"}`}
+        className={`opacity-100 h-full w-full pointer-events-none transition-[filter] duration-700 ease-in-out motion-reduce:transition-none ${dark ? "invert-0" : "invert opacity-50"}`}
       >
         {/* Fade in once every batch is built. On failure the Globe unmounts
           (freeing WebGL) and the reserved space simply stays empty. */}

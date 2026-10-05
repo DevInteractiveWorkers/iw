@@ -100,7 +100,7 @@ const GetHired = ({
 
   return (
     <FadeInContent>
-      <section className="grid md:grid-cols-[auto_auto] border-t border-black dark:border-white md:pt-20 py-10">
+      <section className="grid md:grid-cols-[auto_auto] border-t border-black md:pt-20 py-10">
         <form
           className="flex flex-col md:px-10 px-4 mb-10"
           onSubmit={handleSubmit}
@@ -174,7 +174,7 @@ const GetHired = ({
               <div className="w-full">
                 <label
                   htmlFor="file"
-                  className="py-2 my-2 border-b dark:border-white border-black  relative flex items-center justify-between cursor-pointer"
+                  className="py-2 my-2 border-b border-black  relative flex items-center justify-between cursor-pointer"
                 >
                   <span className="truncate">
                     {file ? file.name : "Attach your resume here:"}
@@ -185,7 +185,7 @@ const GetHired = ({
                     height="23"
                     viewBox="0 0 25 23"
                     fill="none"
-                    className="dark:stroke-white stroke-black"
+                    className="stroke-black"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path

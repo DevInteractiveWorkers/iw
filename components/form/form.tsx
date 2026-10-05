@@ -237,7 +237,7 @@ const MainForm = ({
                   </TransitionLink>
                 </Label>
               </div>
-              <FormButton className="mt-3 flex justify-center w-full uppercase [--primary-color:#dd272d] dark:[--primary-color:#fff]">
+              <FormButton className="mt-3 flex justify-center w-full uppercase [--primary-color:#dd272d]">
                 {sending ? (
                   <Loader className="min-w-[2.25rem] min-h-[2.25rem] px-10" />
                 ) : !sent ? (

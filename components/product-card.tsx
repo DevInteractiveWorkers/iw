@@ -37,15 +37,14 @@ export default function ProductCard({
       onMouseLeave={handleMouseLeave}
       className={`flex flex-col relative transition-all duration-300 ${
         disableHover ? "" : "hover:scale-100 hover:-translate-y-[5%]"
-      } dark:shadow-[inset_0_0_50px_rgb(221_39_45_/_0.2)] shadow-[inset_0_0_50px_rgb(221_39_45_/_0.5)] rounded text-white
+      } shadow-[inset_0_0_50px_rgb(221_39_45_/_0.5)] rounded text-white
       after:rounded-[5px] after:backdrop-blur-md after:absolute after:pointer-events-none after:top-0 after:left-0 after:w-full after:h-full after:-z-10
-      dark:after:bg-gradient-to-b after:bg-gradient-to-t dark:after:from-[rgb(221_39_45_/_0.5)] dark:after:to-[rgb(128_2_2_/_0.5)] 
-      after:from-[rgb(221_39_45_/_1)] after:to-[rgb(133_24_27_/_1)]`}
+      after:bg-gradient-to-t after:from-[rgb(221_39_45_/_1)] after:to-[rgb(133_24_27_/_1)]`}
       style={{ borderRadius: 5, ...style }}
     >
       {/* Pointer-following shine overlay */}
       <div
-        className="pointer-events-none absolute inset-0 z-10 transition-opacity duration-300 dark:text-[rgb(221_39_45_/_0.25)] text-[rgb(221_39_45_/_0.5)]"
+        className="pointer-events-none absolute inset-0 z-10 transition-opacity duration-300 text-[rgb(221_39_45_/_0.5)]"
         style={{
           opacity,
           background: `radial-gradient(200px circle at ${mousePosition.x}px ${mousePosition.y}px, currentColor, transparent 80%)`,

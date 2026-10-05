@@ -21,12 +21,11 @@ function BackgroundForPath({ path }: { path: string }) {
 
   if (path === "/pricing") {
     return (
-      <div className="absolute top-0 left-0 -z-10 w-full h-screen dark:invert-0 invert">
+      <div className="absolute top-0 left-0 -z-10 w-full h-screen invert">
         <div className="absolute top-0 left-0 -z-10 w-full h-screen">
           <LightRays />
         </div>
-        <LightRays raysColor="#dd272d" className="dark:block hidden" />
-        <LightRays raysColor="#22d8d2" className="dark:hidden block" />
+        <LightRays raysColor="#22d8d2" />
       </div>
     );
   }
@@ -63,7 +62,7 @@ export default function IWBg() {
 function BackgroundWrapper({ children }: { children?: React.ReactNode }) {
   return (
     <div
-      className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden bg-transparent dark:invert-0 invert dark:hue-rotate-0 hue-rotate-180"
+      className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden bg-transparent invert hue-rotate-180"
       style={{
         maskImage:
           "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",

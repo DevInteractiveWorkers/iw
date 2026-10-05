@@ -79,18 +79,18 @@ const NavbarComponent = () => {
         }}
       />
       <div
-        className={`border-b dark:border-white border-black flex items-center justify-between max-md:grid grid-cols-2 justify-items-stretch py-4 gap-4 z-10 mx-[clamp(1rem,8vw,50rem)]`}
+        className={`border-b ${navbarDark ? "border-white" : "border-black"} flex items-center justify-between max-md:grid grid-cols-2 justify-items-stretch py-4 gap-4 z-10 mx-[clamp(1rem,8vw,50rem)]`}
       >
         <TransitionLink href="/">
           <Image
-            className="hover:scale-95 transition-transform duration-150 h-[31px] object-contain dark:block hidden"
+            className={`hover:scale-95 transition-transform duration-150 h-[31px] object-contain ${navbarDark ? "black" : "hidden"}`}
             src={"/logo/01_Primary_Logo/Primary_Logo-04.png"}
             alt="Interactiveworkers Logo"
             width={200}
             height={31}
           />
           <Image
-            className="hover:scale-95 transition-transform duration-150 h-[31px] object-contain block dark:hidden"
+            className={`hover:scale-95 transition-transform duration-150 h-[31px] object-contain ${navbarDark ? "hidden" : "block"}`}
             src={"/logo/01_Primary_Logo/Primary_Logo-06.png"}
             alt="Interactiveworkers Logo"
             width={200}
@@ -102,20 +102,21 @@ const NavbarComponent = () => {
           items={navbar}
           hover={true}
           isTransitioning={isTransitioning}
+          dark={navbarDark}
         />
 
         <div className="md:w-1/4 w-full flex gap-2 justify-center col-span-2">
           <ThemeSwitch />
           <TransitionLink
             href={"/affiliate"}
-            className="basis-full dark:bg-white bg-iw-red-1 text-center dark:text-black text-white active:text-iw-red-1 rounded py-1 items-center justify-center content-center hover:scale-95 transition-[transform,_color] duration-150"
+            className="basis-full  bg-iw-red-1 text-center  text-white active:text-iw-red-1 rounded py-1 items-center justify-center content-center hover:scale-95 transition-[transform,_color] duration-150"
           >
             Affiliate Program
           </TransitionLink>
           <Link
             href={"https://calendly.com/interactiveworkersgm/30min"}
             target="_blank"
-            className="basis-full dark:bg-white bg-iw-red-1 text-center dark:text-black text-white active:text-iw-red-1 rounded py-1 items-center justify-center content-center hover:scale-95 transition-[transform,_color] duration-150"
+            className="basis-full  bg-iw-red-1 text-center  text-white active:text-iw-red-1 rounded py-1 items-center justify-center content-center hover:scale-95 transition-[transform,_color] duration-150"
           >
             Book a Call
           </Link>

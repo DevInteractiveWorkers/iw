@@ -128,11 +128,10 @@ export default function FollowGlobe({ dark = false }: { dark?: boolean }) {
   const isMobile = useIsMobile();
 
   return (
-    <div className="absolute top-0 left-0 md:w-full h-full w-dvw">
+    <div className="fixed top-0 left-0 md:w-full h-full w-dvw overflow-x-hidden">
       <div
         ref={globeRef}
-        className="sticky top-0 left-0 bottom-0"
-        // Initial (SSR) position; the scroll handler updates it imperatively.
+        className="top-0 left-0 bottom-0"
         style={{
           transform: isMobile ? "none" : `translateX(${MAX_OFFSET_PERCENT}%)`,
         }}
