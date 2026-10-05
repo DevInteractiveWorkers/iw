@@ -109,14 +109,14 @@ const NavbarComponent = () => {
           <ThemeSwitch />
           <TransitionLink
             href={"/affiliate"}
-            className="basis-full  bg-iw-red-1 text-center  text-white active:text-iw-red-1 rounded py-1 items-center justify-center content-center hover:scale-95 transition-[transform,_color] duration-150"
+            className={`basis-full ${navbarDark ? "bg-white text-black" : "bg-iw-red-1 text-white"} text-center active:text-iw-red-1 rounded py-1 items-center justify-center content-center hover:scale-95 transition-[transform,_color] duration-150`}
           >
             Affiliate Program
           </TransitionLink>
           <Link
             href={"https://calendly.com/interactiveworkersgm/30min"}
             target="_blank"
-            className="basis-full  bg-iw-red-1 text-center  text-white active:text-iw-red-1 rounded py-1 items-center justify-center content-center hover:scale-95 transition-[transform,_color] duration-150"
+            className={`basis-full ${navbarDark ? "bg-white text-black" : "bg-iw-red-1 text-white"} text-center active:text-iw-red-1 rounded py-1 items-center justify-center content-center hover:scale-95 transition-[transform,_color] duration-150`}
           >
             Book a Call
           </Link>

@@ -6,7 +6,7 @@ import GradualBlur from "./GradualBlur";
 
 const Blured = () => {
   return (
-    <div className="fixed top-0 left-0 w-full h-full bg-[#008080]/0 z-10 pointer-events-none select-none">
+    <div className="fixed top-0 left-0 w-full h-full z-10 pointer-events-none select-none">
       <div className="absolute bottom-0 left-0 w-full h-[50vh]">
         <div
           style={{ height: "100%", overflowY: "auto", padding: "6rem 2rem" }}

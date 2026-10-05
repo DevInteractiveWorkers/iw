@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useEffect, useMemo, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import {
@@ -12,7 +12,15 @@ import {
 import { loadSlim } from "@tsparticles/slim"; // if you are going to use `loadSlim`, install the "@tsparticles/slim" package too.
 // import { loadBasic } from "@tsparticles/basic"; // if you are going to use `loadBasic`, install the "@tsparticles/basic" package too.
 
-export const ParticlesComponent = ({id, color="#ffffff", className=""}:{id:string, color?:string, className?:string}) => {
+export const ParticlesComponent = ({
+  id,
+  color = "#ffffff",
+  className = "",
+}: {
+  id: string;
+  color?: string;
+  className?: string;
+}) => {
   const [init, setInit] = useState(false);
 
   // this should be run only once per application lifetime
@@ -30,9 +38,7 @@ export const ParticlesComponent = ({id, color="#ffffff", className=""}:{id:strin
     });
   }, []);
 
-  const particlesLoaded = async (container?: Container): Promise<void> => {
-    
-  };
+  const particlesLoaded = async (container?: Container): Promise<void> => {};
 
   const options: ISourceOptions = useMemo(
     () => ({
@@ -63,10 +69,9 @@ export const ParticlesComponent = ({id, color="#ffffff", className=""}:{id:strin
           },
         },
       },
-      fullScreen:{
-        enable:false
-      }
-      ,
+      fullScreen: {
+        enable: false,
+      },
       particles: {
         color: {
           value: color,
@@ -112,7 +117,7 @@ export const ParticlesComponent = ({id, color="#ffffff", className=""}:{id:strin
   if (init) {
     return (
       <Particles
-        className={`w-full h-full absolute top-0 ${className}`}
+        className={className ?? "w-full h-full absolute top-0"}
         id={id}
         particlesLoaded={particlesLoaded}
         options={options}

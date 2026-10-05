@@ -35,21 +35,21 @@ export default function ProductCard({
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`flex flex-col relative transition-all duration-300 ${
+      className={`flex flex-col relative transition-all duration-300 z-10 ${
         disableHover ? "" : "hover:scale-100 hover:-translate-y-[5%]"
       } shadow-[inset_0_0_50px_rgb(221_39_45_/_0.5)] rounded text-white
       after:rounded-[5px] after:backdrop-blur-md after:absolute after:pointer-events-none after:top-0 after:left-0 after:w-full after:h-full after:-z-10
-      after:bg-gradient-to-t after:from-[rgb(221_39_45_/_1)] after:to-[rgb(133_24_27_/_1)]`}
+      after:bg-iw-red-2`}
       style={{ borderRadius: 5, ...style }}
     >
       {/* Pointer-following shine overlay */}
-      <div
-        className="pointer-events-none absolute inset-0 z-10 transition-opacity duration-300 text-[rgb(221_39_45_/_0.5)]"
+      {/* <div
+        className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-300 text-[rgb(221_39_45_/_0.5)]"
         style={{
           opacity,
           background: `radial-gradient(200px circle at ${mousePosition.x}px ${mousePosition.y}px, currentColor, transparent 80%)`,
         }}
-      />
+      /> */}
 
       {decorative ? (
         <>

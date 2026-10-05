@@ -19,16 +19,16 @@ const fadeVariants: Variants = {
 function BackgroundForPath({ path }: { path: string }) {
   if (path === "/policy") return null;
 
-  if (path === "/pricing") {
-    return (
-      <div className="absolute top-0 left-0 -z-10 w-full h-screen invert">
-        <div className="absolute top-0 left-0 -z-10 w-full h-screen">
-          <LightRays />
-        </div>
-        <LightRays raysColor="#22d8d2" />
-      </div>
-    );
-  }
+  // if (path === "/pricing") {
+  //   return (
+  //     <div className="absolute top-0 left-0 -z-10 w-full h-screen invert">
+  //       <div className="absolute top-0 left-0 -z-10 w-full h-screen">
+  //         <LightRays />
+  //       </div>
+  //       <LightRays raysColor="#22d8d2" />
+  //     </div>
+  //   );
+  // }
 
   return <div className="absolute bottom-0 w-dvw h-screen bg-iw-red-2 -z-10" />;
 }
