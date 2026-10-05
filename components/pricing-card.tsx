@@ -37,11 +37,11 @@ export default function PricingCard({
 }: PricingCardProps) {
   return (
     <ProductCard
-      className={`p-4 flex flex-col gap-6 justify-between ${className}`}
+      className={`p-4 flex flex-col gap-6 justify-between h-full ${className}`}
       style={style}
       disableHover
     >
-      <h1 className="md:text-[clamp(6rem,4vw,8rem)] leading-[0.75] text-3xl font-medium pb-2 border-b border-white">
+      <h1 className="md:text-[clamp(3rem,4vw,7rem)] leading-[0.75] text-3xl font-medium pb-2 border-b border-white">
         {planName}
       </h1>
       <ul className="flex flex-col gap-2">
@@ -58,7 +58,7 @@ export default function PricingCard({
         >
           {cta.label}
         </button>
-        <span>Details</span>
+        <span>Details ➔</span>
       </div>
     </ProductCard>
   );

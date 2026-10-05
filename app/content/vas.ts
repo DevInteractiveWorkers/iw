@@ -32,42 +32,42 @@ export const vasTabs: Tabs[] = [
 export const Vas: VA[] = [
   {
     position: "Graphic Designer",
-    img: "4.png",
+    img: "OSWALDO/oswaldo_03.png",
     team: 0,
   },
   {
     position: "Web Developer",
-    img: "5.png",
+    img: "GABRIEL/gabriel_01.png",
     team: 0,
   },
   {
     position: "Copywriter",
-    img: "6.png",
+    img: "EDUARDO/eduardo_01.png",
     team: 0,
   },
   {
     position: "Video Editor",
-    img: "7.png",
+    img: "FRANCESCO/francesco_03.png",
     team: 0,
   },
   {
     position: "Social Media Manager",
-    img: "8.png",
+    img: "JOSE DANIEL/jose daniel_01.png",
     team: 0,
   },
   {
     position: "Transcriptionist VA",
-    img: "9.png",
+    img: "SOFIA/sofia_03.png",
     team: 1,
   },
   {
     position: "Medical Scriber VA",
-    img: "10.png",
+    img: "CLAUDIA/claudia_01.png",
     team: 1,
   },
   {
     position: "Outbound Cold Call & Lead Qualification Desk",
-    img: "11.png",
+    img: "ANDERE/andere_03.png",
     team: 1,
   },
   {

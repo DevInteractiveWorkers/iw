@@ -9,12 +9,16 @@ export default function ProductCard({
   style,
   disableHover = false,
   decorative,
+  glass = false,
+  backdropBlur = true,
 }: {
   children?: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
   disableHover?: boolean;
   decorative?: boolean;
+  glass?: boolean;
+  backdropBlur?: boolean;
 }) {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [opacity, setOpacity] = useState(0);
@@ -38,8 +42,8 @@ export default function ProductCard({
       className={`flex flex-col relative transition-all duration-300 z-10 ${
         disableHover ? "" : "hover:scale-100 hover:-translate-y-[5%]"
       } shadow-[inset_0_0_50px_rgb(221_39_45_/_0.5)] rounded text-white
-      after:rounded-[5px] after:backdrop-blur-md after:absolute after:pointer-events-none after:top-0 after:left-0 after:w-full after:h-full after:-z-10
-      after:bg-iw-red-2`}
+      after:rounded-[5px] ${backdropBlur ? "after:backdrop-blur-lg" : ""} after:absolute after:pointer-events-none after:top-0 after:left-0 after:w-full after:h-full after:-z-10
+      ${glass ? "after:from-[rgb(221_39_45_/_0.5)] after:to-[rgb(128_2_2_/_0.5)]" : "after:bg-iw-red-2"} after:transition-all after:duration-300`}
       style={{ borderRadius: 5, ...style }}
     >
       {/* Pointer-following shine overlay */}

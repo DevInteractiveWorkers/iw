@@ -107,11 +107,21 @@ const AboutUs = () => {
           <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-6 justify-between my-4 md:mb-32">
             {Vas.slice(0, 8).map((va, i) => (
               <FadeInContent key={i} delay={i * 0.1}>
-                <VACard imageSrc={`/vas/teams/${va.img}`}>{va.position}</VACard>
+                <VACard imageSrc={`/team-2026/${va.img}`}>{va.position}</VACard>
               </FadeInContent>
             ))}
           </div>
         </article>
+        <SplitText
+          className="text-[clamp(2rem,4vw,3.75rem)] leading-[1] font-medium lg:w-1/2 md:w-3/2"
+          textAlign={"center"}
+          text={
+            <>
+              What They Say <br />
+              About Us
+            </>
+          }
+        />
         <article
           className="
         relative z-10
