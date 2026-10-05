@@ -1,10 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
-import ProductCard from "@/components/product-card";
 import Switch from "@/components/form/switch";
-import Ticket from "@/components/pricing/ticket";
 import PageHero from "@/components/page-hero";
 import { useIsMobile } from "@/lib/useMobile";
 import { useScrollIntoView } from "@/lib/use-scroll-into-view";
@@ -12,7 +9,7 @@ import PricingCard, { type PricingCardProps } from "@/components/pricing-card";
 import FeatureCard from "@/components/feature-cards";
 import SplitText from "@/components/text-animation/SplitText";
 
-export const projectPlans: PricingCardProps[] = [
+const projectPlans: PricingCardProps[] = [
   // Project-Based Tiers
   {
     planName: "Small Scope Sprint",
@@ -91,19 +88,23 @@ export const projectPlans: PricingCardProps[] = [
   },
 ];
 
-export const longTermPlans: PricingCardProps[] = [
+const longTermPlans: PricingCardProps[] = [
   // Long-Term Engagement Tiers
   {
-    planName: "Dedicated Specialist Retainer",
+    planName: "Part-Time Dedicated",
     planDescription:
       "Continuous operational continuity backed by a bilingual representative and zero HR liability.",
     benefits: [
+      {
+        text: "Bilingual (English & Spanish)",
+        isIncluded: true,
+      },
       {
         text: "1 Dedicated Representative (Customer Success, SDR, or EA)",
         isIncluded: true,
       },
       {
-        text: "Monthly, Quarterly, or Annual retainer options",
+        text: "Monthly retainer options",
         isIncluded: true,
       },
       {
@@ -112,6 +113,10 @@ export const longTermPlans: PricingCardProps[] = [
       },
       {
         text: "Zero local HR, payroll, or legal compliance liabilities",
+        isIncluded: true,
+      },
+      {
+        text: "Tracker software",
         isIncluded: true,
       },
     ],
@@ -123,16 +128,20 @@ export const longTermPlans: PricingCardProps[] = [
     isFeatured: false,
   },
   {
-    planName: "Managed Operational Unit",
+    planName: "Full-Time Dedicated",
     planDescription:
       "Build operational capacity with a cross-trained team, built-in redundancy, and a dedicated supervisor.",
     benefits: [
+      {
+        text: "+ Everything in Part-Time",
+        isIncluded: true,
+      },
       {
         text: "3 to 5 Dedicated Representatives + Operations Lead",
         isIncluded: true,
       },
       {
-        text: "Flexible monthly/quarterly terms with customizable capacity",
+        text: "Flexible monthly terms with customizable capacity",
         isIncluded: true,
       },
       {
@@ -147,35 +156,6 @@ export const longTermPlans: PricingCardProps[] = [
       variant: "primary",
     },
     isFeatured: true,
-  },
-  {
-    planName: "Enterprise Scale Hub",
-    planDescription:
-      "Multi-desk infrastructure built for round-the-clock operations and complete enterprise governance.",
-    benefits: [
-      {
-        text: "24/7/365 multi-shift operational desk coverage",
-        isIncluded: true,
-      },
-      {
-        text: "Annual agreements with custom billing & custom SLAs",
-        isIncluded: true,
-      },
-      {
-        text: "Dedicated IT, Security, and HR management oversight",
-        isIncluded: true,
-      },
-      {
-        text: "Fully tailored resource allocation & continuous optimization",
-        isIncluded: true,
-      },
-    ],
-    cta: {
-      label: "Speak with an Executive",
-      href: "https://calendly.com/interactiveworkersgm/30min",
-      variant: "primary",
-    },
-    isFeatured: false,
   },
 ];
 
@@ -259,7 +239,15 @@ export default function PricingPage() {
               <label>Per Project</label>
             </div>
           </div>
-          <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6 md:px-[clamp(1rem,8vw,50rem)]">
+          <div
+            className={`grid ${
+              isMobile
+                ? "grid-cols-1"
+                : isTerm === "long-term"
+                  ? "md:grid-cols-2"
+                  : "md:grid-cols-3"
+            } gap-6 md:px-[clamp(1rem,8vw,50rem)] `}
+          >
             {isTerm === "project" &&
               projectPlans.map((project) => <PricingCard {...project} />)}
             {isTerm === "long-term" &&
