@@ -20,12 +20,12 @@ const ADVANTAGES: KeyAdvantage[] = [
     description:
       "Live tracking and reporting that keep your team and your clients informed at every step.",
   },
-  {
-    src: "/dispatch/dispatch-2.png",
-    title: "Scalable Teams",
-    description:
-      "Grow or adjust your dispatch operation without the overhead of hiring and training in-house.",
-  },
+  // {
+  //   src: "/dispatch/dispatch-2.png",
+  //   title: "Scalable Teams",
+  //   description:
+  //     "Grow or adjust your dispatch operation without the overhead of hiring and training in-house.",
+  // },
 ];
 
 /** Minimum horizontal drag distance (px) that counts as a swipe. */
@@ -33,7 +33,7 @@ const SWIPE_THRESHOLD = 50;
 
 export default function KeyAdvantages() {
   return (
-    <section className="px-[clamp(1rem,8vw,50rem)] flex flex-col items-center">
+    <section className="px-[clamp(1rem,8vw,50rem)] flex flex-col items-center md:h-dvh py-10">
       <SplitText
         tag="h4"
         className="
@@ -99,7 +99,7 @@ function KeyCarousel({ keys }: { keys: KeyAdvantage[] }) {
         >
           {/* Track */}
           <div
-            className="flex transition-transform duration-500 ease-out"
+            className="flex transition-transform duration-500 ease-out md:h-[50vh]"
             style={{ transform: `translateX(-${index * 100}%)` }}
           >
             {keys.map((k, i) => (
@@ -181,9 +181,9 @@ function CarouselArrow({
       aria-label={side === "left" ? "Previous slide" : "Next slide"}
       className={`absolute top-1/2 -translate-y-1/2 ${
         side === "left" ? "left-3" : "right-3"
-      } grid place-items-center size-10 rounded-full bg-white/80 hover:bg-white shadow cursor-pointer transition-colors`}
+      } grid place-items-center size-10 rounded-full backdrop-blur backdrop-brightness-[1.1] hover:bg-iw-red-2 shadow cursor-pointer transition-colors`}
     >
-      <Icon className="size-5" />
+      <Icon className="size-5" color="#fff" />
     </button>
   );
 }
