@@ -69,7 +69,7 @@ export default function WhyUs() {
           />
         </div>
       </div>
-      <div className="grid grid-cols-4 gap-6">
+      <div className="grid md:grid-cols-4 gap-6">
         <FadeInContent>
           <FeatureCard
             title="Pre-Vetted Top Talent"

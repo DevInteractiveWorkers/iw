@@ -31,11 +31,11 @@ function ContactForms() {
   const { ref } = useScrollIntoView<HTMLElement>();
   return (
     <>
-      <section>
+      <section className="z-50">
         <article>
           <MainForm heading={false} socials={false} />
         </article>
-        <article ref={ref}>
+        <article ref={ref} className="min-h-[60vh]">
           <SplitText
             className="md:text-5xl text-xl py-4"
             textAlign="start"

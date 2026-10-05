@@ -17,7 +17,7 @@ const fadeVariants: Variants = {
 };
 
 function BackgroundForPath({ path }: { path: string }) {
-  if (path === "/policy") return null;
+  if (path === "/policy" || path === "/contact") return null;
 
   // if (path === "/pricing") {
   //   return (

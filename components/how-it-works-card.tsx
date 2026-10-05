@@ -15,8 +15,8 @@ export default function HowItWorksStep({
 }: HowItWorksStepProps) {
   return (
     <div
-      className={`h-full aspect-[3/4] flex flex-col items-start justify-end gap-6 z-10 ${
-        showBorder ? "border-r-2 border-iw-red-2" : ""
+      className={`h-full py-10 flex flex-col items-start justify-start gap-6 z-10 ${
+        showBorder ? "md:border-r-2 max-md:border-b-2 border-iw-red-2" : ""
       }`}
     >
       <div className="grid h-1/2">

@@ -98,7 +98,7 @@ const steps = [
 export default function HowItWorks() {
   return (
     <section className="px-[clamp(1rem,8vw,50rem)]">
-      <article className="flex flex-col rounded-t-md bg-white p-4">
+      <article className="flex flex-col rounded-t-md bg-white p-4 py-10 min-h-[50vh] justify-between">
         <div className="flex w-full justify-center text-iw-red-2">
           <SplitText
             delay={100}
@@ -108,7 +108,7 @@ export default function HowItWorks() {
           />
         </div>
 
-        <div className="grid grid-cols-4 gap-6 px-[clamp(1rem,3vw,50rem)]">
+        <div className="grid md:grid-cols-4 gap-6 px-[clamp(1rem,3vw,50rem)]">
           {steps.map((step, index) => (
             <HowItWorksStep
               key={step.title}

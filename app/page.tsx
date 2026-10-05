@@ -20,7 +20,7 @@ export default function Home() {
         <StatsSection />
         <HowItWorks />
       </div>
-      <article className="z-10">
+      <article className="z-10 px-[clamp(1rem,8vw,50rem)]">
         <FadeInContent>
           <Reviews />
         </FadeInContent>
