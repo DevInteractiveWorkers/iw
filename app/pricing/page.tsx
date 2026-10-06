@@ -198,21 +198,45 @@ export default function PricingPage() {
             }
           />
           <div className="grid md:grid-cols-3 grid-cols-2 gap-6 md:px-[clamp(1rem,8vw,50rem)]">
-            <FeatureCard title={"Crafted Websites"} aspect="aspect-[2/1]" />
-            <FeatureCard title={"Website Redesign"} aspect="aspect-[2/1]" />
+            <FeatureCard
+              title={"Crafted Websites"}
+              aspect="aspect-[2/1]"
+              iconDark
+              icon="globe"
+            />
+            <FeatureCard
+              title={"Website Redesign"}
+              aspect="aspect-[2/1]"
+              iconDark
+              icon="camera-lens"
+            />
             <FeatureCard
               title={"Maintenance & Ongoing Support"}
               aspect="aspect-[2/1]"
+              iconDark
+              icon="package-01"
             />
-            <FeatureCard title={"Paralegal Assistant"} aspect="aspect-[2/1]" />
-            <FeatureCard title={"Appointment Setter"} aspect="aspect-[2/1]" />
+            <FeatureCard
+              title={"Paralegal Assistant"}
+              aspect="aspect-[2/1]"
+              iconDark
+              icon="pencil-02"
+            />
+            <FeatureCard
+              title={"Appointment Setter"}
+              aspect="aspect-[2/1]"
+              iconDark
+              icon="book-01"
+            />
             <FeatureCard
               title={"Social Media Management"}
               aspect="aspect-[2/1]"
+              iconDark
+              icon="message-chat-011"
             />
           </div>
         </article>
-        <article ref={ref} className="flex flex-col pb-20 z-10">
+        <article ref={ref} className="flex flex-col pb-20 z-10 overflow-hidden">
           <div className="w-full flex justify-center items-center">
             <SplitText
               className="text-[clamp(2rem,4vw,3.75rem)] leading-[1] font-medium lg:w-1/2 md:w-3/2 py-10"
@@ -225,7 +249,7 @@ export default function PricingPage() {
               }
             />
           </div>
-          <div className="flex justify-center py-6">
+          <div className="flex justify-center py-6 ">
             <div className="flex gap-4 sm:gap-6 justify-center items-center">
               <label>Long Term</label>
               <Switch
@@ -239,19 +263,21 @@ export default function PricingPage() {
               <label>Per Project</label>
             </div>
           </div>
-          <div
-            className={`grid ${
-              isMobile
-                ? "grid-cols-1"
-                : isTerm === "long-term"
-                  ? "md:grid-cols-2"
-                  : "md:grid-cols-3"
-            } gap-6 md:px-[clamp(1rem,8vw,50rem)] `}
-          >
-            {isTerm === "project" &&
-              projectPlans.map((project) => <PricingCard {...project} />)}
-            {isTerm === "long-term" &&
-              longTermPlans.map((project) => <PricingCard {...project} />)}
+          <div className="relative md:px-[clamp(1rem,8vw,50rem)] flex items-center">
+            <div
+              className={`grid md:grid-cols-3 gap-6 ${isTerm === "long-term" ? "-translate-x-full opacity-0" : "translate-x-0 opacity-100"} transition-all duration-700`}
+            >
+              {projectPlans.map((project, i) => (
+                <PricingCard key={i} {...project} />
+              ))}
+            </div>
+            <div
+              className={`grid md:grid-cols-2 gap-6 absolute top-0 left-1/2  ${isTerm === "project" ? "translate-x-full opacity-0" : "-translate-x-1/2 opacity-100"} transition-all duration-700`}
+            >
+              {longTermPlans.map((project, i) => (
+                <PricingCard key={i} {...project} />
+              ))}
+            </div>
           </div>
         </article>
       </section>

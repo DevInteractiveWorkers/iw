@@ -1,6 +1,8 @@
+import Link from "next/link";
 import ProductCard from "./product-card";
 
 import { ReactNode } from "react";
+import SplitText from "./text-animation/SplitText";
 
 export interface PricingBenefit {
   id?: string;
@@ -11,9 +13,9 @@ export interface PricingBenefit {
 
 export interface ContactSalesCTA {
   label: string;
-  onClick?: () => void;
-  href?: string;
+  href: string;
   variant?: "primary" | "secondary" | "outline";
+  detailHref?: string;
 }
 
 export interface PricingCardProps {
@@ -42,23 +44,32 @@ export default function PricingCard({
       disableHover
     >
       <h1 className="md:text-[clamp(2rem,4vw,3.5rem)] text-center leading-[1] text-3xl font-medium pb-2 border-b border-white">
-        {planName}
+        <SplitText text={planName} />
       </h1>
-      <ul className="flex flex-col gap-2">
+      <ul className="flex flex-col gap-2 h-full">
         {benefits.map((benefit, i) => (
-          <li key={i} className="border-b pb-2 border-white">
-            {benefit.text}
+          <li key={i} className={`border-b pb-2 border-white`}>
+            <SplitText
+              text={benefit.text}
+              textAlign="start"
+              delay={i * 0.1}
+              className={
+                benefit.isIncluded ? "" : "line-through italic opacity-50"
+              }
+            />
           </li>
         ))}
       </ul>
       <div className="flex md:flex-row flex-col items-center justify-between gap-2">
-        <button
-          onClick={cta.onClick}
-          className="px-6 py-4 text-xl rounded bg-black"
+        <Link
+          href={cta.href}
+          className="px-6 py-4 text-xl rounded bg-black hover:scale-95 transition-all duration-300 active:bg-white active:text-black"
         >
-          {cta.label}
-        </button>
-        {/* <span>Details ➔</span> */}
+          <SplitText text={cta.label} />
+        </Link>
+        {cta.detailHref && (
+          <SplitText text={<Link href={cta.detailHref}>Details ➔</Link>} />
+        )}
       </div>
     </ProductCard>
   );

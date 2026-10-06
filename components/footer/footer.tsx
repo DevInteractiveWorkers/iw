@@ -34,7 +34,7 @@ const Footer = (props: HTMLAttributes<HTMLElement>) => {
       />
       <PageDivision className="relative" />
       <FooterForm />
-      <div className="flex flex-col w-full md:justify-between mt-4 z-10">
+      <div className="flex flex-col w-full md:justify-between mt-4">
         <div className="grid md:grid-cols-2 gap-6 w-full items-end">
           <svg
             className="w-full h-auto text-iw-red-2"

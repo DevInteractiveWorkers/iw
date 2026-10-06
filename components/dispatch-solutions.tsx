@@ -3,14 +3,14 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { X } from "lucide-react";
-import { Icon, IconType } from "./feature-cards";
 import PixelBlast from "./why-us/pixel-blast";
 import { useIsMobile } from "@/lib/useMobile";
+import Icon from "./icon";
 
 export interface DispatchSolutionsProps {
   title: string;
   content: string;
-  icon: IconType;
+  icon: string;
 }
 
 function CardContent({
@@ -18,7 +18,7 @@ function CardContent({
   content,
   icon,
 }: Pick<DispatchSolutionsProps, "title" | "content"> & {
-  icon?: IconType | false;
+  icon?: string | false;
 }) {
   return (
     <>

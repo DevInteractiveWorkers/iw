@@ -81,21 +81,21 @@ export default function WhyUs() {
           <FeatureCard
             title="Cost-Effective Scaling"
             content="Cut overhead costs by up to 70% compared to traditional local hiring without compromising on quality."
-            icon="scaling"
+            icon="line-chart-up-02"
           />
         </FadeInContent>
         <FadeInContent delay={0.2}>
           <FeatureCard
             title="Seamless Integration"
             content="Our remote staff adapt quickly to your company culture, time zones, and existing tech stack (Slack, Google Workspace, CRM tools, etc.)."
-            icon="integration"
+            icon="refresh-01"
           />
         </FadeInContent>
         <FadeInContent delay={0.3}>
           <FeatureCard
             title="Dedicated Management Support"
             content="Our remote staff adapt quickly to your company culture, time zones, and existing tech stack (Slack, Google Workspace, CRM tools, etc.)."
-            icon="shield"
+            icon="shield-check"
           />
         </FadeInContent>
       </div>

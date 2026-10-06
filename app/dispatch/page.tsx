@@ -12,19 +12,18 @@ import type { HighlightedLocation } from "@/components/globe/globe";
 import DispatchSolutionsCards, {
   type DispatchSolutionsProps,
 } from "@/components/dispatch-solutions";
-import { IconType } from "@/components/feature-cards";
 import IndustriesWeServe from "@/components/industries-we-serve";
 import KeyAdvantages from "@/components/key-advantages";
 
 interface DispatchLocation extends HighlightedLocation {
   services: string;
-  icon: IconType;
+  icon: string;
 }
 
 const DISPATCH_LOCATIONS: DispatchLocation[] = [
   {
     name: "Real-Time Fleet & Field Coordination",
-    icon: "transport",
+    icon: "truck",
     code: "MIA",
     latitude: 25.7959,
     longitude: -80.287,
@@ -33,7 +32,7 @@ const DISPATCH_LOCATIONS: DispatchLocation[] = [
   },
   {
     name: "Smart Route & Schedule Optimization",
-    icon: "map",
+    icon: "map-03",
     code: "IAH",
     latitude: 29.9902,
     longitude: -95.3368,
@@ -42,7 +41,7 @@ const DISPATCH_LOCATIONS: DispatchLocation[] = [
   },
   {
     name: "Client & Field Team Communication",
-    icon: "chat",
+    icon: "message-typing",
     code: "PDX",
     latitude: 45.5898,
     longitude: -122.5951,
@@ -51,7 +50,7 @@ const DISPATCH_LOCATIONS: DispatchLocation[] = [
   },
   {
     name: "Incident & Exception Management",
-    icon: "warning",
+    icon: "alert-triangle",
     code: "ATL",
     latitude: 33.6407,
     longitude: -84.4277,
@@ -60,7 +59,7 @@ const DISPATCH_LOCATIONS: DispatchLocation[] = [
   },
   {
     name: "Software & Systems Data Management",
-    icon: "monitor",
+    icon: "computer",
     code: "YYZ",
     latitude: 43.6777,
     longitude: -79.6248,
