@@ -9,6 +9,7 @@ import Image from "next/image";
 import { TransitionLink } from "../link";
 import { usePageTransition } from "../PagetransitionContext";
 import ThemeSwitch from "./theme-switch";
+import { useIsMobile } from "@/lib/useMobile";
 
 const NavbarComponent = () => {
   const { isTransitioning } = usePageTransition();
@@ -16,6 +17,8 @@ const NavbarComponent = () => {
   const pathname = usePathname();
   const navRef = useRef<HTMLElement>(null);
   const [navbarDark, setNavbarDark] = useState(false);
+
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     let frame = 0;
@@ -71,12 +74,16 @@ const NavbarComponent = () => {
     >
       <div
         className={`absolute top-0 left-0 w-full h-full backdrop-blur-md -z-10 ${navbarDark ? "dark text-white" : "bg-white/75 backdrop-brightness-[2]"}`}
-        style={{
-          maskImage:
-            "linear-gradient(to right, transparent 3%, black 10%, black 90%, transparent 97%)",
-          WebkitMaskImage:
-            "linear-gradient(to right, transparent 3%, black 10%, black 90%, transparent 97%)",
-        }}
+        style={
+          isMobile
+            ? {}
+            : {
+                maskImage:
+                  "linear-gradient(to right, transparent 3%, black 10%, black 90%, transparent 97%)",
+                WebkitMaskImage:
+                  "linear-gradient(to right, transparent 3%, black 10%, black 90%, transparent 97%)",
+              }
+        }
       />
       <div
         className={`border-b ${navbarDark ? "border-white" : "border-black"} flex items-center justify-between max-md:grid grid-cols-2 justify-items-stretch py-4 gap-4 z-10 mx-[clamp(1rem,8vw,50rem)]`}

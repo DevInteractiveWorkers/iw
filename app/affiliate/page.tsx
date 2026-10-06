@@ -11,6 +11,7 @@ import FadeInContent from "@/components/FadeInContent";
 import SplitText from "@/components/text-animation/SplitText";
 import PageDivision from "@/components/page-division";
 import { useScrollIntoView } from "@/lib/use-scroll-into-view";
+import { useIsMobile } from "@/lib/useMobile";
 
 type AffiliateCardProps = {
   src: string;
@@ -32,6 +33,7 @@ const whyUs: AffiliateCardProps[] = [
 
 const AffiliatePage = () => {
   const { ref } = useScrollIntoView<HTMLElement>({ offset: 80 });
+  const isMobile = useIsMobile();
 
   return (
     <>
@@ -67,7 +69,11 @@ const AffiliatePage = () => {
         >
           <div className="w-full grid md:grid-cols-2 lg:grid-cols-3 gap-6 justify-between">
             {whyUs.map((c, i) => (
-              <FadeInContent key={i} delay={i * 0.1} className="h-full">
+              <FadeInContent
+                key={i}
+                delay={isMobile ? 0 : i * 0.1}
+                className="h-full"
+              >
                 <AffiliateCard {...c} />
               </FadeInContent>
             ))}

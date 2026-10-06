@@ -9,11 +9,11 @@ export default function StatsSection() {
   return (
     <section
       id="stats"
-      className="flex flex-col items-center justify-center w-full relative"
+      className="flex flex-col items-center justify-center w-full relative max-md:px-[clamp(1rem,8vw,50rem)]"
     >
       <article
         ref={ref}
-        className="md:w-10/12 w-max px-2 z-10 grid lg:grid-cols-4 grid-cols-2 
+        className="md:w-10/12 w-max px-2 z-10 grid lg:grid-cols-4 grid-cols-2
         max-md:gap-10 max-sm:gap-4 items-start justify-center md:justify-items-center text-white"
       >
         <Stat title="Clients Reach Worldwide" number={40} symbol="+" />

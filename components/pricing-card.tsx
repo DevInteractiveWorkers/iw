@@ -3,6 +3,7 @@ import ProductCard from "./product-card";
 
 import { ReactNode } from "react";
 import SplitText from "./text-animation/SplitText";
+import { useIsMobile } from "@/lib/useMobile";
 
 export interface PricingBenefit {
   id?: string;
@@ -37,6 +38,8 @@ export default function PricingCard({
   className,
   style,
 }: PricingCardProps) {
+  const isMobile = useIsMobile();
+
   return (
     <ProductCard
       className={`p-4 flex flex-col gap-6 justify-between h-full ${className}`}
@@ -52,7 +55,7 @@ export default function PricingCard({
             <SplitText
               text={benefit.text}
               textAlign="start"
-              delay={i * 0.1}
+              delay={isMobile ? 0 : i * 0.1}
               className={
                 benefit.isIncluded ? "" : "line-through italic opacity-50"
               }
