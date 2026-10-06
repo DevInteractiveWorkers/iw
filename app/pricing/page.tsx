@@ -263,7 +263,7 @@ export default function PricingPage() {
               <label>Per Project</label>
             </div>
           </div>
-          <div className="relative md:px-[clamp(1rem,8vw,50rem)] flex items-center">
+          <div className="relative md:px-[clamp(1rem,8vw,50rem)] px-0 flex items-center">
             <div
               className={`grid md:grid-cols-3 gap-6 ${isTerm === "long-term" ? "-translate-x-full opacity-0" : "translate-x-0 opacity-100"} transition-all duration-700`}
             >
@@ -272,7 +272,7 @@ export default function PricingPage() {
               ))}
             </div>
             <div
-              className={`grid md:grid-cols-2 gap-6 absolute top-0 left-1/2  ${isTerm === "project" ? "translate-x-full opacity-0" : "-translate-x-1/2 opacity-100"} transition-all duration-700`}
+              className={`grid md:grid-cols-2 gap-6 absolute top-0 left-1/2  w-full ${isTerm === "project" ? "translate-x-full opacity-0" : "-translate-x-1/2 opacity-100"} transition-all duration-700`}
             >
               {longTermPlans.map((project, i) => (
                 <PricingCard key={i} {...project} />

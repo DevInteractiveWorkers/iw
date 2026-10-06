@@ -1,5 +1,6 @@
 import { useRef, useCallback, useEffect, type ReactNode } from "react";
 import "./border-glow.css";
+import { CSSProperties } from "react";
 
 interface BorderGlowProps {
   children?: ReactNode;
@@ -14,6 +15,7 @@ interface BorderGlowProps {
   animated?: boolean;
   colors?: string[];
   fillOpacity?: number;
+  style?: CSSProperties;
 }
 
 function parseHSL(hslStr: string): { h: number; s: number; l: number } {
@@ -123,6 +125,7 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
   animated = false,
   colors = [],
   fillOpacity = 0.5,
+  style,
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -229,12 +232,6 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
   return (
     <div
       ref={cardRef}
-      // Tracking pointer position on the outer wrapper (not the glow layer)
-      // is what lets the glow follow the cursor while staying non-blocking:
-      // .edge-light has pointer-events: none and .border-glow-inner sits
-      // above it (z-index: 2, pointer-events: auto) in border-glow.css, so
-      // this listener still fires via bubbling from any child, including
-      // interactive content.
       onPointerMove={handlePointerMove}
       className={`border-glow-card ${className}`}
       style={
@@ -250,10 +247,19 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
           "--fill-opacity": fillOpacity,
           ...glowVars,
           ...buildGradientVars(colors),
+          ...style,
         } as React.CSSProperties
       }
     >
-      <span className="edge-light" />
+      <span
+        className="edge-light"
+        style={{
+          borderRadius:
+            typeof borderRadius === "number"
+              ? `${borderRadius}px`
+              : borderRadius,
+        }}
+      />
       <div
         className="border-glow-inner backdrop-blur-md"
         // BorderGlow is often used purely as a decorative shine/overlay with
@@ -262,7 +268,13 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
         // When there IS real content, it needs pointer-events so that
         // content stays interactive. Inline style wins over the CSS
         // default in border-glow.css either way.
-        style={{ pointerEvents: children ? "auto" : "none" }}
+        style={{
+          pointerEvents: children ? "auto" : "none",
+          borderRadius:
+            typeof borderRadius === "number"
+              ? `${borderRadius}px`
+              : borderRadius,
+        }}
       >
         {children}
       </div>
