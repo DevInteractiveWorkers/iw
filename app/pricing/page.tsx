@@ -198,17 +198,41 @@ export default function PricingPage() {
             }
           />
           <div className="grid md:grid-cols-3 grid-cols-2 gap-6 md:px-[clamp(1rem,8vw,50rem)]">
-            <FeatureCard title={"Crafted Websites"} aspect="aspect-[2/1]" />
-            <FeatureCard title={"Website Redesign"} aspect="aspect-[2/1]" />
+            <FeatureCard
+              title={"Crafted Websites"}
+              aspect="aspect-[2/1]"
+              iconDark
+              icon="globe"
+            />
+            <FeatureCard
+              title={"Website Redesign"}
+              aspect="aspect-[2/1]"
+              iconDark
+              icon="camera-lens"
+            />
             <FeatureCard
               title={"Maintenance & Ongoing Support"}
               aspect="aspect-[2/1]"
+              iconDark
+              icon="package-01"
             />
-            <FeatureCard title={"Paralegal Assistant"} aspect="aspect-[2/1]" />
-            <FeatureCard title={"Appointment Setter"} aspect="aspect-[2/1]" />
+            <FeatureCard
+              title={"Paralegal Assistant"}
+              aspect="aspect-[2/1]"
+              iconDark
+              icon="pencil-02"
+            />
+            <FeatureCard
+              title={"Appointment Setter"}
+              aspect="aspect-[2/1]"
+              iconDark
+              icon="book-01"
+            />
             <FeatureCard
               title={"Social Media Management"}
               aspect="aspect-[2/1]"
+              iconDark
+              icon="message-chat-011"
             />
           </div>
         </article>
