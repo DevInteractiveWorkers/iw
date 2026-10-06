@@ -8,6 +8,7 @@ import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 import PageDivision from "../page-division";
 import { TransitionLink } from "../link";
 import CTAButton from "../buttons/cta-button";
+import { useIsMobile } from "@/lib/useMobile";
 
 const productizedPackages = [
   {
@@ -75,6 +76,7 @@ const productizedPackages = [
 
 const DiscoverVAs = () => {
   const { ref } = useScrollIntoView<HTMLElement>({ offset: 80 });
+  const isMobile = useIsMobile();
 
   return (
     <section
@@ -84,7 +86,7 @@ const DiscoverVAs = () => {
     >
       <article className="w-full mx-auto flex flex-col items-center">
         <SplitText
-          delay={100}
+          delay={isMobile ? 0 : 100}
           textAlign="center"
           className="font-medium lg:text-5xl leading-none pt-14 pb-4"
           text={
@@ -111,7 +113,7 @@ const DiscoverVAs = () => {
         <CTAButton className="my-10 [--primary-color:#000] [--secondary-color:#dd272d] [--tertiary-color:#fff]" />
         <div className="w-full gap-6 grid md:grid-cols-4 grid-cols-1 justify-between my-4 md:mb-32">
           {productizedPackages.map((pkg, i) => (
-            <FadeInContent key={i} delay={i * 0.1}>
+            <FadeInContent key={i} delay={isMobile ? 0 : i * 0.1}>
               <VACard imageSrc={pkg.imageSrc} content={pkg.innerContent}>
                 {pkg.content}
               </VACard>

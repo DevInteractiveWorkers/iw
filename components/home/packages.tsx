@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import PackagesCard from "./packages-card";
 import SplitText from "../text-animation/SplitText";
+import { useIsMobile } from "@/lib/useMobile";
 
 export default function Packages() {
   const ref = useRef<HTMLDivElement>(null);
@@ -39,12 +40,14 @@ export default function Packages() {
     ? "translate-x-0 rotate-0 scale-100"
     : "translate-x-full -rotate-[30deg] scale-90";
 
+  const isMobile = useIsMobile();
+
   return (
     <>
       <SplitText
         tag="h2"
         text={"View Productized Packages"}
-        delay={100}
+        delay={isMobile ? 0 : 100}
         className="font-light lg:text-5xl text-base z-40 text-center leading-none pb-4"
       />
       <div

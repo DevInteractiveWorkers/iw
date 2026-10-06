@@ -1,3 +1,6 @@
+"use client";
+
+import { useIsMobile } from "@/lib/useMobile";
 import FadeInContent from "./FadeInContent";
 import FeatureCard from "./feature-cards";
 import { TransitionLink } from "./link";
@@ -6,12 +9,14 @@ import SplitText from "./text-animation/SplitText";
 import WhyUsCard from "./why-us-card";
 
 export default function WhyUs() {
+  const isMobile = useIsMobile();
+
   return (
     <section className="relative mb-10 min-h-screen w-full flex flex-col items-center gap-6 px-[clamp(1rem,8vw,50rem)]">
       <div className="relative w-full">
         <PageDivision className="bottom-0" />
         <SplitText
-          delay={100}
+          delay={isMobile ? 0 : 100}
           textAlign="start"
           className="font-medium lg:text-5xl leading-none pt-14 pb-4"
           text={
@@ -78,7 +83,7 @@ export default function WhyUs() {
             icon="diamond"
           />
         </FadeInContent>
-        <FadeInContent delay={0.1}>
+        <FadeInContent delay={isMobile ? 0 : 0.1}>
           <FeatureCard
             title="Cost-Effective Scaling"
             aspect="md:aspect-[3/4]"
@@ -86,7 +91,7 @@ export default function WhyUs() {
             icon="line-chart-up-02"
           />
         </FadeInContent>
-        <FadeInContent delay={0.2}>
+        <FadeInContent delay={isMobile ? 0 : 0.2}>
           <FeatureCard
             title="Seamless Integration"
             aspect="md:aspect-[3/4]"
@@ -94,7 +99,7 @@ export default function WhyUs() {
             icon="refresh-01"
           />
         </FadeInContent>
-        <FadeInContent delay={0.3}>
+        <FadeInContent delay={isMobile ? 0 : 0.3}>
           <FeatureCard
             title="Dedicated Management Support"
             aspect="md:aspect-[3/4]"

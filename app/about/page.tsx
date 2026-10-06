@@ -2,17 +2,18 @@
 
 import React from "react";
 import PageHero from "@/components/page-hero";
-import Accordion from "@/components/accordion";
 import SplitText from "@/components/text-animation/SplitText";
 import FadeInContent from "@/components/FadeInContent";
 import VideoPlayer from "@/components/video-player";
-import CTAButton from "@/components/buttons/cta-button";
 import { useRouter } from "next/navigation";
 import { Vas } from "../content/vas";
 import VACard from "@/components/vas/cards";
+import { useIsMobile } from "@/lib/useMobile";
 
 const AboutUs = () => {
   const router = useRouter();
+
+  const isMobile = useIsMobile();
 
   return (
     <>
@@ -106,7 +107,7 @@ const AboutUs = () => {
         <article>
           <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-6 justify-between my-4 md:mb-32">
             {Vas.slice(0, 8).map((va, i) => (
-              <FadeInContent key={i} delay={i * 0.1}>
+              <FadeInContent key={i} delay={isMobile ? 0 : i * 0.1}>
                 <VACard imageSrc={`/team-2026/${va.img}`}>{va.position}</VACard>
               </FadeInContent>
             ))}
