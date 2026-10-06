@@ -1,3 +1,5 @@
+"use client";
+
 import { useIsMobile } from "@/lib/useMobile";
 import FadeInContent from "./FadeInContent";
 import FeatureCard from "./feature-cards";
