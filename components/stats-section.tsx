@@ -1,11 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Reviews from "./home/reviews";
-import FadeInContent from "./FadeInContent";
 import { useScrollIntoView } from "@/lib/use-scroll-into-view";
-import VideoPlayer from "./video-player";
-import SplitText from "./text-animation/SplitText";
 
 export default function StatsSection() {
   const { ref } = useScrollIntoView<HTMLElement>({ offset: 80 });
@@ -17,12 +13,12 @@ export default function StatsSection() {
     >
       <article
         ref={ref}
-        className="md:w-10/12 w-11/12 px-2 md:py-20 sm:py-10 z-10 grid lg:grid-cols-4 sm:grid-cols-2 
+        className="md:w-10/12 w-max px-2 z-10 grid lg:grid-cols-4 grid-cols-2 
         max-md:gap-10 max-sm:gap-4 items-start justify-center md:justify-items-center text-white"
       >
-        <Stat title="Clients Reach Worldwide" number={42} symbol="+" />
-        <Stat title="Uptime SLA" number={99.9} symbol="%" decimal />
-        <Stat title="Project Shipped" number={150} symbol="+" />
+        <Stat title="Clients Reach Worldwide" number={40} symbol="+" />
+        <Stat title="VAs placed" number={430} symbol="+" />
+        <Stat title="Projects" number={20} symbol="+" />
         <Stat title="Average Rating" number={5.0} symbol="stars" decimal />
       </article>
     </section>

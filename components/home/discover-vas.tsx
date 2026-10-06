@@ -109,7 +109,7 @@ const DiscoverVAs = () => {
           }
         />
         <CTAButton className="my-10 [--primary-color:#000] [--secondary-color:#dd272d] [--tertiary-color:#fff]" />
-        <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-6 justify-between my-4 md:mb-32">
+        <div className="w-full gap-6 justify-between my-4 md:mb-32">
           {productizedPackages.map((pkg, i) => (
             <FadeInContent key={i} delay={i * 0.1}>
               <VACard imageSrc={pkg.imageSrc} content={pkg.innerContent}>

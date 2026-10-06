@@ -23,7 +23,7 @@ export default function IWVideo() {
       className="
         relative
         flex w-full items-center justify-center
-        px-0 md:px-2 py-10
+        px-0
       "
     >
       <FadeInContent>
@@ -31,7 +31,7 @@ export default function IWVideo() {
           ref={ref}
           className="
             flex w-full items-center justify-center
-            max-md:h-[70vh] max-md:my-10
+            max-md:h-[70vh]
             md:h-auto
             md:w-full
           "
