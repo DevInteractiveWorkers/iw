@@ -1,8 +1,20 @@
 "use client";
+
 import React from "react";
 import PageHero from "@/components/page-hero";
-import IWGlobe from "@/components/globe/globe";
 import SplitText from "@/components/text-animation/SplitText";
+import dynamic from "next/dynamic";
+
+const loadGlobe = () => import("@/components/globe/globe");
+
+const GlobePlaceholder = () => (
+  <div className="h-screen w-full" aria-hidden="true" />
+);
+
+const IWGlobe = dynamic(loadGlobe, {
+  ssr: false,
+  loading: GlobePlaceholder,
+});
 
 const ContactUs = () => {
   return (

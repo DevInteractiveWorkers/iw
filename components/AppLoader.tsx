@@ -10,7 +10,7 @@ export default function AppLoader({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const alreadyVisited = sessionStorage.getItem("loaded");
 
-    if (alreadyVisited) return;
+    // if (alreadyVisited) return;
 
     setShowLoader(true);
 

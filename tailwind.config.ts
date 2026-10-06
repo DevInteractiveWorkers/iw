@@ -19,6 +19,7 @@ const config: Config = {
         "iw-red-1": "var(--iw-primary-red)",
         "iw-red-2": "var(--iw-secondary-red)",
         "iw-red-3": "var(--iw-tertiary-red)",
+        julscodes: "#008080",
       },
       keyframes: {
         marquee: {
