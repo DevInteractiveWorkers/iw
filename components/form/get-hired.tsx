@@ -15,17 +15,7 @@ import Checkbox from "./checkbox";
 import FormButton from "../buttons/form-buttons";
 import PageDivision from "../page-division";
 
-const GetHired = ({
-  heading = (
-    <>
-      Do you <span className="font-light">want to join our</span> team?
-    </>
-  ),
-  subheading = "Let's work together!",
-}: {
-  heading?: string | React.ReactNode | false;
-  subheading?: string | React.ReactNode | false;
-}) => {
+const GetHired = () => {
   const [file, setFile] = useState<File | null>(null);
   const [sending, isSending] = useState(false);
   const [sent, isSent] = useState(false);
@@ -104,12 +94,12 @@ const GetHired = ({
     <FadeInContent>
       <PageDivision className="relative" />
       <form
-        className="grid grid-cols-[auto_auto] gap-6 mb-10"
+        className="grid md:grid-cols-[auto_auto] gap-6 mb-10"
         onSubmit={handleSubmit}
         name="Get Hired Form"
       >
         <FadeInContent>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid md:grid-cols-2 gap-3">
             {/* First / Last Name */}
             <Input
               id="firstname"

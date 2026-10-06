@@ -15,7 +15,7 @@ export default function Home() {
       <IntroBanner />
       <DiscoverVAs />
       <WhyUs />
-      <div className="w-dvw bg-iw-red-2">
+      <div className="w-dvw bg-iw-red-2 flex flex-col md:pt-20 pt-10 md:gap-20 gap-10">
         <IWVideo />
         <StatsSection />
         <HowItWorks />

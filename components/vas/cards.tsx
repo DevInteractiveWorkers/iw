@@ -84,7 +84,7 @@ const VACard = ({ children, imageSrc, style, content }: VACardProps) => {
           <ProductCard
             glass
             backdropBlur={false}
-            className="p-4"
+            className="p-4 flex h-full w-full items-center justify-center"
             style={{
               position: "absolute",
               height: "100%",

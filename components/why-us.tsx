@@ -73,6 +73,7 @@ export default function WhyUs() {
         <FadeInContent>
           <FeatureCard
             title="Pre-Vetted Top Talent"
+            aspect="md:aspect-[3/4]"
             content="Rigorous multi-stage screening processes ensure you get top 1% communication, reliability, and technical skills."
             icon="diamond"
           />
@@ -80,6 +81,7 @@ export default function WhyUs() {
         <FadeInContent delay={0.1}>
           <FeatureCard
             title="Cost-Effective Scaling"
+            aspect="md:aspect-[3/4]"
             content="Cut overhead costs by up to 70% compared to traditional local hiring without compromising on quality."
             icon="line-chart-up-02"
           />
@@ -87,6 +89,7 @@ export default function WhyUs() {
         <FadeInContent delay={0.2}>
           <FeatureCard
             title="Seamless Integration"
+            aspect="md:aspect-[3/4]"
             content="Our remote staff adapt quickly to your company culture, time zones, and existing tech stack (Slack, Google Workspace, CRM tools, etc.)."
             icon="refresh-01"
           />
@@ -94,6 +97,7 @@ export default function WhyUs() {
         <FadeInContent delay={0.3}>
           <FeatureCard
             title="Dedicated Management Support"
+            aspect="md:aspect-[3/4]"
             content="Our remote staff adapt quickly to your company culture, time zones, and existing tech stack (Slack, Google Workspace, CRM tools, etc.)."
             icon="shield-check"
           />

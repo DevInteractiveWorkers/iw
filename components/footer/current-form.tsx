@@ -41,7 +41,7 @@ function ContactForms() {
             textAlign="start"
             text={"Do you want to join our team?"}
           />
-          <GetHired heading={false} subheading={false} />
+          <GetHired />
         </article>
       </section>
     </>
