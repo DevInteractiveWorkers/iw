@@ -1,7 +1,7 @@
 export const dispatchers = [
   {
     content: "Security & CCTV Dispatch Units",
-    imageSrc: "/team-2026/camila_01.png",
+    imageSrc: "/team-2026/CAMILA/camila_01.png",
     innerContent: (
       <p>
         Real-time vigilance and rapid escalation.
@@ -14,7 +14,7 @@ export const dispatchers = [
   },
   {
     content: "24/7 Emergency & Inbound Triage",
-    imageSrc: "/team-2026/chantal_01.png",
+    imageSrc: "/team-2026/JOSE DANIEL/jose daniel_01.png",
     innerContent: (
       <p>
         Never let a critical call go to voicemail.
@@ -27,7 +27,7 @@ export const dispatchers = [
   },
   {
     content: "Field Service & Logistics Coordination",
-    imageSrc: "/team-2026/eduardo_01.png",
+    imageSrc: "/team-2026/EDUARDO/eduardo_01.png",
     innerContent: (
       <p>
         Keep your fleet moving.
