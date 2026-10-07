@@ -22,45 +22,61 @@ export default function IndustriesWeServe() {
           </>
         }
       />
-      <div className="grid md:grid-cols-3 grid-cols-1 gap-6 md:px-[clamp(1rem,8vw,50rem)]">
+      <div className="grid md:grid-cols-3 grid-cols-1 gap-6 lg:px-[clamp(1rem,8vw,50rem)] min-h-screen">
         <FeatureCard
+          icon="alert-triangle"
           title={"Private Security & Guard Operations"}
           aspect={"aspect-[2/1]"}
-          style={{ transform: isMobile ? "none" : "translateY(-50%)" }}
+          style={
+            isMobile ? {} : { maxHeight: 300, transform: "translateY(-50%)" }
+          }
           content={
             "Alarm response dispatch, mobile patrol tracking, guard deployment, and real-time incident reporting."
           }
         />
         <FeatureCard
+          icon="truck"
           title={"Trucking & Freight Logistics"}
           aspect={"aspect-[2/1]"}
+          style={isMobile ? {} : { maxHeight: 300 }}
           content={
             "Long-haul, local, flatbed, and specialized freight coordination."
           }
         />
         <FeatureCard
+          icon="signal"
           title={"Field Service"}
           aspect={"aspect-[2/1]"}
-          style={{ transform: isMobile ? "none" : "translateY(-50%)" }}
+          style={
+            isMobile ? {} : { maxHeight: 300, transform: "translateY(-50%)" }
+          }
           content={
             "Alarm response dispatch, mobile patrol tracking, guard deployment, and real-time incident reporting."
           }
         />
         <FeatureCard
+          icon="map-03"
           title={"Towing & Roadside Assistance"}
           aspect={"aspect-[2/1]"}
-          style={{ transform: isMobile ? "none" : "translateY(-50%)" }}
+          style={
+            isMobile ? {} : { maxHeight: 300, transform: "translateY(-50%)" }
+          }
           content={"Emergency dispatch and driver routing."}
         />
         <FeatureCard
+          icon="compass"
           title={"Courier & Last-Mile Delivery"}
           aspect={"aspect-[2/1]"}
+          style={isMobile ? {} : { maxHeight: 300 }}
           content={"On-demand local logistics and fleet tracking."}
         />
         <FeatureCard
+          icon="marker-06"
           title={"Non-Emergency Medical Transportation (NEMT)"}
           aspect={"aspect-[2/1]"}
-          style={{ transform: isMobile ? "none" : "translateY(-50%)" }}
+          style={
+            isMobile ? {} : { maxHeight: 300, transform: "translateY(-50%)" }
+          }
           content={"Patient pickup and transit coordination."}
         />
       </div>
