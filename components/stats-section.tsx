@@ -48,8 +48,6 @@ function Stat({
   const ref = useRef<HTMLDivElement>(null);
   const hasAnimated = useRef(false);
 
-  const isMobile = useIsMobile(1024);
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -117,10 +115,7 @@ function Stat({
           symbol
         )}
       </span>
-      <span
-        className={`text-2xl w-full`}
-        style={{ textAlign: isMobile ? "center" : "start" }}
-      >
+      <span className={`text-2xl w-full`} style={{ textAlign: "center" }}>
         {title}
       </span>
     </div>

@@ -60,11 +60,11 @@ const AutoScrollReviews = () => {
       <div className="w-full flex items-center justify-center">
         <div
           className="
-            relative grid md:grid-cols-3 gap-6 md:w-9/12
+            relative grid lg:grid-cols-3 sm:grid-cols-2 gap-6 md:w-9/12
             items-center justify-items-center py-10
           "
         >
-          <FadeInContent className="w-full h-full md:my-10 min-h-[400px]">
+          <FadeInContent className="w-full h-full lg:my-10 min-h-[400px] lg:col-span-1 sm:col-span-3">
             <ReviewsSummary />
           </FadeInContent>
 
