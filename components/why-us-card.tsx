@@ -20,7 +20,7 @@ export default function WhyUsCard({
 }: WhyUsCardProps) {
   return (
     <ProductCard
-      className="grid grid-cols-[auto_70%]"
+      className="grid md:grid-cols-[auto_70%]"
       style={{ maxWidth: 900, ...style }}
     >
       <Image
@@ -30,10 +30,12 @@ export default function WhyUsCard({
         alt={title}
         className="w-full h-full object-cover"
       />
-      <div className="w-full p-4 gap-4 grid grid-cols-[10%_auto] items-center justify-items-center">
+      <div className="w-full p-4 gap-4 grid md:grid-cols-[10%_auto]  items-center justify-items-center">
         <Icon icon={icon} />
         {/* <div className="flex flex-col gap-4"> */}
-        <label className="w-full text-4xl font-medium">{title}</label>
+        <label className="w-full md:text-4xl text-2xl font-medium">
+          {title}
+        </label>
         <span />
         <p>{content}</p>
         {/* </div> */}

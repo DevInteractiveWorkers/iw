@@ -117,19 +117,19 @@ const Dispatch = () => {
               {
                 title: "100% Uptime SLA & Built-In Redundancy",
                 text: "A dispatch center cannot afford downtime. Our managed units are engineered with shift-overlaps and backup personnel. If a representative has an emergency, our system seamlessly rotates in a fully briefed specialist. Your lines stay open 24/7/365.",
-                src: "/security.png",
+                src: "/stock/stock (13).png",
               },
               {
                 title: "Turnkey Enterprise Hardware (Zero IT Hassle)",
                 text: "Security and dispatch require secure tech. We do not rely on a representative's personal laptop. InteractiveWorkers provisions, secures, and maintains all necessary hardware and high-speed infrastructure, ensuring bank-level data compliance.",
-                imagePosition: { objectPosition: "30% center" },
-                src: "/stock/iw-2026-scheduling.png",
+                // imagePosition: { objectPosition: "30% center" },
+                src: "/stock/stock (9).png",
               },
               {
                 title: "Zero HR Liability & Overhead Cost",
                 text: "Scale your 24/7 coverage without the massive burden of local overnight payroll, overtime taxes, or complex labor laws. We act as the Employer of Record (EOR). You get the operational output; we absorb the liability.",
-                imagePosition: { objectPosition: "center center" },
-                src: "/stock/por_siempre_nacho.png",
+                // imagePosition: { objectPosition: "center center" },
+                src: "/stock/stock (2).png",
               },
             ]}
           />
