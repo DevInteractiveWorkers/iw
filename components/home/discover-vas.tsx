@@ -12,7 +12,7 @@ import { useIsMobile } from "@/lib/useMobile";
 const productizedPackages = [
   {
     content: "24/7 Inbound Call & Emergency Dispatch Unit",
-    imageSrc: "/team-2026/camila_01.png",
+    imageSrc: "/team-2026/CAMILA/camila_01.png",
     innerContent: (
       <p>
         Never miss a critical lead or support request.
@@ -26,7 +26,7 @@ const productizedPackages = [
   },
   {
     content: "Tier-1 Helpdesk & Ticket Triage Team",
-    imageSrc: "/team-2026/chantal_01.png",
+    imageSrc: "/team-2026/JOSE DANIEL/jose daniel_01.png",
     innerContent: (
       <p>
         Streamline your technical support.
@@ -43,7 +43,7 @@ const productizedPackages = [
   },
   {
     content: "Executive Operational Assistant",
-    imageSrc: "/team-2026/eduardo_01.png",
+    imageSrc: "/team-2026/EDUARDO/eduardo_01.png",
     innerContent: (
       <p>
         Reclaim your founders' and C-levels' time.
@@ -58,7 +58,7 @@ const productizedPackages = [
   },
   {
     content: "Outbound Cold Call & Lead Qualification Desk",
-    imageSrc: "/team-2026/andere_03.png",
+    imageSrc: "/team-2026/ANDERE/andere_03.png",
     innerContent: (
       <p>
         Accelerate your sales pipeline.
