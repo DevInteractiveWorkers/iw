@@ -19,7 +19,7 @@ export default function Folder({ items }: { items: FolderItem[] }) {
 
   return (
     <ProductCard
-      className="grid grid-cols-1 lg:grid-cols-2"
+      className="lg:grid lg:grid-cols-2 max-md:flex max-md:flex-col-reverse "
       disableHover
       style={{ borderRadius: 5, overflow: "hidden" }}
     >
