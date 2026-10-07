@@ -80,6 +80,18 @@ const AboutUs = () => {
             }
           />
         </div>
+        <div className="w-full flex justify-center">
+          <SplitText
+            textAlign="center"
+            className="text-[clamp(2rem,4vw,3.75rem)] leading-[1.05] pt-6 font-light w-3/4"
+            text={
+              <>
+                What They Say <br />
+                About Us
+              </>
+            }
+          />
+        </div>
         <article
           className="
         relative z-10
