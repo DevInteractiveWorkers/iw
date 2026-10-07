@@ -45,7 +45,7 @@ export default function ProductCard({
     >
       {/* Pointer-following shine overlay */}
       <div
-        className="pointer-events-none absolute inset-0 z-10 transition-opacity duration-300 dark:text-[rgb(221_39_45_/_0.25)] text-[rgb(221_39_45_/_0.5)]"
+        className="pointer-events-none absolute inset-0 transition-opacity duration-300 dark:text-[rgb(221_39_45_/_0.25)] text-[rgb(221_39_45_/_0.5)]"
         style={{
           opacity,
           background: `radial-gradient(200px circle at ${mousePosition.x}px ${mousePosition.y}px, currentColor, transparent 80%)`,
