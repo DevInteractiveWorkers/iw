@@ -29,6 +29,7 @@ export default function Accordion({ images }: AccordionProps) {
             alt={`Image ${index + 1}`}
             sizes="(max-width: 768px) 100vw, 80vw"
             className="object-cover"
+            quality={100}
           />{" "}
         </div>
       ))}{" "}

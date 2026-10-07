@@ -4,8 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Reviews from "./home/reviews";
 import FadeInContent from "./FadeInContent";
 import { useScrollIntoView } from "@/lib/use-scroll-into-view";
-import VideoPlayer from "./video-player";
-import SplitText from "./text-animation/SplitText";
+import { useIsMobile } from "@/lib/useMobile";
 
 export default function StatsSection() {
   const { ref } = useScrollIntoView<HTMLElement>({ offset: 80 });
@@ -18,11 +17,11 @@ export default function StatsSection() {
       <article
         ref={ref}
         className="md:w-10/12 w-11/12 px-2 md:py-20 sm:py-10 z-10 grid lg:grid-cols-4 sm:grid-cols-2 
-        max-md:gap-10 max-sm:gap-4 items-start justify-center md:justify-items-center"
+        md:gap-10 gap-4 md:items-start items-center justify-items-center"
       >
-        <Stat title="Clients Reach Worldwide" number={42} symbol="+" />
-        <Stat title="Uptime SLA" number={99.9} symbol="%" decimal />
-        <Stat title="Project Shipped" number={150} symbol="+" />
+        <Stat title="Clients Reach Worldwide" number={40} symbol="+" />
+        <Stat title="VAs placed" number={430} symbol="+" />
+        <Stat title="Projects" number={20} symbol="+" />
         <Stat title="Average Rating" number={5.0} symbol="stars" decimal />
       </article>
       <article className="z-10">
@@ -30,46 +29,6 @@ export default function StatsSection() {
           <Reviews />
         </FadeInContent>
       </article>
-      {/* <div className="w-full flex justify-end">
-        <SplitText
-          textAlign="start"
-          className="text-[clamp(2rem,4vw,3.75rem)] leading-[1.05] pb-6 font-light w-3/4"
-          text="Beyond the obvious benefits, virtual assistants can address hidden needs."
-        />
-      </div> */}
-      {/* <SplitText
-        className="text-[clamp(2rem,4vw,3.75rem)] leading-[1.05] pb-6 font-medium"
-        text="What they say about us:"
-      />
-      <article
-        className="
-        relative z-10
-        flex w-full items-center justify-center
-        px-0 md:px-2 py-10
-      "
-      >
-        <FadeInContent
-          className="
-            flex w-full items-center justify-center
-            md:h-auto
-            md:w-full
-          "
-        >
-          <VideoPlayer
-            src={
-              "https://s3.interactiveworkers.com/demo/52d026a9-2910-4eb5-8395-aeecedc29f13.mp4"
-            }
-            className="
-              h-full
-              w-full
-              rounded-none
-              md:h-auto
-              md:w-7/12
-              md:rounded-xl
-            "
-          />
-        </FadeInContent>
-      </article> */}
     </section>
   );
 }
@@ -129,20 +88,24 @@ function Stat({
     return () => observer.disconnect();
   }, [number]);
 
-  // Format the display number
   const formattedNumber = decimal
     ? count.toFixed(1)
     : Math.floor(count).toLocaleString();
 
   return (
-    <div ref={ref} className="flex flex-col">
+    <div
+      ref={ref}
+      className={`flex flex-col w-full`}
+      style={{ alignItems: "center" }}
+    >
       <span
-        className={`xl:text-[clamp(6rem,5vw,7rem)] lg:text-[clamp(5rem,5vw,6rem)] md:text-[clamp(4rem,4vw,5rem)] text-[clamp(2rem,8vw,3rem)] font-medium flex w-max ${symbol === "stars" ? "flex-row-reverse" : "flex-row"} items-center justify-center`}
+        className={`xl:text-[clamp(6rem,5vw,7rem)] lg:text-[clamp(5rem,5vw,6rem)] md:text-[clamp(4rem,4vw,5rem)] text-[clamp(5rem,8vw,6rem)] font-medium flex w-max 
+          ${symbol === "stars" ? "flex-row-reverse" : "flex-row"} items-center justify-center`}
       >
         {formattedNumber}
         {symbol === "stars" ? (
           <svg
-            className="lg:w-[clamp(5rem,4vw,6rem)] md:w-[clamp(3rem,3vw,4rem)] w-[clamp(1rem,6vw,2rem)] dark:fill-white fill-black"
+            className="lg:w-[clamp(5rem,4vw,6rem)] w-[clamp(3rem,3vw,4rem)] dark:fill-white fill-black"
             viewBox="0 0 70 67"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -152,7 +115,9 @@ function Stat({
           symbol
         )}
       </span>
-      <span className="md:text-2xl">{title}</span>
+      <span className={`text-2xl w-full`} style={{ textAlign: "center" }}>
+        {title}
+      </span>
     </div>
   );
 }

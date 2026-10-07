@@ -23,9 +23,16 @@ const AboutUs = () => {
       </section>
       <section className="grid grid-cols-1 gap-6 pb-10 items-center justify-items-center">
         <Accordion
-          images={Array.from({ length: 3 }).map((_, index) => ({
-            src: `/about/${index}.png`,
-          }))}
+          images={
+            //   Array.from({ length: 3 }).map((_, index) => ({
+            //   src: `/stock/stock (${index + 1}).png`,
+            // }))
+            [
+              { src: `/stock/stock (8).png` },
+              { src: `/stock/stock (10).png` },
+              { src: `/stock/stock (7).png` },
+            ]
+          }
         />
         <div className="grid md:grid-cols-2 grid-cols-1 gap-6">
           <SplitText
@@ -76,6 +83,18 @@ const AboutUs = () => {
                 <b className="font-semibold">Employer of Record (EOR)</b> to
                 absorb 100% of the legal and{" "}
                 <b className="font-semibold">HR liabilities</b>.
+              </>
+            }
+          />
+        </div>
+        <div className="w-full flex justify-center">
+          <SplitText
+            textAlign="center"
+            className="text-[clamp(2rem,4vw,3.75rem)] leading-[1.05] pt-6 font-light w-3/4"
+            text={
+              <>
+                What They Say <br />
+                About Us
               </>
             }
           />

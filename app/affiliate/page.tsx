@@ -20,15 +20,13 @@ type AffiliateCardProps = {
 
 const whyUs: AffiliateCardProps[] = [
   {
-    src: "/dispatch/heroes.png",
+    src: "/stock/stock (2).png",
     title: "Comprehensive Marketing Support",
-    objectPosition: "0% 5%",
   },
-  { src: "/top-view.png", title: "Personalized  Guidance" },
+  { src: "/stock/stock (8).png", title: "Personalized  Guidance" },
   {
-    src: "/about/what-we-are.png",
+    src: "/stock/stock (11).png",
     title: "Open Communication",
-    objectPosition: "20% center",
   },
 ];
 
@@ -91,7 +89,6 @@ const AffiliatePage = () => {
           text={<>Ready to get started!</>}
         />
         <div className="flex justify-end">
-          <PageDivision />
           <SplitText
             className="text-xl md:w-2/3 lg:w-1/3 pt-4"
             textAlign="end"

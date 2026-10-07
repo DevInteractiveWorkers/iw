@@ -58,14 +58,14 @@ const Dispatch = () => {
       <article
         ref={carouselRef}
         className="w-full flex flex-col items-center justify-center my-10"
-        style={{
-          maskImage:
-            "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)",
-          WebkitMaskImage:
-            "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)",
-        }}
+        // style={{
+        //   maskImage:
+        //     "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)",
+        //   WebkitMaskImage:
+        //     "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)",
+        // }}
       >
-        <div className="w-full grid grid-cols-2 lg:grid-cols-3 lg:w-9/12 gap-6 justify-between my-4 md:mb-32">
+        <div className="w-full grid md:grid-cols-2 lg:grid-cols-3 lg:w-9/12 gap-6 justify-between my-4 md:mb-32">
           {dispatchers.map((dispatcher, i) => (
             <FadeInContent key={i} delay={i * 0.1}>
               <VACard
@@ -77,21 +77,6 @@ const Dispatch = () => {
             </FadeInContent>
           ))}
         </div>
-        {/* <Carousel
-          autoscroll
-          slides={isMobile ? 1 : "all"}
-          iteration="once"
-          autoscrollMode="on-going"
-          controls={false}
-        >
-          {dispatchers.map((dispatcher, i) => (
-            <FadeInContent key={i} delay={i * 0.2} className="my-10">
-              <VACarouselCard imageSrc={dispatcher.imageSrc}>
-                {dispatcher.content}
-              </VACarouselCard>
-            </FadeInContent>
-          ))}
-        </Carousel> */}
         <Carousel
           autoscroll
           iteration="once"
@@ -116,7 +101,7 @@ const Dispatch = () => {
         className="min-h-screen py-10 flex flex-col justify-center gap-10"
       >
         <SplitText
-          className="text-6xl"
+          className="text-[clamp(2rem,4vw,3.75rem)]"
           textAlign="start"
           text={
             <>
@@ -132,25 +117,25 @@ const Dispatch = () => {
               {
                 title: "100% Uptime SLA & Built-In Redundancy",
                 text: "A dispatch center cannot afford downtime. Our managed units are engineered with shift-overlaps and backup personnel. If a representative has an emergency, our system seamlessly rotates in a fully briefed specialist. Your lines stay open 24/7/365.",
-                src: "/security.png",
+                src: "/stock/stock (13).png",
               },
               {
                 title: "Turnkey Enterprise Hardware (Zero IT Hassle)",
                 text: "Security and dispatch require secure tech. We do not rely on a representative's personal laptop. InteractiveWorkers provisions, secures, and maintains all necessary hardware and high-speed infrastructure, ensuring bank-level data compliance.",
-                imagePosition: { objectPosition: "30% center" },
-                src: "/stock/iw-2026-scheduling.png",
+                // imagePosition: { objectPosition: "30% center" },
+                src: "/stock/stock (9).png",
               },
               {
                 title: "Zero HR Liability & Overhead Cost",
                 text: "Scale your 24/7 coverage without the massive burden of local overnight payroll, overtime taxes, or complex labor laws. We act as the Employer of Record (EOR). You get the operational output; we absorb the liability.",
-                imagePosition: { objectPosition: "center center" },
-                src: "/stock/por_siempre_nacho.png",
+                // imagePosition: { objectPosition: "center center" },
+                src: "/stock/stock (2).png",
               },
             ]}
           />
         </FadeInContent>
       </article>
-      <article className="z-10 flex flex-col items-center md:py-40 relative">
+      <article className="z-10 flex flex-col items-center justify-center gap-10 md:py-40 relative ">
         <div
           className="w-dvw h-screen absolute top-0 pointer-events-none -z-10"
           style={{
@@ -177,48 +162,50 @@ const Dispatch = () => {
             bandWidth={6}
           />
         </div>
-        <FlipElement>
-          <Image
-            src={"/logo/03_Logo_Mark/03_Logo_Mark-01.png"}
-            alt={"InteractiveWorkers"}
-            width={1080}
-            height={1080}
-            className="md:max-w-40 max-w-36 animate-loading-flip py-4 dark:block hidden"
+        <div className="flex flex-col h-full items-center justify-center">
+          <FlipElement>
+            <Image
+              src={"/logo/03_Logo_Mark/03_Logo_Mark-01.png"}
+              alt={"InteractiveWorkers"}
+              width={1080}
+              height={1080}
+              className="md:max-w-40 max-w-36 animate-loading-flip py-4 dark:block hidden"
+            />
+            <Image
+              src={"/logo/03_Logo_Mark/03_Logo_Mark-02.png"}
+              alt={"InteractiveWorkers"}
+              width={1080}
+              height={1080}
+              className="md:max-w-40 max-w-36 animate-loading-flip py-4 block dark:hidden"
+            />
+          </FlipElement>
+          <SplitText
+            tag="h3"
+            text={
+              <>
+                Ready to Secure
+                <br /> Your Operations?
+              </>
+            }
+            className="font-medium lg:text-6xl text-2xl text-center leading-none pb-4"
+            delay={100}
+            threshold={0.1}
+            textAlign="center"
           />
-          <Image
-            src={"/logo/03_Logo_Mark/03_Logo_Mark-02.png"}
-            alt={"InteractiveWorkers"}
-            width={1080}
-            height={1080}
-            className="md:max-w-40 max-w-36 animate-loading-flip py-4 block dark:hidden"
-          />
-        </FlipElement>
-        <SplitText
-          tag="h3"
-          text={
-            <>
-              Ready to Secure
-              <br /> Your Operations?
-            </>
-          }
-          className="font-medium lg:text-6xl text-base text-center leading-none pb-4"
-          delay={100}
-          threshold={0.1}
-          textAlign="center"
-        />
-        <CTAButton
-          onClick={() =>
-            router.push("https://calendly.com/interactiveworkersgm/30min")
-          }
-          className="my-10 
+          <CTAButton
+            onClick={() =>
+              router.push("https://calendly.com/interactiveworkersgm/30min")
+            }
+            className="my-10 
           dark:[--primary-color:#fff] dark:[--secondary-color:#dd272d] dark:[--tertiary-color:#fff]
           [--primary-color:#000] [--secondary-color:#dd272d] [--tertiary-color:#fff]"
-        />
-        <div className="grid md:grid-cols-2 grid-cols-1 gap-6 absolute bottom-20">
+          />
+        </div>
+        <div className="grid md:grid-cols-2 grid-cols-1 gap-6">
           <SplitText
             splitType="lines"
             textAlign="start"
-            className="font-light text-2xl lg:text-4xl"
+            className="font-light text-base md:text-2xl lg:text-4xl"
             text={
               <>
                 Don't leave your most critical communication hub understaffed.
@@ -228,7 +215,7 @@ const Dispatch = () => {
           <SplitText
             splitType="lines"
             textAlign="start"
-            className="font-light text-2xl lg:text-4xl text-center text-wrap"
+            className="font-light text-base md:text-2xl lg:text-4xl text-center text-wrap"
             text={<>Let us build your custom, dedicated dispatch unit todays</>}
           />
         </div>

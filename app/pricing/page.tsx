@@ -15,6 +15,25 @@ export default function PricingPage() {
 
   const { ref } = useScrollIntoView<HTMLElement>();
 
+  const SwitchPricing = () => {
+    return (
+      <div className="flex justify-center md:py-6">
+        <div className="flex gap-4 sm:gap-6 justify-center items-center">
+          <label>Long Term</label>
+          <Switch
+            checked={isTerm === "project"}
+            onChange={() =>
+              setIsTerm((prev) =>
+                prev === "project" ? "long-term" : "project",
+              )
+            }
+          />
+          <label>Per Project</label>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <section id="pricing">
       <PageHero
@@ -31,24 +50,11 @@ export default function PricingPage() {
       />
 
       <article ref={ref} className="flex flex-col pb-20">
-        <div className="flex justify-center py-6">
-          <div className="flex gap-4 sm:gap-6 justify-center items-center">
-            <label>Long Term</label>
-            <Switch
-              checked={isTerm === "project"}
-              onChange={() =>
-                setIsTerm((prev) =>
-                  prev === "project" ? "long-term" : "project",
-                )
-              }
-            />
-            <label>Per Project</label>
-          </div>
-        </div>
+        {!isMobile && <SwitchPricing />}
 
         <div className="grid md:grid-cols-[auto_65%] lg:grid-cols-[auto_80%] gap-6 items-stretch">
           {/* LEFT COLUMN */}
-          <aside className="h-full">
+          <aside className="h-full max-md:pt-6">
             <ProductCard
               className="p-6 h-full"
               style={{ height: "100%" }}
@@ -69,14 +75,16 @@ export default function PricingPage() {
                 </h5>
 
                 <ul className="py-6 text-[clamp(1rem,1.5vw,1.25rem)] flex flex-col gap-6">
-                  <li>Bilingual (English and Spanish)</li>
-                  <li>Adaptable</li>
-                  <li>Professionals in their field</li>
-                  <li>24/7 Availability</li>
+                  <li>➔ Bilingual (English and Spanish)</li>
+                  <li>➔ Adaptable</li>
+                  <li>➔ Professionals in their field</li>
+                  <li>➔ 24/7 Availability</li>
                 </ul>
               </div>
             </ProductCard>
           </aside>
+
+          {isMobile && <SwitchPricing />}
 
           {/* RIGHT COLUMN */}
           <div

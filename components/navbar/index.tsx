@@ -8,20 +8,26 @@ import Image from "next/image";
 import { TransitionLink } from "../link";
 import { usePageTransition } from "../PagetransitionContext";
 import ThemeSwitch from "./theme-switch";
+import { useIsMobile } from "@/lib/useMobile";
 
 const NavbarComponent = () => {
   const { isTransitioning } = usePageTransition();
+  const isMobile = useIsMobile();
 
   return (
     <nav className="w-full sticky top-0 left-0 z-[500]">
       <div
-        className="absolute top-0 left-0 w-full h-full backdrop-blur-md -z-10"
-        style={{
-          maskImage:
-            "linear-gradient(to right, transparent 3%, black 10%, black 90%, transparent 97%)",
-          WebkitMaskImage:
-            "linear-gradient(to right, transparent 3%, black 10%, black 90%, transparent 97%)",
-        }}
+        className="absolute top-0 left-0 w-full h-full backdrop-blur-md dark:bg-white/0 dark:backdrop-brightness-100 bg-white/75 backdrop-brightness-[2] -z-10"
+        style={
+          isMobile
+            ? {}
+            : {
+                maskImage:
+                  "linear-gradient(to right, transparent 3%, black 10%, black 90%, transparent 97%)",
+                WebkitMaskImage:
+                  "linear-gradient(to right, transparent 3%, black 10%, black 90%, transparent 97%)",
+              }
+        }
       />
       <div
         className={`border-b dark:border-white border-black flex items-center justify-between max-md:grid grid-cols-2 justify-items-stretch py-4 gap-4 z-10 mx-[clamp(1rem,8vw,50rem)]`}

@@ -7,6 +7,7 @@ import SplitText from "../text-animation/SplitText";
 import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 import PageDivision from "../page-division";
 import { TransitionLink } from "../link";
+import { useIsMobile } from "@/lib/useMobile";
 
 const productizedPackages = [
   {
@@ -74,6 +75,7 @@ const productizedPackages = [
 
 const DiscoverVAs = () => {
   const { ref } = useScrollIntoView<HTMLElement>({ offset: 80 });
+  const isMobile = useIsMobile();
 
   return (
     <section
@@ -97,9 +99,9 @@ const DiscoverVAs = () => {
             }
           />
         </div>
-        <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-6 justify-between my-4 md:mb-32">
+        <div className="w-full gap-6 grid md:grid-cols-4 grid-cols-1 justify-between my-4 md:mb-32">
           {productizedPackages.map((pkg, i) => (
-            <FadeInContent key={i} delay={i * 0.1}>
+            <FadeInContent key={i} delay={isMobile ? 0 : i * 0.1}>
               <VACard imageSrc={pkg.imageSrc} content={pkg.innerContent}>
                 {pkg.content}
               </VACard>
