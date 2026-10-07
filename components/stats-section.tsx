@@ -1,7 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Reviews from "./home/reviews";
+import FadeInContent from "./FadeInContent";
 import { useScrollIntoView } from "@/lib/use-scroll-into-view";
+import { useIsMobile } from "@/lib/useMobile";
 
 export default function StatsSection() {
   const { ref } = useScrollIntoView<HTMLElement>({ offset: 80 });
@@ -9,12 +12,12 @@ export default function StatsSection() {
   return (
     <section
       id="stats"
-      className="flex flex-col items-center justify-center w-full relative max-md:px-[clamp(1rem,8vw,50rem)]"
+      className="flex flex-col items-center justify-center w-full relative text-white"
     >
       <article
         ref={ref}
-        className="md:w-10/12 w-max px-2 z-10 grid lg:grid-cols-4 grid-cols-2
-        max-md:gap-10 max-sm:gap-4 items-start justify-center md:justify-items-center text-white"
+        className="md:w-10/12 w-11/12 px-2 md:py-20 sm:py-10 z-10 grid lg:grid-cols-4 sm:grid-cols-2 
+        md:gap-10 gap-4 md:items-start items-center justify-items-center"
       >
         <Stat title="Clients Reach Worldwide" number={40} symbol="+" />
         <Stat title="VAs placed" number={430} symbol="+" />
@@ -80,20 +83,24 @@ function Stat({
     return () => observer.disconnect();
   }, [number]);
 
-  // Format the display number
   const formattedNumber = decimal
     ? count.toFixed(1)
     : Math.floor(count).toLocaleString();
 
   return (
-    <div ref={ref} className="flex flex-col">
+    <div
+      ref={ref}
+      className={`flex flex-col w-full`}
+      style={{ alignItems: "center" }}
+    >
       <span
-        className={`xl:text-[clamp(6rem,5vw,7rem)] lg:text-[clamp(5rem,5vw,6rem)] md:text-[clamp(4rem,4vw,5rem)] text-[clamp(2rem,8vw,3rem)] font-medium flex w-max ${symbol === "stars" ? "flex-row-reverse" : "flex-row"} items-center justify-center`}
+        className={`xl:text-[clamp(6rem,5vw,7rem)] lg:text-[clamp(5rem,5vw,6rem)] md:text-[clamp(4rem,4vw,5rem)] text-[clamp(5rem,8vw,6rem)] font-medium flex w-max 
+          ${symbol === "stars" ? "flex-row-reverse" : "flex-row"} items-center justify-center`}
       >
         {formattedNumber}
         {symbol === "stars" ? (
           <svg
-            className="lg:w-[clamp(5rem,4vw,6rem)] md:w-[clamp(3rem,3vw,4rem)] w-[clamp(1rem,6vw,2rem)] fill-white"
+            className="lg:w-[clamp(5rem,4vw,6rem)] w-[clamp(3rem,3vw,4rem)] fill-white"
             viewBox="0 0 70 67"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -103,7 +110,9 @@ function Stat({
           symbol
         )}
       </span>
-      <span className="md:text-2xl">{title}</span>
+      <span className={`text-2xl w-full`} style={{ textAlign: "center" }}>
+        {title}
+      </span>
     </div>
   );
 }
