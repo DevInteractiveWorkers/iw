@@ -4,6 +4,7 @@ import { CSSProperties } from "react";
 import BorderGlow from "./border-glow/border-glow";
 import Icon from "./icon";
 import PixelBlast from "./why-us/pixel-blast";
+import FlipElement from "./flip-element";
 
 interface FeatureCardProps {
   title: string;
@@ -32,20 +33,20 @@ export default function FeatureCard({
       colors={[]}
     >
       <div
-        className={`flex flex-col rounded-xl border border-iw-red-2 relative p-5 ${aspect} max-h-[500px] items-center justify-center bg-white`}
+        className={`flex flex-col rounded-xl border border-iw-red-2 p-5 ${aspect} h-full max-h-[500px] items-center justify-center bg-white`}
       >
         {icon && (
-          <div
-            className={`${iconDark ? "text-iw-red-2" : "text-white bg-iw-red-2"} aspect-square rounded-full m-5 w-max p-5 flex items-center justify-center z-10 pointer-events-none`}
+          <FlipElement
+            className={`${iconDark ? "text-iw-red-2" : "text-white bg-iw-red-2"} aspect-square rounded-full m-5 w-max p-5 flex items-center justify-center z-10`}
           >
             <Icon icon={icon} color="currentColor" />
-          </div>
+          </FlipElement>
         )}
-        <label className="font-semibold text-2xl text-center pointer-events-none z-10">
+        <label className="font-semibold text-[clamp(1.3rem,1vw,1.5rem)] leading-[1.2] text-center pointer-events-none z-10">
           {title}
         </label>
         {content && (
-          <p className="text-iw-red-2 text-lg text-center pointer-events-none z-10">
+          <p className="text-iw-red-2 text-[clamp(1rem,1vw,1.125rem)] leading-[1.2] text-base text-center pointer-events-none z-10">
             {content}
           </p>
         )}
