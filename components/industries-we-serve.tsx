@@ -6,29 +6,33 @@ export default function IndustriesWeServe() {
   const isMobile = useIsMobile();
 
   return (
-    <section className="px-[clamp(1rem,8vw,50rem)] flex flex-col items-center">
-      <SplitText
-        tag="h3"
-        className="
-            text-[clamp(2rem,4vw,3.75rem)]
-            leading-[1.05]
-            pb-6
-          "
-        textAlign={"center"}
-        text={
-          <>
-            Industries <br />
-            We Serve
-          </>
-        }
-      />
-      <div className="grid md:grid-cols-3 grid-cols-1 gap-6 lg:px-[clamp(1rem,8vw,50rem)] min-h-screen">
+    <section className="flex flex-col items-center md:h-screen h-full">
+      <div className="grid md:grid-cols-3 grid-cols-1 gap-6 px-[clamp(1rem,8vw,50rem)] h-full">
+        <SplitText
+          tag="h3"
+          className={`
+            md:col-span-3 col-span-1 text-[clamp(2rem,4vw,3.75rem)] leading-[1.05]
+            ${isMobile ? "" : "translate-y-1/2"}
+          `}
+          textAlign={"center"}
+          text={
+            <>
+              Industries <br />
+              We Serve
+            </>
+          }
+        />
         <FeatureCard
           icon="alert-triangle"
           title={"Private Security & Guard Operations"}
-          aspect={"aspect-[2/1]"}
           style={
-            isMobile ? {} : { maxHeight: 300, transform: "translateY(-50%)" }
+            isMobile
+              ? {}
+              : {
+                  height: "100%",
+                  aspectRatio: "2 / 1",
+                  transform: "translateY(-50%)",
+                }
           }
           content={
             "Alarm response dispatch, mobile patrol tracking, guard deployment, and real-time incident reporting."
@@ -37,8 +41,7 @@ export default function IndustriesWeServe() {
         <FeatureCard
           icon="truck"
           title={"Trucking & Freight Logistics"}
-          aspect={"aspect-[2/1]"}
-          style={isMobile ? {} : { maxHeight: 300 }}
+          style={isMobile ? {} : { aspectRatio: "2 / 1" }}
           content={
             "Long-haul, local, flatbed, and specialized freight coordination."
           }
@@ -46,9 +49,14 @@ export default function IndustriesWeServe() {
         <FeatureCard
           icon="signal"
           title={"Field Service"}
-          aspect={"aspect-[2/1]"}
           style={
-            isMobile ? {} : { maxHeight: 300, transform: "translateY(-50%)" }
+            isMobile
+              ? {}
+              : {
+                  height: "100%",
+                  aspectRatio: "2 / 1",
+                  transform: "translateY(-50%)",
+                }
           }
           content={
             "Alarm response dispatch, mobile patrol tracking, guard deployment, and real-time incident reporting."
@@ -57,25 +65,34 @@ export default function IndustriesWeServe() {
         <FeatureCard
           icon="map-03"
           title={"Towing & Roadside Assistance"}
-          aspect={"aspect-[2/1]"}
           style={
-            isMobile ? {} : { maxHeight: 300, transform: "translateY(-50%)" }
+            isMobile
+              ? {}
+              : {
+                  height: "100%",
+                  aspectRatio: "2 / 1",
+                  transform: "translateY(-50%)",
+                }
           }
           content={"Emergency dispatch and driver routing."}
         />
         <FeatureCard
           icon="compass"
           title={"Courier & Last-Mile Delivery"}
-          aspect={"aspect-[2/1]"}
-          style={isMobile ? {} : { maxHeight: 300 }}
+          style={isMobile ? {} : { aspectRatio: "2 / 1" }}
           content={"On-demand local logistics and fleet tracking."}
         />
         <FeatureCard
           icon="marker-06"
           title={"Non-Emergency Medical Transportation (NEMT)"}
-          aspect={"aspect-[2/1]"}
           style={
-            isMobile ? {} : { maxHeight: 300, transform: "translateY(-50%)" }
+            isMobile
+              ? {}
+              : {
+                  height: "100%",
+                  aspectRatio: "2 / 1",
+                  transform: "translateY(-50%)",
+                }
           }
           content={"Patient pickup and transit coordination."}
         />
