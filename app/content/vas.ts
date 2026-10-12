@@ -31,12 +31,12 @@ export const vasTabs: Tabs[] = [
 
 export const Vas: VA[] = [
   {
-    position: "Graphic Designer",
+    position: "IT Support",
     img: "OSWALDO/oswaldo_03.png",
     team: 0,
   },
   {
-    position: "Web Developer",
+    position: "Graphic Designer",
     img: "GABRIEL/gabriel_01.png",
     team: 0,
   },
@@ -62,7 +62,7 @@ export const Vas: VA[] = [
   },
   {
     position: "Medical Scriber VA",
-    img: "CLAUDIA/claudia_01.png",
+    img: "CLAUDIA/claudia_01_v2.png",
     team: 1,
   },
   {

@@ -6,14 +6,11 @@ export default function IndustriesWeServe() {
   const isMobile = useIsMobile();
 
   return (
-    <section className="flex flex-col items-center md:h-screen h-full">
-      <div className="grid md:grid-cols-3 grid-cols-1 gap-6 px-[clamp(1rem,8vw,50rem)] h-full">
+    <section className="flex flex-col lg:px-[clamp(1rem,8vw,50rem)]">
+      <div className="grid md:grid-cols-3 grid-cols-1 gap-6 px-[clamp(1rem,8vw,50rem)] min-h-screen h-full">
         <SplitText
           tag="h3"
-          className={`
-            md:col-span-3 col-span-1 text-[clamp(2rem,4vw,3.75rem)] leading-[1.05]
-            ${isMobile ? "" : "translate-y-1/2"}
-          `}
+          className={`md:col-span-3 col-span-1 text-[clamp(2rem,4vw,3.75rem)] leading-[1.05]`}
           textAlign={"center"}
           text={
             <>

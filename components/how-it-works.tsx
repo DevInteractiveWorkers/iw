@@ -1,7 +1,8 @@
+"use client";
+
+import { useIsMobile } from "@/lib/useMobile";
 import HowItWorksStep from "./how-it-works-card";
 import SplitText from "./text-animation/SplitText";
-
-const iconClass = "shrink-0";
 
 const steps = [
   {
@@ -31,6 +32,9 @@ const steps = [
 ];
 
 export default function HowItWorks() {
+  const isMd = useIsMobile(1024);
+  const isMobile = useIsMobile();
+
   return (
     <section className="px-[clamp(1rem,8vw,50rem)]">
       <article className="flex flex-col rounded-t-md bg-white p-4 py-10 min-h-[50vh] justify-between">
@@ -38,17 +42,19 @@ export default function HowItWorks() {
           <SplitText
             delay={100}
             textAlign="center"
-            className="pb-4 text-3xl font-medium leading-none lg:text-5xl"
+            className="pb-4 text-3xl font-medium leading-none text-[clamp(2rem,4vw,3rem)]"
             text={<>How It Works?</>}
           />
         </div>
 
-        <div className="grid md:grid-cols-4 gap-6 px-[clamp(1rem,3vw,50rem)]">
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6 px-[clamp(1rem,3vw,50rem)]">
           {steps.map((step, index) => (
             <HowItWorksStep
               key={step.title}
               {...step}
-              showBorder={index !== steps.length - 1}
+              className={`border-iw-red-2
+                ${index !== steps.length - 1 ? (isMobile ? "border-b-2" : isMd ? `${index % 2 === 0 && "border-r-2"}` : "border-r-2") : "border-none"}
+                `}
             />
           ))}
         </div>

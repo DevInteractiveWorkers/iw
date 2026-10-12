@@ -114,7 +114,7 @@ const Dispatch = () => {
 
   return (
     <>
-      <section className="px-[clamp(1rem,8vw,50rem)]">
+      <section className="px-[clamp(1rem,8vw,50rem)] bg-iw-red-2">
         <article className="text-white">
           <PageHero
             division={false}

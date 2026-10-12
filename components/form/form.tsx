@@ -17,6 +17,7 @@ import { useIsMobile } from "@/lib/useMobile";
 import { TransitionLink } from "../link";
 import { navbar } from "@/app/content/navbar";
 import Socials from "../footer/socials";
+import Image from "next/image";
 
 const MainForm = ({
   heading = "Speak with our team today!",
@@ -121,80 +122,103 @@ const MainForm = ({
             </div>
           </div>
         )}
-        <div className="grid md:grid-cols-2 gap-3 md:col-span-2 col-span-1">
-          <Input
-            id="firstname"
-            name="firstname"
-            type="text"
-            placeholder="First name"
-            autoComplete="given-name"
-            required
-          />
+        <div className="col-span-3 grid md:grid-cols-3">
+          <div className="col-span-2">
+            <div className="grid md:grid-cols-2 gap-3 md:col-span-2 col-span-1">
+              <Input
+                id="firstname"
+                name="firstname"
+                type="text"
+                placeholder="First name"
+                autoComplete="given-name"
+                required
+              />
 
-          <Input
-            id="lastname"
-            name="lastname"
-            type="text"
-            placeholder="Last name"
-            autoComplete="family-name"
-            required
-          />
-        </div>
-        <div className="col-span-2">
-          <Input
-            id="company"
-            name="company"
-            type="text"
-            placeholder="Company's Name"
-            autoComplete="organization"
-            required
-          />
-        </div>
-        <div className="grid md:grid-cols-2 gap-3 md:col-span-2 col-span-1">
-          <Input
-            id="phone"
-            name="phone"
-            type="tel"
-            placeholder="Phone Number"
-            autoComplete="tel"
-            required
-          />
-          <Input
-            id="email"
-            name="email"
-            type="email"
-            placeholder="Email"
-            autoComplete="email"
-            required
-          />
-        </div>
-        <div className="col-span-2">
-          <Input
-            id="size"
-            name="size"
-            type="text"
-            placeholder="Your company size (current staff number)"
-            autoComplete="off"
-            required
-          />
-        </div>
-        <div className="grid md:grid-cols-2 gap-3 md:col-span-2 col-span-1">
-          <Input
-            id="staff"
-            name="staff"
-            type="text"
-            placeholder="Number of Staff Required?"
-            autoComplete="off"
-            required
-          />
-          <Input
-            id="country"
-            name="country"
-            type="text"
-            placeholder="Which country are you based in?"
-            autoComplete="country-name"
-            required
-          />
+              <Input
+                id="lastname"
+                name="lastname"
+                type="text"
+                placeholder="Last name"
+                autoComplete="family-name"
+                required
+              />
+            </div>
+            <div className="col-span-2">
+              <Input
+                id="company"
+                name="company"
+                type="text"
+                placeholder="Company's Name"
+                autoComplete="organization"
+                required
+              />
+            </div>
+            <div className="grid md:grid-cols-2 gap-3 md:col-span-2 col-span-1">
+              <Input
+                id="phone"
+                name="phone"
+                type="tel"
+                placeholder="Phone Number"
+                autoComplete="tel"
+                required
+              />
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="Email"
+                autoComplete="email"
+                required
+              />
+            </div>
+            <div className="col-span-2">
+              <Input
+                id="size"
+                name="size"
+                type="text"
+                placeholder="Your company size (current staff number)"
+                autoComplete="off"
+                required
+              />
+            </div>
+            <div className="grid md:grid-cols-2 gap-3 md:col-span-2 col-span-1">
+              <Input
+                id="staff"
+                name="staff"
+                type="text"
+                placeholder="Number of Staff Required?"
+                autoComplete="off"
+                required
+              />
+              <Input
+                id="country"
+                name="country"
+                type="text"
+                placeholder="Which country are you based in?"
+                autoComplete="country-name"
+                required
+              />
+            </div>
+          </div>
+          {!socials && (
+            <div
+              className="relative max-md:hidden w-full h-full"
+              style={{
+                maskImage:
+                  "linear-gradient(to bottom, black 50%, transparent 100%)",
+                WebkitMaskImage:
+                  "linear-gradient(to bottom, black 50%, transparent 100%)",
+              }}
+            >
+              <Image
+                width={1080}
+                height={1080}
+                alt="InteractiveWorker"
+                src={"/team-2026/GABRIEL/gabriel_01.png"}
+                className="absolute top-0 object-top object-cover w-full h-full p-[20px_0_0_100px]"
+              />
+            </div>
+          )}
         </div>
         <h4 className="font-medium md:text-2xl text-xl mt-4 md:col-span-2 col-span-1 text-iw-red-2">
           Choose your Professional
