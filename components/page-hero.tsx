@@ -53,7 +53,7 @@ export default function PageHero({
       <div
         className={`grid ${description ? (align !== "center" ? "md:grid-cols-2" : "") : ""} grid-cols-1`}
       >
-        <div>
+        <div className="w-full flex flex-col">
           <SplitText
             tag="h1"
             className="

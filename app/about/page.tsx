@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { Vas } from "../content/vas";
 import VACard from "@/components/vas/cards";
 import { useIsMobile } from "@/lib/useMobile";
+import Accordion from "@/components/accordion";
 
 const AboutUs = () => {
   const router = useRouter();
@@ -56,8 +57,18 @@ const AboutUs = () => {
               "my-10 [--primary-color:#fff] [--secondary-color:#fff] [--tertiary-color:#dd272d]",
           }}
         />
+        <div className="relative w-full flex items-center justify-center">
+          <div className="bg-white w-dvw absolute h-1/3 bottom-0" />
+          <Accordion
+            images={[
+              { src: `/stock/stock (8).png` },
+              { src: `/stock/stock (11).png` },
+              { src: `/stock/stock (10).png` },
+            ]}
+          />
+        </div>
       </section>
-      <section className="grid grid-cols-1 gap-6 pb-10 items-center justify-items-center px-[clamp(1rem,8vw,50rem)] bg-white">
+      <section className="grid grid-cols-1 gap-6 py-10 items-center justify-items-center px-[clamp(1rem,8vw,50rem)] bg-white">
         <article className="grid md:grid-cols-2 grid-cols-1 gap-6 py-6">
           <SplitText
             splitType="lines"
@@ -108,7 +119,12 @@ const AboutUs = () => {
           <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-6 justify-between my-4 md:mb-32">
             {Vas.slice(0, 8).map((va, i) => (
               <FadeInContent key={i} delay={isMobile ? 0 : i * 0.1}>
-                <VACard imageSrc={`/team-2026/${va.img}`}>{va.position}</VACard>
+                <VACard
+                  imageSrc={`/team-2026/${va.img}`}
+                  className="transition-all duration-300 hover:-translate-y-[5%]"
+                >
+                  {va.position}
+                </VACard>
               </FadeInContent>
             ))}
           </div>

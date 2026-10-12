@@ -14,21 +14,21 @@ const FADE_MASK = "linear-gradient(to bottom, black 90%, transparent 100%)";
 interface VACardProps {
   children?: React.ReactNode;
   imageSrc: string;
+  className?: string;
   style?: React.CSSProperties;
   content?: string | React.ReactNode;
 }
 
-const VACard = ({ children, imageSrc, style, content }: VACardProps) => {
+const VACard = ({ children, imageSrc, className, content }: VACardProps) => {
   const hasContent = content ? true : false;
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const canFlip = hasContent && isHovered;
 
   return (
     <div
-      className="group/card"
+      className={`group/card ${className}`}
       style={{ perspective: "1200px" }}
       onMouseEnter={() => setIsHovered(true)}
-      onClick={() => console.log(isHovered)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <ProductCard
