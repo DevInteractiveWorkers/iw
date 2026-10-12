@@ -9,9 +9,9 @@ export async function POST(req: NextRequest) {
 
   await sendEmail({
     from: process.env.NODEMAILER_USER!,
-    // to: "gm@interactiveworkers.com",
-    to: "web.interactiveworkers@gmail.com",
-    // bcc: ["info@interactiveworkers.com", "ceo@interactiveworkers.com"],
+    to: "gm@interactiveworkers.com",
+    // to: "web.interactiveworkers@gmail.com",
+    bcc: ["info@interactiveworkers.com", "ceo@interactiveworkers.com"],
     subject: `${data.fullName} tried to contact you through interactiveworkers.com contact form`,
     heading: "Someone tried to contact us!",
     date,
