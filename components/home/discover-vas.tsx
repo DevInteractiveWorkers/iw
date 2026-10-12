@@ -88,7 +88,7 @@ const DiscoverVAs = () => {
         <SplitText
           delay={isMobile ? 0 : 100}
           textAlign="center"
-          className="font-medium lg:text-5xl leading-none pt-14 pb-4"
+          className="font-medium text-[clamp(2rem,4vw,3rem)] leading-none pt-14 pb-4"
           text={
             <>
               Hire Your <br />
@@ -111,7 +111,7 @@ const DiscoverVAs = () => {
           }
         />
         <CTAButton className="my-10 [--primary-color:#000] [--secondary-color:#dd272d] [--tertiary-color:#fff]" />
-        <div className="w-full gap-6 grid md:grid-cols-4 grid-cols-1 justify-between my-4 md:mb-32">
+        <div className="w-full gap-6 grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 justify-between my-4 md:mb-32">
           {productizedPackages.map((pkg, i) => (
             <FadeInContent key={i} delay={isMobile ? 0 : i * 0.1}>
               <VACard imageSrc={pkg.imageSrc} content={pkg.innerContent}>

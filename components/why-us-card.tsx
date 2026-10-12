@@ -3,7 +3,7 @@
 import Image from "next/image";
 import ProductCard from "./product-card";
 
-interface WhyUsCardProps {
+export interface WhyUsCardProps {
   title: string;
   src: string;
   icon: IconType;

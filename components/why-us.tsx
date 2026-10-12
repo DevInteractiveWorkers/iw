@@ -6,7 +6,36 @@ import FeatureCard from "./feature-cards";
 import { TransitionLink } from "./link";
 import PageDivision from "./page-division";
 import SplitText from "./text-animation/SplitText";
-import WhyUsCard from "./why-us-card";
+import WhyUsCard, { WhyUsCardProps } from "./why-us-card";
+
+const WhyUsCards: WhyUsCardProps[] = [
+  {
+    title: "Risk-Free Scaling",
+    src: "/stock/por_siempre_nacho.png",
+    icon: "shield",
+    content: (
+      <>
+        Expand your workforce without the red tape. We act as the Employer of
+        Record (EOR), absorbing all local payroll, taxes, and labor law
+        compliance. You get elite{" "}
+        <b className="font-semibold">Operational Representatives</b>; we take
+        the liability
+      </>
+    ),
+  },
+  {
+    title: "Turnkey IT Infrastructure",
+    src: "/stock/iw-2026-scheduling.png",
+    icon: "notes",
+    content: (
+      <>
+         We don’t expect our <b className="font-semibold">specialists</b> to
+        work on sub-par personal laptops. We provision, manage, and secure all
+        hardware and software. It’s a true plug-and-play operational hub.
+      </>
+    ),
+  },
+];
 
 export default function WhyUs() {
   const isMobile = useIsMobile();
@@ -18,7 +47,7 @@ export default function WhyUs() {
         <SplitText
           delay={isMobile ? 0 : 100}
           textAlign="start"
-          className="font-medium lg:text-5xl leading-none pt-14 pb-4"
+          className="font-medium text-[clamp(2rem,4vw,3rem)] leading-none pt-14 pb-4"
           text={
             <>
               Smart Staffing Solutions
@@ -28,7 +57,7 @@ export default function WhyUs() {
           }
         />
       </div>
-      <div className="grid md:grid-cols-[40%_auto] grid-cols-1 h-full">
+      <div className="grid lg:grid-cols-[40%_auto] grid-cols-1 gap-6 h-full">
         <div className="w-full h-full">
           <p className="sticky top-20">
             Running a business shouldn't mean drowning in administrative
@@ -43,38 +72,19 @@ export default function WhyUs() {
           </p>
         </div>
         <div className="w-full h-full flex flex-col gap-6">
-          <WhyUsCard
-            title="Risk-Free Scaling"
-            src="/stock/por_siempre_nacho.png"
-            style={{ position: "sticky", top: "5rem" }}
-            icon={"shield"}
-            content={
-              <>
-                Expand your workforce without the red tape. We act as the
-                Employer of Record (EOR), absorbing all local payroll, taxes,
-                and labor law compliance. You get elite{" "}
-                <b className="font-semibold">Operational Representatives</b>; we
-                take the liability
-              </>
-            }
-          />
-          <WhyUsCard
-            title="Turnkey IT Infrastructure"
-            src="/stock/iw-2026-scheduling.png"
-            style={{ position: "sticky", top: "10rem" }}
-            icon={"notes"}
-            content={
-              <>
-                 We don’t expect our{" "}
-                <b className="font-semibold">specialists</b> to work on sub-par
-                personal laptops. We provision, manage, and secure all hardware
-                and software. It’s a true plug-and-play operational hub.
-              </>
-            }
-          />
+          {WhyUsCards.map((card, i) => (
+            <WhyUsCard
+              {...card}
+              style={
+                !isMobile
+                  ? { position: "sticky", top: `calc(5rem * ${i + 1})` }
+                  : {}
+              }
+            />
+          ))}
         </div>
       </div>
-      <div className="grid md:grid-cols-4 gap-6">
+      <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6">
         <FadeInContent>
           <FeatureCard
             title="Pre-Vetted Top Talent"
