@@ -5,10 +5,9 @@ import VACard from "../vas/cards";
 import FadeInContent from "../FadeInContent";
 import SplitText from "../text-animation/SplitText";
 import { useScrollIntoView } from "@/lib/use-scroll-into-view";
-import PageDivision from "../page-division";
-import { TransitionLink } from "../link";
 import CTAButton from "../buttons/cta-button";
 import { useIsMobile } from "@/lib/useMobile";
+import { useRouter } from "next/navigation";
 
 const productizedPackages = [
   {
@@ -77,6 +76,7 @@ const productizedPackages = [
 const DiscoverVAs = () => {
   const { ref } = useScrollIntoView<HTMLElement>({ offset: 80 });
   const isMobile = useIsMobile();
+  const router = useRouter();
 
   return (
     <section
@@ -110,7 +110,12 @@ const DiscoverVAs = () => {
             </>
           }
         />
-        <CTAButton className="my-10 [--primary-color:#000] [--secondary-color:#dd272d] [--tertiary-color:#fff]" />
+        <CTAButton
+          onClick={() =>
+            router.push("https://calendly.com/interactiveworkersgm/30min")
+          }
+          className="my-10 [--primary-color:#000] [--secondary-color:#dd272d] [--tertiary-color:#fff]"
+        />
         <div className="w-full gap-6 grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 justify-between my-4 md:mb-32">
           {productizedPackages.map((pkg, i) => (
             <FadeInContent key={i} delay={isMobile ? 0 : i * 0.1}>

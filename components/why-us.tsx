@@ -12,7 +12,7 @@ const WhyUsCards: WhyUsCardProps[] = [
   {
     title: "Risk-Free Scaling",
     src: "/stock/por_siempre_nacho.png",
-    icon: "shield",
+    icon: "shield-check",
     content: (
       <>
         Expand your workforce without the red tape. We act as the Employer of
@@ -26,12 +26,25 @@ const WhyUsCards: WhyUsCardProps[] = [
   {
     title: "Turnkey IT Infrastructure",
     src: "/stock/iw-2026-scheduling.png",
-    icon: "notes",
+    icon: "file-edit-02",
     content: (
       <>
-         We don’t expect our <b className="font-semibold">specialists</b> to
-        work on sub-par personal laptops. We provision, manage, and secure all
-        hardware and software. It’s a true plug-and-play operational hub.
+        We don't expect our <b className="font-semibold">specialists</b> to work
+        on sub-par personal laptops. We provision, manage, and secure all
+        hardware and software. It's a true plug-and-play operational hub.
+      </>
+    ),
+  },
+  {
+    title: "Bilingual (Spanish & English)",
+    src: "/stock/iw-team-2026.png",
+    icon: "message-chat-011",
+    content: (
+      <>
+        Break down communication barriers with C1-C2, fully fluent{" "}
+        <b className="font-semibold">bilingual talent</b>. Our team members
+        operate seamlessly in both English and Spanish, ensuring clear alignment
+        with your U.S. operations and Latin American markets.
       </>
     ),
   },
