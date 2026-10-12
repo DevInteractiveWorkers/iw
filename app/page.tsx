@@ -1,21 +1,30 @@
-import IntroBanner from "./components/home/intro-banner";
-import BenefitsBanner from "./components/home/benefits";
-import DiscoverVAs from "./components/home/discover-vas";
-import Testimonies from "./components/home/testimonies";
-import MainForm from "./components/form/form";
-import NavbarComponent from "./components/navbar";
-import Reviews from "./components/home/reviews";
+import IntroBanner from "@/components/home/intro-banner";
+import DiscoverVAs from "@/components/home/discover-vas";
+import IWVideo from "@/components/video";
+import StatsSection from "@/components/stats-section";
+import WhyUs from "@/components/why-us";
+import FadeInContent from "@/components/FadeInContent";
+import Reviews from "@/components/home/reviews";
+import HowItWorks from "@/components/how-it-works";
+import FollowGlobe from "@/components/globe/follow-globe";
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-between">
-      <NavbarComponent dark={true}></NavbarComponent>
-      <IntroBanner></IntroBanner>
-      <BenefitsBanner></BenefitsBanner>
-      <DiscoverVAs></DiscoverVAs>
-      <Testimonies></Testimonies>
-      <Reviews />
-      <MainForm dark={true}></MainForm>
+    <main className="relative">
+      <FollowGlobe />
+      <IntroBanner />
+      <DiscoverVAs />
+      <WhyUs />
+      <div className="w-dvw bg-iw-red-2 flex flex-col md:pt-20 pt-10 md:gap-20 gap-10">
+        <IWVideo />
+        <StatsSection />
+        <HowItWorks />
+      </div>
+      <article className="z-10 px-[clamp(1rem,8vw,50rem)]">
+        <FadeInContent>
+          <Reviews />
+        </FadeInContent>
+      </article>
     </main>
   );
 }

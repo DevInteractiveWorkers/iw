@@ -1,72 +1,61 @@
+"use client";
+
 import React from "react";
-import NavbarComponent from "../components/navbar";
-import MainForm from "../components/form/form";
-import Image from "next/image";
-import Socials from "../components/footer/socials";
-import GetHired from "../components/form/get-hired";
-import { ParticlesComponent } from "../components/particles";
+import PageHero from "@/components/page-hero";
+import SplitText from "@/components/text-animation/SplitText";
+import dynamic from "next/dynamic";
+
+const loadGlobe = () => import("@/components/globe/globe");
+
+const GlobePlaceholder = () => (
+  <div className="h-screen w-full" aria-hidden="true" />
+);
+
+const IWGlobe = dynamic(loadGlobe, {
+  ssr: false,
+  loading: GlobePlaceholder,
+});
 
 const ContactUs = () => {
   return (
-    <div className="bg-iw-red-3 pb-8 md:pb-24">
-      <NavbarComponent></NavbarComponent>
-      <section className="">
-        <h1 className="text-4xl uppercase text-white font-extrabold my-12 mx-auto w-fit md:ml-24">
-          Contact Us
-        </h1>
-        <article className="flex flex-col md:flex-row w-11/12 bg-white rounded-r-[66px]">
-          <MainForm dark={2}></MainForm>
-          <div className="basis-2/6 flex flex-col justify-center text-center items-center text-lg pb-8 md:pb-0 relative">
-            <ParticlesComponent
-              id="contact-us-particles"
-              color="#3A3A3A"
-              className="opacity-15"
-            />
-            <div className="z-10">
-              <Image
-                className="-mb-12"
-                src={"/contact/interactive-worker.png"}
-                alt="Interactive worker"
-                width={302}
-                height={387}
-              ></Image>
-              <h2 className="font-black text-4xl text-[#820707] uppercase">
-                Info
-              </h2>
-              <div className="mt-4 text-xl font-medium">
-                {" "}
-                <Image
-                  className="inline mr-1"
-                  src={"/contact/phone.svg"}
-                  alt="Interactive Email"
-                  width={17}
-                  height={15}
-                ></Image>{" "}
-                <span>+1 332-206-2891</span>
-              </div>
-              <div className="text-xl font-medium">
-                {" "}
-                <Image
-                  className="inline mr-1"
-                  src={"/contact/email.svg"}
-                  alt="Interactive Email"
-                  width={18}
-                  height={15}
-                ></Image>{" "}
-                <span>info@interactiveworkers.com</span>
-              </div>
-              <h3 className="font-bold mt-4 text-[#333333]">
-                @interactiveworkers
-              </h3>
-              <Socials className="mt-8 justify-center md:justify-start"></Socials>
-            </div>
-          </div>
-        </article>
-        <article className="w-full md:w-3/4 mx-auto mt-8 bg-white rounded-[66px]">
-          <GetHired></GetHired>
-        </article>
-      </section>
-    </div>
+    <section className="flex flex-col px-[clamp(1rem,8vw,50rem)]">
+      <div
+        className="absolute md:top-0 max-md:bottom-0 left-0 md:w-full h-full w-dvw overflow-x-hidden"
+        style={{
+          maskImage: "linear-gradient(to bottom, black 40%, transparent 60%)",
+          WebkitMaskImage:
+            "linear-gradient(to bottom, black 40%, transparent 60%)",
+        }}
+      >
+        <div
+          className="top-0 left-0 bottom-0"
+          style={{
+            transform: `translateX(25%)`,
+          }}
+        >
+          <IWGlobe sway autoRotate={false} />
+        </div>
+      </div>
+      <PageHero
+        dark={false}
+        heading={
+          <span className="text-[clamp(4rem,4vw,7rem)] font-medium leading-[1.05] pb-6">
+            Talk to Our Team
+          </span>
+        }
+        division={false}
+      />
+      <SplitText
+        className="text-xl lg:w-2/3 -translate-y-full"
+        textAlign={"start"}
+        text={
+          <>
+            Tell us what you need covered <br />
+            we'll scope the right operational unit for it.
+          </>
+        }
+      />
+    </section>
   );
 };
 

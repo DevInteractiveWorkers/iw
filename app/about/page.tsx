@@ -1,111 +1,166 @@
+"use client";
+
 import React from "react";
-import Image from "next/image";
-import NavbarComponent from "./../components/navbar/index";
-import FAQ from "../components/about/faq/faq";
-import Values from "../components/about/values/values";
-import MainForm from "../components/form/form";
-import { ParticlesComponent } from "../components/particles";
+import PageHero from "@/components/page-hero";
+import SplitText from "@/components/text-animation/SplitText";
+import FadeInContent from "@/components/FadeInContent";
+import VideoPlayer from "@/components/video-player";
+import { useRouter } from "next/navigation";
+import { Vas } from "../content/vas";
+import VACard from "@/components/vas/cards";
+import { useIsMobile } from "@/lib/useMobile";
 
 const AboutUs = () => {
+  const router = useRouter();
+
+  const isMobile = useIsMobile();
+
   return (
-    <div>
-      <NavbarComponent dark={false}></NavbarComponent>
-      <section className="flex flex-col justify-between relative">
-        {/* <div className='absolute w-2/3 h-12 bg-iw-red-1 rounded-3xl right-0 -top-6 z-0'></div> */}
-
-        <article className="overflow-hidden relative my-8">
-          <Image
-            className="object-cover z-30 w-full "
-            src={"/about/banner-1.png"}
-            alt="About interactive banner"
-            width={1440}
-            height={518}
-            quality={100}
-          ></Image>
-          <div className="absolute pl-1 md:pl-[5%] w-1/2 top-1/2">
-            <h1 className="relative text-white font-regular text-base md:text-xl lg:text-3xl z-40 bg-iw-red-1 w-3/4 pl-8 uppercase">
-              We are
-            </h1>
-            <h2 className="relative text-white font-black text-base md:text-2xl lg:text-4xl z-40 pl-8">
-              InteractiveWorkers
-            </h2>
-          </div>
-        </article>
-
-        <article className="text-center w-3/4 mx-auto my-24">
-          <h2 className="font-extrabold text-xl md:text-4xl my-2 text-iw-red-1">
-            InteractiveWorkers
-          </h2>
-          <p className=" text-base md:text-lg w-full">
-            is a cutting-edge business solution that covers the whole outsourced
-            sector, not simply one more outsourcing platform. We believe
-            outsourcing should be simple, efficient, and advantageous for
-            companies of all sizes.{" "}
-            <span className="font-bold">
-              Our platform is made to streamline the outsourcing process, lessen
-              its difficulties, and improve its results.
-            </span>{" "}
-          </p>
-          <div className="h-4 w-1/6 bg-iw-red-1 mt-16 mx-auto rounded-3xl"></div>
-        </article>
-
-        <article className="w-full mb-10 md:mb-24 relative">
-          <ParticlesComponent
-            id="about-particles"
-            color="#3A3A3A"
-            className="-z-10 h-screen top-0 -mt-10 opacity-15"
-          />
-          <h3 className="font-extrabold text-xl md:text-4xl uppercase bg-iw-red-1 text-white w-3/4 md:w-1/2 rounded-r-full py-8 text-center">
-            Who we are
-          </h3>
-          <div className="bg-iw-red-1 w-full flex flex-col md:flex-row">
-            <div className="bg-[#282828] rounded-[60px] basis-[60%] px-4 md:px-16 -my-2 text-white text-xl max-h-[500px]">
-              <div className="py-8 px-4">
-                <h4 className="text-iw-red-1 font-extrabold">
-                  InteractiveWorkers:
-                </h4>
-                <p className="font-normal">
-                  Your dedicated virtual assistants for success
-                </p>
-              </div>
-              <Image
-                className="w-full"
-                src={"/about/what-we-are.png"}
-                alt="Interactive What we are image"
-                width={717}
-                height={404}
-              ></Image>
-            </div>
-            <div className="basis-[40%] text-white text-base md:text-lg font-medium flex items-center">
-              <p className="p-8">
-                {" "}
-                With four years of experience, we provide expert support to
-                propel your business forward.
-                <br /> <br />
-                We manage projects for companies of all sizes, allowing you to
-                focus on other priorities. Choose us for a team that goes the
-                extra mile for your administrative needs.
-              </p>
-            </div>
-          </div>
-        </article>
-
-        <article className="relative values-bg text-white my-8 justify-center items-center gap-3">
-          <h4 className="absolute ml-auto mr-auto left-0 right-0 top-[2%] md:top-[10%] text-2xl md:text-4xl font-extrabold p-4 text-center w-3/4 md:w-1/2 bg-[#c1272c70] rounded-3xl">
-            OUR <span className="font-normal">CORE VALUES AS A</span> COMPANY
-          </h4>
-          <Values></Values>
-        </article>
-
-        <FAQ></FAQ>
-        <ParticlesComponent
-          id="about-particles-bottom"
-          color="#3A3A3A"
-          className="h-svh top-3/4 -z-10 opacity-15"
+    <>
+      <section className="w-full relative flex flex-col items-start justify-center text-white px-[clamp(1rem,8vw,50rem)] bg-iw-red-2">
+        <PageHero
+          division={false}
+          heading={
+            <>
+              Beyond Outsourcing
+              <br />
+              We Build Your Global
+              <br />
+              Infrastructure
+            </>
+          }
+          description={
+            <>
+              For years, <b className="font-semibold">growing companies</b> have
+              been forced into a false compromise: either{" "}
+              <b className="font-semibold">
+                absorb the exorbitant overhead, HR headaches, and legal
+                liabilities of local hiring
+              </b>
+              , or gamble their operational stability on fragmented freelancers
+              and traditional{" "}
+              <b className="font-semibold">"virtual assistants"</b> using their
+              own unsecure laptops.
+              <br />
+              <br />
+              <b className="font-semibold">
+                The traditional outsourcing model is broken.
+              </b>{" "}
+              It lacks continuity, security, and true integration.
+            </>
+          }
+          ctaButton={{
+            onClick: () =>
+              router.push("https://calendly.com/interactiveworkersgm/30min"),
+            className:
+              "my-10 [--primary-color:#fff] [--secondary-color:#fff] [--tertiary-color:#dd272d]",
+          }}
         />
-        <MainForm dark={false}></MainForm>
       </section>
-    </div>
+      <section className="grid grid-cols-1 gap-6 pb-10 items-center justify-items-center px-[clamp(1rem,8vw,50rem)] bg-white">
+        <article className="grid md:grid-cols-2 grid-cols-1 gap-6 py-6">
+          <SplitText
+            splitType="lines"
+            textAlign="start"
+            className="font-light text-sm lg:text-xl"
+            text={
+              <>
+                At <b className="font-semibold">InteractiveWorkers</b>, we
+                decided to engineer a better way to scale. We don’t just source
+                talent; we deploy{" "}
+                <b className="font-semibold">
+                  Fully Managed Operational Solutions
+                </b>
+                . We realized that businesses don’t just need extra hands they
+                need reliable plug-and-play infrastructure.
+                <br />
+                <br />
+                When you partner with us, you are integrating a highly trained
+                unit of{" "}
+                <b className="font-semibold">
+                  Dedicated Representatives
+                </b> and{" "}
+                <b className="font-semibold">Operational Specialists</b>
+                directly into your workflow. We take care of the rest. From
+                provisioning enterprise-grade hardware and managing{" "}
+                <b className="font-semibold">IT security</b>, to acting as your{" "}
+                <b className="font-semibold">Employer of Record (EOR)</b> to
+                absorb 100% of the legal and{" "}
+                <b className="font-semibold">HR liabilities</b>.
+              </>
+            }
+          />
+          <SplitText
+            splitType="lines"
+            textAlign="start"
+            className="font-light text-sm lg:text-xl text-center text-wrap"
+            text={
+              <>
+                With our ironclad{" "}
+                <b className="font-semibold">100% Continuity SLA</b>, we ensure
+                your business never stops moving. You focus on growth; we
+                provide the operational engine that drives it.
+              </>
+            }
+          />
+        </article>
+        <article>
+          <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-6 justify-between my-4 md:mb-32">
+            {Vas.slice(0, 8).map((va, i) => (
+              <FadeInContent key={i} delay={isMobile ? 0 : i * 0.1}>
+                <VACard imageSrc={`/team-2026/${va.img}`}>{va.position}</VACard>
+              </FadeInContent>
+            ))}
+          </div>
+        </article>
+        <SplitText
+          className="text-[clamp(2rem,4vw,3.75rem)] leading-[1] font-medium lg:w-1/2 md:w-3/2"
+          textAlign={"center"}
+          text={
+            <>
+              What They Say <br />
+              About Us
+            </>
+          }
+        />
+        <article
+          className="
+        relative z-10
+        flex w-full items-center justify-center
+        px-0 md:px-2 py-10
+      "
+        >
+          <FadeInContent
+            className="
+            flex w-full items-center justify-center
+            md:h-auto
+            md:w-full
+          "
+          >
+            <VideoPlayer
+              src={
+                "https://s3.interactiveworkers.com/demo/52d026a9-2910-4eb5-8395-aeecedc29f13.mp4"
+              }
+              className="
+              h-full
+              w-full
+              rounded-none
+              md:h-auto
+              md:w-7/12
+              md:rounded-xl
+            "
+            />
+          </FadeInContent>
+        </article>
+        <div className="w-full flex justify-end">
+          <SplitText
+            textAlign="start"
+            className="text-[clamp(2rem,4vw,3.75rem)] leading-[1.05] pb-6 font-light w-3/4"
+            text="Beyond the obvious benefits, virtual assistants can address hidden needs."
+          />
+        </div>
+      </section>
+    </>
   );
 };
 

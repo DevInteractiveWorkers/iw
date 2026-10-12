@@ -1,6 +1,7 @@
+// Send Mail Affiliate
+import { sendEmail } from "@/components/lib/sendEmail";
+import { getCurrentDate, smallFormData } from "@/components/lib/utils";
 import { NextRequest, NextResponse } from "next/server";
-import { getCurrentDate, smallFormData } from "@/app/components/lib/utils";
-import { sendEmail } from "@/app/components/lib/sendEmail";
 
 export async function POST(req: NextRequest): Promise<Response> {
   const data: smallFormData = await req.json();

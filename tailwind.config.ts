@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  darkMode: "class",
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -15,9 +16,10 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
-        "iw-red-1": "#DD272D",
-        "iw-red-2": "#C1272D",
-        "iw-red-3": "#800202",
+        "iw-red-1": "var(--iw-primary-red)",
+        "iw-red-2": "var(--iw-secondary-red)",
+        "iw-red-3": "var(--iw-tertiary-red)",
+        julscodes: "#008080",
       },
       keyframes: {
         marquee: {
@@ -85,6 +87,18 @@ const config: Config = {
           },
           "100%": { transform: "translate(0%, 0%)", zIndex: "1" },
         },
+        "fade-in-up": {
+          "0%": { opacity: "0", transform: "translateY(8px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "scroll-alert": {
+          "0%, 100%": {
+            opacity: "0",
+          },
+          "40%, 60%": {
+            opacity: "1",
+          },
+        },
       },
       animation: {
         marquee: "marquee 30s linear infinite",
@@ -99,6 +113,10 @@ const config: Config = {
         "move-around-2": "move-around-2 3s linear infinite",
         "move-around-3": "move-around-3 3s linear infinite",
         flip: "flip 2s linear infinite",
+        "fade-in-up": "fade-in-up 0.5s ease-out",
+        "scroll-alert-1": "scroll-alert 1.8s ease-in-out infinite",
+        "scroll-alert-2": "scroll-alert 1.8s ease-in-out 0.3s infinite",
+        "scroll-alert-3": "scroll-alert 1.8s ease-in-out 0.6s infinite",
       },
     },
   },
