@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 const productizedPackages = [
   {
     content: "24/7 Inbound Call & Emergency Dispatch Unit",
-    imageSrc: "/team-2026/CAMILA/camila_01.png",
+    imageSrc: "/team-2026/SOFIA/sofia_03.png",
     innerContent: (
       <p>
         Never miss a critical lead or support request.
