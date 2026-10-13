@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import CTAButton from "../buttons/cta-button";
 import { useRouter } from "next/navigation";
 import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 import PageHero from "../page-hero";
@@ -14,7 +13,7 @@ const IntroBanner = () => {
   return (
     <section
       ref={ref}
-      className="w-full relative flex flex-col items-start justify-center text-white px-[clamp(1rem,8vw,50rem)]"
+      className="w-full relative flex flex-col items-start justify-center text-white px-[clamp(1rem,8vw,50rem)] bg-iw-red-2 -z-10"
     >
       <PageHero
         division={false}
