@@ -13,8 +13,13 @@ const IntroBanner = () => {
   return (
     <section
       ref={ref}
-      className="w-full relative flex flex-col items-start justify-center text-white px-[clamp(1rem,8vw,50rem)] bg-iw-red-2 -z-10"
+      className="w-full relative flex flex-col items-start justify-center text-white px-[clamp(1rem,8vw,50rem)]"
     >
+      {/* Background lives on its own layer so the globe paints over it while the hero content stays above the globe. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 bg-iw-red-2 pointer-events-none"
+      />
       <PageHero
         division={false}
         heading={

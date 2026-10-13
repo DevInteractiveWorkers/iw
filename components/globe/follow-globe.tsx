@@ -113,7 +113,7 @@ export default function FollowGlobe({ dark = false }: { dark?: boolean }) {
   }, [dark]);
 
   return (
-    <div className="fixed md:top-0 left-0 md:w-full h-full w-dvw overflow-x-hidden">
+    <div className="fixed md:top-0 left-0 md:w-full h-full w-dvw overflow-x-hidden pointer-events-none">
       <div
         ref={globeRef}
         className="top-0 left-0 bottom-0"
