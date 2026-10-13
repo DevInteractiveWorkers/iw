@@ -12,7 +12,7 @@ export default function Accordion({ images }: AccordionProps) {
 
   return (
     <div
-      className="flex w-9/12 h-[600px] gap-2 overflow-hidden"
+      className="flex md:w-9/12 w-full md:h-[600px] h-[50vh] max-md:flex-col gap-2 overflow-hidden"
       onMouseLeave={() => setOpened(null)}
     >
       {images.map((img, index) => (

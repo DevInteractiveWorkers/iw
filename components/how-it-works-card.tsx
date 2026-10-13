@@ -15,7 +15,7 @@ export default function HowItWorksStep({
 }: HowItWorksStepProps) {
   return (
     <div
-      className={`h-full py-10 flex flex-col items-start justify-start gap-6 z-10 ${className}`}
+      className={`h-full py-10 md:px-4 flex flex-col items-start justify-start gap-6 z-10 ${className}`}
     >
       <div className="grid h-1/2">
         <span className="text-iw-red-2">
