@@ -52,7 +52,7 @@ export const ReviewsSummary: React.FC<ReviewsSummaryProps> = ({
 
       {/* Modal Dialog */}
       {isOpen && (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 bg-white/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <ProductCard className="p-6">
             <h3 className="text-2xl font-medium pb-2">
               Review InteractiveWorkers
