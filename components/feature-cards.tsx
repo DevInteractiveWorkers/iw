@@ -37,16 +37,16 @@ export default function FeatureCard({
       >
         {icon && (
           <FlipElement
-            className={`${iconDark ? "text-iw-red-2" : "text-white bg-iw-red-2"} aspect-square rounded-full m-5 w-max p-5 flex items-center justify-center z-10`}
+            className={`${iconDark ? "text-iw-red-2" : "text-white bg-iw-red-2"} aspect-square rounded-full m-5 p-5 flex items-center justify-center z-10`}
           >
-            <Icon icon={icon} color="currentColor" />
+            <Icon icon={icon} color="currentColor" width={20} height={20} />
           </FlipElement>
         )}
-        <label className="font-semibold text-[clamp(1.3rem,1vw,1.5rem)] leading-[1.2] text-center pointer-events-none z-10">
+        <label className="font-semibold text-[clamp(1rem,1vw,1.5rem)] leading-[1.2] text-center pointer-events-none z-10">
           {title}
         </label>
         {content && (
-          <p className="text-iw-red-2 text-[clamp(1rem,1vw,1.125rem)] leading-[1.2] text-base text-center pointer-events-none z-10">
+          <p className="text-iw-red-2 text-[clamp(0.7rem,1vw,1.125rem)] leading-[1.2] text-base text-center pointer-events-none z-10">
             {content}
           </p>
         )}

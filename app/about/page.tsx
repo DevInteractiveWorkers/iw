@@ -118,7 +118,10 @@ const AboutUs = () => {
         <article>
           <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-6 justify-between my-4 md:mb-32">
             {Vas.slice(0, 8).map((va, i) => (
-              <FadeInContent key={i} delay={isMobile ? 0 : i * 0.1}>
+              <FadeInContent
+                key={i}
+                delay={isMobile ? (i % 2 === 0 ? 0 : i * 0.1) : i * 0.1}
+              >
                 <VACard
                   imageSrc={`/team-2026/${va.img}`}
                   className="transition-all duration-300 hover:-translate-y-[5%]"

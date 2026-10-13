@@ -6,8 +6,8 @@ export default function IndustriesWeServe() {
   const isMobile = useIsMobile();
 
   return (
-    <section className="flex flex-col lg:px-[clamp(1rem,8vw,50rem)]">
-      <div className="grid md:grid-cols-3 grid-cols-1 gap-6 px-[clamp(1rem,8vw,50rem)] min-h-screen h-full">
+    <section className="flex flex-col px-[clamp(1rem,8vw,50rem)]">
+      <div className="grid md:grid-cols-3 grid-cols-1 gap-6 lg:px-[clamp(1rem,8vw,50rem)] min-h-[clamp(100vh,8vw,200vh)]">
         <SplitText
           tag="h3"
           className={`md:col-span-3 col-span-1 text-[clamp(2rem,4vw,3.75rem)] leading-[1.05]`}
