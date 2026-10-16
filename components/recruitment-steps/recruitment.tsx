@@ -2,10 +2,7 @@
 
 import Image from "next/image";
 import Steps from "../steps/steps";
-import Icon from "../icon";
 import { useState } from "react";
-import SplitText from "../text-animation/SplitText";
-import FlipElement from "../flip-element";
 import { StepsProvider, useSteps } from "../steps/steps-context";
 import { Graph } from "./graph";
 import { Stat } from "../stats-section";
@@ -91,7 +88,9 @@ function RecruitmentSteps() {
           // description: selected
           //   ? `${selected.name} is ready to join your team.`
           //   : "Choose a candidate in the previous step and welcome your new team member.",
-          note: "This is an example selection featuring real members of our talent network for demonstration purposes only.",
+          note: selected
+            ? "This is an example selection featuring real members of our talent network for demonstration purposes only."
+            : "",
           reverse: !isMobile,
           assets: selected && (
             <div className="flex gap-6">

@@ -21,6 +21,7 @@ const scrollToSection = (id: string) => {
 export default function PricingPage() {
   const isMobile = useIsMobile();
   const [isTerm, setIsTerm] = useState<"long-term" | "project">("long-term");
+  const [activePlan, setActivePlan] = useState(0);
 
   return (
     <>
@@ -45,7 +46,6 @@ export default function PricingPage() {
               <CTAButton
                 onClick={() => scrollToSection("pricing-tables")}
                 className={`[--primary-color:#fff] [--secondary-color:#fff] [--tertiary-color:#dd272d] bg-white hover:bg-none`}
-                style={{ color: "#dd272d" }}
               >
                 See Pricing
               </CTAButton>
@@ -137,27 +137,61 @@ export default function PricingPage() {
               <label>Per Project</label>
             </div>
           </div>
-          <div className="relative md:px-[clamp(1rem,8vw,50rem)] px-0 flex items-center justify-center">
+          <div className="relative md:px-[clamp(1rem,8vw,50rem)] px-0 grid items-start">
             <div
-              className={`grid md:grid-cols-2 gap-6 ${isTerm === "project" ? "-translate-x-full opacity-0" : "translate-x-0 opacity-100"} transition-all duration-700`}
+              className={`col-start-1 row-start-1 flex flex-col gap-6 w-full overflow-hidden ${isTerm === "project" ? "-translate-x-full opacity-0 max-h-0 pointer-events-none" : "translate-x-0 opacity-100 max-h-[3000px]"} transition-all duration-700`}
             >
-              {longTermPlans.map((project, i) => (
-                <PricingCard key={i} {...project} />
-              ))}
+              <div
+                role="tablist"
+                aria-label="Plan type"
+                className="md:hidden grid grid-cols-2 gap-1 p-1 rounded bg-iw-red-2"
+              >
+                {longTermPlans.map((plan, i) => (
+                  <button
+                    key={plan.planName}
+                    role="tab"
+                    id={`plan-tab-${i}`}
+                    aria-selected={activePlan === i}
+                    aria-controls={`plan-panel-${i}`}
+                    onClick={() => setActivePlan(i)}
+                    className={`py-3 rounded text-lg font-medium transition-colors duration-300 ${activePlan === i ? "bg-white text-iw-red-2" : "text-white"}`}
+                  >
+                    {plan.planName}
+                  </button>
+                ))}
+              </div>
+              <div className="grid md:grid-cols-2 gap-6">
+                {longTermPlans.map((plan, i) => (
+                  <div
+                    key={plan.planName}
+                    role="tabpanel"
+                    id={`plan-panel-${i}`}
+                    aria-labelledby={`plan-tab-${i}`}
+                    className={activePlan === i ? "block" : "hidden md:block"}
+                  >
+                    <PricingCard
+                      {...plan}
+                      style={{ height: "100%" }}
+                      hideHeader={isMobile}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
             <div
-              className={`grid md:grid-cols-3 grid-cols-2 gap-6 absolute top-0 left-1/2 w-full h-full ${isTerm === "long-term" ? "translate-x-full opacity-0" : "-translate-x-1/2 opacity-100"} transition-all duration-700 md:px-[clamp(1rem,8vw,50rem)]`}
+              className={`col-start-1 row-start-1 grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 w-full overflow-hidden ${isTerm === "long-term" ? "translate-x-full opacity-0 max-h-0 pointer-events-none" : "translate-x-0 opacity-100 max-h-[3000px] min-h-[70vh]"} transition-all duration-700 md:px-[clamp(1rem,8vw,50rem)]`}
             >
               {projectPlans.map((project, i) => (
                 <FeatureCard
                   key={i}
                   title={project.title}
-                  aspect="aspect-[2/1]"
+                  aspect="aspect-[4/3] md:aspect-[2/1]"
                   dark
                   cta={{
                     label: "Start a Project",
-                    href: "https://calendly.com/interactiveworkersgm/30min",
-                    variant: "primary",
+                    href: `https://wa.me/13322062891?text=${encodeURIComponent(
+                      `Hello InteractiveWorkers!\nI'd like to start a ${project.title} project with you!`,
+                    )}`,
                   }}
                   icon={project.icon}
                 />
