@@ -17,7 +17,7 @@ export default function Reviews() {
         <SplitText
           textAlign="start"
           className="text-[clamp(2rem,4vw,3.75rem)] leading-[1.05] pb-6 font-light w-3/4"
-          text="Beyond the obvious benefits, virtual assistants can address hidden needs."
+          text="Beyond the obvious benefits, remote staff can address hidden needs."
         />
       </div>
     </article>

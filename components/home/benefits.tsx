@@ -34,7 +34,7 @@ const BenefitsBanner = () => {
       <article className="relative">
         <div className="relative z-40 w-11/12 md:w-3/4 mx-auto uppercase font-bold text-lg lg:text-4xl text-black p-12 bg-white rounded-3xl">
           <h2>
-            Our virtual assistants are <br />
+            Our remote staff are <br />
           </h2>
           <h2 className="mt-1.5 text-iw-red-1"> your partners in success </h2>
           <p className=" text-sm md:text-base mt-2">

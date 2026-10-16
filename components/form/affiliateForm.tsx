@@ -71,8 +71,8 @@ const AffiliateForm = () => {
             textAlign="start"
             text={
               <>
-                Beyond the obvious benefits, virtual assistants can address
-                hidden needs.
+                Beyond the obvious benefits, remote staff can address hidden
+                needs.
               </>
             }
           />

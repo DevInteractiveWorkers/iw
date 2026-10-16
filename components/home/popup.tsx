@@ -25,7 +25,7 @@ const PopUp = () => {
           </h3>
           <p className="mt-4 text-left md:text-justify">
             Get a <b>special discount</b>, 20% off on your first service with
-            our virtual assistants
+            our remote staff
           </p>
         </div>
       </div>

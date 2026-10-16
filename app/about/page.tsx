@@ -19,7 +19,7 @@ const AboutUs = () => {
   return (
     <>
       <section className="w-full relative flex flex-col items-start justify-center text-white px-[clamp(1rem,8vw,50rem)] bg-iw-red-2">
-        {/* <div className="absolute w-screen h-full top-0 left-0 pointer-events-none">
+        <div className="absolute w-screen h-full top-0 left-0 pointer-events-none">
           <DriftWall
             items={Vas.slice(0, 8).map((va) => ({
               image: va.img,
@@ -46,7 +46,7 @@ const AboutUs = () => {
             pauseOnHover={false}
             grayscale={false}
           />
-        </div> */}
+        </div>
         <PageHero
           division={false}
           heading={
@@ -67,9 +67,8 @@ const AboutUs = () => {
                 liabilities of local hiring
               </b>
               , or gamble their operational stability on fragmented freelancers
-              and traditional{" "}
-              <b className="font-semibold">"virtual assistants"</b> using their
-              own unsecure laptops.
+              and traditional <b className="font-semibold">"remote staff"</b>{" "}
+              using their own unsecure laptops.
               <br />
               <br />
               <b className="font-semibold">
@@ -133,7 +132,7 @@ const AboutUs = () => {
             }
           />
         </article>
-        <article>
+        {/* <article>
           <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-6 justify-between my-4 md:mb-32">
             {Vas.slice(0, 8).map((va, i) => (
               <FadeInContent
@@ -149,7 +148,7 @@ const AboutUs = () => {
               </FadeInContent>
             ))}
           </div>
-        </article>
+        </article> */}
         <SplitText
           className="text-[clamp(2rem,4vw,3.75rem)] leading-[1] font-medium lg:w-1/2 md:w-3/2"
           textAlign={"center"}
@@ -194,7 +193,7 @@ const AboutUs = () => {
           <SplitText
             textAlign="start"
             className="text-[clamp(2rem,4vw,3.75rem)] leading-[1.05] pb-6 font-light w-3/4"
-            text="Beyond the obvious benefits, virtual assistants can address hidden needs."
+            text="Beyond the obvious benefits, remote staff can address hidden needs."
           />
         </div>
       </section>

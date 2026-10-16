@@ -105,8 +105,8 @@ const DiscoverVAs = () => {
               <b className="font-semibold">top-tier remote professionals.</b>
               From dedicated administrative support to{" "}
               <b className="font-semibold">specialized technical talent</b>, we
-              connect growing businesses with pre-vetted virtual assistants who
-              drive productivity and growth.
+              connect growing businesses with pre-vetted remote staff who drive
+              productivity and growth.
             </>
           }
         />
