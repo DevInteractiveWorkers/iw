@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { Vas } from "../content/vas";
 import VACard from "@/components/vas/cards";
 import { useIsMobile } from "@/lib/useMobile";
-import Accordion from "@/components/accordion";
+import DriftWall from "@/components/drift-wall";
 
 const AboutUs = () => {
   const router = useRouter();
@@ -19,6 +19,34 @@ const AboutUs = () => {
   return (
     <>
       <section className="w-full relative flex flex-col items-start justify-center text-white px-[clamp(1rem,8vw,50rem)] bg-iw-red-2">
+        <div className="absolute w-screen h-full left-0 pointer-events-none">
+          <DriftWall
+            items={Vas.slice(0, 16).map((va) => ({
+              image: va.img,
+              title: va.position,
+            }))}
+            columns={8}
+            tileWidth={isMobile ? 180 : 300}
+            tileHeight={isMobile ? 200 : 500}
+            gap={isMobile ? 9 : 18}
+            tilt={16}
+            turn={-14}
+            perspective={1200}
+            depth={120}
+            speed={42}
+            direction="up"
+            variance={0.45}
+            parallax={0.6}
+            lift={64}
+            fade={0.6}
+            dim={0.55}
+            overlayColor="#000"
+            radius={14}
+            roll={0}
+            pauseOnHover={false}
+            grayscale={false}
+          />
+        </div>
         <PageHero
           division={false}
           heading={
@@ -57,16 +85,6 @@ const AboutUs = () => {
               "my-10 [--primary-color:#fff] [--secondary-color:#fff] [--tertiary-color:#dd272d]",
           }}
         />
-        <div className="relative w-full flex items-center justify-center">
-          <div className="bg-white w-dvw absolute h-1/3 bottom-0" />
-          <Accordion
-            images={[
-              { src: `/stock/stock (8).png` },
-              { src: `/stock/stock (11).png` },
-              { src: `/stock/stock (10).png` },
-            ]}
-          />
-        </div>
       </section>
       <section className="grid grid-cols-1 gap-6 py-10 items-center justify-items-center px-[clamp(1rem,8vw,50rem)] bg-white">
         <article className="grid md:grid-cols-2 grid-cols-1 gap-6 py-6">
@@ -123,7 +141,7 @@ const AboutUs = () => {
                 delay={isMobile ? (i % 2 === 0 ? 0 : i * 0.1) : i * 0.1}
               >
                 <VACard
-                  imageSrc={`/team-2026/${va.img}`}
+                  imageSrc={va.img}
                   className="transition-all duration-300 hover:-translate-y-[5%]"
                 >
                   {va.position}
@@ -157,6 +175,7 @@ const AboutUs = () => {
           "
           >
             <VideoPlayer
+              thumbnail="/testimonies/testimonial_thumbnail01.png"
               src={
                 "https://s3.interactiveworkers.com/demo/52d026a9-2910-4eb5-8395-aeecedc29f13.mp4"
               }

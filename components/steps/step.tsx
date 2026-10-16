@@ -1,0 +1,64 @@
+import { ButtonHTMLAttributes } from "react";
+
+export interface StepProp {
+  id?: string;
+  index: number;
+  title: string | React.ReactNode;
+  description: string | React.ReactNode;
+  note?: string;
+  assets?: React.ReactNode;
+  cta?: ButtonHTMLAttributes<HTMLButtonElement>;
+  reverse?: boolean;
+}
+export default function Step(props: StepProp) {
+  const {
+    id,
+    index,
+    title,
+    description,
+    note,
+    assets,
+    cta,
+    reverse = false,
+  } = props;
+
+  return (
+    <div
+      id={id !== "" ? id + "-" + index : ""}
+      className="flex shrink-0 min-w-full relative items-center justify-center h-full max-h-[80vh] max-md:h-auto max-md:max-h-none max-md:w-full max-md:gap-4"
+      style={{ flexDirection: reverse ? "column-reverse" : "column" }}
+    >
+      <div className="flex shrink-0 items-center gap-6 lg:w-[35vw] md:w-[40vw] w-screen max-md:w-full max-md:flex-col max-md:items-start max-md:gap-2">
+        <div className="flex items-start leading-none">
+          <span
+            className={
+              "font-bold text-[clamp(8rem,8vw,20rem)] max-md:text-[5rem] leading-[1]"
+            }
+          >
+            {index}
+          </span>
+          <span className="text-xl font-light leading-none translate-y-full">
+            STEP
+          </span>
+        </div>
+        <div>
+          <label
+            className={`text-[clamp(1rem,8vw,3rem)] leading-[1] font-medium`}
+          >
+            {title}
+          </label>
+          <p className="font-light text-[clamp(0.6rem,8vw,1.5rem)] leading-[1]">
+            {description}
+          </p>
+          {note && (
+            <p className="font-light text-[clamp(0.4rem,8vw,1rem)] leading-[1] italic pt-4">
+              * {note}
+            </p>
+          )}
+        </div>
+      </div>
+
+      {assets}
+    </div>
+  );
+}

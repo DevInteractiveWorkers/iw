@@ -6,12 +6,13 @@ import ProductCard from "./product-card";
 import { ReactNode } from "react";
 import SplitText from "./text-animation/SplitText";
 import { useIsMobile } from "@/lib/useMobile";
+import Icon from "./icon";
 
 export interface PricingBenefit {
   id?: string;
   text: string;
   isIncluded: boolean;
-  icon?: ReactNode;
+  icon?: string;
 }
 
 export interface ContactSalesCTA {
@@ -26,6 +27,7 @@ export interface PricingCardProps {
   planDescription: string;
   benefits: PricingBenefit[];
   cta: ContactSalesCTA;
+  includes?: Omit<PricingCardProps, "cta" & "planDescription" & "includes">;
   isFeatured?: boolean;
   className?: string;
   style?: React.CSSProperties;
@@ -36,6 +38,7 @@ export default function PricingCard({
   planDescription,
   benefits,
   cta,
+  includes,
   isFeatured,
   className,
   style,
@@ -52,8 +55,22 @@ export default function PricingCard({
         <SplitText text={planName} />
       </h1>
       <ul className="flex flex-col gap-2 h-full">
+        {includes && (
+          <li
+            className={`border-b pb-2 border-white gap-4 items-center grid grid-cols-[25px_auto]`}
+          >
+            <Icon icon={"plus-01"} width={25} />
+            <p className="italic">
+              Everything in <b>{includes.planName}</b>
+            </p>
+          </li>
+        )}
         {benefits.map((benefit, i) => (
-          <li key={i} className={`border-b pb-2 border-white`}>
+          <li
+            key={i}
+            className={`border-b pb-2 border-white gap-4 items-center ${benefit.icon ? "grid grid-cols-[25px_auto]" : "flex"}`}
+          >
+            {benefit.icon && <Icon icon={benefit.icon} width={25} />}
             <SplitText
               text={benefit.text}
               textAlign="start"
