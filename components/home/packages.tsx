@@ -48,7 +48,7 @@ export default function Packages() {
         tag="h2"
         text={"View Productized Packages"}
         delay={isMobile ? 0 : 100}
-        className="font-light lg:text-5xl text-base z-40 text-center leading-none pb-4"
+        className="font-light text-[clamp(2rem,4vw,3rem)] text-base z-40 text-center leading-none pb-4"
       />
       <div
         ref={ref}

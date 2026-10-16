@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { CSSProperties, useEffect, useRef, useState } from "react";
 import Reviews from "./home/reviews";
 import FadeInContent from "./FadeInContent";
 import { useScrollIntoView } from "@/lib/use-scroll-into-view";
@@ -28,16 +28,20 @@ export default function StatsSection() {
   );
 }
 
-function Stat({
+export function Stat({
   title,
   number,
   symbol,
   decimal,
+  style,
+  className,
 }: {
   title: string;
   number: number;
   symbol?: "+" | "%" | "stars";
   decimal?: boolean;
+  style?: CSSProperties;
+  className?: string;
 }) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
@@ -91,11 +95,14 @@ function Stat({
     <div
       ref={ref}
       className={`flex flex-col w-full`}
-      style={{ alignItems: "center" }}
+      style={{ alignItems: "center", ...style }}
     >
       <span
-        className={`xl:text-[clamp(6rem,5vw,7rem)] lg:text-[clamp(5rem,5vw,6rem)] md:text-[clamp(4rem,4vw,5rem)] text-[clamp(5rem,8vw,6rem)] font-medium flex w-max 
-          ${symbol === "stars" ? "flex-row-reverse" : "flex-row"} items-center justify-center`}
+        className={
+          className ??
+          `text-[clamp(5rem,8vw,7rem)] font-medium flex w-max 
+          ${symbol === "stars" ? "flex-row-reverse" : "flex-row"} items-center justify-center`
+        }
       >
         {formattedNumber}
         {symbol === "stars" ? (

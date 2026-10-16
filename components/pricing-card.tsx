@@ -3,15 +3,16 @@
 import Link from "next/link";
 import ProductCard from "./product-card";
 
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import SplitText from "./text-animation/SplitText";
 import { useIsMobile } from "@/lib/useMobile";
+import Icon from "./icon";
 
 export interface PricingBenefit {
   id?: string;
   text: string;
   isIncluded: boolean;
-  icon?: ReactNode;
+  icon?: string;
 }
 
 export interface ContactSalesCTA {
@@ -26,7 +27,9 @@ export interface PricingCardProps {
   planDescription: string;
   benefits: PricingBenefit[];
   cta: ContactSalesCTA;
+  includes?: Omit<PricingCardProps, "cta" & "planDescription" & "includes">;
   isFeatured?: boolean;
+  hideHeader?: boolean;
   className?: string;
   style?: React.CSSProperties;
 }
@@ -36,11 +39,13 @@ export default function PricingCard({
   planDescription,
   benefits,
   cta,
+  includes,
   isFeatured,
+  hideHeader,
   className,
   style,
 }: PricingCardProps) {
-  const isMobile = useIsMobile();
+  const [isExpanded, setIsExpanded] = useState(false);
 
   return (
     <ProductCard
@@ -48,16 +53,56 @@ export default function PricingCard({
       style={style}
       disableHover
     >
-      <h1 className="md:text-[clamp(2rem,4vw,3.5rem)] text-center leading-[1] text-3xl font-medium pb-2 border-b border-white">
-        <SplitText text={planName} />
-      </h1>
-      <ul className="flex flex-col gap-2 h-full">
+      <header
+        className={`md:text-[clamp(2rem,4vw,3.5rem)] text-center leading-[1] text-3xl font-medium pb-2 border-b border-white justify-center ${hideHeader ? "hidden md:flex" : "flex"}`}
+      >
+        {planName}
+      </header>
+      <ul className="flex flex-col gap-2 h-full cursor-default">
+        {includes && (
+          <li className={`border-b pb-2 border-white`}>
+            <button
+              onClick={() => setIsExpanded((prev) => !prev)}
+              aria-expanded={isExpanded}
+              className="gap-4 items-center grid grid-cols-[25px_auto]"
+            >
+              <span
+                className={`transition-transform duration-300 ease-out ${isExpanded ? "rotate-45" : "rotate-0"}`}
+              >
+                <Icon icon={"plus-01"} width={25} />
+              </span>
+              <p className="italic">
+                Everything in <b>{includes.planName}</b>
+              </p>
+            </button>
+            <div
+              className={`grid transition-[grid-template-rows,opacity] duration-500 ease-in-out ${isExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
+            >
+              <ul className="overflow-hidden min-h-0 flex flex-col text-xs pl-10 list-['-']">
+                {includes.benefits.map((benefit, i) => (
+                  <li
+                    key={i}
+                    className={`transition-all duration-300 ease-out ${isExpanded ? "translate-y-0 opacity-100" : "-translate-y-1 opacity-0"}`}
+                    style={{
+                      transitionDelay: isExpanded ? `${i * 40}ms` : "0ms",
+                    }}
+                  >
+                    {benefit.text}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </li>
+        )}
         {benefits.map((benefit, i) => (
-          <li key={i} className={`border-b pb-2 border-white`}>
+          <li
+            key={i}
+            className={`border-b pb-2 border-white gap-4 items-center ${benefit.icon ? "grid grid-cols-[25px_auto]" : "flex"}`}
+          >
+            {benefit.icon && <Icon icon={benefit.icon} width={25} />}
             <SplitText
               text={benefit.text}
               textAlign="start"
-              delay={isMobile ? 0 : i * 0.1}
               className={
                 benefit.isIncluded ? "" : "line-through italic opacity-50"
               }
@@ -70,7 +115,7 @@ export default function PricingCard({
           href={cta.href}
           className="px-6 py-4 text-xl rounded bg-black hover:scale-95 transition-all duration-300 active:bg-white active:text-black"
         >
-          <SplitText text={cta.label} />
+          {cta.label}
         </Link>
         {cta.detailHref && (
           <SplitText text={<Link href={cta.detailHref}>Details ➔</Link>} />

@@ -4,7 +4,7 @@ import FlipElement from "./flip-element";
 import SplitText from "./text-animation/SplitText";
 import PageDivision from "./page-division";
 import { useScrollIntoView } from "@/lib/use-scroll-into-view";
-import { ButtonHTMLAttributes } from "react";
+import { ButtonHTMLAttributes, CSSProperties } from "react";
 import CTAButton from "./buttons/cta-button";
 
 interface PageHeroAttributes {
@@ -15,6 +15,7 @@ interface PageHeroAttributes {
   division?: boolean;
   ctaButton?: ButtonHTMLAttributes<HTMLButtonElement>;
   dark?: boolean;
+  style?: CSSProperties;
 }
 
 export default function PageHero({
@@ -25,6 +26,7 @@ export default function PageHero({
   division = true,
   ctaButton,
   dark = true,
+  style,
 }: PageHeroAttributes) {
   const { ref } = useScrollIntoView<HTMLElement>({ offset: 80 });
 
@@ -32,8 +34,8 @@ export default function PageHero({
     <article
       ref={ref}
       id={id}
-      className="flex flex-col py-10 relative w-full "
-      style={{ alignItems: align }}
+      className="flex flex-col py-10 relative w-full"
+      style={{ alignItems: align, ...style }}
     >
       <FlipElement className="w-1/4 max-w-[150px] pb-10 mt-20">
         <Image
@@ -51,12 +53,13 @@ export default function PageHero({
       <div
         className={`grid ${description ? (align !== "center" ? "md:grid-cols-2" : "") : ""} grid-cols-1`}
       >
-        <div>
+        <div className="w-full flex flex-col">
           <SplitText
             tag="h1"
             className="
             text-[clamp(2rem,4vw,3.75rem)]
             leading-[1.05]
+            font-medium
             pb-6
           "
             textAlign={align}

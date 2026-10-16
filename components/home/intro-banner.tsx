@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import CTAButton from "../buttons/cta-button";
 import { useRouter } from "next/navigation";
 import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 import PageHero from "../page-hero";
@@ -16,6 +15,11 @@ const IntroBanner = () => {
       ref={ref}
       className="w-full relative flex flex-col items-start justify-center text-white px-[clamp(1rem,8vw,50rem)]"
     >
+      {/* Background lives on its own layer so the globe paints over it while the hero content stays above the globe. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 bg-iw-red-2 pointer-events-none"
+      />
       <PageHero
         division={false}
         heading={
@@ -25,12 +29,12 @@ const IntroBanner = () => {
             Staffing
           </>
         }
-      />
-      <CTAButton
-        onClick={() =>
-          router.push("https://calendly.com/interactiveworkersgm/30min")
-        }
-        className="my-10 [--primary-color:#fff] [--secondary-color:#fff] [--tertiary-color:#dd272d]"
+        ctaButton={{
+          onClick: () =>
+            router.push("https://calendly.com/interactiveworkersgm/30min"),
+          className:
+            "my-10 [--primary-color:#fff] [--secondary-color:#fff] [--tertiary-color:#dd272d]",
+        }}
       />
     </section>
   );

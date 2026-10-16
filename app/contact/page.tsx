@@ -4,6 +4,8 @@ import React from "react";
 import PageHero from "@/components/page-hero";
 import SplitText from "@/components/text-animation/SplitText";
 import dynamic from "next/dynamic";
+import Image from "next/image";
+import { useIsMobile } from "@/lib/useMobile";
 
 const loadGlobe = () => import("@/components/globe/globe");
 
@@ -17,36 +19,41 @@ const IWGlobe = dynamic(loadGlobe, {
 });
 
 const ContactUs = () => {
+  const isMobile = useIsMobile();
+
   return (
-    <section className="flex flex-col px-[clamp(1rem,8vw,50rem)]">
+    <section className="relative flex flex-col px-[clamp(1rem,8vw,50rem)] overflow-hidden">
       <div
-        className="absolute md:top-0 max-md:bottom-0 left-0 md:w-full h-full w-dvw overflow-x-hidden"
+        className="absolute top-0 left-0 w-dvw h-full flex justify-center items-start"
         style={{
-          maskImage: "linear-gradient(to bottom, black 40%, transparent 60%)",
+          maskImage: "linear-gradient(to bottom, black 50%, transparent 100%)",
           WebkitMaskImage:
-            "linear-gradient(to bottom, black 40%, transparent 60%)",
+            "linear-gradient(to bottom, black 50%, transparent 100%)",
+          transform: !isMobile ? `translateX(25%)` : "",
+          height: isMobile ? "50vh" : "100%",
         }}
       >
-        <div
-          className="top-0 left-0 bottom-0"
-          style={{
-            transform: `translateX(25%)`,
-          }}
-        >
+        <div className="absolute">
           <IWGlobe sway autoRotate={false} />
+        </div>
+        <div className="absolute top-0 max-md:right-0 md:w-1/2 h-full px-[clamp(1rem,8vw,50rem)]">
+          <Image
+            width={1080}
+            height={1080}
+            alt="InteractiveWorker"
+            src={"/team-2026/SOFIA/sofia_02.png"}
+            className="object-top object-cover h-full pt-10"
+          />
         </div>
       </div>
       <PageHero
         dark={false}
-        heading={
-          <span className="text-[clamp(4rem,4vw,7rem)] font-medium leading-[1.05] pb-6">
-            Talk to Our Team
-          </span>
-        }
+        heading={"Talk to Our Team"}
         division={false}
+        style={isMobile ? { paddingTop: "30vh" } : {}}
       />
       <SplitText
-        className="text-xl lg:w-2/3 -translate-y-full"
+        className="text-xl lg:w-2/3 md:-translate-y-full -translate-y-1/2"
         textAlign={"start"}
         text={
           <>

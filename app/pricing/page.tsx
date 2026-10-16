@@ -6,237 +6,111 @@ import PageHero from "@/components/page-hero";
 import { useIsMobile } from "@/lib/useMobile";
 import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 import PricingCard, { type PricingCardProps } from "@/components/pricing-card";
-import FeatureCard from "@/components/feature-cards";
 import SplitText from "@/components/text-animation/SplitText";
+import { longTermPlans, projectPlans } from "../content/pricing";
+import FeatureCard from "@/components/feature-cards";
+import Recruitment from "@/components/recruitment-steps/recruitment";
+import { ParticlesComponent } from "@/components/particles";
+import GhostFibers from "@/components/GhostFibers";
+import CTAButton from "@/components/buttons/cta-button";
 
-const projectPlans: PricingCardProps[] = [
-  // Project-Based Tiers
-  {
-    planName: "Small Scope Sprint",
-    planDescription:
-      "Ideal for rapid setups, targeted audits, or single operational desk implementations.",
-    benefits: [
-      {
-        text: "Complete operational audit & workflow design",
-        isIncluded: true,
-      },
-      {
-        text: "Custom SOP buildout & initial routing configuration",
-        isIncluded: true,
-      },
-      { text: "1 to 2 Weeks estimated delivery timeline", isIncluded: true },
-      {
-        text: "Fully customizable to your specific tech stack",
-        isIncluded: true,
-      },
-    ],
-    cta: {
-      label: "Start a Project",
-      href: "https://calendly.com/interactiveworkersgm/30min",
-      variant: "primary",
-    },
-    isFeatured: false,
-  },
-  {
-    planName: "Medium Scope Build",
-    planDescription:
-      "Designed for full operational onboarding, multi-channel dispatch setup, or ticketing integrations.",
-    benefits: [
-      {
-        text: "Turnkey multi-channel integration & platform setup",
-        isIncluded: true,
-      },
-      {
-        text: "Fully provisioned workspace infrastructure & routing",
-        isIncluded: true,
-      },
-      { text: "3 to 5 Weeks estimated delivery timeline", isIncluded: true },
-      { text: "Tailored to your specific team workflows", isIncluded: true },
-    ],
-    cta: {
-      label: "Start a Project",
-      href: "https://calendly.com/interactiveworkersgm/30min",
-      variant: "primary",
-    },
-    isFeatured: true,
-  },
-  {
-    planName: "Enterprise Scope Transformation",
-    planDescription:
-      "Comprehensive end-to-end operational overhaul with custom architecture and team onboarding.",
-    benefits: [
-      {
-        text: "Full operational architecture design & 24/7 redundancy",
-        isIncluded: true,
-      },
-      {
-        text: "Complete team recruitment, training, & smooth handoff",
-        isIncluded: true,
-      },
-      { text: "6 to 10 Weeks estimated delivery timeline", isIncluded: true },
-      {
-        text: "Bespoke engineering around strict enterprise requirements",
-        isIncluded: true,
-      },
-    ],
-    cta: {
-      label: "Start a Project",
-      href: "https://calendly.com/interactiveworkersgm/30min",
-      variant: "primary",
-    },
-    isFeatured: false,
-  },
-];
-
-const longTermPlans: PricingCardProps[] = [
-  // Long-Term Engagement Tiers
-  {
-    planName: "Part-Time Dedicated",
-    planDescription:
-      "Continuous operational continuity backed by a bilingual representative and zero HR liability.",
-    benefits: [
-      {
-        text: "Bilingual (English & Spanish)",
-        isIncluded: true,
-      },
-      {
-        text: "1 Dedicated Representative (Customer Success, SDR, or EA)",
-        isIncluded: true,
-      },
-      {
-        text: "Monthly retainer options",
-        isIncluded: true,
-      },
-      {
-        text: "Enterprise-grade secured hardware & software included",
-        isIncluded: true,
-      },
-      {
-        text: "Zero local HR, payroll, or legal compliance liabilities",
-        isIncluded: true,
-      },
-      {
-        text: "Tracker software",
-        isIncluded: true,
-      },
-    ],
-    cta: {
-      label: "Book Discovery Call",
-      href: "https://calendly.com/interactiveworkersgm/30min",
-      variant: "primary",
-    },
-    isFeatured: false,
-  },
-  {
-    planName: "Full-Time Dedicated",
-    planDescription:
-      "Build operational capacity with a cross-trained team, built-in redundancy, and a dedicated supervisor.",
-    benefits: [
-      {
-        text: "+ Everything in Part-Time",
-        isIncluded: true,
-      },
-      {
-        text: "3 to 5 Dedicated Representatives + Operations Lead",
-        isIncluded: true,
-      },
-      {
-        text: "Flexible monthly terms with customizable capacity",
-        isIncluded: true,
-      },
-      {
-        text: "Guaranteed uptime SLA with built-in standby backup support",
-        isIncluded: true,
-      },
-      { text: "Single flat, tax-deductible monthly invoice", isIncluded: true },
-    ],
-    cta: {
-      label: "Book Discovery Call",
-      href: "https://calendly.com/interactiveworkersgm/30min",
-      variant: "primary",
-    },
-    isFeatured: true,
-  },
-];
+const scrollToSection = (id: string) => {
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+};
 
 export default function PricingPage() {
   const isMobile = useIsMobile();
   const [isTerm, setIsTerm] = useState<"long-term" | "project">("long-term");
-
-  const { ref } = useScrollIntoView<HTMLElement>();
+  const [activePlan, setActivePlan] = useState(0);
 
   return (
     <>
-      <section
-        id="pricing"
-        className="px-[clamp(1rem,8vw,50rem)] w-dvw bg-iw-red-2 text-white"
-      >
-        <PageHero
-          division={false}
-          align="center"
-          heading={
-            <>
-              Our Specialized Productized
-              <br />
-              Packages are a versatile solution
-              <br />
-              for any business
-            </>
-          }
-        />
-      </section>
-      <section className="px-[clamp(1rem,8vw,50rem)] w-dvw bg-white">
-        <article className="flex flex-col gap-6">
-          <SplitText
-            className="text-[clamp(2rem,4vw,3.75rem)] leading-[1] font-medium lg:w-1/2 md:w-3/2 py-10"
-            textAlign={"start"}
-            text={
+      <section id="pricing-hero" className="bg-iw-red-2 text-white">
+        <div className="px-[clamp(1rem,8vw,50rem)] max-md:min-h-screen">
+          <PageHero
+            division={false}
+            align="center"
+            heading={
               <>
-                Elevate your digital footprint with our Bilingual Productized
-                Packages
+                Our Specialized Staff
+                <br />
+                is a versatile solution
+                <br />
+                for any business
               </>
             }
           />
-          <div className="grid md:grid-cols-3 grid-cols-2 gap-6 md:px-[clamp(1rem,8vw,50rem)]">
-            <FeatureCard
-              title={"Crafted Websites"}
-              aspect="aspect-[2/1]"
-              iconDark
-              icon="globe"
-            />
-            <FeatureCard
-              title={"Website Redesign"}
-              aspect="aspect-[2/1]"
-              iconDark
-              icon="camera-lens"
-            />
-            <FeatureCard
-              title={"Maintenance & Ongoing Support"}
-              aspect="aspect-[2/1]"
-              iconDark
-              icon="package-01"
-            />
-            <FeatureCard
-              title={"Paralegal Assistant"}
-              aspect="aspect-[2/1]"
-              iconDark
-              icon="pencil-02"
-            />
-            <FeatureCard
-              title={"Appointment Setter"}
-              aspect="aspect-[2/1]"
-              iconDark
-              icon="book-01"
-            />
-            <FeatureCard
-              title={"Social Media Management"}
-              aspect="aspect-[2/1]"
-              iconDark
-              icon="message-chat-011"
-            />
+
+          <div className="flex w-full items-center justify-center">
+            <div className="grid md:grid-cols-2 grid-cols-1 gap-6 w-max items-center justify-center">
+              <CTAButton
+                onClick={() => scrollToSection("pricing-tables")}
+                className={`[--primary-color:#fff] [--secondary-color:#fff] [--tertiary-color:#dd272d] bg-white hover:bg-none`}
+              >
+                See Pricing
+              </CTAButton>
+              <CTAButton
+                onClick={() => scrollToSection("recruitment")}
+                className={`[--primary-color:#fff] [--secondary-color:#fff] [--tertiary-color:#dd272d]`}
+              >
+                How To Start
+              </CTAButton>
+            </div>
           </div>
+        </div>
+        <article
+          id="recruitment"
+          className="scroll-mt-20 flex flex-col pb-20 z-10 gap-6 relative"
+        >
+          <div className="absolute top-0 left-0 w-full h-full">
+            <div className="sticky top-0 left-0 w-full h-screen">
+              <GhostFibers
+                glowColor="#ffffff"
+                layers={3}
+                twist={1.2}
+                threads={72}
+                fiberStyle="dots"
+                depthOfField={0.85}
+                hoverEffect="focus"
+                intro
+                mouseInteraction
+                lineColor="#dd272d"
+                secondaryColor="#ffffff"
+                gradient="depth"
+                waves={1}
+                volume={0.7}
+                spread={1}
+                scale={1}
+                rotation={18}
+                perspective={0.65}
+                density={1}
+                thickness={1}
+                tips={0}
+                foldGlow={1}
+                speed={0.5}
+                flow={0.4}
+                rollSpeed={0.15}
+                focusDepth={0}
+                particles={0.5}
+                sparkle={0.5}
+                glow={0.8}
+                brightness={1}
+                vignette={0.3}
+                grain={0.06}
+                mouseStrength={1}
+                pulseOnClick
+                lightMode={false}
+              />
+            </div>
+          </div>
+          <Recruitment />
         </article>
-        <article ref={ref} className="flex flex-col pb-20 z-10 overflow-hidden">
+      </section>
+      <section
+        id="pricing-tables"
+        className="scroll-mt-20 px-[clamp(1rem,8vw,50rem)] w-dvw bg-white"
+      >
+        <article className="flex flex-col pb-20 z-10 overflow-hidden">
           <div className="w-full flex justify-center items-center">
             <SplitText
               className="text-[clamp(2rem,4vw,3.75rem)] leading-[1] font-medium lg:w-1/2 md:w-3/2 py-10"
@@ -263,19 +137,64 @@ export default function PricingPage() {
               <label>Per Project</label>
             </div>
           </div>
-          <div className="relative md:px-[clamp(1rem,8vw,50rem)] px-0 flex items-center">
+          <div className="relative md:px-[clamp(1rem,8vw,50rem)] px-0 grid items-start">
             <div
-              className={`grid md:grid-cols-3 gap-6 ${isTerm === "long-term" ? "-translate-x-full opacity-0" : "translate-x-0 opacity-100"} transition-all duration-700`}
+              className={`col-start-1 row-start-1 flex flex-col gap-6 w-full overflow-hidden ${isTerm === "project" ? "-translate-x-full opacity-0 max-h-0 pointer-events-none" : "translate-x-0 opacity-100 max-h-[3000px]"} transition-all duration-700`}
             >
-              {projectPlans.map((project, i) => (
-                <PricingCard key={i} {...project} />
-              ))}
+              <div
+                role="tablist"
+                aria-label="Plan type"
+                className="md:hidden grid grid-cols-2 gap-1 p-1 rounded bg-iw-red-2"
+              >
+                {longTermPlans.map((plan, i) => (
+                  <button
+                    key={plan.planName}
+                    role="tab"
+                    id={`plan-tab-${i}`}
+                    aria-selected={activePlan === i}
+                    aria-controls={`plan-panel-${i}`}
+                    onClick={() => setActivePlan(i)}
+                    className={`py-3 rounded text-lg font-medium transition-colors duration-300 ${activePlan === i ? "bg-white text-iw-red-2" : "text-white"}`}
+                  >
+                    {plan.planName}
+                  </button>
+                ))}
+              </div>
+              <div className="grid md:grid-cols-2 gap-6">
+                {longTermPlans.map((plan, i) => (
+                  <div
+                    key={plan.planName}
+                    role="tabpanel"
+                    id={`plan-panel-${i}`}
+                    aria-labelledby={`plan-tab-${i}`}
+                    className={activePlan === i ? "block" : "hidden md:block"}
+                  >
+                    <PricingCard
+                      {...plan}
+                      style={{ height: "100%" }}
+                      hideHeader={isMobile}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
             <div
-              className={`grid md:grid-cols-2 gap-6 absolute top-0 left-1/2  w-full ${isTerm === "project" ? "translate-x-full opacity-0" : "-translate-x-1/2 opacity-100"} transition-all duration-700`}
+              className={`col-start-1 row-start-1 grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 w-full overflow-hidden ${isTerm === "long-term" ? "translate-x-full opacity-0 max-h-0 pointer-events-none" : "translate-x-0 opacity-100 max-h-[3000px] min-h-[70vh]"} transition-all duration-700 md:px-[clamp(1rem,8vw,50rem)]`}
             >
-              {longTermPlans.map((project, i) => (
-                <PricingCard key={i} {...project} />
+              {projectPlans.map((project, i) => (
+                <FeatureCard
+                  key={i}
+                  title={project.title}
+                  aspect="aspect-[4/3] md:aspect-[2/1]"
+                  dark
+                  cta={{
+                    label: "Start a Project",
+                    href: `https://wa.me/13322062891?text=${encodeURIComponent(
+                      `Hello InteractiveWorkers!\nI'd like to start a ${project.title} project with you!`,
+                    )}`,
+                  }}
+                  icon={project.icon}
+                />
               ))}
             </div>
           </div>
@@ -284,22 +203,3 @@ export default function PricingPage() {
     </>
   );
 }
-
-const Arrow = ({ className }: { className?: string }) => {
-  return (
-    <div className={`flex items-center justify-end ${className}`}>
-      <svg
-        width="287"
-        height="15"
-        viewBox="0 0 287 15"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M286.389 8.07106C286.78 7.68054 286.78 7.04737 286.389 6.65685L280.026 0.292885C279.635 -0.0976396 279.002 -0.0976396 278.611 0.292885C278.221 0.683409 278.221 1.31657 278.611 1.7071L284.268 7.36395L278.611 13.0208C278.221 13.4113 279.002 13.4113 279.002 14.0445C279.002 14.8255 279.635 14.8255 280.026 14.435L286.389 8.07106ZM0 7.36395V8.36395H285.682V7.36395V6.36395H0V7.36395Z"
-          fill="white"
-        />
-      </svg>
-    </div>
-  );
-};

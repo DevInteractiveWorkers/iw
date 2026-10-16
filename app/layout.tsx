@@ -51,7 +51,7 @@ export default function RootLayout({
                   <div className="-z-10">{children}</div>
                 </PageTransitionOutlet>
               </div>
-              <Blured />
+              {/* <Blured /> */}
               <PageTransitionOutlet>
                 <Footer className="px-[clamp(1rem,8vw,50rem)] z-[1000]" />
               </PageTransitionOutlet>
