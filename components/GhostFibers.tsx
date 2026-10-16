@@ -796,7 +796,10 @@ const GhostFibers = ({
       probeContext.fillStyle = '#000000';
       probeContext.fillStyle = css;
       probeContext.fillRect(0, 0, 1, 1);
-      const [r, g, b] = probeContext.getImageData(0, 0, 1, 1).data;
+      const pixel = probeContext.getImageData(0, 0, 1, 1).data;
+      const r = pixel[0];
+      const g = pixel[1];
+      const b = pixel[2];
       return [r / 255, g / 255, b / 255];
     };
 
