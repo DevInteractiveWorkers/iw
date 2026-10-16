@@ -1,17 +1,13 @@
 "use client";
 
 import React from "react";
-import NavbarComponent from "@/components/navbar";
-import AffiliateForm from "@/components/form/affiliateForm";
 import Image from "next/image";
-import AffiliatesFAQ from "@/components/affiliates/faq";
 import ProductCard from "@/components/product-card";
 import PageHero from "@/components/page-hero";
-import FadeInContent from "@/components/FadeInContent";
 import SplitText from "@/components/text-animation/SplitText";
-import PageDivision from "@/components/page-division";
 import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 import { useIsMobile } from "@/lib/useMobile";
+import Accordion from "@/components/accordion";
 
 type AffiliateCardProps = {
   src: string;
@@ -61,13 +57,27 @@ const AffiliatePage = () => {
             </>
           }
         />
+        <div className="relative w-full flex items-center justify-center">
+          <div className="bg-white w-dvw absolute h-1/3 bottom-0" />
+          <Accordion
+            images={whyUs.map((c, i) => ({ src: c.src, label: c.title }))}
+            imagesEffect="saturate(0) contrast(1.2)"
+            // imagesEffect="saturate(0) brightness(0.4) sepia(1) hue-rotate(335deg) saturate(6.5) contrast(1.4)"
+            alwaysOpened
+            // images={[
+            //   { src: `/stock/stock (8).png` },
+            //   { src: `/stock/stock (11).png` },
+            //   { src: `/stock/stock (10).png` },
+            // ]}
+          />
+        </div>
       </section>
       <section className="bg-white px-[clamp(1rem,8vw,50rem)] pt-2">
         <article
           ref={ref}
           className="w-full md:w-10/12 mx-auto flex flex-col items-center my-4 md:my-32"
         >
-          <div className="w-full grid md:grid-cols-2 lg:grid-cols-3 gap-6 justify-between">
+          {/* <div className="w-full grid md:grid-cols-2 lg:grid-cols-3 gap-6 justify-between">
             {whyUs.map((c, i) => (
               <FadeInContent
                 key={i}
@@ -77,7 +87,7 @@ const AffiliatePage = () => {
                 <AffiliateCard {...c} />
               </FadeInContent>
             ))}
-          </div>
+          </div> */}
           <div className="grid md:grid-cols-2 py-4 pt-6">
             <h2 className="text-[clamp(2rem,4vw,3.75rem)] leading-[1.05] pb-6">
               Why partner

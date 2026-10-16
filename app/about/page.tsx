@@ -19,9 +19,9 @@ const AboutUs = () => {
   return (
     <>
       <section className="w-full relative flex flex-col items-start justify-center text-white px-[clamp(1rem,8vw,50rem)] bg-iw-red-2">
-        <div className="absolute w-screen h-full left-0 pointer-events-none">
+        {/* <div className="absolute w-screen h-full top-0 left-0 pointer-events-none">
           <DriftWall
-            items={Vas.slice(0, 16).map((va) => ({
+            items={Vas.slice(0, 8).map((va) => ({
               image: va.img,
               title: va.position,
             }))}
@@ -46,7 +46,7 @@ const AboutUs = () => {
             pauseOnHover={false}
             grayscale={false}
           />
-        </div>
+        </div> */}
         <PageHero
           division={false}
           heading={

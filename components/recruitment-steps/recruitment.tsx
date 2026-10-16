@@ -9,6 +9,7 @@ import FlipElement from "../flip-element";
 import { StepsProvider, useSteps } from "../steps/steps-context";
 import { Graph } from "./graph";
 import { Stat } from "../stats-section";
+import { useIsMobile } from "@/lib/useMobile";
 
 const CANDIDATES = [
   { name: "Gabriel", src: "/team-2026/GABRIEL/gabriel_01.png" },
@@ -26,6 +27,7 @@ export default function Recruitment() {
 
 function RecruitmentSteps() {
   const { goTo } = useSteps();
+  const isMobile = useIsMobile();
   const [selected, setSelected] = useState<(typeof CANDIDATES)[number] | null>(
     null,
   );
@@ -39,13 +41,13 @@ function RecruitmentSteps() {
             "Having a meeting with our team where we can get all the information about what you need.",
           assets: (
             <div className="flex flex-col p-4 items-center gap-6">
-              <FlipElement className="p-4 bg-white aspect-square rounded-full">
+              {/* <FlipElement className="p-4 bg-white aspect-square rounded-full">
                 <Icon
                   icon="phone-call-01"
                   color="var(--iw-secondary-red)"
                   fill="var(--iw-secondary-red)"
                 />
-              </FlipElement>
+              </FlipElement> */}
               <Image
                 src={"/stock/stock (9).png"}
                 className="outline outline-white outline-offset-[5px] rounded aspect-[4/2] object-cover"
@@ -90,8 +92,8 @@ function RecruitmentSteps() {
           //   ? `${selected.name} is ready to join your team.`
           //   : "Choose a candidate in the previous step and welcome your new team member.",
           note: "This is an example selection featuring real members of our talent network for demonstration purposes only.",
-          reverse: true,
-          assets: (
+          reverse: !isMobile,
+          assets: selected && (
             <div className="flex gap-6">
               <RecruitmentVACard
                 name={selected?.name}
@@ -168,7 +170,6 @@ function RecruitmentVACard({
   src?: string;
   name?: string;
   selected?: boolean;
-  /** Smaller portrait on mobile so several fit side by side. */
   compact?: boolean;
   onSelect?: () => void;
 }) {

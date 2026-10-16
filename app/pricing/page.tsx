@@ -25,7 +25,7 @@ export default function PricingPage() {
   return (
     <>
       <section id="pricing-hero" className="bg-iw-red-2 text-white">
-        <div className="px-[clamp(1rem,8vw,50rem)]">
+        <div className="px-[clamp(1rem,8vw,50rem)] max-md:min-h-screen">
           <PageHero
             division={false}
             align="center"
@@ -41,7 +41,7 @@ export default function PricingPage() {
           />
 
           <div className="flex w-full items-center justify-center">
-            <div className="grid grid-cols-2 gap-6 w-max items-center justify-center">
+            <div className="grid md:grid-cols-2 grid-cols-1 gap-6 w-max items-center justify-center">
               <CTAButton
                 onClick={() => scrollToSection("pricing-tables")}
                 className={`[--primary-color:#fff] [--secondary-color:#fff] [--tertiary-color:#dd272d] bg-white hover:bg-none`}
