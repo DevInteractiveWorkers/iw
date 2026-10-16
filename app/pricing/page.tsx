@@ -4,13 +4,11 @@ import { useState } from "react";
 import Switch from "@/components/form/switch";
 import PageHero from "@/components/page-hero";
 import { useIsMobile } from "@/lib/useMobile";
-import { useScrollIntoView } from "@/lib/use-scroll-into-view";
-import PricingCard, { type PricingCardProps } from "@/components/pricing-card";
+import PricingCard from "@/components/pricing-card";
 import SplitText from "@/components/text-animation/SplitText";
 import { longTermPlans, projectPlans } from "../content/pricing";
 import FeatureCard from "@/components/feature-cards";
 import Recruitment from "@/components/recruitment-steps/recruitment";
-import { ParticlesComponent } from "@/components/particles";
 import GhostFibers from "@/components/GhostFibers";
 import CTAButton from "@/components/buttons/cta-button";
 
@@ -116,10 +114,7 @@ export default function PricingPage() {
               className="text-[clamp(2rem,4vw,3.75rem)] leading-[1] font-medium lg:w-1/2 md:w-3/2 py-10"
               textAlign={"center"}
               text={
-                <>
-                  Get a Specialized Productized Packages that start with your
-                  goals
-                </>
+                <>Get a Specialized Remote Staff that start with your goals</>
               }
             />
           </div>
@@ -139,7 +134,7 @@ export default function PricingPage() {
           </div>
           <div className="relative md:px-[clamp(1rem,8vw,50rem)] px-0 grid items-start">
             <div
-              className={`col-start-1 row-start-1 flex flex-col gap-6 w-full overflow-hidden ${isTerm === "project" ? "-translate-x-full opacity-0 max-h-0 pointer-events-none" : "translate-x-0 opacity-100 max-h-[3000px]"} transition-all duration-700`}
+              className={`col-start-1 row-start-1 flex flex-col gap-6 w-full overflow-hidden ${isTerm === "project" ? "-translate-x-full opacity-0 ointer-events-none" : "translate-x-0 opacity-100 max-h-[3000px]"} transition-all duration-700`}
             >
               <div
                 role="tablist"
@@ -179,7 +174,7 @@ export default function PricingPage() {
               </div>
             </div>
             <div
-              className={`col-start-1 row-start-1 grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 w-full overflow-hidden ${isTerm === "long-term" ? "translate-x-full opacity-0 max-h-0 pointer-events-none" : "translate-x-0 opacity-100 max-h-[3000px] min-h-[70vh]"} transition-all duration-700 md:px-[clamp(1rem,8vw,50rem)]`}
+              className={`col-start-1 row-start-1 grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 w-full overflow-hidden ${isTerm === "long-term" ? "translate-x-full opacity-0 max-h-0 pointer-events-none" : "translate-x-0 opacity-100 max-h-[3000px] min-h-[70vh] h-full"} transition-all duration-700 md:px-[clamp(1rem,8vw,50rem)]`}
             >
               {projectPlans.map((project, i) => (
                 <FeatureCard

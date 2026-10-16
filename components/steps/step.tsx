@@ -25,10 +25,10 @@ export default function Step(props: StepProp) {
   return (
     <div
       id={id !== "" ? id + "-" + index : ""}
-      className="flex shrink-0 min-w-full relative items-center justify-center h-full max-h-[80vh] max-md:h-auto max-md:max-h-none max-md:w-full max-md:gap-4"
+      className="flex shrink-0 min-w-full relative items-center justify-center h-full max-h-[70%] max-md:h-auto max-md:max-h-none max-md:w-full max-md:gap-4"
       style={{ flexDirection: reverse ? "column-reverse" : "column" }}
     >
-      <div className="flex shrink-0 items-center gap-6 lg:w-[35vw] md:w-[40vw] w-screen max-md:w-full max-md:flex-col max-md:items-start max-md:gap-2">
+      <div className="flex shrink-0 items-center gap-6 lg:w-[60%] md:w-[40%] w-screen max-md:w-full max-md:flex-col max-md:items-start max-md:gap-2">
         <div className="flex items-start leading-none">
           <span
             className={

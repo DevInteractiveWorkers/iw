@@ -47,7 +47,7 @@ function RecruitmentSteps() {
               </FlipElement> */}
               <Image
                 src={"/stock/stock (9).png"}
-                className="outline outline-white outline-offset-[5px] rounded aspect-[4/2] object-cover"
+                className="outline outline-white outline-offset-[5px] rounded aspect-[4/2] object-cover max-w-[80%]"
                 alt={""}
                 width={1080}
                 height={1080}
