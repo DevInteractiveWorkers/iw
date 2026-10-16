@@ -14,6 +14,7 @@ import SplitText from "../text-animation/SplitText";
 import Checkbox from "./checkbox";
 import FormButton from "../buttons/form-buttons";
 import PageDivision from "../page-division";
+import { TransitionLink } from "../link";
 
 const GetHired = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -98,6 +99,23 @@ const GetHired = () => {
         onSubmit={handleSubmit}
         name="Get Hired Form"
       >
+        <div
+          className="relative max-md:hidden w-full h-full"
+          style={{
+            maskImage:
+              "linear-gradient(to bottom, black 50%, transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, black 50%, transparent 100%)",
+          }}
+        >
+          <Image
+            width={1080}
+            height={1080}
+            alt="InteractiveWorker"
+            src={"/team-2026/OSWALDO/oswaldo_01.png"}
+            className="absolute top-0 object-top object-cover w-full h-full p-[20px_0_0_100px]"
+          />
+        </div>{" "}
         <FadeInContent>
           <div className="grid md:grid-cols-2 gap-3">
             {/* First / Last Name */}
@@ -186,18 +204,21 @@ const GetHired = () => {
               />
             </div>
           </div>
-        </FadeInContent>
-        {/* Privacy Policy */}
-        <FadeInContent className="flex h-full justify-end items-end">
+          {/* Privacy Policy */}
           <div className="md:w-max w-full">
             <div className="flex items-center gap-2 md:col-span-2">
               <Checkbox id="agree" required className="text-iw-red-1" />
 
               <Label htmlFor="agree" className="flex ">
-                I agree with the&nbsp;
-                <Link href="/policy" className="text-iw-red-1 hover:underline">
-                  Privacy Policy
-                </Link>
+                <span className="flex text-black">
+                  I agree with the&nbsp;
+                  <TransitionLink
+                    href="/policy"
+                    className="text-iw-red-1 hover:underline"
+                  >
+                    Privacy Policy
+                  </TransitionLink>
+                </span>
               </Label>
             </div>
 
