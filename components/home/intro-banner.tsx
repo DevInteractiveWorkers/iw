@@ -25,8 +25,7 @@ const IntroBanner = () => {
         heading={
           <>
             Empower Your Business
-            <br /> with Elite Virtual Assistants &<br /> Scalable Remote
-            Staffing
+            <br /> with Elite Remote Staff &<br /> Scalable Remote Staffing
           </>
         }
         ctaButton={{

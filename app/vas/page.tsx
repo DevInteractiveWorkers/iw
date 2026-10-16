@@ -35,7 +35,7 @@ const VAs = () => {
         <article className="w-11/12 md:w-3/4 bg-iw-red-1 mx-auto text-base md:text-xl font-normal  flex flex-col items-center justify-center gap-4 py-12 px-8 md:px-20 rounded-b-[66px]">
           <p>
             <strong className="font-extrabold">
-              Our Virtual assistants are a versatile solution for any business.
+              Our Remote Staff are a versatile solution for any business.
             </strong>{" "}
             They handle a wide range of tasks, freeing you to focus on core
             activities. Imagine having a dedicated assistant who consistently
@@ -43,8 +43,7 @@ const VAs = () => {
             impactful work.
           </p>
           <p>
-            Beyond the obvious benefits, virtual assistants can address hidden
-            needs.{" "}
+            Beyond the obvious benefits, remote staff can address hidden needs.{" "}
             <strong className="font-extrabold">
               Our comprehensive services go beyond what you might initially
               consider, offering the best value and most helpful virtual

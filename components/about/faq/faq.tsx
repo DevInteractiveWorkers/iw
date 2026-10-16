@@ -9,7 +9,7 @@ const FAQ = () => {
   return (
     <article className="w-3/4 mx-auto my-28 min-h-[80vh]">
       <h3 className="w-1/2 text-xl md:text-4xl font-extrabold mx-auto text-center text-iw-red-1 p-2 border-4 border-iw-red-1 rounded-full my-6">
-        Virtual Assistants FAQS
+        Remote Staff FAQS
       </h3>
       <div className=" flex flex-wrap gap-4 justify-between flex-col md:flex-row">
         {faq.map((item, i) => {

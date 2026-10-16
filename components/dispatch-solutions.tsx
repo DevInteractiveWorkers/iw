@@ -87,7 +87,7 @@ export default function DispatchSolutionsCards({
           aria-expanded={isExpanded}
           aria-label={`Expand ${title}`}
           onClick={() => setIsExpanded(true)}
-          className="m-5 flex aspect-square items-center justify-center rounded-full bg-iw-red-2 p-4"
+          className="m-5 flex aspect-square items-center justify-center rounded-full bg-iw-red-2 p-4 translate-y-full"
         >
           <Icon icon={icon} className="w-6 h-6" />
         </button>
@@ -125,7 +125,7 @@ export default function DispatchSolutionsCards({
 
   return (
     <div
-      className="relative flex items-center justify-center"
+      className="relative flex items-center justify-center translate-y-1/2"
       onMouseEnter={() => setIsExpanded(true)}
       onMouseLeave={() => setIsExpanded(false)}
     >
