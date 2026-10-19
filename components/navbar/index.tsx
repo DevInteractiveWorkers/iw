@@ -67,6 +67,22 @@ const NavbarComponent = () => {
     };
   }, [pathname]);
 
+  // Publish the navbar height so pinned sections can size themselves below it.
+  useEffect(() => {
+    const nav = navRef.current;
+    if (!nav) return;
+    const root = document.documentElement;
+    const publish = () =>
+      root.style.setProperty("--navbar-height", `${nav.offsetHeight}px`);
+    publish();
+    const observer = new ResizeObserver(publish);
+    observer.observe(nav);
+    return () => {
+      observer.disconnect();
+      root.style.removeProperty("--navbar-height");
+    };
+  }, []);
+
   return (
     <nav
       ref={navRef}

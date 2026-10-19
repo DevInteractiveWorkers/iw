@@ -58,10 +58,10 @@ export default function PricingPage() {
         </div>
         <article
           id="recruitment"
-          className="scroll-mt-20 flex flex-col pb-20 z-10 gap-6 relative"
+          className="scroll-mt-[var(--navbar-height,4.5rem)] flex flex-col pb-20 z-10 gap-6 relative"
         >
           <div className="absolute top-0 left-0 w-full h-full">
-            <div className="sticky top-0 left-0 w-full h-screen">
+            <div className="sticky top-[var(--navbar-height,4.5rem)] left-0 w-full h-[calc(100vh-var(--navbar-height,4.5rem))]">
               <GhostFibers
                 glowColor="#ffffff"
                 layers={3}
