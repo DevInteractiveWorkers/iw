@@ -14,6 +14,14 @@ const prefersReducedMotion = () =>
 // pinned horizontal strip driven by page scroll.
 const isDesktop = () => window.matchMedia("(min-width: 768px)").matches;
 
+// Height of the sticky navbar, published by the navbar as --navbar-height.
+const navHeight = () =>
+  parseFloat(
+    getComputedStyle(document.documentElement).getPropertyValue(
+      "--navbar-height",
+    ),
+  ) || 72;
+
 function getOffsets(el: HTMLElement) {
   const children = Array.from(el.children) as HTMLElement[];
   const origin = children[0]?.offsetLeft ?? 0;
@@ -86,7 +94,7 @@ export default function Steps({
     // ordinary page scrolling drives it in both directions.
     const measure = () => {
       root.style.height = isDesktop()
-        ? `calc(100dvh + ${maxScroll() / WHEEL_SPEED}px)`
+        ? `calc(100dvh - ${navHeight()}px + ${maxScroll() / WHEEL_SPEED}px)`
         : "";
       updateEdges();
     };
@@ -120,7 +128,9 @@ export default function Steps({
         updateEdges();
         return;
       }
-      animateTo.current(-root.getBoundingClientRect().top * WHEEL_SPEED);
+      animateTo.current(
+        (navHeight() - root.getBoundingClientRect().top) * WHEEL_SPEED,
+      );
     };
 
     // Focus moving to an off-screen step scrolls the strip itself; follow it
@@ -159,7 +169,12 @@ export default function Steps({
   const pageTopFor = (x: number) => {
     const root = rootRef.current;
     if (!root) return 0;
-    return window.scrollY + root.getBoundingClientRect().top + x / WHEEL_SPEED;
+    return (
+      window.scrollY +
+      root.getBoundingClientRect().top -
+      navHeight() +
+      x / WHEEL_SPEED
+    );
   };
 
   const scrollStripTo = (value: number) => {
@@ -220,8 +235,8 @@ export default function Steps({
   }, [report, slide, offset, steps.length]);
 
   return (
-    <div ref={rootRef} className="relative md:h-dvh">
-      <div className="group md:sticky md:top-0 md:h-dvh md:overflow-hidden">
+    <div ref={rootRef} className="relative md:h-[calc(100dvh-var(--navbar-height,4.5rem))]">
+      <div className="group md:sticky md:top-[var(--navbar-height,4.5rem)] md:h-[calc(100dvh-var(--navbar-height,4.5rem))] md:overflow-hidden">
         <div
           ref={scrollRef}
           onScroll={updateEdges}

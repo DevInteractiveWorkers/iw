@@ -32,22 +32,22 @@ export default function Step(props: StepProp) {
         <div className="flex items-start leading-none">
           <span
             className={
-              "font-bold text-[clamp(8rem,8vw,20rem)] max-md:text-[5rem] leading-[1]"
+              "font-bold text-[clamp(8rem,8vw,15rem)] max-md:text-[5rem] leading-[1]"
             }
           >
             {index}
           </span>
-          <span className="text-xl font-light leading-none translate-y-full">
+          <span className="text-[clamp(0.2rem,8vw,1rem)] font-light leading-none translate-y-full">
             STEP
           </span>
         </div>
         <div>
           <label
-            className={`text-[clamp(1rem,8vw,3rem)] leading-[1] font-medium`}
+            className={`text-[clamp(1rem,8vw,2rem)] leading-[1] font-medium`}
           >
             {title}
           </label>
-          <p className="font-light text-[clamp(0.6rem,8vw,1.5rem)] leading-[1]">
+          <p className="font-light text-[clamp(0.6rem,8vw,1.2rem)] leading-[1]">
             {description}
           </p>
           {note && (
@@ -58,7 +58,7 @@ export default function Step(props: StepProp) {
         </div>
       </div>
 
-      {assets}
+      <div className="w-9/12">{assets}</div>
     </div>
   );
 }
