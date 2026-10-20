@@ -53,38 +53,33 @@ export default function FeatureCard({
             <Icon
               icon={icon}
               color="currentColor"
-              width={`clamp(20px,8vw,40px)`}
-              height={`clamp(20px,8vw,40px)`}
+              width={`clamp(15px,8vw,40px)`}
+              height={`clamp(15px,8vw,40px)`}
             />
           </FlipElement>
         )}
         <label
-          className={`font-semibold text-[clamp(0.875rem,1vw,1.5rem)] leading-[1.2] text-center pointer-events-none z-10 ${dark ? "text-white" : "text-black"}`}
+          className={`font-semibold text-[clamp(0.875rem,1vw,1.5rem)] leading-[1.2] text-center pointer-events-none z-10 
+            ${dark ? "text-white [text-shadow:_0px_2px_5px_rgba(128,2,2,1)]" : "text-black [text-shadow:_0px_2px_5px_rgba(255,255,255,1)]"}`}
         >
           {title}
         </label>
         {content && (
-          <p className="text-iw-red-2 text-[clamp(0.7rem,1vw,1.125rem)] leading-[1.2] text-base text-center pointer-events-none z-10">
+          <p className="text-iw-red-2 text-[clamp(0.7rem,1vw,0.8rem)] leading-[1.2] text-base text-center pointer-events-none z-10">
             {content}
           </p>
         )}
         {cta && (
-          <div
-            className={`z-10 md:opacity-0 group-hover/card:opacity-100 op transition-all duration-500 relative
-              after:absolute after:top-0 after:left-0 after:w-full after:h-full after:-z-10 
-              ${dark ? "after:bg-iw-red-2" : "bg-white"}`}
+          <CTAButton
+            onClick={() => router.push(cta.href)}
+            className={`md:opacity-0 group-hover/card:opacity-100 z-10 ${
+              dark
+                ? "[--primary-color:#fff] [--secondary-color:#fff] [--tertiary-color:#dd272d] bg-iw-red-2 hover:bg-inherit"
+                : "[--primary-color:#dd272d] [--secondary-color:#dd272d] [--tertiary-color:#fff] bg-white hover:bg-inherit"
+            }`}
           >
-            <CTAButton
-              onClick={() => router.push(cta.href)}
-              className={
-                dark
-                  ? "[--primary-color:#fff] [--secondary-color:#fff] [--tertiary-color:#dd272d] rounded font-bold text-xl sm:text-2xl lg:text-4xl"
-                  : "[--primary-color:#dd272d] [--secondary-color:#dd272d] [--tertiary-color:#fff] rounded font-bold text-xl sm:text-2xl lg:text-4xl"
-              }
-            >
-              {cta.label}
-            </CTAButton>
-          </div>
+            {cta.label}
+          </CTAButton>
         )}
         <div
           className={`absolute top-0 left-0 w-full h-full ${dark ? "opacity-75" : "opacity-100"}`}

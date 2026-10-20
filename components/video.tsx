@@ -5,6 +5,8 @@ import FadeInContent from "./FadeInContent";
 import VideoPlayer from "./video-player";
 import { useIsMobile } from "@/lib/useMobile";
 import ColorBends from "./backgrounds/ColorBends";
+import CTAButton from "./buttons/cta-button";
+import { useRouter } from "next/navigation";
 
 const VIDEO_URL = {
   desktop:
@@ -15,14 +17,14 @@ const VIDEO_URL = {
 
 export default function IWVideo() {
   const { ref } = useScrollIntoView<HTMLElement>({ offset: 160 });
-
   const isMobile = useIsMobile();
+  const router = useRouter();
 
   return (
     <section
       className="
         relative
-        flex w-full items-center justify-center
+        flex flex-col w-full items-center justify-center
         px-0
       "
     >
@@ -50,6 +52,16 @@ export default function IWVideo() {
           />
         </article>
       </FadeInContent>
+      <div className="px-[clamp(1rem,8vw,50rem)] pt-10 flex items-center justify-center">
+        <CTAButton
+          className="[--primary-color:#fff] [--secondary-color:#fff] [--tertiary-color:#dd272d] bg-[#c1272d] hover:bg-inherit"
+          onClick={() => {
+            router.push("https://calendly.com/interactiveworkersgm/30min");
+          }}
+        >
+          Book a discovery call
+        </CTAButton>
+      </div>
     </section>
   );
 }

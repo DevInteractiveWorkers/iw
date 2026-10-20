@@ -7,8 +7,8 @@ export const projectPlans: {
   { title: "Crafted Websites", icon: "globe" },
   { title: "Website Redesign", icon: "camera-lens" },
   { title: "Maintenance & Ongoing Support", icon: "package-01" },
-  { title: "Paralegal Assistant", icon: "pencil-02" },
-  { title: "Appointment Setter", icon: "book-01" },
+  { title: "SOP", icon: "pencil-02" },
+  { title: "Branding", icon: "book-01" },
   { title: "Social Media Management", icon: "message-chat-011" },
 ];
 

@@ -21,9 +21,7 @@ export default function Home() {
         <HowItWorks />
       </div>
       <article className="z-10 px-[clamp(1rem,8vw,50rem)]">
-        <FadeInContent>
-          <Reviews />
-        </FadeInContent>
+        <Reviews />
       </article>
     </main>
   );

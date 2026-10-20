@@ -43,7 +43,7 @@ export default function HowItWorks() {
             delay={100}
             textAlign="center"
             className="pb-4 text-3xl font-medium leading-none text-[clamp(2rem,4vw,3rem)]"
-            text={<>How It Works?</>}
+            text={<>How It Works</>}
           />
         </div>
 

@@ -67,7 +67,10 @@ export default function PageHero({
           />
           {ctaButton && (
             <div className="w-full flex" style={{ justifyContent: align }}>
-              <CTAButton {...ctaButton} />
+              <CTAButton
+                className="mb-10 [--primary-color:#fff] [--secondary-color:#fff] [--tertiary-color:#dd272d]"
+                {...ctaButton}
+              />
             </div>
           )}
         </div>

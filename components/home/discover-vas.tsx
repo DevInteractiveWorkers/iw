@@ -103,6 +103,8 @@ const DiscoverVAs = () => {
             <>
               Scale your operations effortlessly with{" "}
               <b className="font-semibold">top-tier remote professionals.</b>
+              <br />
+              <br />
               From dedicated administrative support to{" "}
               <b className="font-semibold">specialized technical talent</b>, we
               connect growing businesses with pre-vetted remote staff who drive
@@ -114,7 +116,7 @@ const DiscoverVAs = () => {
           onClick={() =>
             router.push("https://calendly.com/interactiveworkersgm/30min")
           }
-          className="my-10 [--primary-color:#000] [--secondary-color:#fff] [--tertiary-color:#fff]"
+          className="my-10 [--primary-color:#000] [--secondary-color:#000] [--tertiary-color:#fff]"
         />
         <div className="w-full gap-6 grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 justify-between my-4 md:mb-32">
           {productizedPackages.map((pkg, i) => (
