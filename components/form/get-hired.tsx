@@ -4,16 +4,12 @@ import { Label } from "flowbite-react";
 import React, { useState } from "react";
 import { GetHiredformData, sendGetHiredMail } from "../lib/utils";
 import Image from "next/image";
-import Link from "next/link";
 import professionalOptions from "./professionalOptions";
-import Loader from "../loader";
 import Input from "./input";
 import Select from "./select";
 import FadeInContent from "../FadeInContent";
-import SplitText from "../text-animation/SplitText";
 import Checkbox from "./checkbox";
 import FormButton from "../buttons/form-buttons";
-import PageDivision from "../page-division";
 import { TransitionLink } from "../link";
 import FileInput from "./file";
 
@@ -110,7 +106,7 @@ const GetHired = () => {
         name="Get Hired Form"
       >
         <div
-          className="relative max-md:hidden w-full h-full"
+          className="relative max-md:hidden w-full h-full pointer-events-none select-none"
           style={{
             maskImage:
               "linear-gradient(to bottom, black 50%, transparent 100%)",

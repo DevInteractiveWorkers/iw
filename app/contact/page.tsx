@@ -39,7 +39,7 @@ const ContactUs = () => {
         <div className="absolute">
           <IWGlobe sway autoRotate={false} />
         </div>
-        <div className="absolute top-0 max-md:right-0 md:w-1/2 h-full px-[clamp(1rem,8vw,50rem)]">
+        <div className="absolute top-0 max-md:right-0 md:w-1/2 h-full px-[clamp(1rem,8vw,50rem)] pointer-events-none select-none">
           <Image
             width={1080}
             height={1080}

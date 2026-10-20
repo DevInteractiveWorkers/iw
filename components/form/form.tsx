@@ -203,7 +203,7 @@ const MainForm = ({
           </div>
           {!socials && (
             <div
-              className="relative max-md:hidden w-full h-full"
+              className="relative max-md:hidden w-full h-full pointer-events-none select-none"
               style={{
                 maskImage:
                   "linear-gradient(to bottom, black 50%, transparent 100%)",
