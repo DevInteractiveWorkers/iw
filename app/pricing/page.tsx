@@ -114,9 +114,7 @@ export default function PricingPage() {
             <SplitText
               className="text-[clamp(2rem,4vw,3.75rem)] leading-[1] font-medium lg:w-1/2 md:w-3/2 py-10"
               textAlign={"center"}
-              text={
-                <>Get a Specialized Remote Staff that start with your goals</>
-              }
+              text={<>Get Remote Workers that start with your goals</>}
             />
           </div>
           <div className="flex justify-center py-6 ">
