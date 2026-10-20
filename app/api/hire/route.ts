@@ -11,8 +11,9 @@ export async function POST(req: NextRequest): Promise<Response> {
   await sendEmail({
     from: process.env.NODEMAILER_USER!,
     to: "recruitment@interactiveworkers.com",
-    subject: `${data.fullName} tried to contact you through interactiveworkers.com contact form`,
-    heading: "Someone tried to contact us!",
+    // to: "web.interactiveworkers@gmail.com",
+    subject: `[Applicant] ${data.professional} - ${data.fullName}`,
+    heading: `${data.fullName} tried to contact us through interactiveworkers.com Hire Form!`,
     data: {
       "Date (DD/MM/YY)": `${date[0]} / ${date[1]} / ${date[2]}`,
       Name: data.fullName,

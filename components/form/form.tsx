@@ -29,7 +29,11 @@ const MainForm = ({
   const [sending, isSending] = useState(false);
   const [sent, isSent] = useState(false);
   const [message, setMessage] = useState("");
+  const [fieldsValid, setFieldsValid] = useState(false);
+  const [professionals, setProfessionals] = useState<string[]>([]);
   const isMobile = useIsMobile();
+
+  const canSubmit = fieldsValid && professionals.length > 0 && !sending;
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -62,6 +66,8 @@ const MainForm = ({
       setTimeout(() => isSent(false), 5000);
 
       form.reset();
+      setProfessionals([]);
+      setFieldsValid(false);
     } else {
       isSending(false);
       setMessage("There was a problem to contact us. Please try again later.");
@@ -75,6 +81,9 @@ const MainForm = ({
         ref={ref}
         className="md:grid md:grid-cols-3 flex flex-col"
         onSubmit={handleSubmit}
+        onChange={(event) =>
+          setFieldsValid(event.currentTarget.checkValidity())
+        }
         name="Contact Form"
       >
         {heading && (
@@ -123,82 +132,74 @@ const MainForm = ({
           </div>
         )}
         <div className="col-span-3 grid md:grid-cols-3">
-          <div className="col-span-2">
-            <div className="grid md:grid-cols-2 gap-3 md:col-span-2 col-span-1">
-              <Input
-                id="firstname"
-                name="firstname"
-                type="text"
-                placeholder="First name"
-                autoComplete="given-name"
-                required
-              />
+          <div className="col-span-2 md:grid md:grid-cols-2 gap-x-3">
+            <Input
+              id="firstname"
+              name="firstname"
+              type="text"
+              placeholder="First name"
+              autoComplete="given-name"
+              required
+            />
 
-              <Input
-                id="lastname"
-                name="lastname"
-                type="text"
-                placeholder="Last name"
-                autoComplete="family-name"
-                required
-              />
-            </div>
-            <div className="col-span-2">
-              <Input
-                id="company"
-                name="company"
-                type="text"
-                placeholder="Company's Name"
-                autoComplete="organization"
-                required
-              />
-            </div>
-            <div className="grid md:grid-cols-2 gap-3 md:col-span-2 col-span-1">
-              <Input
-                id="phone"
-                name="phone"
-                type="tel"
-                placeholder="Phone Number"
-                autoComplete="tel"
-                required
-              />
-              <Input
-                id="email"
-                name="email"
-                type="email"
-                placeholder="Email"
-                autoComplete="email"
-                required
-              />
-            </div>
-            <div className="col-span-2">
-              <Input
-                id="size"
-                name="size"
-                type="text"
-                placeholder="Your company size (current staff number)"
-                autoComplete="off"
-                required
-              />
-            </div>
-            <div className="grid md:grid-cols-2 gap-3 md:col-span-2 col-span-1">
-              <Input
-                id="staff"
-                name="staff"
-                type="text"
-                placeholder="Number of Staff Required?"
-                autoComplete="off"
-                required
-              />
-              <Input
-                id="country"
-                name="country"
-                type="text"
-                placeholder="Which country are you based in?"
-                autoComplete="country-name"
-                required
-              />
-            </div>
+            <Input
+              id="lastname"
+              name="lastname"
+              type="text"
+              placeholder="Last name"
+              autoComplete="family-name"
+              required
+            />
+            <Input
+              id="company"
+              name="company"
+              type="text"
+              placeholder="Company's Name"
+              autoComplete="organization"
+              className="col-span-2"
+              required
+            />
+            <Input
+              id="phone"
+              name="phone"
+              type="tel"
+              placeholder="Phone Number"
+              autoComplete="tel"
+              required
+            />
+            <Input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="Email"
+              autoComplete="email"
+              required
+            />
+            <Input
+              id="size"
+              name="size"
+              type="number"
+              placeholder="Your company size (current staff number)"
+              className="col-span-2"
+              autoComplete="off"
+              required
+            />
+            <Input
+              id="staff"
+              name="staff"
+              type="number"
+              placeholder="Number of Staff Required?"
+              autoComplete="off"
+              required
+            />
+            <Input
+              id="country"
+              name="country"
+              type="text"
+              placeholder="Which country are you based in?"
+              autoComplete="country-name"
+              required
+            />
           </div>
           {!socials && (
             <div
@@ -224,7 +225,13 @@ const MainForm = ({
           Choose your Professional
         </h4>
         <div className="grid md:grid-cols-3 gap-3 md:col-span-3">
-          <Select id="professional" required multiple>
+          <Select
+            id="professional"
+            required
+            multiple
+            value={professionals}
+            onChange={setProfessionals}
+          >
             {professionalOptions.map((option, index) => (
               <option key={index}>{option}</option>
             ))}
@@ -263,14 +270,16 @@ const MainForm = ({
                   </span>
                 </Label>
               </div>
-              <FormButton className="mt-3 flex justify-center w-full uppercase [--primary-color:#dd272d]">
-                {sending ? (
-                  <Loader className="min-w-[2.25rem] min-h-[2.25rem] px-10" />
-                ) : !sent ? (
-                  "Send mail"
-                ) : (
-                  "Sent"
-                )}
+              <FormButton
+                className="mt-3 flex justify-center w-full uppercase [--primary-color:#dd272d]"
+                disabled={!canSubmit}
+              >
+                {sending
+                  ? "Sending..."
+                  : // <Loader className="min-w-[2.25rem] min-h-[2.25rem] px-10" />
+                    !sent
+                    ? "Send mail"
+                    : "Sent"}
               </FormButton>
             </div>
           </div>

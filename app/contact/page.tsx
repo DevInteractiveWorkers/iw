@@ -6,6 +6,9 @@ import SplitText from "@/components/text-animation/SplitText";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useIsMobile } from "@/lib/useMobile";
+import MainForm from "@/components/form/form";
+import GetHired from "@/components/form/get-hired";
+import PageDivision from "@/components/page-division";
 
 const loadGlobe = () => import("@/components/globe/globe");
 

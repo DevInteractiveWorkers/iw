@@ -12,8 +12,8 @@ export async function POST(req: NextRequest) {
     to: "gm@interactiveworkers.com",
     // to: "web.interactiveworkers@gmail.com",
     bcc: ["info@interactiveworkers.com", "ceo@interactiveworkers.com"],
-    subject: `${data.fullName} tried to contact you through interactiveworkers.com contact form`,
-    heading: "Someone tried to contact us!",
+    subject: `[Client Lead] ${data.fullName} - ${data.company}`,
+    heading: `${data.fullName} tried to contact you through interactiveworkers.com contact form!`,
     date,
     data: {
       Name: data.fullName,

@@ -23,7 +23,7 @@ export async function sendEmail({
   bcc,
   subject,
   data,
-  logoUrl = "https://images2.imgbox.com/bd/6d/iKxkgI9e_o.png",
+  logoUrl = "https://www.interactiveworkers.com/_next/image?url=%2Flogo%2F01_Primary_Logo%2FPrimary_Logo-06.png&w=1080&q=75",
   heading = "New Submission:",
   attachments,
 }: SendEmailParams): Promise<void> {
@@ -47,7 +47,7 @@ export async function sendEmail({
         <tr>
             <td style="background: #c1272d; color: #FFFFFF; padding: 10px; border: 1px solid #C1C3D1;"><b>${key}</b></td>
             <td style="background: #FFFFFF; color: #000000; padding: 10px; border-bottom: 1px solid #C1C3D1;">${value}</td>
-        </tr>`
+        </tr>`,
     )
     .join("");
 

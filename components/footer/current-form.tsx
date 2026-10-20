@@ -7,6 +7,9 @@ import MainForm from "../form/form";
 import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 import AffiliatesFAQ from "../affiliates/faq";
 import AffiliateForm from "../form/affiliateForm";
+import IWGlobe from "../globe/globe";
+import PageDivision from "../page-division";
+import { useIsMobile } from "@/lib/useMobile";
 
 export default function FooterForm() {
   const pathname = usePathname();
@@ -28,20 +31,24 @@ export default function FooterForm() {
 }
 
 function ContactForms() {
-  const { ref } = useScrollIntoView<HTMLElement>();
+  const isMobile = useIsMobile();
+
   return (
     <>
-      <section className="z-50">
-        <article>
+      <section>
+        <article className="px-[clamp(1rem,8vw,50rem)]">
           <MainForm heading={false} socials={false} />
         </article>
-        <article ref={ref} className="min-h-[60vh]">
+        <article className="bg-iw-red-2 px-[clamp(1rem,8vw,50rem)]">
           <SplitText
-            className="md:text-5xl text-xl py-4"
-            textAlign="start"
+            className="md:text-5xl text-xl py-4 text-white w-full"
+            textAlign={isMobile ? "center" : "end"}
             text={"Do you want to join our team?"}
           />
-          <GetHired />
+          <PageDivision className="relative text-white mb-6" />
+          <div className="p-4 bg-white rounded-t">
+            <GetHired />
+          </div>
         </article>
       </section>
     </>
