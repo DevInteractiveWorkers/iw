@@ -10,12 +10,11 @@ export async function POST(req: NextRequest) {
   await sendEmail({
     from: process.env.NODEMAILER_USER!,
     to: "gm@interactiveworkers.com",
-    // to: "web.interactiveworkers@gmail.com",
     bcc: ["info@interactiveworkers.com", "ceo@interactiveworkers.com"],
     subject: `[Client Lead] ${data.fullName} - ${data.company}`,
     heading: `${data.fullName} tried to contact you through interactiveworkers.com contact form!`,
-    date,
     data: {
+      "Date (DD/MM/YY)": `${date[0]} / ${date[1]} / ${date[2]}`,
       Name: data.fullName,
       Email: data.email,
       Phone: data.phone,

@@ -1,5 +1,5 @@
 // Send Hire Mail
-import { sendEmail } from "@/components/lib/sendEmail";
+import { replyCta, sendEmail } from "@/components/lib/sendEmail";
 import { getCurrentDate } from "@/components/lib/utils";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -12,6 +12,7 @@ export async function POST(req: NextRequest): Promise<Response> {
     from: process.env.NODEMAILER_USER!,
     to: "recruitment@interactiveworkers.com",
     // to: "web.interactiveworkers@gmail.com",
+    bcc: ["gm@interactiveworkers.com"],
     subject: `[Applicant] ${data.professional} - ${data.fullName}`,
     heading: `${data.fullName} tried to contact us through interactiveworkers.com Hire Form!`,
     data: {
@@ -19,7 +20,7 @@ export async function POST(req: NextRequest): Promise<Response> {
       Name: data.fullName,
       Email: data.email,
       Phone: data.phone,
-      Country: data.location,
+      Location: data.location,
       Professional: data.professional,
     },
     attachments: [
@@ -27,6 +28,14 @@ export async function POST(req: NextRequest): Promise<Response> {
         filename: data.fileName,
         content,
       },
+    ],
+    ctas: [
+      replyCta(
+        data.email,
+        `${data.professional} - Interactive Workers`,
+        "Email Applicant",
+      ),
+      { label: "Call", href: `tel:${data.phone}`, variant: "secondary" },
     ],
   });
 

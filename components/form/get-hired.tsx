@@ -184,38 +184,40 @@ const GetHired = () => {
             />
           </div>
           {/* Privacy Policy */}
-          <div className="md:w-max w-full">
-            <div className="flex items-center gap-2 md:col-span-2">
-              <Checkbox id="agree" required className="text-iw-red-1" />
+          <div className="flex flex-col w-full justify-center items-end">
+            <div className="md:w-max w-full">
+              <div className="flex items-center gap-2 md:col-span-2">
+                <Checkbox id="agree" required className="text-iw-red-1" />
 
-              <Label htmlFor="agree" className="flex ">
-                <span className="flex text-black">
-                  I agree with the&nbsp;
-                  <TransitionLink
-                    href="/policy"
-                    className="text-iw-red-1 hover:underline"
-                  >
-                    Privacy Policy
-                  </TransitionLink>
-                </span>
-              </Label>
+                <Label htmlFor="agree" className="flex ">
+                  <span className="flex text-black">
+                    I agree with the&nbsp;
+                    <TransitionLink
+                      href="/policy"
+                      className="text-iw-red-1 hover:underline"
+                    >
+                      Privacy Policy
+                    </TransitionLink>
+                  </span>
+                </Label>
+              </div>
+
+              {/* Error */}
+              {message && <div className="text-iw-red-1 flex">{message}</div>}
+
+              {/* Submit */}
+              <FormButton
+                className="mt-3 flex justify-center w-full uppercase [--primary-color:#dd272d]"
+                disabled={!canSubmit}
+              >
+                {sending
+                  ? "Sending..."
+                  : // <Loader className="max-w-[2.25rem] max-h-[2.25rem] px-10" />
+                    !sent
+                    ? "Send mail"
+                    : "Sent"}
+              </FormButton>
             </div>
-
-            {/* Error */}
-            {message && <div className="text-iw-red-1 flex">{message}</div>}
-
-            {/* Submit */}
-            <FormButton
-              className="mt-3 flex justify-center w-full uppercase [--primary-color:#dd272d]"
-              disabled={!canSubmit}
-            >
-              {sending
-                ? "Sending..."
-                : // <Loader className="max-w-[2.25rem] max-h-[2.25rem] px-10" />
-                  !sent
-                  ? "Send mail"
-                  : "Sent"}
-            </FormButton>
           </div>
         </FadeInContent>
       </form>
