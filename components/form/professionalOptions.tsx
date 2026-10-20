@@ -21,7 +21,6 @@ const professionalOptions = [
   "Accountant",
   "Transcriptionist VA",
   "Medical Scriber VA",
-  "Tier-1 Helpdesk & Ticket Triage Team",
   "ADS Specialist",
   "Sales Agent",
   "Telemarketing Agent",

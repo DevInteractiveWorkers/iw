@@ -115,7 +115,7 @@ const GetHired = () => {
             src={"/team-2026/OSWALDO/oswaldo_01.png"}
             className="absolute top-0 object-top object-cover w-full h-full p-[20px_0_0_100px]"
           />
-        </div>{" "}
+        </div>
         <FadeInContent>
           <div className="grid md:grid-cols-2 gap-3">
             {/* First / Last Name */}
@@ -143,11 +143,11 @@ const GetHired = () => {
             <Input id="email" type="email" placeholder="Email" required />
 
             {/* Professional */}
-            <h4 className="font-medium md:text-2xl text-xl mt-4 md:col-span-2">
-              Choose your Professional
+            <h4 className="font-medium md:text-2xl text-xl mt-4 md:col-span-2 text-iw-red-2">
+              Select your areas of interest
             </h4>
 
-            <Select id="professional" required>
+            <Select id="professional" required multiple>
               {professionalOptions.map((option, index) => (
                 <option key={index}>{option}</option>
               ))}
