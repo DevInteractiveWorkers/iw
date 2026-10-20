@@ -58,7 +58,7 @@ export default function Step(props: StepProp) {
         </div>
       </div>
 
-      <div className="w-9/12">{assets}</div>
+      <div className="md:w-9/12 flex items-center justify-center">{assets}</div>
     </div>
   );
 }

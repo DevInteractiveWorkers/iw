@@ -114,7 +114,7 @@ const DiscoverVAs = () => {
           onClick={() =>
             router.push("https://calendly.com/interactiveworkersgm/30min")
           }
-          className="my-10 [--primary-color:#000] [--secondary-color:#dd272d] [--tertiary-color:#fff]"
+          className="my-10 [--primary-color:#000] [--secondary-color:#fff] [--tertiary-color:#fff]"
         />
         <div className="w-full gap-6 grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 justify-between my-4 md:mb-32">
           {productizedPackages.map((pkg, i) => (

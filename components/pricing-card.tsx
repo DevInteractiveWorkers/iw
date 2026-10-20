@@ -2,10 +2,9 @@
 
 import Link from "next/link";
 import ProductCard from "./product-card";
-
-import { ReactNode, useState } from "react";
+import { useState } from "react";
 import SplitText from "./text-animation/SplitText";
-import { useIsMobile } from "@/lib/useMobile";
+import CTAButton from "./buttons/cta-button";
 import Icon from "./icon";
 
 export interface PricingBenefit {
@@ -111,12 +110,15 @@ export default function PricingCard({
         ))}
       </ul>
       <div className="flex md:flex-row flex-col items-center justify-between gap-2">
-        <Link
+        <CTAButton className="bg-black hover:bg-inherit [--primary-color:#fff] [--secondary-color:#fff] [--tertiary-color:#000]">
+          {cta.label}
+        </CTAButton>
+        {/* <Link
           href={cta.href}
           className="px-6 py-4 text-xl rounded bg-black hover:scale-95 transition-all duration-300 active:bg-white active:text-black"
         >
           {cta.label}
-        </Link>
+        </Link> */}
         {cta.detailHref && (
           <SplitText text={<Link href={cta.detailHref}>Details ➔</Link>} />
         )}
