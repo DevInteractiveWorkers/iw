@@ -31,8 +31,6 @@ const IntroBanner = () => {
         ctaButton={{
           onClick: () =>
             router.push("https://calendly.com/interactiveworkersgm/30min"),
-          className:
-            "my-10 [--primary-color:#fff] [--secondary-color:#fff] [--tertiary-color:#dd272d]",
         }}
       />
     </section>

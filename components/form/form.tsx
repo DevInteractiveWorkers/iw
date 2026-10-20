@@ -224,7 +224,7 @@ const MainForm = ({
           Choose your Professional
         </h4>
         <div className="grid md:grid-cols-3 gap-3 md:col-span-3">
-          <Select id="professional" required>
+          <Select id="professional" required multiple>
             {professionalOptions.map((option, index) => (
               <option key={index}>{option}</option>
             ))}

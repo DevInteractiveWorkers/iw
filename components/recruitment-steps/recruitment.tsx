@@ -26,7 +26,7 @@ function RecruitmentSteps() {
   const { goTo } = useSteps();
   const isMobile = useIsMobile();
   const [selected, setSelected] = useState<(typeof CANDIDATES)[number] | null>(
-    null,
+    CANDIDATES[1],
   );
 
   return (
@@ -35,7 +35,7 @@ function RecruitmentSteps() {
         {
           title: "Book a discovery call",
           description:
-            "Having a meeting with our team where we can get all the information about what you need.",
+            "Have a meeting with our team where we can get all the information about the profile you're looking for.",
           assets: (
             <div className="flex flex-col p-4 items-center gap-6">
               {/* <FlipElement className="p-4 bg-white aspect-square rounded-full">
@@ -59,7 +59,7 @@ function RecruitmentSteps() {
           title: "We find the perfect fit for you",
           description:
             "Once we know what your project is about, we will find a set of candidates who fit your requirement.",
-          note: "No additional fees for this step. Pick a candidate to continue.",
+          note: "Our screening process is fully customizable and with additional fees.",
           assets: (
             <div className="flex gap-6 max-md:gap-2">
               {CANDIDATES.map((candidate) => (
@@ -81,28 +81,20 @@ function RecruitmentSteps() {
         },
         {
           title: "Welcome your new team member!",
-          description: "Our staff is ready to join yout team.",
-          // title: selected
-          //   ? `Welcome ${selected.name}!`
-          //   : "Select your candidate",
-          // description: selected
-          //   ? `${selected.name} is ready to join your team.`
-          //   : "Choose a candidate in the previous step and welcome your new team member.",
+          description: "Our staff is ready to join your team.",
           note: selected
             ? "This is an example selection featuring real members of our talent network for demonstration purposes only."
             : "",
           reverse: !isMobile,
-          assets: selected && (
-            <div className="flex gap-6">
-              <RecruitmentVACard
-                name={selected?.name}
-                src={selected?.src}
-                onSelect={() => {
-                  goTo(1);
-                  setSelected(null);
-                }}
-              />
-            </div>
+          assets: (
+            <RecruitmentVACard
+              name={selected?.name}
+              src={selected?.src}
+              onSelect={() => {
+                goTo(1);
+                setSelected(null);
+              }}
+            />
           ),
         },
         {

@@ -7,7 +7,7 @@ export default function IndustriesWeServe() {
 
   return (
     <section className="flex flex-col px-[clamp(1rem,8vw,50rem)]">
-      <div className="grid md:grid-cols-3 grid-cols-1 gap-6 lg:px-[clamp(1rem,8vw,50rem)] min-h-[clamp(100vh,8vw,200vh)]">
+      <div className="grid md:grid-cols-3 grid-cols-1 gap-6 lg:px-[clamp(1rem,8vw,50rem)]">
         <SplitText
           tag="h3"
           className={`md:col-span-3 col-span-1 text-[clamp(2rem,4vw,3.75rem)] leading-[1.05]`}
@@ -26,8 +26,6 @@ export default function IndustriesWeServe() {
             isMobile
               ? {}
               : {
-                  height: "100%",
-                  aspectRatio: "2 / 1",
                   transform: "translateY(-50%)",
                 }
           }
@@ -38,7 +36,6 @@ export default function IndustriesWeServe() {
         <FeatureCard
           icon="truck"
           title={"Trucking & Freight Logistics"}
-          style={isMobile ? {} : { aspectRatio: "2 / 1" }}
           content={
             "Long-haul, local, flatbed, and specialized freight coordination."
           }
@@ -50,8 +47,6 @@ export default function IndustriesWeServe() {
             isMobile
               ? {}
               : {
-                  height: "100%",
-                  aspectRatio: "2 / 1",
                   transform: "translateY(-50%)",
                 }
           }
@@ -66,8 +61,6 @@ export default function IndustriesWeServe() {
             isMobile
               ? {}
               : {
-                  height: "100%",
-                  aspectRatio: "2 / 1",
                   transform: "translateY(-50%)",
                 }
           }
@@ -76,7 +69,6 @@ export default function IndustriesWeServe() {
         <FeatureCard
           icon="compass"
           title={"Courier & Last-Mile Delivery"}
-          style={isMobile ? {} : { aspectRatio: "2 / 1" }}
           content={"On-demand local logistics and fleet tracking."}
         />
         <FeatureCard
@@ -86,8 +78,6 @@ export default function IndustriesWeServe() {
             isMobile
               ? {}
               : {
-                  height: "100%",
-                  aspectRatio: "2 / 1",
                   transform: "translateY(-50%)",
                 }
           }

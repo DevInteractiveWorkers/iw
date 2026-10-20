@@ -30,9 +30,9 @@ export default function PricingPage() {
             align="center"
             heading={
               <>
-                Our Specialized Staff
+                Our Remote Workers
                 <br />
-                is a versatile solution
+                are a versatile solution
                 <br />
                 for any business
               </>
@@ -43,7 +43,8 @@ export default function PricingPage() {
             <div className="grid md:grid-cols-2 grid-cols-1 gap-6 w-max items-center justify-center">
               <CTAButton
                 onClick={() => scrollToSection("pricing-tables")}
-                className={`[--primary-color:#fff] [--secondary-color:#fff] [--tertiary-color:#dd272d] bg-white hover:bg-none`}
+                className={`bg-white hover:bg-inherit [--primary-color:#dd272d] [--secondary-color:#fff] [--tertiary-color:#dd272d]`}
+                style={{ backgroundColor: "#fff" }}
               >
                 See Pricing
               </CTAButton>

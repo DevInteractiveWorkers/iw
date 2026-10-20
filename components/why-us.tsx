@@ -126,7 +126,7 @@ export default function WhyUs() {
           <FeatureCard
             title="Dedicated Management Support"
             aspect="md:aspect-[3/4]"
-            content="Our remote staff adapt quickly to your company culture, time zones, and existing tech stack (Slack, Google Workspace, CRM tools, etc.)."
+            content="Ongoing performance oversight and HR support to ensure long-term success and seamless collaboration."
             icon="shield-check"
           />
         </FadeInContent>
