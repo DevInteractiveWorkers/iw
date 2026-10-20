@@ -6,6 +6,9 @@ import SplitText from "@/components/text-animation/SplitText";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useIsMobile } from "@/lib/useMobile";
+import MainForm from "@/components/form/form";
+import GetHired from "@/components/form/get-hired";
+import PageDivision from "@/components/page-division";
 
 const loadGlobe = () => import("@/components/globe/globe");
 
@@ -36,7 +39,7 @@ const ContactUs = () => {
         <div className="absolute">
           <IWGlobe sway autoRotate={false} />
         </div>
-        <div className="absolute top-0 max-md:right-0 md:w-1/2 h-full px-[clamp(1rem,8vw,50rem)]">
+        <div className="absolute top-0 max-md:right-0 md:w-1/2 h-full px-[clamp(1rem,8vw,50rem)] pointer-events-none select-none">
           <Image
             width={1080}
             height={1080}

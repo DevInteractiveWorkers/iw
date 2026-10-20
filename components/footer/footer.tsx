@@ -1,17 +1,21 @@
+"use client";
+
 import React, { HTMLAttributes } from "react";
 import Socials from "./socials";
 import Link from "next/link";
 import FooterForm from "./current-form";
 import PageDivision from "../page-division";
 import { ParticlesComponent } from "../particles";
-import FadeInContent from "../FadeInContent";
+import { usePathname } from "next/navigation";
 
 const Footer = (props: HTMLAttributes<HTMLElement>) => {
   const { className } = props;
 
+  const pathname = usePathname();
+
   return (
     <footer
-      className={`relative w-full min-h-screen flex flex-col justify-between py-6 overflow-hidden ${className}`}
+      className={`relative w-full ${pathname !== "/policy" && pathname !== "/contact" ? "min-h-screen px-[clamp(1rem,8vw,50rem)]" : ""} flex flex-col justify-between py-6 overflow-hidden ${className ?? ""}`}
     >
       <div
         style={{
@@ -32,9 +36,9 @@ const Footer = (props: HTMLAttributes<HTMLElement>) => {
         color="#ccc"
         className="absolute -z-10 w-full h-[25vh] bottom-0 left-0"
       />
-      <PageDivision className="relative" />
+      {pathname !== "/contact" && <PageDivision className="relative" />}
       <FooterForm />
-      <div className="flex flex-col w-full md:justify-between mt-4">
+      <div className="flex flex-col w-full md:justify-between mt-4 px-[clamp(1rem,8vw,50rem)]">
         <div className="grid md:grid-cols-2 gap-6 w-full items-end">
           <svg
             className="w-full h-auto text-iw-red-2"
@@ -61,7 +65,7 @@ const Footer = (props: HTMLAttributes<HTMLElement>) => {
             <path d="M1120.97 99.0726V105.474H1077.63V99.0726C1081.46 98.5117 1080.77 95.0888 1077.5 90.1187L1067.56 75.1892L1062.3 79.5984V90.1187C1062.3 95.6689 1063.73 98.6471 1069.12 99.0726V105.474H1026.93V99.0726C1032.19 98.6471 1033.6 95.6689 1033.6 90.1187V21.7561C1033.6 16.0705 1032.17 13.2277 1026.93 12.8023V6.40113L1056.92 0H1062.32V70.1998L1081.36 54.1486C1087.63 48.7531 1085.64 44.7693 1082.22 44.4792V38.0781H1112.21V44.4792C1104.96 45.7555 1098.58 49.0238 1091.6 54.9995L1086.49 59.254L1108.94 90.0993C1112.21 94.644 1116.33 97.7769 1121.03 99.0532L1120.97 99.0726Z" />
             <path d="M1186.06 89.4227C1181.09 98.9374 1171.43 106.905 1155.51 106.905C1136.62 106.905 1116.85 93.9673 1118.28 70.374C1119.56 49.6235 1135.34 35.9896 1155.66 36.8405C1177.56 37.6914 1186.22 52.0408 1185.93 69.6777V71.9597H1145.01C1146.44 84.3172 1154.68 91.0084 1164.06 91.5693C1170.88 91.9947 1176.99 90.0028 1182.25 85.4582L1186.08 89.442L1186.06 89.4227ZM1144.85 62.5611H1162.76C1162.76 53.6072 1161.33 43.0869 1154.79 43.0869C1148.68 43.0869 1145.55 51.9054 1144.85 62.5611Z" />
             <path d="M1253.42 65.1137C1246.75 67.9565 1237.51 65.6745 1235.52 53.7425C1234.8 49.6233 1232.11 48.3469 1229.7 49.0625C1226.43 50.0487 1225.71 54.8835 1225.71 64.9783V90.1381C1225.71 95.6883 1227.12 98.6665 1232.54 99.0919V105.493H1190.34V99.0919C1195.6 98.6665 1197.03 95.6883 1197.03 90.1381V58.4418C1197.03 52.8916 1195.6 49.9134 1190.34 49.4879V43.0868L1217.49 36.6857H1223.04V46.9159C1227.03 40.244 1233.14 36.6857 1241.8 36.6857C1249.48 36.6857 1255.88 40.244 1259.28 46.7805C1261.84 51.6152 1261.97 61.42 1253.46 65.1137H1253.42Z" />
-            <path d="M1301.17 61.8455C1311.98 66.5255 1328.32 70.9347 1322.64 90.2735C1319.1 102.496 1306.72 106.905 1291.23 106.905C1280.28 106.905 1269.07 102.786 1261.95 99.5174V80.4687H1267.93C1271.91 94.3927 1279.43 98.8019 1288.39 100.214C1294.34 101.355 1300.18 100.504 1300.9 96.0944C1301.62 91.1244 1293.09 88.7071 1282.01 83.737C1263.11 75.344 1260.54 60.1436 1267.93 47.7862C1273.61 38.5422 1285.12 36.5504 1295.21 36.8405C1302.47 37.1305 1312.27 39.6832 1318.65 43.9571V61.1493H1312.7C1309 49.2172 1303.03 43.8024 1295.21 43.1062C1291.39 42.8161 1287.4 44.6727 1286.69 47.6508C1285.27 53.8973 1290.81 57.3202 1301.19 61.8648L1301.17 61.8455Z" />
+            <path d="M1301.17 61.8455C1311.98 66.5255 1328.32 70.9347 1322.64 90.2735C1319.1 102.496 1306.72 106.905 1291.23 106.905C1280.28 106.905 1269.07 102.786 1261.95 99.5174V80.4687H1267.93C1271.91 94.3927 1279.43 98.8019 1288.39 100.214C1294.34 101.355 1300.18 100.504 1300.9 96.0944C1301.62 91.1244 1293.09 88.7071 1282.01 83.737C1263.11 75.344 1260.54 60.1436 1267.93 47.7862C1273.61 38.5422 1285.12 36.5504 1295.21 36.8405C1302.47 37.1305 1312.7 39.6832 1318.65 43.9571V61.1493H1312.7C1309 49.2172 1303.03 43.8024 1295.21 43.1062C1291.39 42.8161 1287.4 44.6727 1286.69 47.6508C1285.27 53.8973 1290.81 57.3202 1301.19 61.8648L1301.17 61.8455Z" />
           </svg>
           <h5 className="md:text-end text-center">
             © Copyright 2026 Interactiveworkers. All Rights Reserved.
@@ -69,7 +73,7 @@ const Footer = (props: HTMLAttributes<HTMLElement>) => {
         </div>
         <p className="md:text-right max-md:text-center max-md:text-xs justify-end hover:opacity-100 opacity-0 transition-all duration-500">
           Developed by{" "}
-          <span className="relative hover:text-[#008080] transition-colors duration-500 z-10 after:bg-white after:absolute after:top-0 hover:after:left-0 after:left-1/2 after:w-0 hover:after:w-full after:h-full after:-z-10 after:transition-all after:duration-500">
+          <span className="relative hover:text-white transition-colors duration-500 z-10 after:bg-julscodes after:absolute after:top-0 hover:after:left-0 after:left-1/2 after:w-0 hover:after:w-full after:h-full after:-z-10 after:transition-all after:duration-500">
             @
             <Link
               href={"https://julscode.vercel.app"}

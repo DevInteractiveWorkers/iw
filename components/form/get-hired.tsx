@@ -4,23 +4,25 @@ import { Label } from "flowbite-react";
 import React, { useState } from "react";
 import { GetHiredformData, sendGetHiredMail } from "../lib/utils";
 import Image from "next/image";
-import Link from "next/link";
 import professionalOptions from "./professionalOptions";
-import Loader from "../loader";
 import Input from "./input";
 import Select from "./select";
 import FadeInContent from "../FadeInContent";
-import SplitText from "../text-animation/SplitText";
 import Checkbox from "./checkbox";
 import FormButton from "../buttons/form-buttons";
-import PageDivision from "../page-division";
 import { TransitionLink } from "../link";
+import FileInput from "./file";
 
 const GetHired = () => {
   const [file, setFile] = useState<File | null>(null);
   const [sending, isSending] = useState(false);
   const [sent, isSent] = useState(false);
   const [message, setMessage] = useState("");
+  const [fieldsValid, setFieldsValid] = useState(false);
+  const [professionals, setProfessionals] = useState<string[]>([]);
+
+  const canSubmit =
+    fieldsValid && professionals.length > 0 && !!file && !sending;
 
   const fileInputRef = React.useRef<HTMLInputElement>(null);
 
@@ -73,6 +75,8 @@ const GetHired = () => {
         target.professional.value = "";
 
         setFile(null);
+        setProfessionals([]);
+        setFieldsValid(false);
 
         if (fileInputRef.current) {
           fileInputRef.current.value = "";
@@ -93,14 +97,16 @@ const GetHired = () => {
 
   return (
     <FadeInContent>
-      <PageDivision className="relative" />
       <form
         className="grid md:grid-cols-[auto_auto] gap-6 mb-10"
         onSubmit={handleSubmit}
+        onChange={(event) =>
+          setFieldsValid(event.currentTarget.checkValidity())
+        }
         name="Get Hired Form"
       >
         <div
-          className="relative max-md:hidden w-full h-full"
+          className="relative max-md:hidden w-full h-full pointer-events-none select-none"
           style={{
             maskImage:
               "linear-gradient(to bottom, black 50%, transparent 100%)",
@@ -117,7 +123,7 @@ const GetHired = () => {
           />
         </div>
         <FadeInContent>
-          <div className="grid md:grid-cols-2 gap-3">
+          <div className="md:grid md:grid-cols-2 md:gap-3">
             {/* First / Last Name */}
             <Input
               id="firstname"
@@ -132,7 +138,7 @@ const GetHired = () => {
             <Input
               id="location"
               type="text"
-              className="md:col-span-2"
+              className="col-span-2"
               placeholder="Location"
             />
 
@@ -147,94 +153,67 @@ const GetHired = () => {
               Select your areas of interest
             </h4>
 
-            <Select id="professional" required multiple>
+            <Select
+              id="professional"
+              required
+              multiple
+              value={professionals}
+              onChange={setProfessionals}
+            >
               {professionalOptions.map((option, index) => (
                 <option key={index}>{option}</option>
               ))}
             </Select>
 
             {/* Resume */}
-            <div className="w-full">
-              <label
-                htmlFor="file"
-                className="py-2 my-2 border-b border-black  relative flex items-center justify-between cursor-pointer"
-              >
-                <span className="truncate">
-                  {file ? file.name : "Attach your resume here:"}
-                </span>
-
-                <svg
-                  width="25"
-                  height="23"
-                  viewBox="0 0 25 23"
-                  fill="none"
-                  className="stroke-black"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M12.1997 1L12.1997 15M12.1997 1C11.2194 1 9.38785 3.79202 8.69971 4.5M12.1997 1C13.18 1 15.0116 3.79202 15.6997 4.5"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M23.4 17.8C23.4 21.2748 22.6748 22 19.2 22H5.2C1.7252 22 1 21.2748 1 17.8"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </label>
-
-              <input
-                ref={fileInputRef}
-                id="file"
-                name="file"
-                type="file"
-                accept=".pdf,.doc,.docx"
-                className="hidden"
-                onChange={(event) => {
-                  const selectedFile = event.target.files?.[0];
-
-                  if (selectedFile) {
-                    setFile(selectedFile);
-                    setMessage("");
-                  }
-                }}
-              />
-            </div>
+            <FileInput
+              id="file"
+              required
+              accept=".pdf,.doc,.docx"
+              placeholder="Attach your resume here:"
+              file={file}
+              ref={fileInputRef}
+              onFileChange={(f) => {
+                setFile(f);
+                if (f) setMessage("");
+              }}
+            />
           </div>
           {/* Privacy Policy */}
-          <div className="md:w-max w-full">
-            <div className="flex items-center gap-2 md:col-span-2">
-              <Checkbox id="agree" required className="text-iw-red-1" />
+          <div className="flex flex-col w-full justify-center items-end">
+            <div className="md:w-max w-full">
+              <div className="flex items-center gap-2 md:col-span-2">
+                <Checkbox id="agree" required className="text-iw-red-1" />
 
-              <Label htmlFor="agree" className="flex ">
-                <span className="flex text-black">
-                  I agree with the&nbsp;
-                  <TransitionLink
-                    href="/policy"
-                    className="text-iw-red-1 hover:underline"
-                  >
-                    Privacy Policy
-                  </TransitionLink>
-                </span>
-              </Label>
+                <Label htmlFor="agree" className="flex ">
+                  <span className="flex text-black">
+                    I agree with the&nbsp;
+                    <TransitionLink
+                      href="/policy"
+                      className="text-iw-red-1 hover:underline"
+                    >
+                      Privacy Policy
+                    </TransitionLink>
+                  </span>
+                </Label>
+              </div>
+
+              {/* Error */}
+              {message && <div className="text-iw-red-1 flex">{message}</div>}
+
+              {/* Submit */}
+              <FormButton
+                className="mt-3 flex justify-center w-full uppercase [--primary-color:#dd272d]"
+                disabled={!canSubmit}
+              >
+                {sending
+                  ? "Sending..."
+                  : // <Loader className="max-w-[2.25rem] max-h-[2.25rem] px-10" />
+                    !sent
+                    ? "Send mail"
+                    : "Sent"}
+              </FormButton>
             </div>
-
-            {/* Error */}
-            {message && <div className="text-iw-red-1 flex">{message}</div>}
-
-            {/* Submit */}
-            <FormButton className="mt-3 flex justify-center w-full uppercase [--primary-color:#dd272d]">
-              {sending ? (
-                <Loader className="min-w-[2.25rem] min-h-[2.25rem] px-10" />
-              ) : !sent ? (
-                "Send mail"
-              ) : (
-                "Sent"
-              )}
-            </FormButton>
           </div>
         </FadeInContent>
       </form>

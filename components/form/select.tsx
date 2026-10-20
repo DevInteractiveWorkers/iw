@@ -161,7 +161,8 @@ export default function Select(allProps: SelectProps) {
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
 
-    const spaceBelow = viewportHeight - rect.bottom - MENU_GAP - VIEWPORT_MARGIN;
+    const spaceBelow =
+      viewportHeight - rect.bottom - MENU_GAP - VIEWPORT_MARGIN;
     const spaceAbove = rect.top - MENU_GAP - VIEWPORT_MARGIN;
     // Full content height: menu chrome (search, borders) + the list's own content
     const naturalHeight = Math.min(
@@ -265,27 +266,27 @@ export default function Select(allProps: SelectProps) {
       <p className="px-4 py-2 text-sm opacity-50">No results found</p>
     ) : (
       filteredOptions.map(({ value, label }, index) => {
-      const isSelected = selectedValues.includes(value);
+        const isSelected = selectedValues.includes(value);
 
-      return (
-        <button
-          key={`${value}-${index}`}
-          type="button"
-          role="option"
-          aria-selected={isSelected}
-          className={`text-left px-4 py-2 hover:bg-black/5 w-full flex items-center justify-between gap-2 ${
-            isSelected ? "bg-black/5 font-medium" : ""
-          }`}
-          onClick={(event) => {
-            event.stopPropagation();
-            handleSelect(value);
-          }}
-        >
-          <span>{label}</span>
-          {isSelected && <span aria-hidden="true">✓</span>}
-        </button>
-      );
-    })
+        return (
+          <button
+            key={`${value}-${index}`}
+            type="button"
+            role="option"
+            aria-selected={isSelected}
+            className={`text-left px-4 py-2 hover:bg-black/5 w-full flex items-center justify-between gap-2 ${
+              isSelected ? "bg-black/5 font-medium" : ""
+            }`}
+            onClick={(event) => {
+              event.stopPropagation();
+              handleSelect(value);
+            }}
+          >
+            <span>{label}</span>
+            {isSelected && <span aria-hidden="true">✓</span>}
+          </button>
+        );
+      })
     );
 
   const menu = isMobile ? (
@@ -353,7 +354,7 @@ export default function Select(allProps: SelectProps) {
   return (
     <div
       ref={dropdownRef}
-      className="py-2 my-2 border-b border-black relative flex items-center justify-between w-full cursor-pointer select-none"
+      className="py-2 my-2 border-b border-[currentColor] relative flex items-center justify-between w-full cursor-pointer select-none"
       onClick={() => setIsOpen((prev) => !prev)}
       aria-required={required}
       aria-haspopup="listbox"
