@@ -60,7 +60,7 @@ const AffiliatePage = () => {
         <div className="relative w-full flex items-center justify-center">
           <div className="bg-white w-dvw absolute h-1/3 bottom-0" />
           <Accordion
-            images={whyUs.map((c, i) => ({ src: c.src, label: c.title }))}
+            images={whyUs.map((c) => ({ src: c.src, label: c.title }))}
             imagesEffect="saturate(0) contrast(1.2)"
             // imagesEffect="saturate(0) brightness(0.4) sepia(1) hue-rotate(335deg) saturate(6.5) contrast(1.4)"
             alwaysOpened
