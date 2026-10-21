@@ -19,7 +19,7 @@ const FooterContent = (props: HTMLAttributes<HTMLElement>) => {
 
   return (
     <footer
-      className={`relative w-full ${hasForm ? "min-h-screen" : isContact ? "bg-iw-red-2" : ""} px-[clamp(1rem,8vw,50rem)] flex flex-col justify-between py-6 overflow-hidden ${className ?? ""}`}
+      className={`relative w-full ${isContact ? "bg-iw-red-2" : "bg-white"} ${hasForm ? "min-h-screen" : ""} px-[clamp(1rem,8vw,50rem)] flex flex-col justify-between py-6 overflow-hidden ${className ?? ""}`}
     >
       {hasForm && (
         <div
@@ -76,11 +76,11 @@ const FooterContent = (props: HTMLAttributes<HTMLElement>) => {
             <path d="M1253.42 65.1137C1246.75 67.9565 1237.51 65.6745 1235.52 53.7425C1234.8 49.6233 1232.11 48.3469 1229.7 49.0625C1226.43 50.0487 1225.71 54.8835 1225.71 64.9783V90.1381C1225.71 95.6883 1227.12 98.6665 1232.54 99.0919V105.493H1190.34V99.0919C1195.6 98.6665 1197.03 95.6883 1197.03 90.1381V58.4418C1197.03 52.8916 1195.6 49.9134 1190.34 49.4879V43.0868L1217.49 36.6857H1223.04V46.9159C1227.03 40.244 1233.14 36.6857 1241.8 36.6857C1249.48 36.6857 1255.88 40.244 1259.28 46.7805C1261.84 51.6152 1261.97 61.42 1253.46 65.1137H1253.42Z" />
             <path d="M1301.17 61.8455C1311.98 66.5255 1328.32 70.9347 1322.64 90.2735C1319.1 102.496 1306.72 106.905 1291.23 106.905C1280.28 106.905 1269.07 102.786 1261.95 99.5174V80.4687H1267.93C1271.91 94.3927 1279.43 98.8019 1288.39 100.214C1294.34 101.355 1300.18 100.504 1300.9 96.0944C1301.62 91.1244 1293.09 88.7071 1282.01 83.737C1263.11 75.344 1260.54 60.1436 1267.93 47.7862C1273.61 38.5422 1285.12 36.5504 1295.21 36.8405C1302.47 37.1305 1312.7 39.6832 1318.65 43.9571V61.1493H1312.7C1309 49.2172 1303.03 43.8024 1295.21 43.1062C1291.39 42.8161 1287.4 44.6727 1286.69 47.6508C1285.27 53.8973 1290.81 57.3202 1301.19 61.8648L1301.17 61.8455Z" />
           </svg>
-          <h5 className="md:text-end text-center">
+          <h5 className="md:text-end text-center leading-[0]">
             © Copyright 2026 Interactiveworkers. All Rights Reserved.
           </h5>
         </div>
-        <p className="md:text-right max-md:text-center max-md:text-xs justify-end hover:opacity-100 opacity-0 transition-all duration-500">
+        {/* <p className="md:text-right max-md:text-center max-md:text-xs justify-end hover:opacity-100 opacity-0 transition-all duration-500">
           Developed by{" "}
           <span className="relative hover:text-white transition-colors duration-500 z-10 after:bg-julscodes after:absolute after:top-0 hover:after:left-0 after:left-1/2 after:w-0 hover:after:w-full after:h-full after:-z-10 after:transition-all after:duration-500">
             @
@@ -102,7 +102,7 @@ const FooterContent = (props: HTMLAttributes<HTMLElement>) => {
             </Link>
           </span>
           .
-        </p>
+        </p> */}
         <div className="flex flex-row gap-3 items-center justify-center relative max-md:pt-3">
           <PageDivision className="top-0 md:hidden" />
         </div>
@@ -110,6 +110,7 @@ const FooterContent = (props: HTMLAttributes<HTMLElement>) => {
           <Socials />
         </div>
       </div>
+      <Socials dark={isContact} />
     </footer>
   );
 };

@@ -16,9 +16,9 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
-        "iw-red-1": "var(--iw-primary-red)",
-        "iw-red-2": "var(--iw-secondary-red)",
-        "iw-red-3": "var(--iw-tertiary-red)",
+        "iw-red-1": "var(--iw-primary-red, #dd272d)",
+        "iw-red-2": "var(--iw-secondary-red, #c1272d)",
+        "iw-red-3": "var(--iw-tertiary-red, #800202)",
         julscodes: "#008080",
       },
       keyframes: {
