@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import LocalTime from "../local-time";
 
 const Socials = ({
   className,
@@ -10,7 +11,7 @@ const Socials = ({
 }) => {
   return (
     <div
-      className={`flex flex-row-reverse justify-between items-center pt-6 gap-4 ${className ?? ""} ${dark ? "text-white" : "text-iw-red-2"}`}
+      className={`flex md:flex-row-reverse flex-col justify-between items-center pt-6 gap-4 ${className ?? ""} ${dark ? "text-white" : "text-iw-red-2"}`}
     >
       <ul className={`flex gap-4 justify-between`}>
         <SocialLink href="https://www.facebook.com/interactiveworkers">
@@ -75,7 +76,10 @@ const Socials = ({
           </svg>
         </SocialLink>
       </ul>
-      <ul className={`flex gap-4 justify-between ${dark ? "" : "text-black"}`}>
+      <LocalTime className="text-sm" />
+      <ul
+        className={`flex md:flex-row flex-col items-center gap-4 justify-between ${dark ? "" : "text-black"}`}
+      >
         <ContactLink href="tel:+13322062891">+1 (332) 206 2891</ContactLink>
         <ContactLink
           href={`mailto:info@interactiveworkers.com?subject=${encodeURIComponent(
