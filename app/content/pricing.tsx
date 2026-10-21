@@ -1,3 +1,4 @@
+import Icon from "@/components/icon";
 import { PricingCardProps } from "@/components/pricing-card";
 
 export const projectPlans: {
@@ -14,6 +15,12 @@ export const projectPlans: {
 
 export const partTime: PricingCardProps = {
   planName: "Part-Time",
+  timeDescription: (
+    <div className="flex items-center justify-center text-iw-red-2 bg-white rounded gap-2 px-4">
+      <Icon icon="clock-01" color="currentColor" width={40} height={40} />
+      <span className="text-xl font-bold">4 hours daily</span>
+    </div>
+  ),
   planDescription:
     "Continuous operational continuity backed by a bilingual representative and zero HR liability.",
   benefits: [
@@ -63,6 +70,12 @@ export const partTime: PricingCardProps = {
 
 export const fullTime: PricingCardProps = {
   planName: "Full-Time",
+  timeDescription: (
+    <div className="flex items-center justify-center text-iw-red-2 bg-white rounded gap-2 px-4">
+      <Icon icon="clock-plus" color="currentColor" width={40} height={40} />
+      <span className="text-xl font-bold">8+ hours daily</span>
+    </div>
+  ),
   planDescription:
     "Build operational capacity with a cross-trained team, built-in redundancy, and a dedicated supervisor.",
   includes: partTime,

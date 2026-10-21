@@ -31,6 +31,7 @@ export interface PricingCardProps {
   hideHeader?: boolean;
   className?: string;
   style?: React.CSSProperties;
+  timeDescription?: React.ReactNode;
 }
 
 export default function PricingCard({
@@ -43,6 +44,7 @@ export default function PricingCard({
   hideHeader,
   className,
   style,
+  timeDescription,
 }: PricingCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -52,10 +54,13 @@ export default function PricingCard({
       style={style}
       disableHover
     >
-      <header
-        className={`md:text-[clamp(2rem,4vw,3.5rem)] text-center leading-[1] text-3xl font-medium pb-2 border-b border-white justify-center ${hideHeader ? "hidden md:flex" : "flex"}`}
-      >
-        {planName}
+      <header className="pb-2 border-b border-white flex flex-col">
+        <label
+          className={`md:text-[clamp(2rem,4vw,3.5rem)] text-center leading-[1] text-3xl font-medium justify-center ${hideHeader ? "hidden md:flex" : "flex"}`}
+        >
+          {planName}
+        </label>
+        <div className="flex w-full justify-center">{timeDescription}</div>
       </header>
       <ul className="flex flex-col gap-2 h-full cursor-default">
         {includes && (

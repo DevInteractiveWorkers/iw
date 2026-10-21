@@ -23,7 +23,9 @@ export default function HowItWorksStep({
         </span>
 
         <div className="flex flex-col gap-3">
-          <h3 className="md:text-3xl text-2xl font-semibold">{title}</h3>
+          <h3 className="text-[clamp(1.375rem,2vw,1.75rem)] font-semibold">
+            {title}
+          </h3>
           <p className="text-iw-red-2">{description}</p>
         </div>
       </div>

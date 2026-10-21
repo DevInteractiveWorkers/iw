@@ -21,7 +21,7 @@ export const ReviewsSummary: React.FC<ReviewsSummaryProps> = ({
       ${
         interactive
           ? "items-start relative md:min-w-[300px] md:max-w-[500px] transition-all duration-500 pointer-events-none z-50"
-          : ""
+          : "w-full"
       }`}
       >
         <div className="p-5 w-full h-min border-white/50 border-b">

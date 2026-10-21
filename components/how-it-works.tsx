@@ -32,7 +32,7 @@ const steps = [
 ];
 
 export default function HowItWorks() {
-  const isMd = useIsMobile(1024);
+  const isMd = useIsMobile(1023);
   const isMobile = useIsMobile();
 
   return (
@@ -47,7 +47,7 @@ export default function HowItWorks() {
           />
         </div>
 
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6 px-[clamp(1rem,3vw,50rem)]">
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-6 xl:px-[clamp(1rem,3vw,50rem)]">
           {steps.map((step, index) => (
             <HowItWorksStep
               key={step.title}

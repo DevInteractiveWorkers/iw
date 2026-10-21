@@ -59,7 +59,7 @@ function RecruitmentSteps() {
           title: "We find the perfect fit for you",
           description:
             "Once we know what your project is about, we will find a set of candidates who fit your requirement.",
-          note: "Our screening process is fully customizable and with additional fees.",
+          note: "Our screening process is fully customizable and with no additional fees.",
           assets: (
             <div className="flex gap-6 max-md:gap-2">
               {CANDIDATES.map((candidate) => (
@@ -95,36 +95,6 @@ function RecruitmentSteps() {
                 setSelected(null);
               }}
             />
-          ),
-        },
-        {
-          title: "Monitor their performance",
-          description:
-            "Monitor your remote worker performance with our tracking sofware.",
-          assets: (
-            <article
-              className="md:w-10/12 w-11/12 px-2 md:py-20 sm:py-10 z-10 grid lg:grid-cols-3 sm:grid-cols-2 
-                    md:gap-10 gap-4 md:items-start items-center justify-items-center"
-            >
-              <Stat
-                title="Hours Worked / Week"
-                number={40}
-                symbol="+"
-                className="text-[clamp(2.5rem,8vw,7rem)] font-medium"
-              />
-              <Stat
-                title="New Leads Reached"
-                number={300}
-                symbol="+"
-                className="text-[clamp(2.5rem,8vw,7rem)] font-medium"
-              />
-              <Stat
-                title="Deals Closed"
-                number={20}
-                symbol="+"
-                className="text-[clamp(2.5rem,8vw,7rem)] font-medium"
-              />
-            </article>
           ),
         },
         {
