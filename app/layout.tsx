@@ -53,7 +53,7 @@ export default function RootLayout({
               </div>
               {/* <Blured /> */}
               <PageTransitionOutlet>
-                <Footer className="z-[1000]" />
+                <Footer />
               </PageTransitionOutlet>
             </PageTransitionProvider>
             <Analytics></Analytics>

@@ -117,7 +117,7 @@ const FooterContent = (props: HTMLAttributes<HTMLElement>) => {
 const Footer = () => {
   return (
     <FooterFormProvider>
-      <FooterContent />
+      <FooterContent className="z-[1000]" />
     </FooterFormProvider>
   );
 };
