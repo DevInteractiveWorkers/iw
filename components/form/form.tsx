@@ -173,7 +173,7 @@ const MainForm = ({
                   <TransitionLink
                     key={`item-${i}`}
                     href={item.link}
-                    className="relative after:absolute after:left-1/2 after:top-full after:w-0 after:h-px after:bg-[currentColor]
+                    className="relative after:absolute after:left-1/2 after:top-full after:w-0 after:h-px after:bg-current
                     hover:after:left-0 hover:after:w-full after:transition-all after:duration-150 active:text-iw-red-3 flex w-full justify-center"
                   >
                     {item.title}

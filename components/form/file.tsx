@@ -44,7 +44,7 @@ const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
       <div className={`group w-full min-w-0 max-w-full ${className ?? ""}`}>
         <label
           htmlFor={id}
-          className="py-2 my-2 border-b border-[currentColor] relative flex items-center justify-end cursor-pointer gap-2 px-2 group-focus-within:opacity-50 overflow-hidden"
+          className="py-2 my-2 border-b border-current relative flex items-center justify-end cursor-pointer gap-2 px-2 group-focus-within:opacity-50 overflow-hidden"
         >
           <span
             className="min-w-0 flex-1 absolute left-2 max-w-[calc(100%-4.5rem)] truncate"
@@ -59,7 +59,7 @@ const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
             height="23"
             viewBox="0 0 25 23"
             fill="none"
-            className="stroke-[currentColor] shrink-0"
+            className="stroke-current shrink-0"
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
           >

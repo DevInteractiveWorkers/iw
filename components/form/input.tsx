@@ -9,7 +9,7 @@ export default function Input({
 }: InputHTMLAttributes<HTMLInputElement>) {
   return (
     <div
-      className={`py-2 my-2 border-b border-[currentColor] relative flex items-center ${props.className ?? ""}`}
+      className={`py-2 my-2 border-b border-current relative flex items-center ${props.className ?? ""}`}
     >
       <input
         {...props}

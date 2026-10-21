@@ -354,7 +354,7 @@ export default function Select(allProps: SelectProps) {
   return (
     <div
       ref={dropdownRef}
-      className="py-2 my-2 border-b border-[currentColor] relative flex items-center justify-between w-full cursor-pointer select-none"
+      className="py-2 my-2 border-b border-current relative flex items-center justify-between w-full cursor-pointer select-none"
       onClick={() => setIsOpen((prev) => !prev)}
       aria-required={required}
       aria-haspopup="listbox"

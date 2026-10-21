@@ -38,7 +38,7 @@ export default function NotFound() {
           <br className="md:hidden" /> Go back{" "}
           <TransitionLink
             href={"/"}
-            className="relative hover:text-iw-red-1 after:absolute after:left-1/2 after:top-full after:w-0 after:h-px after:bg-[currentColor] transition-colors duration-150
+            className="relative hover:text-iw-red-1 after:absolute after:left-1/2 after:top-full after:w-0 after:h-px after:bg-current transition-colors duration-150
                 hover:after:left-0 hover:after:w-full after:transition-all after:duration-150 active:text-iw-red-3"
           >
             home

@@ -9,7 +9,7 @@ export default function Textarea({
   ...props
 }: TextareaHTMLAttributes<HTMLTextAreaElement>) {
   return (
-    <div className="py-2 my-2 border-b border-[currentColor] relative flex">
+    <div className="py-2 my-2 border-b border-current relative flex">
       <textarea
         {...props}
         id={id}

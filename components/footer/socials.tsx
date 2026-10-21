@@ -112,9 +112,9 @@ const ContactLink = ({
       <Link
         href={href}
         {...(isExternal && { target: "_blank", rel: "noopener noreferrer" })}
-        className="relative after:absolute after:left-1/2 after:top-full after:w-0 after:h-px after:bg-[currentColor]
+        className="relative after:absolute after:left-1/2 after:top-full after:w-0 after:h-px after:bg-current
         hover:after:left-0 hover:after:w-full after:transition-all after:duration-150 
-        text-[currentColor] hover:text-iw-red-3 active:text-iw-red-3 text-center inline-block"
+        text-current hover:text-iw-red-3 active:text-iw-red-3 text-center inline-block"
       >
         {children}
       </Link>
@@ -135,7 +135,7 @@ const SocialLink = ({
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className={`text-[currentColor] hover:text-iw-red-3 transition-colors duration-200`}
+        className={`text-current hover:text-iw-red-3 transition-colors duration-200`}
       >
         {children}
       </Link>
