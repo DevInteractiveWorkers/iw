@@ -216,7 +216,7 @@ const MainForm = ({
                 height={1080}
                 alt="InteractiveWorker"
                 src={"/team-2026/GABRIEL/gabriel_01.png"}
-                className="absolute top-0 object-top object-cover w-full h-full p-[20px_0_0_100px]"
+                className="absolute inset-0 object-top object-cover w-full h-full"
               />
             </div>
           )}

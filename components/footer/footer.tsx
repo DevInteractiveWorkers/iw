@@ -4,44 +4,53 @@ import React, { HTMLAttributes } from "react";
 import Socials from "./socials";
 import Link from "next/link";
 import FooterForm from "./current-form";
+import { FooterFormProvider, useHasFooterForm } from "./footer-form-context";
 import PageDivision from "../page-division";
 import { ParticlesComponent } from "../particles";
 import { usePathname } from "next/navigation";
 
-const Footer = (props: HTMLAttributes<HTMLElement>) => {
+const FooterContent = (props: HTMLAttributes<HTMLElement>) => {
   const { className } = props;
 
   const pathname = usePathname();
+  const isContact = pathname === "/contact";
+
+  const hasForm = useHasFooterForm();
 
   return (
     <footer
-      className={`relative w-full ${pathname !== "/policy" && pathname !== "/contact" ? "min-h-screen px-[clamp(1rem,8vw,50rem)]" : ""} flex flex-col justify-between py-6 overflow-hidden ${className ?? ""}`}
+      className={`relative w-full ${hasForm ? "min-h-screen" : isContact ? "bg-iw-red-2" : ""} px-[clamp(1rem,8vw,50rem)] flex flex-col justify-between py-6 overflow-hidden ${className ?? ""}`}
     >
-      <div
-        style={{
-          top: 0,
-          left: 0,
-          position: "absolute",
-          backgroundColor: "#fff",
-          zIndex: -10,
-          height: "100vh",
-          width: "100vw",
-          maskImage: "linear-gradient(to top, black 90%, transparent 100%)",
-          WebkitMaskImage:
-            "linear-gradient(to top, black 90%, transparent 100%)",
-        }}
-      />
+      {hasForm && (
+        <div
+          style={{
+            top: 0,
+            left: 0,
+            position: "absolute",
+            backgroundColor: "#fff",
+            zIndex: -10,
+            height: "100vh",
+            width: "100vw",
+            maskImage: "linear-gradient(to top, black 90%, transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to top, black 90%, transparent 100%)",
+          }}
+        />
+      )}
       <ParticlesComponent
         id="footer-particles"
         color="#ccc"
         className="absolute -z-10 w-full h-[25vh] bottom-0 left-0"
       />
-      {pathname !== "/contact" && <PageDivision className="relative" />}
+      {hasForm && <PageDivision className="relative" />}
+
       <FooterForm />
-      <div className="flex flex-col w-full md:justify-between mt-4 px-[clamp(1rem,8vw,50rem)]">
+      <div
+        className={`flex flex-col w-full md:justify-between mt-4 ${isContact ? "text-white" : "text-black"}`}
+      >
         <div className="grid md:grid-cols-2 gap-6 w-full items-end">
           <svg
-            className="w-full h-auto text-iw-red-2"
+            className={`w-full h-auto ${isContact ? "text-white" : "text-iw-red-2"}`}
             width="1324"
             height="107"
             viewBox="0 0 1324 107"
@@ -102,6 +111,14 @@ const Footer = (props: HTMLAttributes<HTMLElement>) => {
         </div>
       </div>
     </footer>
+  );
+};
+
+const Footer = () => {
+  return (
+    <FooterFormProvider>
+      <FooterContent />
+    </FooterFormProvider>
   );
 };
 

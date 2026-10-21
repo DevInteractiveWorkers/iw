@@ -14,49 +14,17 @@ import FadeInContent from "../FadeInContent";
 import Image from "next/image";
 import CTAButton from "../buttons/cta-button";
 import FlipElement from "../flip-element";
+import { useHasFooterForm } from "./footer-form-context";
 
 export default function FooterForm() {
   const pathname = usePathname();
+  const hasForm = useHasFooterForm();
 
-  switch (pathname) {
-    case "/contact": {
-      return <ContactForms />;
-    }
-    case "/affiliate": {
-      return <AffiliateForms />;
-    }
-    case "/policy": {
-      return;
-    }
-    default: {
-      return <MainForm />;
-    }
+  if (!hasForm) {
+    return pathname === "/affiliate" ? <AffiliateForms /> : null;
   }
-}
 
-function ContactForms() {
-  const isMobile = useIsMobile();
-
-  return (
-    <>
-      <section>
-        <article className="px-[clamp(1rem,8vw,50rem)]">
-          <MainForm heading={false} socials={false} />
-        </article>
-        <article className="bg-iw-red-2 px-[clamp(1rem,8vw,50rem)]">
-          <SplitText
-            className="md:text-5xl text-xl py-4 text-white w-full"
-            textAlign={isMobile ? "center" : "end"}
-            text={"Do you want to join our team?"}
-          />
-          <PageDivision className="relative text-white mb-6" />
-          <div className="p-4 bg-white rounded-t">
-            <GetHired />
-          </div>
-        </article>
-      </section>
-    </>
-  );
+  return <MainForm />;
 }
 
 function AffiliateForms() {
