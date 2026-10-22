@@ -58,7 +58,8 @@ const productizedPackages = [
   },
   {
     content: "Outbound Cold Call & Lead Qualification Desk",
-    imageSrc: "/team-2026/ANDERE/andere_03.png",
+    imageSrc: "/team-2026/ANDERE/andere_05.png",
+
     innerContent: (
       <p>
         Accelerate your sales pipeline.

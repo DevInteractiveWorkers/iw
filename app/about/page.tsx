@@ -6,7 +6,7 @@ import SplitText from "@/components/text-animation/SplitText";
 import FadeInContent from "@/components/FadeInContent";
 import VideoPlayer from "@/components/video-player";
 import { useRouter } from "next/navigation";
-import { Vas } from "../content/vas";
+import VAS, { VA } from "../content/vas";
 import VACard from "@/components/vas/cards";
 import { useIsMobile } from "@/lib/useMobile";
 import DriftWall from "@/components/drift-wall";
@@ -21,7 +21,7 @@ const AboutUs = () => {
       <section className="w-full relative flex flex-col items-start justify-center text-white px-[clamp(1rem,8vw,50rem)] bg-iw-red-2">
         <div className="absolute w-screen h-full top-0 left-0 pointer-events-none">
           <DriftWall
-            items={Vas.slice(0, 8).map((va) => ({
+            items={VAS.slice(0, 16).map((va: VA) => ({
               image: va.img,
               title: va.position,
             }))}

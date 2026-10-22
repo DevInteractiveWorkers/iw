@@ -17,10 +17,10 @@ type AffiliateCardProps = {
 
 const whyUs: AffiliateCardProps[] = [
   {
-    src: "/stock/stock (11).png",
+    src: "/stock/stock (10).png",
     title: "Comprehensive Marketing Support",
   },
-  { src: "/stock/stock (10).png", title: "Personalized  Guidance" },
+  { src: "/stock/stock (14).png", title: "Personalized  Guidance" },
   {
     src: "/stock/stock (8).png",
     title: "Open Communication",
@@ -63,7 +63,7 @@ const AffiliatePage = () => {
             images={whyUs.map((c) => ({ src: c.src, label: c.title }))}
             imagesEffect="saturate(0) contrast(1.2)"
             // imagesEffect="saturate(0) brightness(0.4) sepia(1) hue-rotate(335deg) saturate(6.5) contrast(1.4)"
-            alwaysOpened
+            // alwaysOpened
             // images={[
             //   { src: `/stock/stock (8).png` },
             //   { src: `/stock/stock (11).png` },
