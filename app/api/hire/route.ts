@@ -10,9 +10,9 @@ export async function POST(req: NextRequest): Promise<Response> {
 
   await sendEmail({
     from: process.env.NODEMAILER_USER!,
-    to: "recruitment@interactiveworkers.com",
-    // to: "web.interactiveworkers@gmail.com",
-    bcc: ["gm@interactiveworkers.com"],
+    // to: "recruitment@interactiveworkers.com",
+    to: "web.interactiveworkers@gmail.com",
+    // bcc: ["gm@interactiveworkers.com"],
     subject: `[Applicant] ${data.professional} - ${data.fullName}`,
     heading: `${data.fullName} tried to contact us through interactiveworkers.com Hire Form!`,
     data: {
