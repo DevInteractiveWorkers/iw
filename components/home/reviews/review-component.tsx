@@ -42,10 +42,8 @@ export default function ReviewComponentReviewComponent({
       >
         <RateStars count={rating} color={"white"} />
         <p
-          className={`break-words transition-all duration-500 ${
-            fullReview
-              ? "line-clamp-none max-md:text-sm"
-              : "line-clamp-5"
+          className={`break-words transition-all duration-500 text-sm text-justify ${
+            fullReview ? "line-clamp-none" : "line-clamp-5"
           }`}
         >
           {text}

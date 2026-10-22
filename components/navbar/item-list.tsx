@@ -2,7 +2,6 @@
 import { usePathname } from "next/navigation";
 import React, { useState, useRef, useLayoutEffect, useEffect } from "react";
 import { TransitionLink } from "../link";
-import LocalTime from "../local-time";
 
 interface Item {
   title: string;
@@ -145,7 +144,6 @@ const ItemList = ({ items, isTransitioning, dark }: ItemListProps) => {
             </TransitionLink>
           );
         })}
-        <LocalTime className="md:hidden p-4 text-xs leading-[1] absolute bottom-4" />
       </div>
     </>
   );

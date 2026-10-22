@@ -1,6 +1,5 @@
 import Link from "next/link";
 import React from "react";
-import LocalTime from "../local-time";
 
 const Socials = ({
   className,
@@ -76,9 +75,8 @@ const Socials = ({
           </svg>
         </SocialLink>
       </ul>
-      <LocalTime className="text-sm" />
       <ul
-        className={`flex md:flex-row flex-col items-center gap-4 justify-between ${dark ? "" : "text-black"}`}
+        className={`flex md:flex-row flex-col items-center gap-4 justify-between text-sm ${dark ? "" : "text-black"}`}
       >
         <ContactLink href="tel:+13322062891">+1 (332) 206 2891</ContactLink>
         <ContactLink
