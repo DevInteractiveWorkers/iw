@@ -22,6 +22,7 @@ type GraphProps = {
   stats?: GraphStat[];
   /** Change indicators, matched to `stats` by index. */
   metrics?: GraphMetric[];
+  style?: React.CSSProperties;
 };
 
 const DEFAULT_STATS: GraphStat[] = [
@@ -132,6 +133,7 @@ function useLoopingProgress() {
 export function Graph({
   stats = DEFAULT_STATS,
   metrics = DEFAULT_METRICS,
+  style,
 }: GraphProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const chartRef = useRef<Chart<"line"> | null>(null);
@@ -199,8 +201,18 @@ export function Graph({
         ],
       },
       options: {
-        layout: { padding: 20 },
+        layout: { padding: window.innerWidth < 640 ? 8 : 20 },
+        responsive: true,
         maintainAspectRatio: false,
+        onResize: (chart, size) => {
+          // Tighter padding and fewer x ticks on narrow screens
+          const narrow = size.width < 480;
+          chart.options.layout = { padding: narrow ? 8 : 20 };
+          const xScale = chart.options.scales?.x as
+            | { ticks: { autoSkipPadding: number } }
+            | undefined;
+          if (xScale) xScale.ticks.autoSkipPadding = narrow ? 24 : 48;
+        },
         animation: false,
         font: { family: '"Inter", sans-serif', weight: 500 },
         color: "rgb(99, 102, 241)",
@@ -253,7 +265,7 @@ export function Graph({
   }, []);
 
   return (
-    <section className="flex flex-col justify-center antialiased">
+    <section className="flex flex-col justify-center antialiased" style={style}>
       <div className="col-span-full flex flex-col rounded-sm bg-white xl:col-span-8">
         {/* <header className="flex items-center  px-5 py-4">
           <h2 className="font-semibold text-gray-800 uppercase">Analytics</h2>
@@ -276,13 +288,13 @@ export function Graph({
                       </div>
                       {metric && (
                         <div
-                          className={`text-sm font-medium ${TONE_CLASSES[metric.tone]}`}
+                          className={`text-xs font-medium ${TONE_CLASSES[metric.tone]}`}
                         >
                           {metric.change}
                         </div>
                       )}
                     </div>
-                    <div className="text-sm text-gray-500">{stat.name}</div>
+                    <div className="text-xs text-gray-500">{stat.name}</div>
                   </div>
                   {!isLast && (
                     <div
@@ -295,13 +307,8 @@ export function Graph({
             })}
           </div>
         </div>
-        <div className="flex-grow max-md:relative max-md:h-48">
-          <canvas
-            ref={canvasRef}
-            id="analytics-card-01"
-            width={800}
-            height={300}
-          />
+        <div className="relative h-48 w-full min-w-0 flex-grow sm:h-64 md:h-72">
+          <canvas ref={canvasRef} id="analytics-card-01" />
         </div>
       </div>
     </section>
