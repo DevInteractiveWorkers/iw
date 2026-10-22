@@ -77,7 +77,7 @@ const AutoScrollReviews = () => {
             w-full max-w-7xl px-4 xl:w-9/12 items-stretch py-10
           "
         >
-          <FadeInContent className="w-full h-full">
+          <FadeInContent className="w-full h-full xl:col-span-1 md:col-span-2">
             <ReviewsSummary />
           </FadeInContent>
 

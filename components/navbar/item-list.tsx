@@ -2,7 +2,6 @@
 import { usePathname } from "next/navigation";
 import React, { useState, useRef, useLayoutEffect, useEffect } from "react";
 import { TransitionLink } from "../link";
-import LocalTime from "../local-time";
 
 interface Item {
   title: string;
@@ -33,6 +32,31 @@ const ItemList = ({ items, isTransitioning, dark }: ItemListProps) => {
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const handleOpen = () => setIsOpen((prev) => !prev);
+
+  // While the mobile menu is open, freeze the page behind it and let
+  // Escape / leaving the mobile breakpoint close it.
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsOpen(false);
+    };
+    const desktop = window.matchMedia("(min-width: 768px)");
+    const onBreakpoint = (e: MediaQueryListEvent) => {
+      if (e.matches) setIsOpen(false);
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    desktop.addEventListener("change", onBreakpoint);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+      desktop.removeEventListener("change", onBreakpoint);
+    };
+  }, [isOpen]);
 
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
 
@@ -101,8 +125,16 @@ const ItemList = ({ items, isTransitioning, dark }: ItemListProps) => {
       </button>
 
       <div
-        className={`bg-transparent flex gap-4 relative max-md:fixed max-md:flex-col max-md:w-2/3 ${dark ? "max-md:bg-[#c1272d]/85" : "max-md:bg-white/85"}  max-md:top-0 max-md:right-0 
-          max-md:h-full max-md:z-20 max-md:py-4 max-md:border-l max-md:rounded-l-xl max-md:backdrop-blur ${
+        aria-hidden="true"
+        onClick={() => setIsOpen(false)}
+        className={`md:hidden fixed inset-0 z-10 bg-black/30 backdrop-blur-sm transition-opacity duration-200 ${
+          isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+      />
+
+      <div
+        className={`bg-transparent flex gap-4 relative max-md:fixed max-md:flex-col max-md:w-2/3 ${dark ? "max-md:bg-[#c1272d]/85" : "max-md:bg-white/85"}  max-md:top-0 max-md:right-0
+          max-md:h-full max-md:z-20 max-md:pt-20 max-md:pb-4max-md:border-l max-md:rounded-l-xl max-md:backdrop-blur ${
             isOpen ? "max-md:translate-x-0" : "max-md:translate-x-full"
           } transition-all duration-100`}
         onMouseLeave={() => setHoverIndex(null)}
@@ -145,7 +177,6 @@ const ItemList = ({ items, isTransitioning, dark }: ItemListProps) => {
             </TransitionLink>
           );
         })}
-        <LocalTime className="md:hidden p-4 text-xs leading-[1] absolute bottom-4" />
       </div>
     </>
   );

@@ -15,6 +15,10 @@ import DispatchSolutionsCards, {
 import IndustriesWeServe from "@/components/industries-we-serve";
 import KeyAdvantages from "@/components/key-advantages";
 
+const Topography = dynamic(() => import("@/components/Topography"), {
+  ssr: false,
+});
+
 interface DispatchLocation extends HighlightedLocation {
   services: string;
   icon: string;
@@ -114,8 +118,38 @@ const Dispatch = () => {
 
   return (
     <>
-      <section className="px-[clamp(1rem,8vw,50rem)] bg-iw-red-2">
-        <article className="text-white">
+      <section className="relative px-[clamp(1rem,8vw,50rem)] bg-iw-red-2">
+        <div className="absolute top-0 left-0 w-full h-full">
+          <Topography
+            color="#ffffff"
+            lineCount={16}
+            lineWidth={1.2}
+            elevation={1}
+            foreground={0.2}
+            tilt={90}
+            speed={0.12}
+            direction="right"
+            glow={0.3}
+            depthOfField={0}
+            fog={0.35}
+            mouseInteraction={false}
+            clickEffect="none"
+            majorLines
+            scale={0.7}
+            detail={0.35}
+            morph={0.2}
+            brightness={1}
+            markers="plus"
+            glitch={0}
+            opacity={0.5}
+            trail={0}
+            parallax={0}
+            dpr={1}
+            intro
+            lightMode={false}
+          />
+        </div>
+        <article className="relative text-white">
           <PageHero
             division={false}
             align="center"

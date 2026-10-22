@@ -10,7 +10,6 @@ import { TransitionLink } from "../link";
 import { usePageTransition } from "../PagetransitionContext";
 import ThemeSwitch from "./theme-switch";
 import { useIsMobile } from "@/lib/useMobile";
-import LocalTime from "../local-time";
 
 const NavbarComponent = () => {
   const { isTransitioning } = usePageTransition();
@@ -102,9 +101,6 @@ const NavbarComponent = () => {
               }
         }
       />
-      <div className="mx-[clamp(1rem,8vw,50rem)] top-0 right-0 flex justify-end text-xs absolute opacity-50 max-md:hidden">
-        <LocalTime className="justify-end" />
-      </div>
       <div
         className={`border-b ${navbarDark ? "border-white" : "border-black"} flex items-center justify-between max-md:grid grid-cols-2 justify-items-stretch py-4 gap-4 z-10 mx-[clamp(1rem,8vw,50rem)]`}
       >

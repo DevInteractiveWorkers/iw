@@ -19,6 +19,25 @@ import { footerNavbar, navbar } from "@/app/content/navbar";
 import Socials from "../footer/socials";
 import Image from "next/image";
 import { FooterList } from "../footer/footer-list";
+import { Toast, useToast } from "./toast";
+import {
+  collectFieldErrors,
+  FieldRule,
+  FieldTip,
+  useFieldErrors,
+} from "./validation";
+
+const REQUIRED_FIELDS: FieldRule[] = [
+  { id: "firstname", label: "First name" },
+  { id: "lastname", label: "Last name" },
+  { id: "company", label: "Company name" },
+  { id: "phone", label: "Phone number" },
+  { id: "email", label: "Email" },
+  { id: "size", label: "Company size" },
+  { id: "staff", label: "Number of staff required" },
+  { id: "country", label: "Country" },
+  { id: "message", label: "Message" },
+];
 
 const MainForm = ({
   heading = "Speak with our team today!",
@@ -29,18 +48,34 @@ const MainForm = ({
 }) => {
   const [sending, isSending] = useState(false);
   const [sent, isSent] = useState(false);
-  const [message, setMessage] = useState("");
-  const [fieldsValid, setFieldsValid] = useState(false);
   const [professionals, setProfessionals] = useState<string[]>([]);
   const isMobile = useIsMobile();
-
-  const canSubmit = fieldsValid && professionals.length > 0 && !sending;
+  const { toast, show, dismiss } = useToast();
+  const validation = useFieldErrors();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    isSending(true);
 
     const form = event.currentTarget;
+
+    const errors = collectFieldErrors(form, REQUIRED_FIELDS);
+    if (professionals.length === 0) {
+      errors.professional = "Please select at least one professional";
+    }
+    if (!(form.elements.namedItem("agree") as HTMLInputElement).checked) {
+      errors.agree = "Please accept the Privacy Policy";
+    }
+    if (Object.keys(errors).length > 0) {
+      validation.flag(errors);
+      show(
+        "error",
+        "Some required information is missing. Please check the highlighted fields.",
+      );
+      return;
+    }
+
+    isSending(true);
+
     const formData = new FormData(form);
 
     const data: formData = {
@@ -56,22 +91,29 @@ const MainForm = ({
       message: String(formData.get("message") ?? ""),
     };
 
-    const empty = Object.values(data).filter((item) => item === "");
+    let completed = false;
+    try {
+      completed = await sendMail(data);
+    } catch (error) {
+      console.error(error);
+    }
 
-    const completed = empty.length === 0 && (await sendMail(data));
+    isSending(false);
 
     if (completed) {
-      isSending(false);
       isSent(true);
 
       setTimeout(() => isSent(false), 5000);
 
       form.reset();
       setProfessionals([]);
-      setFieldsValid(false);
+      validation.clear();
+      show("success", "Thank you! Your message has been sent.");
     } else {
-      isSending(false);
-      setMessage("There was a problem to contact us. Please try again later.");
+      show(
+        "error",
+        "There was a problem to contact us. Please try again later.",
+      );
     }
   };
 
@@ -82,11 +124,11 @@ const MainForm = ({
         ref={ref}
         className="md:grid md:grid-cols-[2fr_1fr] gap-x-6 flex flex-col"
         onSubmit={handleSubmit}
-        onChange={(event) =>
-          setFieldsValid(event.currentTarget.checkValidity())
-        }
+        onChange={validation.handleChange}
+        noValidate
         name="Contact Form"
       >
+        <Toast toast={toast} onDismiss={dismiss} />
         <div>
           {heading && (
             <SplitText
@@ -96,73 +138,94 @@ const MainForm = ({
             />
           )}
           <div className="md:grid md:grid-cols-2 gap-x-3">
-            <Input
-              id="firstname"
-              name="firstname"
-              type="text"
-              placeholder="First name"
-              autoComplete="given-name"
-              required
-            />
-
-            <Input
-              id="lastname"
-              name="lastname"
-              type="text"
-              placeholder="Last name"
-              autoComplete="family-name"
-              required
-            />
-            <Input
-              id="company"
-              name="company"
-              type="text"
-              placeholder="Company's Name"
-              autoComplete="organization"
-              className="col-span-2"
-              required
-            />
-            <Input
-              id="phone"
-              name="phone"
-              type="tel"
-              placeholder="Phone Number"
-              autoComplete="tel"
-              required
-            />
-            <Input
-              id="email"
-              name="email"
-              type="email"
-              placeholder="Email"
-              autoComplete="email"
-              required
-            />
-            <Input
-              id="size"
-              name="size"
-              type="number"
-              placeholder="Your company size (current staff number)"
-              className="col-span-2"
-              autoComplete="off"
-              required
-            />
-            <Input
-              id="staff"
-              name="staff"
-              type="number"
-              placeholder="Number of Staff Required?"
-              autoComplete="off"
-              required
-            />
-            <Input
-              id="country"
-              name="country"
-              type="text"
-              placeholder="Which country are you based in?"
-              autoComplete="country-name"
-              required
-            />
+            <FieldTip {...validation.tip("firstname")}>
+              <Input
+                id="firstname"
+                name="firstname"
+                type="text"
+                placeholder="First name"
+                autoComplete="given-name"
+                required
+                {...validation.describe("firstname")}
+              />
+            </FieldTip>
+            <FieldTip {...validation.tip("lastname")}>
+              <Input
+                id="lastname"
+                name="lastname"
+                type="text"
+                placeholder="Last name"
+                autoComplete="family-name"
+                required
+                {...validation.describe("lastname")}
+              />
+            </FieldTip>
+            <FieldTip {...validation.tip("company")} className="col-span-2">
+              <Input
+                id="company"
+                name="company"
+                type="text"
+                placeholder="Company's Name"
+                autoComplete="organization"
+                required
+                {...validation.describe("company")}
+              />
+            </FieldTip>
+            <FieldTip {...validation.tip("phone")}>
+              <Input
+                id="phone"
+                name="phone"
+                type="tel"
+                placeholder="Phone Number"
+                autoComplete="tel"
+                required
+                {...validation.describe("phone")}
+              />
+            </FieldTip>
+            <FieldTip {...validation.tip("email")}>
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="Email"
+                autoComplete="email"
+                required
+                {...validation.describe("email")}
+              />
+            </FieldTip>
+            <FieldTip {...validation.tip("size")} className="col-span-2">
+              <Input
+                id="size"
+                name="size"
+                type="number"
+                placeholder="Your company size (current staff number)"
+                autoComplete="off"
+                required
+                {...validation.describe("size")}
+              />
+            </FieldTip>
+            <FieldTip {...validation.tip("staff")}>
+              <Input
+                id="staff"
+                name="staff"
+                type="number"
+                placeholder="Number of Staff Required?"
+                autoComplete="off"
+                required
+                {...validation.describe("staff")}
+              />
+            </FieldTip>
+            <FieldTip {...validation.tip("country")}>
+              <Input
+                id="country"
+                name="country"
+                type="text"
+                placeholder="Which country are you based in?"
+                autoComplete="country-name"
+                required
+                {...validation.describe("country")}
+              />
+            </FieldTip>
           </div>
         </div>
         <div className="relative max-md:hidden w-full h-full">
@@ -205,18 +268,24 @@ const MainForm = ({
           Choose your Professional
         </h4>
         <div className="grid md:grid-cols-3 gap-3 md:col-span-2">
-          <Select
-            id="professional"
-            required
-            multiple
-            value={professionals}
-            onChange={setProfessionals}
-          >
-            {professionalOptions.map((option, index) => (
-              <option key={index}>{option}</option>
-            ))}
-          </Select>
-          <div className="md:col-span-2">
+          <FieldTip {...validation.tip("professional")}>
+            <Select
+              id="professional"
+              required
+              multiple
+              value={professionals}
+              onChange={(selected) => {
+                setProfessionals(selected);
+                validation.touch("professional", selected.length > 0);
+              }}
+              {...validation.describe("professional")}
+            >
+              {professionalOptions.map((option, index) => (
+                <option key={index}>{option}</option>
+              ))}
+            </Select>
+          </FieldTip>
+          <FieldTip {...validation.tip("message")} className="md:col-span-2">
             <Textarea
               id="message"
               name="message"
@@ -224,8 +293,9 @@ const MainForm = ({
               autoComplete="off"
               required
               rows={isMobile ? 2 : 1}
+              {...validation.describe("message")}
             />
-          </div>
+          </FieldTip>
         </div>
         <div className="md:col-span-2 grid md:grid-cols-[auto_auto] grid-cols-1 gap-3 py-4">
           <p className="max-md:text-xs max-md:text-center">
@@ -235,24 +305,31 @@ const MainForm = ({
           </p>
           <div className="flex flex-col md:items-end">
             <div className="md:w-max w-full">
-              <div className="flex items-center gap-2">
-                <Checkbox id="agree" name="agree" required />
+              <FieldTip {...validation.tip("agree")} align="end">
+                <div className="flex items-center gap-2">
+                  <Checkbox
+                    id="agree"
+                    name="agree"
+                    required
+                    {...validation.describe("agree")}
+                  />
 
-                <Label htmlFor="agree" className="flex">
-                  <span className="flex text-black">
-                    I agree with the&nbsp;
-                    <TransitionLink
-                      href="/policy"
-                      className="text-iw-red-1 hover:underline"
-                    >
-                      Privacy Policy
-                    </TransitionLink>
-                  </span>
-                </Label>
-              </div>
+                  <Label htmlFor="agree" className="flex">
+                    <span className="flex text-black">
+                      I agree with the&nbsp;
+                      <TransitionLink
+                        href="/policy"
+                        className="text-iw-red-1 hover:underline"
+                      >
+                        Privacy Policy
+                      </TransitionLink>
+                    </span>
+                  </Label>
+                </div>
+              </FieldTip>
               <FormButton
                 className="mt-3 flex justify-center w-full uppercase [--primary-color:#dd272d]"
-                disabled={!canSubmit}
+                disabled={sending || validation.locked}
               >
                 {sending
                   ? "Sending..."
@@ -264,11 +341,6 @@ const MainForm = ({
             </div>
           </div>
         </div>
-        {message && (
-          <div className="text-iw-red-1 flex justify-end w-full md:col-span-2">
-            {message}
-          </div>
-        )}
       </form>
     </FadeInContent>
   );
