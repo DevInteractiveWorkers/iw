@@ -15,9 +15,10 @@ import Checkbox from "./checkbox";
 import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 import { useIsMobile } from "@/lib/useMobile";
 import { TransitionLink } from "../link";
-import { navbar } from "@/app/content/navbar";
+import { footerNavbar, navbar } from "@/app/content/navbar";
 import Socials from "../footer/socials";
 import Image from "next/image";
+import { FooterList } from "../footer/footer-list";
 
 const MainForm = ({
   heading = "Speak with our team today!",
@@ -79,60 +80,22 @@ const MainForm = ({
     <FadeInContent>
       <form
         ref={ref}
-        className="md:grid md:grid-cols-3 flex flex-col"
+        className="md:grid md:grid-cols-[2fr_1fr] gap-x-6 flex flex-col"
         onSubmit={handleSubmit}
         onChange={(event) =>
           setFieldsValid(event.currentTarget.checkValidity())
         }
         name="Contact Form"
       >
-        {heading && (
-          <SplitText
-            className={`text-4xl md:text-6xl font-medium md:py-10 md:col-span-2 col-span-1 text-iw-red-2`}
-            textAlign="start"
-            text={heading}
-          />
-        )}
-        {socials && (
-          <div className="relative max-md:hidden">
-            <div className="flex items-start justify-around py-10 md:absolute top-0 left-0 w-full h-full">
-              <ul className="flex flex-col gap-2 items-start">
-                <li>
-                  <TransitionLink
-                    href={"/"}
-                    className="relative after:absolute after:left-1/2 after:top-full after:w-0 after:h-px after:bg-[currentColor]
-                    hover:after:left-0 hover:after:w-full after:transition-all after:duration-150 active:text-iw-red-3"
-                  >
-                    Home
-                  </TransitionLink>
-                </li>
-                {navbar.map((item, i) => (
-                  <li key={`item-${i}`}>
-                    <TransitionLink
-                      href={item.link}
-                      className="relative after:absolute after:left-1/2 after:top-full after:w-0 after:h-px after:bg-[currentColor]
-                    hover:after:left-0 hover:after:w-full after:transition-all after:duration-150 active:text-iw-red-3"
-                    >
-                      {item.title}
-                    </TransitionLink>
-                  </li>
-                ))}{" "}
-                <li>
-                  <TransitionLink
-                    href={"/policy"}
-                    className="relative after:absolute after:left-1/2 after:top-full after:w-0 after:h-px after:bg-[currentColor]
-                    hover:after:left-0 hover:after:w-full after:transition-all after:duration-150 active:text-iw-red-3"
-                  >
-                    Privacy Policy
-                  </TransitionLink>
-                </li>
-              </ul>
-              <Socials />
-            </div>
-          </div>
-        )}
-        <div className="col-span-3 grid md:grid-cols-3">
-          <div className="col-span-2 md:grid md:grid-cols-2 gap-x-3">
+        <div>
+          {heading && (
+            <SplitText
+              className={`text-4xl md:text-6xl font-medium py-10 text-iw-red-2`}
+              textAlign="start"
+              text={heading}
+            />
+          )}
+          <div className="md:grid md:grid-cols-2 gap-x-3">
             <Input
               id="firstname"
               name="firstname"
@@ -201,9 +164,26 @@ const MainForm = ({
               required
             />
           </div>
-          {!socials && (
+        </div>
+        <div className="relative max-md:hidden w-full h-full">
+          {socials ? (
+            <div className="flex flex-col items-end gap-6 justify-start absolute py-10 top-0 right-0 w-max h-full gap-x-6">
+              <FooterList
+                items={footerNavbar.map((item, i) => (
+                  <TransitionLink
+                    key={`item-${i}`}
+                    href={item.link}
+                    className="relative after:absolute after:left-1/2 after:top-full after:w-0 after:h-px after:bg-current
+                    hover:after:left-0 hover:after:w-full after:transition-all after:duration-150 active:text-iw-red-3 flex w-full justify-center"
+                  >
+                    {item.title}
+                  </TransitionLink>
+                ))}
+              />
+            </div>
+          ) : (
             <div
-              className="relative max-md:hidden w-full h-full pointer-events-none select-none"
+              className="absolute inset-0 pointer-events-none select-none"
               style={{
                 maskImage:
                   "linear-gradient(to bottom, black 50%, transparent 100%)",
@@ -216,15 +196,15 @@ const MainForm = ({
                 height={1080}
                 alt="InteractiveWorker"
                 src={"/team-2026/GABRIEL/gabriel_01.png"}
-                className="absolute inset-0 object-top object-cover w-full h-full"
+                className="object-top object-cover w-full h-full"
               />
             </div>
           )}
         </div>
-        <h4 className="font-medium md:text-2xl text-xl mt-4 md:col-span-2 col-span-1 text-iw-red-2">
+        <h4 className="font-medium md:text-2xl text-xl mt-4 md:col-span-2 text-iw-red-2">
           Choose your Professional
         </h4>
-        <div className="grid md:grid-cols-3 gap-3 md:col-span-3">
+        <div className="grid md:grid-cols-3 gap-3 md:col-span-2">
           <Select
             id="professional"
             required
@@ -236,7 +216,7 @@ const MainForm = ({
               <option key={index}>{option}</option>
             ))}
           </Select>
-          <div className="md:col-span-2 col-span-1">
+          <div className="md:col-span-2">
             <Textarea
               id="message"
               name="message"
@@ -247,7 +227,7 @@ const MainForm = ({
             />
           </div>
         </div>
-        <div className="col-span-3 grid md:grid-cols-[auto_auto] grid-cols-1 gap-3 py-4">
+        <div className="md:col-span-2 grid md:grid-cols-[auto_auto] grid-cols-1 gap-3 py-4">
           <p className="max-md:text-xs max-md:text-center">
             Messages and data rates may apply.
             <br className="md:hidden" /> (Message frequency will vary).
@@ -285,7 +265,7 @@ const MainForm = ({
           </div>
         </div>
         {message && (
-          <div className="text-iw-red-1 flex justify-end w-full col-span-3">
+          <div className="text-iw-red-1 flex justify-end w-full md:col-span-2">
             {message}
           </div>
         )}

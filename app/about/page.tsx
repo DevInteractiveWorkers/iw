@@ -189,9 +189,9 @@ const AboutUs = () => {
             />
           </FadeInContent>
         </article>
-        <div className="w-full flex justify-end">
+        <div className="w-full flex justify-center">
           <SplitText
-            textAlign="start"
+            textAlign="center"
             className="text-[clamp(2rem,4vw,3.75rem)] leading-[1.05] pb-6 font-light w-3/4"
             text="Beyond the obvious benefits, remote staff can address hidden needs."
           />

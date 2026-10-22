@@ -13,9 +13,9 @@ export default function Reviews() {
   return (
     <article id="reviews" className="w-full">
       <AutoScrollReviews />
-      <div className="w-full flex justify-end">
+      <div className="w-full flex justify-center">
         <SplitText
-          textAlign="start"
+          textAlign="center"
           className="text-[clamp(2rem,4vw,3.75rem)] leading-[1.05] pb-6 font-light w-3/4"
           text="Beyond the obvious benefits, remote staff can address hidden needs."
         />
@@ -28,10 +28,14 @@ const ReviewCard = ({
   review,
   index,
   className,
+  fullReview = false,
+  fluid = false,
 }: {
   review: (typeof SampleReviews)[number];
   index: number;
   className?: string;
+  fullReview?: boolean;
+  fluid?: boolean;
 }) => (
   <FadeInContent className={className} delay={index * 0.2}>
     <ReviewComponent
@@ -40,7 +44,8 @@ const ReviewCard = ({
       company={review.company}
       text={review.text}
       rating={review.rating}
-      fullReview={false}
+      fullReview={fullReview}
+      fluid={fluid}
     />
   </FadeInContent>
 );
@@ -68,11 +73,11 @@ const AutoScrollReviews = () => {
       <div className="w-full flex items-center justify-center">
         <div
           className="
-            relative grid md:grid-cols-3 gap-6 md:w-9/12
-            items-center justify-items-center py-10
+            relative grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6
+            w-full max-w-7xl px-4 xl:w-9/12 items-stretch py-10
           "
         >
-          <FadeInContent className="w-full h-full md:my-10 min-h-[400px]">
+          <FadeInContent className="w-full h-full">
             <ReviewsSummary />
           </FadeInContent>
 
@@ -81,7 +86,8 @@ const AutoScrollReviews = () => {
               key={i}
               review={review}
               index={i}
-              className="w-full h-full md:my-10"
+              fluid
+              className="w-full h-full"
             />
           ))}
         </div>

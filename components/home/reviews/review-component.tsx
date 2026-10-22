@@ -9,6 +9,7 @@ interface ReviewProps {
   rating: number;
   text?: string;
   fullReview: boolean;
+  fluid?: boolean;
   className?: string;
   dark?: boolean;
 }
@@ -20,12 +21,14 @@ export default function ReviewComponentReviewComponent({
   rating,
   text,
   fullReview,
+  fluid = false,
 }: ReviewProps) {
   const reverse = index % 2 === 0;
 
   return (
     <ProductCard
-      className={`flex flex-col items-start relative min-w-[300px] max-w-[500px] min-h-[400px] h-full transition-all duration-500 
+      className={`flex flex-col items-start relative min-h-[400px] h-full transition-all duration-500
+        ${fluid ? "w-full min-w-0" : "min-w-[300px] max-w-[500px]"}
         ${reverse && "flex-col-reverse"} justify-between pointer-events-none`}
     >
       <div
@@ -39,9 +42,9 @@ export default function ReviewComponentReviewComponent({
       >
         <RateStars count={rating} color={"white"} />
         <p
-          className={`transition-all duration-500 ${
+          className={`break-words transition-all duration-500 ${
             fullReview
-              ? "line-clamp-none max-h-[1000px] max-w-[500px] min-w-[250px] max-md:text-sm"
+              ? "line-clamp-none max-md:text-sm"
               : "line-clamp-5"
           }`}
         >

@@ -39,7 +39,7 @@ export default function PageDivision({ className = "" }: PageDivisionProps) {
       className={`absolute left-0 h-px w-full overflow-hidden ${className}`}
     >
       <div
-        className={`h-full w-full origin-left bg-[currentColor] transition-transform duration-1000 ease-out ${
+        className={`h-full w-full origin-left bg-current transition-transform duration-1000 ease-out ${
           isVisible ? "scale-x-100" : "scale-x-0"
         }`}
       />
