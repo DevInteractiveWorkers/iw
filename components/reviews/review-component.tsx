@@ -28,7 +28,7 @@ export default function ReviewComponentReviewComponent({
   fullReview,
   fluid = false,
 }: ReviewProps) {
-  const reverse = index % 2 === 0;
+  // const reverse = index % 2 === 0;
   const [isFullReview, setIsFullReview] = useState<boolean>(fullReview ?? true);
   // True only while collapsed and settled; the line-clamp is dropped during
   // the height animation so the text can grow/shrink smoothly.
@@ -114,19 +114,16 @@ export default function ReviewComponentReviewComponent({
 
   return (
     <ProductCard
+      disableHover
       className={`flex flex-col items-start relative min-h-[400px] h-full transition-all duration-500
         ${fluid ? "w-full min-w-0" : "min-w-[300px] max-w-[500px]"}
-        ${reverse && "flex-col-reverse"} justify-between `}
+        justify-between `}
     >
-      <div
-        className={`p-5 w-full h-min border-white/50 ${reverse ? "border-t" : "border-b"}`}
-      >
+      <div className={`p-5 w-full h-min border-white/50 border-b`}>
         <b>{name}</b>
         <p>{company}</p>
       </div>
-      <div
-        className={`p-5 flex gap-4 justify-between h-auto ${reverse ? "flex-col-reverse" : "flex-col"}`}
-      >
+      <div className={`p-5 flex gap-4 justify-between h-auto flex-col`}>
         <RateStars count={rating} color={"white"} />
         <div className="flex flex-col justify-center gap-2 items-end">
           <p

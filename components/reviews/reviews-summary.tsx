@@ -17,6 +17,7 @@ export const ReviewsSummary: React.FC<ReviewsSummaryProps> = ({
   return (
     <>
       <ProductCard
+        disableHover
         className={`flex flex-col justify-between min-h-[400px] h-full
       ${
         interactive
@@ -53,16 +54,16 @@ export const ReviewsSummary: React.FC<ReviewsSummaryProps> = ({
       {/* Modal Dialog */}
       {isOpen && (
         <div className="fixed inset-0 bg-white/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <ProductCard className="p-6">
+          <ProductCard className="p-4" disableHover>
             <h3 className="text-2xl font-medium pb-2">
               Review InteractiveWorkers
             </h3>
-            <p className="/70 text-sm">
+            <p className="text-sm">
               We appreciate your feedback! To keep our ratings verified, reviews
               are hosted directly on our Google Business Profile.
             </p>
 
-            <div className="flex justify-end gap-3 pt-2">
+            <div className="flex justify-between gap-2 pt-2">
               <button
                 type="button"
                 onClick={() => setIsOpen(false)}
