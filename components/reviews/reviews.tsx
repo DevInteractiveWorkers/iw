@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import ReviewComponent from "./reviews/review-component";
-import { SampleReviews } from "./sample-reviews";
-import Carousel from "./reviews/carousel";
+import ReviewComponent from "./review-component";
+import { SampleReviews } from "../home/sample-reviews";
+import Carousel from "./carousel";
 import FadeInContent from "../FadeInContent";
 import { useIsMobile } from "@/lib/useMobile";
 import { ReviewsSummary } from "./reviews-summary";

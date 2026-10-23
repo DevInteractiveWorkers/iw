@@ -1,7 +1,7 @@
 "use client";
 
 import { CSSProperties, useEffect, useRef, useState } from "react";
-import Reviews from "./home/reviews";
+import Reviews from "./reviews/reviews";
 import FadeInContent from "./FadeInContent";
 import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 import { useIsMobile } from "@/lib/useMobile";
