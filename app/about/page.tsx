@@ -7,7 +7,6 @@ import FadeInContent from "@/components/FadeInContent";
 import VideoPlayer from "@/components/video-player";
 import { useRouter } from "next/navigation";
 import VAS, { VA } from "../content/vas";
-import VACard from "@/components/vas/cards";
 import { useIsMobile } from "@/lib/useMobile";
 import DriftWall from "@/components/drift-wall";
 
