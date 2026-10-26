@@ -51,7 +51,7 @@ export default function PageHero({
         />
       </FlipElement>
       <div
-        className={`grid ${description ? (align !== "center" ? "md:grid-cols-2" : "") : ""} grid-cols-1`}
+        className={`grid ${description ? (align !== "center" ? "md:grid-cols-[auto_auto]" : "") : ""} grid-cols-1`}
       >
         <div className="w-full flex flex-col">
           <SplitText
