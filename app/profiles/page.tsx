@@ -7,7 +7,7 @@ import { useIsMobile } from "@/lib/useMobile";
 import VACard from "@/components/vas/cards";
 import SplitText from "@/components/text-animation/SplitText";
 import Image from "next/image";
-import { useRef } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -36,10 +36,68 @@ const teams: Team[] = [
   },
 ];
 
+// Positions separated by "•" only between items on the same line: each bullet
+// is an ::after hung in the flex gap, and hidden on whichever item ends a line.
+function PositionList({
+  positions,
+  onHover,
+}: {
+  positions: string[];
+  onHover: (index: number | null) => void;
+}) {
+  const listRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const list = listRef.current;
+    if (!list) return;
+
+    const markLineEnds = () => {
+      const items = Array.from(list.children) as HTMLElement[];
+      items.forEach((item, i) => {
+        const next = items[i + 1];
+        item.dataset.eol = String(!next || next.offsetTop !== item.offsetTop);
+      });
+    };
+
+    markLineEnds();
+    const observer = new ResizeObserver(markLineEnds);
+    observer.observe(list);
+    document.fonts?.ready.then(markLineEnds);
+    return () => observer.disconnect();
+  }, [positions]);
+
+  return (
+    <div
+      ref={listRef}
+      className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1 md:text-2xl text-sm"
+    >
+      {positions.map((position, i) => (
+        <span
+          key={i}
+          className="relative after:content-['•'] after:absolute after:left-full after:top-0 after:w-6 after:text-center data-[eol=true]:after:hidden"
+        >
+          <span
+            className="cursor-pointer hover:underline"
+            onMouseEnter={() => onHover(i)}
+            onMouseLeave={() => onHover(null)}
+          >
+            {position}
+          </span>
+        </span>
+      ))}
+    </div>
+  );
+}
+
 export default function ProfilesPage() {
   const isMobile = useIsMobile();
   const teamsRef = useRef<HTMLElement>(null);
   const router = useRouter();
+
+  // Track the active staff index for each team ID (defaults to index 0)
+  const [teamHero, setTeamHero] = useState<Record<number, number>>(
+    Object.fromEntries(teams.map((team) => [team.id, 7])),
+  );
 
   useGSAP(
     () => {
@@ -95,10 +153,7 @@ export default function ProfilesPage() {
           }}
         />
       </section>
-      <section
-        ref={teamsRef}
-        className="bg-white py-10 flex flex-col space-y-6 items-stretch overflow-x-clip"
-      >
+      <main className="bg-white py-10 ">
         <div className="w-full flex justify-center">
           <SplitText
             tag="h2"
@@ -118,72 +173,90 @@ export default function ProfilesPage() {
             }
           />
         </div>
-        {teams.map((team) => {
-          const staff = VAS.filter((va) => va.team === team.id);
+        <section
+          ref={teamsRef}
+          className="flex flex-col space-y-6 items-stretch overflow-x-clip min-h-screen"
+        >
+          {teams.map((team) => {
+            const staff = VAS.filter((va) => va.team === team.id);
+            // Get the current selected staff object based on state index, fallback to first item
+            const currentHero = staff[teamHero[team.id]] || staff[0];
 
-          return (
-            <article
-              key={"team-" + team.id}
-              className={`relative flex items-stretch ${
-                team.id % 2 === 0 ? "w-full flex-row-reverse" : "w-full"
-              } gap-2 mt-16`}
-            >
-              <div
-                data-team-row={team.id % 2 === 0 ? "right" : "left"}
-                className={
-                  isMobile
-                    ? "flex flex-col text-white"
-                    : `w-full text-white flex items-stretch ${
-                        team.id % 2 === 0
-                          ? "flex-row-reverse pr-[clamp(1rem,8vw,50rem)]"
-                          : "flex-row pl-[clamp(1rem,8vw,50rem)]"
-                      }`
-                }
+            return (
+              <article
+                key={"team-" + team.id}
+                className={`relative flex items-stretch ${
+                  team.id % 2 === 0 ? "w-full flex-row-reverse" : "w-full"
+                } gap-2 mt-16`}
               >
                 <div
+                  data-team-row={team.id % 2 === 0 ? "right" : "left"}
                   className={
                     isMobile
-                      ? "w-full flex justify-center"
-                      : `relative w-1/4 shrink-0 after:absolute after:z-0 after:bg-iw-red-2 after:w-1/2 after:h-full after:top-0 ${
-                          team.id % 2 === 0 ? "after:left-0" : "after:right-0"
+                      ? "flex flex-col text-white"
+                      : `w-full text-white flex items-stretch ${
+                          team.id % 2 === 0
+                            ? "flex-row-reverse pr-[clamp(1rem,8vw,50rem)]"
+                            : "flex-row pl-[clamp(1rem,8vw,50rem)]"
                         }`
                   }
                 >
-                  <Image
-                    src={staff[0 + 7].img}
-                    alt={team.name + "-hero"}
-                    width={500}
-                    height={500}
+                  <div
                     className={
                       isMobile
-                        ? "relative w-1/2 object-cover object-top"
-                        : "absolute bottom-0 inset-x-0 w-full h-[111.111%] object-cover object-top z-10"
+                        ? "w-full min-h-[200px] overflow-hidden relative flex justify-center"
+                        : `relative w-1/4 shrink-0 after:absolute after:z-0 after:bg-iw-red-2 after:w-full after:h-full after:top-0 ${
+                            team.id % 2 === 0
+                              ? "after:left-0 after:-translate-x-1/2"
+                              : "after:right-0 after:translate-x-1/2"
+                          }`
                     }
-                  />
-                </div>
-                <div className="py-10 flex-1 min-w-0 bg-iw-red-2 px-[clamp(1rem,8vw,50rem)] md:space-y-6 space-y-0">
-                  <SplitText
-                    text={team.name}
-                    tag="span"
-                    textAlign={isMobile ? "center" : "start"}
-                    className="text-[clamp(1.70rem,8vw,3rem)] leading-[1.05] font-semibold"
-                  />
+                  >
+                    {staff.map((va) => (
+                      <Image
+                        // Replace '.image' with whatever property name your VAS objects use for the image URL/path
+                        src={va.img}
+                        alt={team.name + "-hero"}
+                        width={500}
+                        height={500}
+                        className={`${currentHero === va ? "opacity-100" : `opacity-0 z-0 ${team.id % 2 === 0 ? "-translate-x-1/2" : "translate-x-1/2"}`} transition-all duration-300 ${
+                          isMobile
+                            ? "absolute w-1/2 object-cover object-top"
+                            : "absolute bottom-0 inset-x-0 w-full h-[111.111%] object-cover object-top z-10"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  <div className="py-10 flex-1 min-w-0 bg-iw-red-2 px-[clamp(1rem,8vw,50rem)] md:space-y-6 space-y-0">
+                    <SplitText
+                      text={team.name}
+                      tag="span"
+                      textAlign={isMobile ? "center" : "start"}
+                      className="text-[clamp(1.70rem,8vw,3rem)] leading-[1.05] font-semibold"
+                    />
 
-                  <SplitText
-                    text={team.description}
-                    className="text-base"
-                    textAlign={isMobile ? "center" : "start"}
-                  />
-                  <SplitText
-                    className="md:text-2xl text-sm"
-                    text={staff.map((va) => va.position).join(" • ")}
-                  />
+                    <SplitText
+                      text={team.description}
+                      className="text-base"
+                      textAlign={isMobile ? "center" : "start"}
+                    />
+                    {/* <SplitText
+                      className="md:text-2xl text-sm"
+                      text={staff.map((va) => va.position).join(" • ")}
+                    /> */}
+                    <PositionList
+                      positions={staff.map((va) => va.position)}
+                      onHover={(i) =>
+                        setTeamHero((prev) => ({ ...prev, [team.id]: i ?? 7 }))
+                      }
+                    />
+                  </div>
                 </div>
-              </div>
-            </article>
-          );
-        })}
-      </section>
+              </article>
+            );
+          })}
+        </section>
+      </main>
     </>
   );
 }
