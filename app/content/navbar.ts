@@ -4,6 +4,10 @@ export const navbar = [
     link: "/about",
   },
   {
+    title: "Profiles",
+    link: "/profiles",
+  },
+  {
     title: "Dispatch",
     link: "/dispatch",
   },

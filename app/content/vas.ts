@@ -1,5 +1,3 @@
-import professionalOptions from "@/components/form/professionalOptions";
-
 export interface VA {
   position: string;
   img: string;
@@ -30,11 +28,44 @@ const activeImages = [
   "/team-2026/SOFIA/sofia_03.png",
 ];
 
-// Statically map professional options to the image pool in a fixed order
-export const VAS: VA[] = professionalOptions.map((position, index) => ({
-  position,
+// Team 1: Front-Office, Marketing & Revenue Operations
+const team1Positions = [
+  "Dispatchers",
+  "Customer Service Agent",
+  "Sales Agent",
+  "Schedulers",
+  "Social Media Manager",
+  "Graphic Designer",
+  "Web Developer",
+  "Copywriter",
+  "Video Editor",
+  "Intake Coordinators",
+  "ADS Specialist",
+  "Telemarketing Agent",
+];
+
+// Team 2: Back-Office, Administrative & Specialized Support
+const team2Positions = [
+  "General Virtual Assistant",
+  "Administrative Assistant",
+  "Executive Operational Assistant",
+  "Recruiters",
+  "HR Coordinators",
+  "Helpdesk & Ticket Triage Agent",
+  "Insurance Assistant",
+  "Transcriptionist",
+  "Medical Scriber",
+  "Legal Assistant",
+  "Accountant",
+];
+
+// Statically map positions to the image pool in a fixed order
+export const VAS: VA[] = [
+  ...team1Positions.map((position) => ({ position, team: 1 })),
+  ...team2Positions.map((position) => ({ position, team: 2 })),
+].map((va, index) => ({
+  ...va,
   img: activeImages[index % activeImages.length],
-  team: (index % 10) + 1,
 }));
 
 export default VAS;
