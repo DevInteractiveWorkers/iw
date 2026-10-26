@@ -44,13 +44,11 @@ export default function RootLayout({
           <AppLoader>
             <PageTransitionProvider type="fade">
               <IWBg />
-              <div>
+              <PageTransitionOutlet>
                 <NavbarComponent />
-                <PageTransitionOutlet>
-                  <ScrollAlert />
-                  <div className="-z-10">{children}</div>
-                </PageTransitionOutlet>
-              </div>
+                <ScrollAlert />
+                <div className="-z-10">{children}</div>
+              </PageTransitionOutlet>
               {/* <Blured /> */}
               <PageTransitionOutlet>
                 <Footer />
