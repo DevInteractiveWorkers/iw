@@ -21,7 +21,7 @@ export default function StatsSection() {
       >
         <Stat title="Clients Reach Worldwide" number={40} symbol="+" />
         <Stat title="VAs placed" number={430} symbol="+" />
-        <Stat title="Projects" number={20} symbol="+" />
+        <Stat title="Projects" number={40} symbol="+" />
         <Stat title="Average Rating" number={5.0} symbol="stars" decimal />
       </article>
     </section>
@@ -38,7 +38,7 @@ export function Stat({
 }: {
   title: string;
   number: number;
-  symbol?: "+" | "%" | "stars";
+  symbol?: "+" | "%" | "stars" | undefined;
   decimal?: boolean;
   style?: CSSProperties;
   className?: string;

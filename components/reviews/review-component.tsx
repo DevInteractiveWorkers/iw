@@ -117,13 +117,13 @@ export default function ReviewComponentReviewComponent({
       disableHover
       className={`flex flex-col items-start relative min-h-[400px] h-full transition-all duration-500
         ${fluid ? "w-full min-w-0" : "min-w-[300px] max-w-[500px]"}
-        justify-between `}
+        justify-start`}
     >
       <div className={`p-5 w-full h-min border-white/50 border-b`}>
         <b>{name}</b>
         <p>{company}</p>
       </div>
-      <div className={`p-5 flex gap-4 justify-between h-auto flex-col`}>
+      <div className={`p-5 flex gap-4 justify-start h-auto flex-col`}>
         <RateStars count={rating} color={"white"} />
         <div className="flex flex-col justify-center gap-2 items-end">
           <p
