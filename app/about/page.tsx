@@ -173,6 +173,7 @@ const AboutUs = () => {
           "
           >
             <VideoPlayer
+              autoPreview={true}
               thumbnail="/testimonies/testimonial_thumbnail01.png"
               src={
                 "https://s3.interactiveworkers.com/demo/52d026a9-2910-4eb5-8395-aeecedc29f13.mp4"

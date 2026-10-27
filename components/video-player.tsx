@@ -8,12 +8,19 @@ interface VideoPlayerProps {
   src: string;
   thumbnail?: string;
   className?: string;
+  /** Play the first few seconds once the video is mostly in view, then pause. */
+  autoPreview?: boolean;
 }
+
+const PREVIEW_SECONDS = 5;
+// Fraction of the video that must be visible to count as "in view".
+const PREVIEW_VISIBLE_RATIO = 0.5;
 
 export default function VideoPlayer({
   src,
   thumbnail,
   className = "",
+  autoPreview = false,
 }: VideoPlayerProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
@@ -93,6 +100,91 @@ export default function VideoPlayer({
 
     return () => document.removeEventListener("fullscreenchange", onFsChange);
   }, []);
+
+  useEffect(() => {
+    if (!autoPreview) return;
+
+    const video = videoRef.current;
+    const container = containerRef.current;
+    if (!video) return;
+
+    // True only while the preview itself is driving playback.
+    let previewing = false;
+    // Set once the user plays, pauses or seeks; the preview never runs again.
+    let userControlled = false;
+
+    const takeOver = () => {
+      userControlled = true;
+      previewing = false;
+    };
+
+    const startPreview = () => {
+      if (userControlled || previewing) return;
+      if (!video.paused || video.currentTime >= PREVIEW_SECONDS) return;
+
+      previewing = true;
+      video.play().catch(() => {
+        // Autoplay blocked (e.g. unmuted without a prior user gesture).
+        previewing = false;
+      });
+    };
+
+    const stopPreview = () => {
+      if (!previewing) return;
+      previewing = false;
+      video.pause();
+    };
+
+    const onPreviewTimeUpdate = () => {
+      if (!previewing || video.currentTime < PREVIEW_SECONDS) return;
+
+      previewing = false;
+      video.pause();
+      video.currentTime = PREVIEW_SECONDS;
+    };
+
+    // A play event we didn't start means the user (or other code) took over.
+    const onPreviewPlay = () => {
+      if (!previewing) userControlled = true;
+    };
+    const onPreviewSeeking = () => {
+      if (previewing) takeOver();
+    };
+    const onPreviewEnded = () => {
+      previewing = false;
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const inView =
+          entry.isIntersecting &&
+          entry.intersectionRatio >= PREVIEW_VISIBLE_RATIO;
+
+        if (inView) startPreview();
+        else stopPreview();
+      },
+      { threshold: [0, PREVIEW_VISIBLE_RATIO] },
+    );
+
+    observer.observe(video);
+
+    video.addEventListener("timeupdate", onPreviewTimeUpdate);
+    video.addEventListener("play", onPreviewPlay);
+    video.addEventListener("seeking", onPreviewSeeking);
+    video.addEventListener("ended", onPreviewEnded);
+    container?.addEventListener("pointerdown", takeOver);
+    container?.addEventListener("keydown", takeOver);
+
+    return () => {
+      observer.disconnect();
+      video.removeEventListener("timeupdate", onPreviewTimeUpdate);
+      video.removeEventListener("play", onPreviewPlay);
+      video.removeEventListener("seeking", onPreviewSeeking);
+      video.removeEventListener("ended", onPreviewEnded);
+      container?.removeEventListener("pointerdown", takeOver);
+      container?.removeEventListener("keydown", takeOver);
+    };
+  }, [autoPreview]);
 
   const togglePlay = () => {
     const video = videoRef.current;

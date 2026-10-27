@@ -39,6 +39,7 @@ export default function IWVideo() {
           "
         >
           <VideoPlayer
+            autoPreview={true}
             src={VIDEO_URL[isMobile ? "mobile" : "desktop"]}
             thumbnail={isMobile ? "/reel-cover.png" : "/thumbnail.png"}
             className="
