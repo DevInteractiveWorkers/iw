@@ -4,7 +4,6 @@ import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 import FadeInContent from "./FadeInContent";
 import VideoPlayer from "./video-player";
 import { useIsMobile } from "@/lib/useMobile";
-import ColorBends from "./backgrounds/ColorBends";
 import CTAButton from "./buttons/cta-button";
 import { useRouter } from "next/navigation";
 

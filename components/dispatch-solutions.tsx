@@ -1,11 +1,15 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { X } from "lucide-react";
-import PixelBlast from "./why-us/pixel-blast";
 import { useIsMobile } from "@/lib/useMobile";
 import Icon from "./icon";
+
+const PixelBlast = dynamic(() => import("./why-us/pixel-blast"), {
+  ssr: false,
+});
 
 export interface DispatchSolutionsProps {
   title: string;

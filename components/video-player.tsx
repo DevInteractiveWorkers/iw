@@ -356,6 +356,7 @@ export default function VideoPlayer({
       <video
         ref={videoRef}
         src={src}
+        preload="metadata"
         className="block h-full w-full"
         onClick={togglePlay}
         playsInline

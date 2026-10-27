@@ -355,10 +355,20 @@ export default function Select(allProps: SelectProps) {
     <div
       ref={dropdownRef}
       className="py-2 my-2 border-b border-current relative flex items-center justify-between w-full cursor-pointer select-none"
-      onClick={() => setIsOpen((prev) => !prev)}
+      role="combobox"
+      tabIndex={0}
+      aria-label={props["aria-label"] ?? placeholder}
       aria-required={required}
       aria-haspopup="listbox"
       aria-expanded={isOpen}
+      onClick={() => setIsOpen((prev) => !prev)}
+      onKeyDown={(event) => {
+        if (event.target !== event.currentTarget) return;
+        if (["Enter", " ", "ArrowDown"].includes(event.key)) {
+          event.preventDefault();
+          setIsOpen(true);
+        }
+      }}
       {...props}
     >
       {multiple && selectedValues.length > 0 ? (

@@ -1,12 +1,16 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { CSSProperties } from "react";
 import BorderGlow from "./border-glow/border-glow";
 import Icon from "./icon";
-import PixelBlast from "./why-us/pixel-blast";
 import FlipElement from "./flip-element";
 import CTAButton from "./buttons/cta-button";
 import { useRouter } from "next/navigation";
+
+const PixelBlast = dynamic(() => import("./why-us/pixel-blast"), {
+  ssr: false,
+});
 
 interface FeatureCardProps {
   title: string;

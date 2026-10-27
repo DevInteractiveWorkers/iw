@@ -3,9 +3,7 @@
 import { usePathname } from "next/navigation";
 import { motion, type Variants } from "framer-motion";
 import DotField from "../DotField";
-import ColorBends from "./ColorBends";
 import "@julscodes/blob-background/styles.css";
-import LightRays from "./LightRays";
 import { usePageTransition } from "../PagetransitionContext";
 
 const CUSTOM_BG_ROUTES = ["/pricing"];
