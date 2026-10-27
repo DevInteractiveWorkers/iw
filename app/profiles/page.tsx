@@ -77,7 +77,7 @@ function PositionList({
           className="relative after:content-['•'] after:absolute after:left-full after:top-0 after:w-6 after:text-center data-[eol=true]:after:hidden"
         >
           <span
-            className="cursor-pointer hover:underline"
+            className="cursor-default hover:underline"
             onMouseEnter={() => onHover(i)}
             onMouseLeave={() => onHover(null)}
           >
