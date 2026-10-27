@@ -40,23 +40,23 @@ export default function RootLayout({
       <body
         className={`${poppins.className} scroll-smooth  bg-white text-black transition-color duration-500`}
       >
-        <ThemeProvider>
-          <AppLoader>
-            <PageTransitionProvider type="fade">
-              <IWBg />
-              <PageTransitionOutlet>
-                <NavbarComponent />
-                <ScrollAlert />
-                <div className="-z-10">{children}</div>
-              </PageTransitionOutlet>
-              {/* <Blured /> */}
-              <PageTransitionOutlet>
-                <Footer />
-              </PageTransitionOutlet>
-            </PageTransitionProvider>
-            <Analytics></Analytics>
-            <Script id="tawk" strategy="lazyOnload">
-              {`var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        {/* <ThemeProvider> */}
+        <AppLoader>
+          <PageTransitionProvider type="fade">
+            <IWBg />
+            <PageTransitionOutlet>
+              <NavbarComponent />
+              <ScrollAlert />
+              <div className="-z-10">{children}</div>
+            </PageTransitionOutlet>
+            {/* <Blured /> */}
+            <PageTransitionOutlet>
+              <Footer />
+            </PageTransitionOutlet>
+          </PageTransitionProvider>
+          <Analytics></Analytics>
+          <Script id="tawk" strategy="lazyOnload">
+            {`var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
             (function(){
               var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
               s1.async=true;
@@ -65,9 +65,9 @@ export default function RootLayout({
               s1.setAttribute('crossorigin','*');
               s0.parentNode.insertBefore(s1,s0);
               })();`}
-            </Script>
-          </AppLoader>
-        </ThemeProvider>
+          </Script>
+        </AppLoader>
+        {/* </ThemeProvider> */}
       </body>
     </html>
   );

@@ -8,7 +8,7 @@ export interface VA {
 const activeImages = [
   "/team-2026/ANDERE/andere_04.png",
   "/team-2026/ANDERE/andere_05.png",
-  "/team-2026/CAMILA/camila_01.png",
+  "/team-2026/CAMILA/camila.png",
   "/team-2026/CHANTAL/chantal_01.png",
   "/team-2026/CLAUDIA/claudia_01_v2.png",
   "/team-2026/EDUARDO/eduardo_01.png",
@@ -26,6 +26,7 @@ const activeImages = [
   "/team-2026/SOFIA/sofia_01.png",
   "/team-2026/SOFIA/sofia_02.png",
   "/team-2026/SOFIA/sofia_03.png",
+  "/team-2026/CAMILA/camila_01.png",
 ];
 
 // Team 1: Front-Office, Marketing & Revenue Operations
