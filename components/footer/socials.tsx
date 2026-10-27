@@ -13,8 +13,11 @@ const Socials = ({
       className={`flex md:flex-row-reverse flex-col justify-between items-center pt-6 gap-4 ${className ?? ""} ${dark ? "text-white" : "text-iw-red-2"}`}
     >
       <ul className={`flex gap-4 justify-between`}>
-        <SocialLink href="https://www.facebook.com/interactiveworkers">
+        <SocialLink
+          label="Facebook"
+          href="https://www.facebook.com/interactiveworkers">
           <svg
+            aria-hidden="true"
             width="28"
             height="28"
             viewBox="0 0 28 28"
@@ -24,8 +27,11 @@ const Socials = ({
             <path d="M13.9994 0C6.26782 0 0 6.26782 0 13.9994C0 20.5646 4.52013 26.0736 10.6177 27.5867V18.2776H7.73103V13.9994H10.6177V12.156C10.6177 7.39113 12.7742 5.18258 17.4522 5.18258C18.3392 5.18258 19.8696 5.35673 20.4957 5.53033V9.40816C20.1653 9.37344 19.5913 9.35609 18.8785 9.35609C16.5831 9.35609 15.6961 10.2257 15.6961 12.4864V13.9994H20.2689L19.4833 18.2776H15.6961V27.8963C22.6281 27.0592 27.9994 21.157 27.9994 13.9994C27.9988 6.26782 21.731 0 13.9994 0Z" />
           </svg>
         </SocialLink>
-        <SocialLink href="https://x.com/InteractiveWrks">
+        <SocialLink
+          label="X (Twitter)"
+          href="https://x.com/InteractiveWrks">
           <svg
+            aria-hidden="true"
             width="28"
             height="28"
             viewBox="0 0 26 24"
@@ -35,8 +41,11 @@ const Socials = ({
             <path d="M20.2132 0H24.1487L15.5507 9.82699L25.6656 23.1993H17.7457L11.5426 15.0891L4.44475 23.1993H0.506816L9.70326 12.6882L0 0H8.12095L13.728 7.41308L20.2132 0ZM18.8319 20.8437H21.0126L6.936 2.23189H4.59584L18.8319 20.8437Z" />
           </svg>
         </SocialLink>
-        <SocialLink href="https://www.instagram.com/interactiveworkers">
+        <SocialLink
+          label="Instagram"
+          href="https://www.instagram.com/interactiveworkers">
           <svg
+            aria-hidden="true"
             width="28"
             height="28"
             viewBox="0 0 28 28"
@@ -48,8 +57,11 @@ const Socials = ({
             <path d="M23.1541 6.52454C23.1541 7.45419 22.3994 8.20338 21.4752 8.20338C20.5456 8.20338 19.7964 7.44872 19.7964 6.52454C19.7964 5.59489 20.551 4.8457 21.4752 4.8457C22.3994 4.8457 23.1541 5.60036 23.1541 6.52454Z" />
           </svg>
         </SocialLink>
-        <SocialLink href="https://www.linkedin.com/company/interactiveworkers/posts/?feedView=all">
+        <SocialLink
+          label="LinkedIn"
+          href="https://www.linkedin.com/company/interactiveworkers/posts/?feedView=all">
           <svg
+            aria-hidden="true"
             width="28"
             height="28"
             viewBox="0 0 28 28"
@@ -60,11 +72,13 @@ const Socials = ({
           </svg>
         </SocialLink>
         <SocialLink
+          label="WhatsApp"
           href={`https://wa.me/13322062891?text=${encodeURIComponent(
             `Hello InteractiveWorkers!\nI'd like to reach out and have more information`,
           )}`}
         >
           <svg
+            aria-hidden="true"
             width="28"
             height="28"
             viewBox="0 0 28 28"
@@ -126,9 +140,11 @@ const ContactLink = ({
 
 const SocialLink = ({
   href,
+  label,
   children,
 }: {
   href: string;
+  label: string;
   children: React.ReactNode;
 }) => {
   return (
@@ -137,6 +153,7 @@ const SocialLink = ({
         href={href}
         target="_blank"
         rel="noopener noreferrer"
+        aria-label={label}
         className={`text-current hover:text-iw-red-3 transition-colors duration-200`}
       >
         {children}
