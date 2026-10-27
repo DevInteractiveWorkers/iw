@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { useIsMobile } from "@/lib/useMobile";
 import ProductCard from "../product-card";
 import BorderGlow from "../border-glow/border-glow";
 
@@ -10,6 +11,8 @@ const FLIP_MS = 700;
 const FLIP_EASE = "cubic-bezier(0.45, 0.05, 0.25, 1)";
 // Fades the last 20% of the box when positioned at "0 100%" with a 200% mask height
 const FADE_MASK = "linear-gradient(to bottom, black 90%, transparent 100%)";
+// On mobile the card flips once its bottom clears this % of the viewport's bottom edge
+const FLIP_BOTTOM_INSET = 20;
 
 interface VACardProps {
   children?: React.ReactNode;
@@ -21,15 +24,40 @@ interface VACardProps {
 
 const VACard = ({ children, imageSrc, className, content }: VACardProps) => {
   const hasContent = content ? true : false;
-  const [isHovered, setIsHovered] = useState<boolean>(false);
-  const canFlip = hasContent && isHovered;
+  const isMobile = useIsMobile();
+  const cardRef = useRef<HTMLDivElement>(null);
+  // Single source of truth for the flip: set by hover on desktop and by
+  // viewport entry on mobile.
+  const [isFlipped, setIsFlipped] = useState<boolean>(false);
+  const canFlip = hasContent && isFlipped;
+
+  useEffect(() => {
+    const card = cardRef.current;
+    if (!isMobile || !hasContent || !card) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsFlipped(entry.isIntersecting),
+      // Shrinking the viewport's bottom edge means the card only counts as
+      // intersecting once it is fully visible and its bottom (the h3 label)
+      // is above the bottom FLIP_BOTTOM_INSET of the screen. It flips back
+      // when it leaves that zone, like hover does on desktop.
+      { rootMargin: `0px 0px -${FLIP_BOTTOM_INSET}% 0px`, threshold: 1 },
+    );
+
+    observer.observe(card);
+
+    return () => observer.disconnect();
+  }, [isMobile, hasContent]);
 
   return (
     <div
+      ref={cardRef}
       className={`group/card ${className}`}
       style={{ perspective: "1200px" }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      // On touch devices hover events are emulated on tap and would undo the
+      // scroll-triggered flip, so hover only drives the flip on desktop.
+      onMouseEnter={() => !isMobile && setIsFlipped(true)}
+      onMouseLeave={() => !isMobile && setIsFlipped(false)}
     >
       <ProductCard
         className={`flex flex-col relative pointer-events-none w-full h-full transition-transform duration-300`}
@@ -63,12 +91,12 @@ const VACard = ({ children, imageSrc, className, content }: VACardProps) => {
             WebkitMaskSize: "100% 200%",
             maskRepeat: "no-repeat",
             WebkitMaskRepeat: "no-repeat",
-            maskPosition: canFlip && isHovered ? "0 100%" : "0 0",
-            WebkitMaskPosition: canFlip && isHovered ? "0 100%" : "0 0",
+            maskPosition: canFlip ? "0 100%" : "0 0",
+            WebkitMaskPosition: canFlip ? "0 100%" : "0 0",
           }}
         >
           <Image
-            className={`object-cover object-top select-none transition-all ${canFlip && isHovered && "scale-90 mt-[25%] opacity-50"}`}
+            className={`object-cover object-top select-none transition-all ${canFlip && "scale-90 mt-[25%] opacity-50"}`}
             style={{
               // Blur the image itself instead of a backdrop-filter, which pops in instead of animating
               filter: canFlip ? "blur(12px)" : "blur(0px)",
@@ -102,7 +130,7 @@ const VACard = ({ children, imageSrc, className, content }: VACardProps) => {
         )}
         <div
           className={`relative text-center font-medium text-[clamp(1rem,1vw,1.5rem)] min-h-[4.5rem] flex items-center justify-center px-4 ${
-            canFlip && isHovered && "opacity-0"
+            canFlip && "opacity-0"
           } transition-opacity duration-700 pointer-events-none`}
         >
           <div className="absolute w-full h-full top-0 left-0">
