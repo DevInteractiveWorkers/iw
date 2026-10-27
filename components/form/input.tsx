@@ -12,6 +12,7 @@ export default function Input({
       className={`py-2 my-2 border-b border-current relative flex items-center ${props.className ?? ""}`}
     >
       <input
+        aria-label={placeholder}
         {...props}
         id={id}
         name={name ?? id}

@@ -11,6 +11,7 @@ export default function Textarea({
   return (
     <div className="py-2 my-2 border-b border-current relative flex">
       <textarea
+        aria-label={placeholder}
         {...props}
         id={id}
         name={name ?? id}
