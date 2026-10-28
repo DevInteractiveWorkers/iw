@@ -27,6 +27,8 @@ const activeImages = [
   "/team-2026/SOFIA/sofia_02.png",
   "/team-2026/SOFIA/sofia_03.png",
   "/team-2026/CAMILA/camila_01.png",
+  "/team-2026/FRAN/fran_01.png",
+  "/team-2026/CHANTAL/chantal_02.png",
 ];
 
 // Team 1: Front-Office, Marketing & Revenue Operations
