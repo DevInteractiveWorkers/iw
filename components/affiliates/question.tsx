@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Icon from "../icon";
 
 export type QuestionItem = {
   question: string;
@@ -49,7 +50,8 @@ export default function Question({
           {/* Icon */}
           <div className="relative shrink-0 mr-4 size-5">
             {/* Plus */}
-            <svg
+            <Icon
+              icon="plus-01"
               className={`
                 absolute
                 inset-0
@@ -59,18 +61,10 @@ export default function Question({
                 ease-out
                 ${opened ? "rotate-90 opacity-0" : "rotate-0 opacity-100"}
               `}
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 448 512"
-              aria-hidden="true"
-            >
-              <path
-                fill="currentColor"
-                d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"
-              />
-            </svg>
-
+            />
             {/* Minus */}
-            <svg
+            <Icon
+              icon="dash"
               className={`
                 absolute
                 inset-0
@@ -80,15 +74,7 @@ export default function Question({
                 ease-out
                 ${opened ? "rotate-0 opacity-100" : "-rotate-90 opacity-0"}
               `}
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 448 512"
-              aria-hidden="true"
-            >
-              <path
-                fill="currentColor"
-                d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s-14.3-32-32-32l352 0c17.7 0 32 14.3 32 32z"
-              />
-            </svg>
+            />
           </div>
         </div>
 
