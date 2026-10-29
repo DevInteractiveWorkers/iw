@@ -6,7 +6,6 @@ import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 import IWBg from "@/components/backgrounds/background";
 import AppLoader from "@/components/AppLoader";
-import Blured from "@/components/footer/blured";
 import { ScrollAlert } from "@/components/scroll-alert/alert";
 import NavbarComponent from "@/components/navbar";
 import { PageTransitionProvider } from "@/components/PagetransitionContext";
@@ -20,7 +19,10 @@ const poppins = Poppins({
   display: "swap",
 });
 
-const themeInitScript = `(function(){try{var s=localStorage.getItem("theme");var d=s?s==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches;document.documentElement.classList.toggle("dark",d);}catch(e){}})();`;
+// Runs before first paint: applies the saved/system theme and flags repeat
+// visits so AppLoader is hidden without waiting for hydration. The 10s timer is
+// a failsafe for when the JS bundle fails and AppLoader's own timeout never runs.
+const themeInitScript = `(function(){try{var s=localStorage.getItem("theme");var d=s?s==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches;document.documentElement.classList.toggle("dark",d);}catch(e){}try{if(sessionStorage.getItem("loaded")==="true")document.documentElement.setAttribute("data-loaded","");}catch(e){}setTimeout(function(){document.documentElement.setAttribute("data-loaded","");},10000);})();`;
 
 export const metadata: Metadata = {
   title: "InteractiveWorkers",
@@ -35,28 +37,29 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script />
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body
         className={`${poppins.className} scroll-smooth  bg-white text-black transition-color duration-500`}
       >
-        {/* <ThemeProvider> */}
-        <AppLoader>
-          <PageTransitionProvider type="fade">
-            <IWBg />
-            <PageTransitionOutlet>
-              <NavbarComponent />
-              <ScrollAlert />
-              <div className="-z-10">{children}</div>
-            </PageTransitionOutlet>
-            {/* <Blured /> */}
-            <PageTransitionOutlet>
-              <Footer />
-            </PageTransitionOutlet>
-          </PageTransitionProvider>
-          <Analytics></Analytics>
-          <Script id="tawk" strategy="lazyOnload">
-            {`var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        <ThemeProvider>
+          <AppLoader>
+            <PageTransitionProvider type="fade">
+              <IWBg />
+              <PageTransitionOutlet>
+                <NavbarComponent />
+                <ScrollAlert />
+                <div className="-z-10">{children}</div>
+              </PageTransitionOutlet>
+              <PageTransitionOutlet>
+                <Footer />
+              </PageTransitionOutlet>
+            </PageTransitionProvider>
+          </AppLoader>
+        </ThemeProvider>
+        <Analytics />
+        <Script id="tawk" strategy="lazyOnload">
+          {`var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
             (function(){
               var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
               s1.async=true;
@@ -65,9 +68,7 @@ export default function RootLayout({
               s1.setAttribute('crossorigin','*');
               s0.parentNode.insertBefore(s1,s0);
               })();`}
-          </Script>
-        </AppLoader>
-        {/* </ThemeProvider> */}
+        </Script>
       </body>
     </html>
   );
