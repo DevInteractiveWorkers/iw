@@ -2,7 +2,6 @@
 
 import React, { HTMLAttributes } from "react";
 import Socials from "./socials";
-import Link from "next/link";
 import FooterForm from "./current-form";
 import { FooterFormProvider, useHasFooterForm } from "./footer-form-context";
 import PageDivision from "../page-division";
@@ -19,9 +18,10 @@ const FooterContent = (props: HTMLAttributes<HTMLElement>) => {
 
   return (
     <footer
-      className={`relative w-full ${isContact ? "bg-iw-red-2" : "bg-white"} ${hasForm ? "min-h-screen" : ""} px-[clamp(1rem,8vw,50rem)] flex flex-col justify-between py-6 overflow-hidden ${className ?? ""}`}
+      className={`relative w-full 
+        ${isContact ? "bg-iw-red-2" : hasForm ? "min-h-screen bg-gradient-to-t from-white via-white to-white/0" : "bg-white"} px-[clamp(1rem,8vw,50rem)] flex flex-col justify-between py-6 overflow-hidden ${className ?? ""}`}
     >
-      {hasForm && (
+      {/* {hasForm && (
         <div
           style={{
             top: 0,
@@ -36,7 +36,7 @@ const FooterContent = (props: HTMLAttributes<HTMLElement>) => {
               "linear-gradient(to top, black 90%, transparent 100%)",
           }}
         />
-      )}
+      )} */}
       <ParticlesComponent
         id="footer-particles"
         color="#ccc"
@@ -54,7 +54,7 @@ const FooterContent = (props: HTMLAttributes<HTMLElement>) => {
             width="1324"
             height="107"
             viewBox="0 0 1324 107"
-            fill="currentColor"
+            fill={"currentColor"}
             xmlns="http://www.w3.org/2000/svg"
           >
             <path d="M35.6801 21.2145V90.1379C35.6801 95.6882 37.0918 98.6664 42.352 99.0918V105.493H0V99.0918C5.26015 98.6664 6.6719 95.6882 6.6719 90.1379V21.2145C6.6719 15.6643 5.26015 12.8215 0 12.2607V6.01428H42.352V12.2607C37.0918 12.8215 35.6801 15.6643 35.6801 21.2145Z" />

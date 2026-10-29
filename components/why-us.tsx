@@ -87,6 +87,7 @@ export default function WhyUs() {
         <div className="w-full h-full flex flex-col gap-6">
           {WhyUsCards.map((card, i) => (
             <WhyUsCard
+              key={i}
               {...card}
               style={
                 !isMobile
