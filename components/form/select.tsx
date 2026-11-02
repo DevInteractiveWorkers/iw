@@ -48,6 +48,20 @@ const toArray = (value: string | string[] | undefined): string[] => {
   return value ? [value] : [];
 };
 
+// Image flags: Windows doesn't render flag emoji.
+const Flag = ({ iso }: { iso: string }) => (
+  // eslint-disable-next-line @next/next/no-img-element
+  <img
+    src={`https://flagcdn.com/w40/${iso.toLowerCase()}.png`}
+    alt=""
+    aria-hidden="true"
+    width={20}
+    height={15}
+    loading="lazy"
+    className="h-[15px] w-5 shrink-0 rounded-[2px] object-cover"
+  />
+);
+
 export default function Select(allProps: SelectProps) {
   const {
     placeholder = "Select an option...",
@@ -80,7 +94,10 @@ export default function Select(allProps: SelectProps) {
       // If option has value, use it. Otherwise use its text as the value.
       const value = String(child.props.value ?? child.props.children ?? "");
       const label = String(child.props.children ?? value);
-      return { value, label };
+      // Optional: ISO country code for a flag, and a compact label for the trigger.
+      const flag: string | undefined = child.props["data-flag"];
+      const short: string | undefined = child.props["data-short"];
+      return { value, label, flag, short };
     });
 
   const normalizedQuery = query.trim().toLowerCase();
@@ -90,9 +107,11 @@ export default function Select(allProps: SelectProps) {
       )
     : options;
 
-  const selectedLabel = selectedValues
-    .map((value) => options.find((option) => option.value === value)?.label)
-    .filter((label): label is string => Boolean(label))
+  const selectedOptions = selectedValues
+    .map((value) => options.find((option) => option.value === value))
+    .filter((option): option is (typeof options)[number] => Boolean(option));
+  const selectedLabel = selectedOptions
+    .map((option) => option.short ?? option.label)
     .join(", ");
 
   // Sync controlled value
@@ -265,7 +284,7 @@ export default function Select(allProps: SelectProps) {
     filteredOptions.length === 0 ? (
       <p className="px-4 py-2 text-sm opacity-50">No results found</p>
     ) : (
-      filteredOptions.map(({ value, label }, index) => {
+      filteredOptions.map(({ value, label, flag }, index) => {
         const isSelected = selectedValues.includes(value);
 
         return (
@@ -282,7 +301,10 @@ export default function Select(allProps: SelectProps) {
               handleSelect(value);
             }}
           >
-            <span>{label}</span>
+            <span className="flex items-center gap-2">
+              {flag && <Flag iso={flag} />}
+              {label}
+            </span>
             {isSelected && <span aria-hidden="true">✓</span>}
           </button>
         );
@@ -354,7 +376,7 @@ export default function Select(allProps: SelectProps) {
   return (
     <div
       ref={dropdownRef}
-      className="py-2 my-2 border-b border-current relative flex items-center justify-between w-full cursor-pointer select-none"
+      className="py-2 my-2 min-h-10 border-b border-current relative flex items-center justify-between w-full cursor-pointer select-none"
       role="combobox"
       tabIndex={0}
       aria-label={props["aria-label"] ?? placeholder}
@@ -391,8 +413,9 @@ export default function Select(allProps: SelectProps) {
       )}
 
       {/* Selected value */}
-      <div className="bg-transparent outline-none w-full pointer-events-none absolute truncate pr-6">
-        {selectedLabel}
+      <div className="bg-transparent outline-none w-full pointer-events-none absolute truncate pr-6 flex items-center gap-2">
+        {selectedOptions[0]?.flag && <Flag iso={selectedOptions[0].flag} />}
+        <span className="truncate">{selectedLabel}</span>
       </div>
 
       {/* Placeholder */}
