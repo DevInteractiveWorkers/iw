@@ -7,6 +7,13 @@ export async function POST(req: NextRequest) {
   const data = await req.json();
   const date = getCurrentDate().join(" / ");
 
+  // Accepts one professional (string) or several (array).
+  const professionals: string[] = (
+    Array.isArray(data.professional) ? data.professional : [data.professional]
+  )
+    .map((p: unknown) => String(p ?? "").trim())
+    .filter(Boolean);
+
   await sendEmail({
     from: process.env.NODEMAILER_USER!,
     to: "gm@interactiveworkers.com",
@@ -22,7 +29,8 @@ export async function POST(req: NextRequest) {
       "Company Name": data.company,
       "Company Size": data.size,
       "Number of Staff Required": data.staff,
-      Professional: data.professional,
+      [professionals.length > 1 ? "Professionals" : "Professional"]:
+        professionals.join(", "),
       Message: data.message,
     },
   });

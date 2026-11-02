@@ -15,7 +15,8 @@ export interface formData {
   fullName: string;
   country: string;
   company: string;
-  professional: string;
+  /** One or more selected professionals. */
+  professional: string[];
   size: string;
   staff: string;
   email: string;

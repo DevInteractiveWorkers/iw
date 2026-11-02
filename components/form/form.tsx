@@ -10,13 +10,11 @@ import Textarea from "./textarea";
 import FadeInContent from "../FadeInContent";
 import SplitText from "../text-animation/SplitText";
 import FormButton from "../buttons/form-buttons";
-import Loader from "../loader";
 import Checkbox from "./checkbox";
 import { useScrollIntoView } from "@/lib/use-scroll-into-view";
 import { useIsMobile } from "@/lib/useMobile";
 import { TransitionLink } from "../link";
 import { footerNavbar, navbar } from "@/app/content/navbar";
-import Socials from "../footer/socials";
 import Image from "next/image";
 import { FooterList } from "../footer/footer-list";
 import { Toast, useToast } from "./toast";
@@ -182,7 +180,7 @@ const MainForm = ({
       size: String(formData.get("size") ?? ""),
       staff: String(formData.get("staff") ?? ""),
       country: String(formData.get("country") ?? ""),
-      professional: String(formData.get("professional") ?? ""),
+      professional: professionals,
       message: String(formData.get("message") ?? ""),
     };
 
@@ -278,7 +276,12 @@ const MainForm = ({
                     onChange={setDialIso}
                   >
                     {countries.map((c) => (
-                      <option key={c.iso} value={c.iso}>
+                      <option
+                        key={c.iso}
+                        value={c.iso}
+                        data-flag={c.iso}
+                        data-short={c.dial}
+                      >
                         {`${c.name} ${c.dial}`}
                       </option>
                     ))}
@@ -319,7 +322,7 @@ const MainForm = ({
                 {...validation.describe("size")}
               />
             </FieldTip>
-            <div className="md:grid md:grid-cols-2 flex flex-col gap-6 md:col-span-2 items-end">
+            <div className="md:grid md:grid-cols-2 flex flex-col gap-6 md:col-span-2 md:items-end">
               <FieldTip {...validation.tip("staff")}>
                 <Input
                   id="staff"
